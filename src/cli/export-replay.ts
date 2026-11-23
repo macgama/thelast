@@ -1,5 +1,6 @@
 // Exporte une saison au format compact lu par la démo visuelle (demo/index.html).
 // Usage : npm run replay -- [graine=42]  -> demo/data.json
+import { resolveLook, type Look } from "../characters/looks.js";
 import { readFileSync, writeFileSync } from "node:fs";
 import { island } from "../engine/arenas/island";
 import { Season, dayOf } from "../engine/season";
@@ -11,6 +12,7 @@ const pool: Character[] = JSON.parse(readFileSync("data/characters.json", "utf8"
 const config: SeasonConfig = JSON.parse(readFileSync("config/season.json", "utf8"));
 if (process.argv[2]) config.seed = Number(process.argv[2]);
 const featured = JSON.parse(readFileSync("demo/featured.json", "utf8"));
+const looks: Record<string, Look> = Object.fromEntries(JSON.parse(readFileSync("data/looks.json", "utf8")).map((l: Look) => [l.id, l]));
 
 const r = new Season(pool, island, config).run();
 const fr = new Narrator(r, "fr");
@@ -25,6 +27,7 @@ const cast = r.cast.map((c) => {
     secret: f?.secret ?? c.secret.fr, secretDay: f?.secretDay ?? null,
     traits: c.traits, skills: c.skills, phobia: c.phobia,
     confessions: f?.confessions ?? null,
+    look: looks[c.id] ? resolveLook(looks[c.id]) : null,
   };
 });
 

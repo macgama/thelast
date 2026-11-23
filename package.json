@@ -9,7 +9,8 @@
     "simulate": "tsx src/cli/simulate.ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "replay": "tsx src/cli/export-replay.ts"
+    "replay": "tsx src/cli/export-replay.ts",
+    "looks": "tsx src/cli/gen-looks.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

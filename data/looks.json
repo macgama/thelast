@@ -1,0 +1,2902 @@
+[
+ {
+  "id": "c001",
+  "height": 1.07,
+  "build": "broad",
+  "skin": "golden brown",
+  "hair": {
+   "style": "buzz",
+   "color": "pastel pink"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "mint green"
+  },
+  "top": {
+   "type": "tshirt",
+   "color": "teal"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "bag",
+   "color": "cream"
+  },
+  "signature": "sacoche de coursier en bandoulière"
+ },
+ {
+  "id": "c002",
+  "height": 0.97,
+  "build": "slim",
+  "skin": "golden brown",
+  "hair": {
+   "style": "short",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "beanie",
+   "color": "lavender"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "teal"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "rope",
+   "color": "burgundy"
+  },
+  "signature": "corde enroulée sur l'épaule et bonnet"
+ },
+ {
+  "id": "c003",
+  "height": 0.98,
+  "build": "slim",
+  "skin": "light beige",
+  "hair": {
+   "style": "short",
+   "color": "copper red"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "headband",
+   "color": "tangerine orange"
+  },
+  "top": {
+   "type": "tank",
+   "color": "lavender"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "none",
+   "color": "navy blue"
+  },
+  "signature": "bandeau et débardeur de danse"
+ },
+ {
+  "id": "c004",
+  "height": 1.06,
+  "build": "average",
+  "skin": "deep brown",
+  "hair": {
+   "style": "bald",
+   "color": "jet black"
+  },
+  "facial": "beard",
+  "glasses": "round",
+  "hat": {
+   "type": "toque",
+   "color": "white"
+  },
+  "top": {
+   "type": "coat",
+   "color": "white"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "scarf",
+   "color": "teal"
+  },
+  "signature": "toque et veste de chef"
+ },
+ {
+  "id": "c005",
+  "height": 1.03,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "bun",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "straw",
+   "color": "sand beige"
+  },
+  "top": {
+   "type": "overalls",
+   "color": "chocolate brown"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "none",
+   "color": "lavender"
+  },
+  "signature": "salopette et chapeau de paille"
+ },
+ {
+  "id": "c006",
+  "height": 1,
+  "build": "average",
+  "skin": "light beige",
+  "hair": {
+   "style": "short",
+   "color": "snow white"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "beanie",
+   "color": "navy blue"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "fire red"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "rope",
+   "color": "hot pink"
+  },
+  "signature": "corde enroulée sur l'épaule et bonnet"
+ },
+ {
+  "id": "c007",
+  "height": 0.99,
+  "build": "round",
+  "skin": "deep brown",
+  "hair": {
+   "style": "ponytail",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "bucket",
+   "color": "cream"
+  },
+  "top": {
+   "type": "raincoat",
+   "color": "navy blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "black"
+  },
+  "item": {
+   "type": "none",
+   "color": "burgundy"
+  },
+  "signature": "ciré et bob de pêcheur"
+ },
+ {
+  "id": "c008",
+  "height": 0.97,
+  "build": "broad",
+  "skin": "light beige",
+  "hair": {
+   "style": "bob",
+   "color": "ash blond"
+  },
+  "facial": "none",
+  "glasses": "sun",
+  "hat": {
+   "type": "visor",
+   "color": "mustard yellow"
+  },
+  "top": {
+   "type": "vest",
+   "color": "burgundy"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "none",
+   "color": "hot pink"
+  },
+  "signature": "visière de croupier et lunettes noires"
+ },
+ {
+  "id": "c009",
+  "height": 0.94,
+  "build": "average",
+  "skin": "porcelain",
+  "hair": {
+   "style": "afro",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "white"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "fire red"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "gloves",
+   "color": "forest green"
+  },
+  "signature": "blouson de cuir et gants"
+ },
+ {
+  "id": "c010",
+  "height": 0.92,
+  "build": "average",
+  "skin": "golden brown",
+  "hair": {
+   "style": "bun",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "flatcap",
+   "color": "fire red"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "slate grey"
+  },
+  "bottom": {
+   "type": "skirt",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "none",
+   "color": "cream"
+  },
+  "signature": "casquette plate de chauffeur"
+ },
+ {
+  "id": "c011",
+  "height": 1.04,
+  "build": "average",
+  "skin": "golden brown",
+  "hair": {
+   "style": "braids",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "coral red"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "black"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "gloves",
+   "color": "plum"
+  },
+  "signature": "blouson de cuir et gants"
+ },
+ {
+  "id": "c012",
+  "height": 1.01,
+  "build": "average",
+  "skin": "deep brown",
+  "hair": {
+   "style": "buzz",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "headband",
+   "color": "plum"
+  },
+  "top": {
+   "type": "tank",
+   "color": "mint green"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "none",
+   "color": "teal"
+  },
+  "signature": "bandeau et débardeur de danse"
+ },
+ {
+  "id": "c013",
+  "height": 0.93,
+  "build": "slim",
+  "skin": "golden brown",
+  "hair": {
+   "style": "long",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "bucket",
+   "color": "forest green"
+  },
+  "top": {
+   "type": "raincoat",
+   "color": "navy blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "none",
+   "color": "safety yellow"
+  },
+  "signature": "ciré et bob de pêcheur"
+ },
+ {
+  "id": "c014",
+  "height": 0.99,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "bun",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "straw",
+   "color": "sand beige"
+  },
+  "top": {
+   "type": "overalls",
+   "color": "chocolate brown"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "none",
+   "color": "plum"
+  },
+  "signature": "salopette et chapeau de paille"
+ },
+ {
+  "id": "c015",
+  "height": 1.06,
+  "build": "average",
+  "skin": "light beige",
+  "hair": {
+   "style": "mohawk",
+   "color": "dark brown"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "olive green"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "hot pink"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "camera",
+   "color": "sky blue"
+  },
+  "signature": "chemise à fleurs et appareil photo"
+ },
+ {
+  "id": "c016",
+  "height": 1.02,
+  "build": "broad",
+  "skin": "light beige",
+  "hair": {
+   "style": "mohawk",
+   "color": "copper red"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "toque",
+   "color": "white"
+  },
+  "top": {
+   "type": "coat",
+   "color": "white"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "black"
+  },
+  "item": {
+   "type": "scarf",
+   "color": "mustard yellow"
+  },
+  "signature": "toque et veste de chef"
+ },
+ {
+  "id": "c017",
+  "height": 1,
+  "build": "broad",
+  "skin": "porcelain",
+  "hair": {
+   "style": "short",
+   "color": "dark brown"
+  },
+  "facial": "mustache",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "cream"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "mint green"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "whistle",
+   "color": "safety yellow"
+  },
+  "signature": "survêtement et sifflet"
+ },
+ {
+  "id": "c018",
+  "height": 0.99,
+  "build": "broad",
+  "skin": "porcelain",
+  "hair": {
+   "style": "short",
+   "color": "ash blond"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "fedora",
+   "color": "chocolate brown"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "khaki"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "backpack",
+   "color": "burgundy"
+  },
+  "signature": "chapeau d'aventurier et sac à dos"
+ },
+ {
+  "id": "c019",
+  "height": 1.07,
+  "build": "broad",
+  "skin": "deep brown",
+  "hair": {
+   "style": "buzz",
+   "color": "snow white"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "bucket",
+   "color": "tangerine orange"
+  },
+  "top": {
+   "type": "raincoat",
+   "color": "mustard yellow"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "black"
+  },
+  "item": {
+   "type": "none",
+   "color": "coral red"
+  },
+  "signature": "ciré et bob de pêcheur"
+ },
+ {
+  "id": "c020",
+  "height": 1.04,
+  "build": "slim",
+  "skin": "porcelain",
+  "hair": {
+   "style": "curly",
+   "color": "ash blond"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "none",
+   "color": "tangerine orange"
+  },
+  "top": {
+   "type": "suit",
+   "color": "navy blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "tie",
+   "color": "forest green"
+  },
+  "signature": "costume et cravate"
+ },
+ {
+  "id": "c021",
+  "height": 0.98,
+  "build": "slim",
+  "skin": "warm tan",
+  "hair": {
+   "style": "afro",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "none",
+   "color": "fire red"
+  },
+  "top": {
+   "type": "cardigan",
+   "color": "coral red"
+  },
+  "bottom": {
+   "type": "skirt",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "notebook",
+   "color": "burgundy"
+  },
+  "signature": "gilet en laine et cahier"
+ },
+ {
+  "id": "c022",
+  "height": 1.06,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "ponytail",
+   "color": "silver grey"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "teal"
+  },
+  "top": {
+   "type": "tank",
+   "color": "olive green"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "dogtags",
+   "color": "lavender"
+  },
+  "signature": "débardeur kaki et plaques militaires"
+ },
+ {
+  "id": "c023",
+  "height": 1.03,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "buzz",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "forest green"
+  },
+  "top": {
+   "type": "apron",
+   "color": "teal"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "notebook",
+   "color": "tangerine orange"
+  },
+  "signature": "tablier de service et carnet de commandes"
+ },
+ {
+  "id": "c024",
+  "height": 1.05,
+  "build": "slim",
+  "skin": "deep brown",
+  "hair": {
+   "style": "buzz",
+   "color": "silver grey"
+  },
+  "facial": "stubble",
+  "glasses": "round",
+  "hat": {
+   "type": "none",
+   "color": "cream"
+  },
+  "top": {
+   "type": "suit",
+   "color": "sky blue"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "tie",
+   "color": "safety yellow"
+  },
+  "signature": "costume clair et cravate"
+ },
+ {
+  "id": "c025",
+  "height": 1.03,
+  "build": "broad",
+  "skin": "golden brown",
+  "hair": {
+   "style": "mohawk",
+   "color": "jet black"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "hardhat",
+   "color": "mustard yellow"
+  },
+  "top": {
+   "type": "vest",
+   "color": "tangerine orange"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "none",
+   "color": "forest green"
+  },
+  "signature": "casque de chantier et gilet fluo"
+ },
+ {
+  "id": "c026",
+  "height": 1.03,
+  "build": "broad",
+  "skin": "porcelain",
+  "hair": {
+   "style": "ponytail",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "sun",
+  "hat": {
+   "type": "visor",
+   "color": "plum"
+  },
+  "top": {
+   "type": "vest",
+   "color": "forest green"
+  },
+  "bottom": {
+   "type": "skirt",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "none",
+   "color": "teal"
+  },
+  "signature": "visière de croupier et lunettes noires"
+ },
+ {
+  "id": "c027",
+  "height": 1.01,
+  "build": "average",
+  "skin": "porcelain",
+  "hair": {
+   "style": "buzz",
+   "color": "jet black"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "tangerine orange"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "fire red"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "medkit",
+   "color": "cream"
+  },
+  "signature": "uniforme d'ambulancier et trousse"
+ },
+ {
+  "id": "c028",
+  "height": 0.98,
+  "build": "average",
+  "skin": "light beige",
+  "hair": {
+   "style": "ponytail",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "forest green"
+  },
+  "top": {
+   "type": "hoodie",
+   "color": "fire red"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "gloves",
+   "color": "mint green"
+  },
+  "signature": "sweat à capuche et gants de boxe"
+ },
+ {
+  "id": "c029",
+  "height": 1.08,
+  "build": "round",
+  "skin": "porcelain",
+  "hair": {
+   "style": "afro",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "cap",
+   "color": "coral red"
+  },
+  "top": {
+   "type": "tank",
+   "color": "olive green"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "dogtags",
+   "color": "white"
+  },
+  "signature": "débardeur kaki et plaques militaires"
+ },
+ {
+  "id": "c030",
+  "height": 1.03,
+  "build": "average",
+  "skin": "light beige",
+  "hair": {
+   "style": "bob",
+   "color": "ash blond"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "straw",
+   "color": "sand beige"
+  },
+  "top": {
+   "type": "overalls",
+   "color": "forest green"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "none",
+   "color": "mustard yellow"
+  },
+  "signature": "salopette et chapeau de paille"
+ },
+ {
+  "id": "c031",
+  "height": 0.94,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "afro",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "mint green"
+  },
+  "top": {
+   "type": "scrubs",
+   "color": "lavender"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "stethoscope",
+   "color": "sky blue"
+  },
+  "signature": "blouse d'infirmier·e et stéthoscope"
+ },
+ {
+  "id": "c032",
+  "height": 1.06,
+  "build": "slim",
+  "skin": "dark ebony",
+  "hair": {
+   "style": "bob",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "hardhat",
+   "color": "mustard yellow"
+  },
+  "top": {
+   "type": "vest",
+   "color": "safety yellow"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "none",
+   "color": "coral red"
+  },
+  "signature": "casque de chantier et gilet fluo"
+ },
+ {
+  "id": "c033",
+  "height": 0.98,
+  "build": "slim",
+  "skin": "light beige",
+  "hair": {
+   "style": "short",
+   "color": "ash blond"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "bandana",
+   "color": "mint green"
+  },
+  "top": {
+   "type": "apron",
+   "color": "cream"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "none",
+   "color": "hot pink"
+  },
+  "signature": "tablier enfariné et bandana"
+ },
+ {
+  "id": "c034",
+  "height": 1.01,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "curly",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "coral red"
+  },
+  "top": {
+   "type": "cardigan",
+   "color": "mustard yellow"
+  },
+  "bottom": {
+   "type": "skirt",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "notebook",
+   "color": "white"
+  },
+  "signature": "gilet en laine et cahier"
+ },
+ {
+  "id": "c035",
+  "height": 0.98,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "buzz",
+   "color": "jet black"
+  },
+  "facial": "mustache",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "olive green"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "navy blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "black"
+  },
+  "item": {
+   "type": "whistle",
+   "color": "cream"
+  },
+  "signature": "survêtement et sifflet"
+ },
+ {
+  "id": "c036",
+  "height": 0.98,
+  "build": "average",
+  "skin": "light beige",
+  "hair": {
+   "style": "curly",
+   "color": "jet black"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "lavender"
+  },
+  "top": {
+   "type": "scrubs",
+   "color": "sky blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "stethoscope",
+   "color": "fire red"
+  },
+  "signature": "blouse verte et stéthoscope"
+ },
+ {
+  "id": "c037",
+  "height": 0.92,
+  "build": "round",
+  "skin": "golden brown",
+  "hair": {
+   "style": "bob",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "hot pink"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "chocolate brown"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "toolbelt",
+   "color": "hot pink"
+  },
+  "signature": "chemise à carreaux et ceinture à outils"
+ },
+ {
+  "id": "c038",
+  "height": 1.03,
+  "build": "broad",
+  "skin": "porcelain",
+  "hair": {
+   "style": "bun",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "hot pink"
+  },
+  "top": {
+   "type": "tank",
+   "color": "olive green"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "dogtags",
+   "color": "safety yellow"
+  },
+  "signature": "débardeur kaki et plaques militaires"
+ },
+ {
+  "id": "c039",
+  "height": 0.97,
+  "build": "average",
+  "skin": "golden brown",
+  "hair": {
+   "style": "braids",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "tangerine orange"
+  },
+  "top": {
+   "type": "hoodie",
+   "color": "black"
+  },
+  "bottom": {
+   "type": "skirt",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "headphones",
+   "color": "tangerine orange"
+  },
+  "signature": "sweat à capuche et casque audio"
+ },
+ {
+  "id": "c040",
+  "height": 0.98,
+  "build": "broad",
+  "skin": "light beige",
+  "hair": {
+   "style": "bun",
+   "color": "copper red"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "none",
+   "color": "sky blue"
+  },
+  "top": {
+   "type": "cardigan",
+   "color": "cream"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "notebook",
+   "color": "safety yellow"
+  },
+  "signature": "col roulé et carnet de notes"
+ },
+ {
+  "id": "c041",
+  "height": 1.07,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "buzz",
+   "color": "chestnut"
+  },
+  "facial": "beard",
+  "glasses": "round",
+  "hat": {
+   "type": "none",
+   "color": "olive green"
+  },
+  "top": {
+   "type": "wetsuit",
+   "color": "black"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "mask",
+   "color": "hot pink"
+  },
+  "signature": "combinaison et masque de plongée sur le front"
+ },
+ {
+  "id": "c042",
+  "height": 0.94,
+  "build": "average",
+  "skin": "dark ebony",
+  "hair": {
+   "style": "short",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "helmet",
+   "color": "fire red"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "sand beige"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "none",
+   "color": "teal"
+  },
+  "signature": "veste à bandes jaunes et casque rouge"
+ },
+ {
+  "id": "c043",
+  "height": 1.08,
+  "build": "broad",
+  "skin": "light beige",
+  "hair": {
+   "style": "short",
+   "color": "honey blond"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "lavender"
+  },
+  "top": {
+   "type": "scrubs",
+   "color": "teal"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "stethoscope",
+   "color": "mustard yellow"
+  },
+  "signature": "blouse verte et stéthoscope"
+ },
+ {
+  "id": "c044",
+  "height": 1.02,
+  "build": "broad",
+  "skin": "warm tan",
+  "hair": {
+   "style": "mohawk",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "coral red"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "teal"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "toolbelt",
+   "color": "lavender"
+  },
+  "signature": "casquette, chemise à carreaux et outils"
+ },
+ {
+  "id": "c045",
+  "height": 0.97,
+  "build": "broad",
+  "skin": "golden brown",
+  "hair": {
+   "style": "bob",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "bucket",
+   "color": "burgundy"
+  },
+  "top": {
+   "type": "vest",
+   "color": "olive green"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "black"
+  },
+  "item": {
+   "type": "camera",
+   "color": "fire red"
+  },
+  "signature": "gilet multipoches et téléobjectif"
+ },
+ {
+  "id": "c046",
+  "height": 0.96,
+  "build": "average",
+  "skin": "light beige",
+  "hair": {
+   "style": "braids",
+   "color": "ash blond"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "hardhat",
+   "color": "mustard yellow"
+  },
+  "top": {
+   "type": "vest",
+   "color": "tangerine orange"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "none",
+   "color": "navy blue"
+  },
+  "signature": "casque de chantier et gilet fluo"
+ },
+ {
+  "id": "c047",
+  "height": 0.99,
+  "build": "round",
+  "skin": "porcelain",
+  "hair": {
+   "style": "bun",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "cap",
+   "color": "lavender"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "teal"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "black"
+  },
+  "item": {
+   "type": "toolbelt",
+   "color": "forest green"
+  },
+  "signature": "casquette, chemise à carreaux et outils"
+ },
+ {
+  "id": "c048",
+  "height": 0.95,
+  "build": "slim",
+  "skin": "deep brown",
+  "hair": {
+   "style": "afro",
+   "color": "electric blue"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "burgundy"
+  },
+  "top": {
+   "type": "scrubs",
+   "color": "mint green"
+  },
+  "bottom": {
+   "type": "skirt",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "stethoscope",
+   "color": "plum"
+  },
+  "signature": "blouse verte et stéthoscope"
+ },
+ {
+  "id": "c049",
+  "height": 1.02,
+  "build": "broad",
+  "skin": "light beige",
+  "hair": {
+   "style": "short",
+   "color": "copper red"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "fire red"
+  },
+  "top": {
+   "type": "hoodie",
+   "color": "black"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "gloves",
+   "color": "fire red"
+  },
+  "signature": "sweat à capuche et gants de boxe"
+ },
+ {
+  "id": "c050",
+  "height": 1.06,
+  "build": "broad",
+  "skin": "light beige",
+  "hair": {
+   "style": "bob",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "sky blue"
+  },
+  "top": {
+   "type": "scrubs",
+   "color": "lavender"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "stethoscope",
+   "color": "cream"
+  },
+  "signature": "blouse d'infirmier·e et stéthoscope"
+ },
+ {
+  "id": "c051",
+  "height": 1.05,
+  "build": "average",
+  "skin": "golden brown",
+  "hair": {
+   "style": "short",
+   "color": "dark brown"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "safety yellow"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "forest green"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "medkit",
+   "color": "safety yellow"
+  },
+  "signature": "uniforme d'ambulancier et trousse"
+ },
+ {
+  "id": "c052",
+  "height": 1.05,
+  "build": "average",
+  "skin": "golden brown",
+  "hair": {
+   "style": "bald",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "straw",
+   "color": "sand beige"
+  },
+  "top": {
+   "type": "overalls",
+   "color": "denim blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "none",
+   "color": "lavender"
+  },
+  "signature": "salopette et chapeau de paille"
+ },
+ {
+  "id": "c053",
+  "height": 1.03,
+  "build": "broad",
+  "skin": "dark ebony",
+  "hair": {
+   "style": "short",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "none",
+   "color": "teal"
+  },
+  "top": {
+   "type": "suit",
+   "color": "slate grey"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "tie",
+   "color": "mint green"
+  },
+  "signature": "costume et cravate"
+ },
+ {
+  "id": "c054",
+  "height": 1,
+  "build": "average",
+  "skin": "golden brown",
+  "hair": {
+   "style": "bob",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "white"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "black"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "headset",
+   "color": "fire red"
+  },
+  "signature": "blouson et casque radio"
+ },
+ {
+  "id": "c055",
+  "height": 1.01,
+  "build": "slim",
+  "skin": "deep brown",
+  "hair": {
+   "style": "short",
+   "color": "jet black"
+  },
+  "facial": "beard",
+  "glasses": "square",
+  "hat": {
+   "type": "hardhat",
+   "color": "mustard yellow"
+  },
+  "top": {
+   "type": "vest",
+   "color": "safety yellow"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "none",
+   "color": "forest green"
+  },
+  "signature": "casque de chantier et gilet fluo"
+ },
+ {
+  "id": "c056",
+  "height": 0.93,
+  "build": "average",
+  "skin": "light beige",
+  "hair": {
+   "style": "short",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "cream"
+  },
+  "top": {
+   "type": "cardigan",
+   "color": "lavender"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "notebook",
+   "color": "burgundy"
+  },
+  "signature": "gilet en laine et cahier"
+ },
+ {
+  "id": "c057",
+  "height": 1.01,
+  "build": "broad",
+  "skin": "porcelain",
+  "hair": {
+   "style": "afro",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "beanie",
+   "color": "coral red"
+  },
+  "top": {
+   "type": "hoodie",
+   "color": "mint green"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "spray",
+   "color": "fire red"
+  },
+  "signature": "sweat taché de peinture et bombe aérosol"
+ },
+ {
+  "id": "c058",
+  "height": 0.97,
+  "build": "slim",
+  "skin": "deep brown",
+  "hair": {
+   "style": "short",
+   "color": "chestnut"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "safety yellow"
+  },
+  "top": {
+   "type": "hoodie",
+   "color": "slate grey"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "gloves",
+   "color": "forest green"
+  },
+  "signature": "sweat à capuche et gants de boxe"
+ },
+ {
+  "id": "c059",
+  "height": 1.03,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "mohawk",
+   "color": "silver grey"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "bandana",
+   "color": "teal"
+  },
+  "top": {
+   "type": "apron",
+   "color": "white"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "none",
+   "color": "burgundy"
+  },
+  "signature": "tablier enfariné et bandana"
+ },
+ {
+  "id": "c060",
+  "height": 1.08,
+  "build": "average",
+  "skin": "porcelain",
+  "hair": {
+   "style": "buzz",
+   "color": "ash blond"
+  },
+  "facial": "beard",
+  "glasses": "round",
+  "hat": {
+   "type": "cap",
+   "color": "fire red"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "mustard yellow"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "toolbelt",
+   "color": "white"
+  },
+  "signature": "casquette, chemise à carreaux et outils"
+ },
+ {
+  "id": "c061",
+  "height": 1.08,
+  "build": "slim",
+  "skin": "porcelain",
+  "hair": {
+   "style": "short",
+   "color": "dark brown"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "toque",
+   "color": "white"
+  },
+  "top": {
+   "type": "coat",
+   "color": "white"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "black"
+  },
+  "item": {
+   "type": "scarf",
+   "color": "olive green"
+  },
+  "signature": "toque et veste de chef"
+ },
+ {
+  "id": "c062",
+  "height": 1.04,
+  "build": "broad",
+  "skin": "golden brown",
+  "hair": {
+   "style": "long",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "teal"
+  },
+  "top": {
+   "type": "scrubs",
+   "color": "sky blue"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "stethoscope",
+   "color": "fire red"
+  },
+  "signature": "blouse verte et stéthoscope"
+ },
+ {
+  "id": "c063",
+  "height": 0.99,
+  "build": "slim",
+  "skin": "light beige",
+  "hair": {
+   "style": "bob",
+   "color": "honey blond"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "cream"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "forest green"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "toolbelt",
+   "color": "mint green"
+  },
+  "signature": "chemise à carreaux et ceinture à outils"
+ },
+ {
+  "id": "c064",
+  "height": 1.02,
+  "build": "slim",
+  "skin": "golden brown",
+  "hair": {
+   "style": "ponytail",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "cap",
+   "color": "cream"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "denim blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "toolbelt",
+   "color": "sky blue"
+  },
+  "signature": "casquette, chemise à carreaux et outils"
+ },
+ {
+  "id": "c065",
+  "height": 0.93,
+  "build": "average",
+  "skin": "porcelain",
+  "hair": {
+   "style": "long",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "hot pink"
+  },
+  "top": {
+   "type": "overalls",
+   "color": "slate grey"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "wrench",
+   "color": "navy blue"
+  },
+  "signature": "combinaison de garagiste et clé à molette"
+ },
+ {
+  "id": "c066",
+  "height": 1.03,
+  "build": "broad",
+  "skin": "golden brown",
+  "hair": {
+   "style": "bob",
+   "color": "pastel pink"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "none",
+   "color": "coral red"
+  },
+  "top": {
+   "type": "hoodie",
+   "color": "lavender"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "headphones",
+   "color": "teal"
+  },
+  "signature": "sweat à capuche et casque audio"
+ },
+ {
+  "id": "c067",
+  "height": 1,
+  "build": "slim",
+  "skin": "dark ebony",
+  "hair": {
+   "style": "bun",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "white"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "black"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "gloves",
+   "color": "safety yellow"
+  },
+  "signature": "blouson de cuir et gants"
+ },
+ {
+  "id": "c068",
+  "height": 1.02,
+  "build": "average",
+  "skin": "deep brown",
+  "hair": {
+   "style": "short",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "beanie",
+   "color": "forest green"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "fire red"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "rope",
+   "color": "navy blue"
+  },
+  "signature": "corde enroulée sur l'épaule et bonnet"
+ },
+ {
+  "id": "c069",
+  "height": 1.06,
+  "build": "average",
+  "skin": "light beige",
+  "hair": {
+   "style": "ponytail",
+   "color": "honey blond"
+  },
+  "facial": "mustache",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "tangerine orange"
+  },
+  "top": {
+   "type": "overalls",
+   "color": "slate grey"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "wrench",
+   "color": "mustard yellow"
+  },
+  "signature": "combinaison de garagiste et clé à molette"
+ },
+ {
+  "id": "c070",
+  "height": 0.95,
+  "build": "slim",
+  "skin": "light beige",
+  "hair": {
+   "style": "long",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "sun",
+  "hat": {
+   "type": "visor",
+   "color": "plum"
+  },
+  "top": {
+   "type": "vest",
+   "color": "burgundy"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "none",
+   "color": "hot pink"
+  },
+  "signature": "visière de croupier et lunettes noires"
+ },
+ {
+  "id": "c071",
+  "height": 1,
+  "build": "slim",
+  "skin": "light beige",
+  "hair": {
+   "style": "mohawk",
+   "color": "dark brown"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "fedora",
+   "color": "chocolate brown"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "khaki"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "backpack",
+   "color": "lavender"
+  },
+  "signature": "chapeau d'aventurier et sac à dos"
+ },
+ {
+  "id": "c072",
+  "height": 1.08,
+  "build": "round",
+  "skin": "deep brown",
+  "hair": {
+   "style": "ponytail",
+   "color": "chestnut"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "sky blue"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "forest green"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "black"
+  },
+  "item": {
+   "type": "medkit",
+   "color": "white"
+  },
+  "signature": "uniforme d'ambulancier et trousse"
+ },
+ {
+  "id": "c073",
+  "height": 0.99,
+  "build": "average",
+  "skin": "dark ebony",
+  "hair": {
+   "style": "ponytail",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "burgundy"
+  },
+  "top": {
+   "type": "hoodie",
+   "color": "navy blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "gloves",
+   "color": "coral red"
+  },
+  "signature": "sweat à capuche et gants de boxe"
+ },
+ {
+  "id": "c074",
+  "height": 1,
+  "build": "average",
+  "skin": "light beige",
+  "hair": {
+   "style": "ponytail",
+   "color": "pastel pink"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "fedora",
+   "color": "chocolate brown"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "sand beige"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "backpack",
+   "color": "fire red"
+  },
+  "signature": "chapeau d'aventurier et sac à dos"
+ },
+ {
+  "id": "c075",
+  "height": 0.92,
+  "build": "broad",
+  "skin": "golden brown",
+  "hair": {
+   "style": "long",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "none",
+   "color": "burgundy"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "sky blue"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "tie",
+   "color": "coral red"
+  },
+  "signature": "chemise, cravate et lunettes"
+ },
+ {
+  "id": "c076",
+  "height": 0.99,
+  "build": "slim",
+  "skin": "porcelain",
+  "hair": {
+   "style": "long",
+   "color": "ash blond"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "cap",
+   "color": "forest green"
+  },
+  "top": {
+   "type": "hoodie",
+   "color": "slate grey"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "black"
+  },
+  "item": {
+   "type": "gloves",
+   "color": "olive green"
+  },
+  "signature": "sweat à capuche et gants de boxe"
+ },
+ {
+  "id": "c077",
+  "height": 1.03,
+  "build": "slim",
+  "skin": "deep brown",
+  "hair": {
+   "style": "bob",
+   "color": "pastel pink"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "mint green"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "tangerine orange"
+  },
+  "bottom": {
+   "type": "skirt",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "headset",
+   "color": "olive green"
+  },
+  "signature": "blouson et casque radio"
+ },
+ {
+  "id": "c078",
+  "height": 1.08,
+  "build": "slim",
+  "skin": "light beige",
+  "hair": {
+   "style": "buzz",
+   "color": "chestnut"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "coral red"
+  },
+  "top": {
+   "type": "wetsuit",
+   "color": "plum"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "mask",
+   "color": "burgundy"
+  },
+  "signature": "combinaison et masque de plongée sur le front"
+ },
+ {
+  "id": "c079",
+  "height": 0.96,
+  "build": "slim",
+  "skin": "warm tan",
+  "hair": {
+   "style": "bald",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "none",
+   "color": "hot pink"
+  },
+  "top": {
+   "type": "cardigan",
+   "color": "burgundy"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "scarf",
+   "color": "cream"
+  },
+  "signature": "gilet, écharpe et lunettes rondes"
+ },
+ {
+  "id": "c080",
+  "height": 0.98,
+  "build": "broad",
+  "skin": "porcelain",
+  "hair": {
+   "style": "bun",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "none",
+   "color": "white"
+  },
+  "top": {
+   "type": "suit",
+   "color": "navy blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "tie",
+   "color": "mint green"
+  },
+  "signature": "costume et cravate"
+ },
+ {
+  "id": "c081",
+  "height": 0.98,
+  "build": "average",
+  "skin": "golden brown",
+  "hair": {
+   "style": "long",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "headband",
+   "color": "mint green"
+  },
+  "top": {
+   "type": "tank",
+   "color": "lavender"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "none",
+   "color": "olive green"
+  },
+  "signature": "bandeau et débardeur de danse"
+ },
+ {
+  "id": "c082",
+  "height": 1.02,
+  "build": "slim",
+  "skin": "warm tan",
+  "hair": {
+   "style": "short",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "round",
+  "hat": {
+   "type": "none",
+   "color": "tangerine orange"
+  },
+  "top": {
+   "type": "cardigan",
+   "color": "mustard yellow"
+  },
+  "bottom": {
+   "type": "skirt",
+   "color": "black"
+  },
+  "item": {
+   "type": "notebook",
+   "color": "teal"
+  },
+  "signature": "gilet en laine et cahier"
+ },
+ {
+  "id": "c083",
+  "height": 0.93,
+  "build": "average",
+  "skin": "warm tan",
+  "hair": {
+   "style": "afro",
+   "color": "chestnut"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "bandana",
+   "color": "forest green"
+  },
+  "top": {
+   "type": "apron",
+   "color": "cream"
+  },
+  "bottom": {
+   "type": "skirt",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "none",
+   "color": "plum"
+  },
+  "signature": "tablier enfariné et bandana"
+ },
+ {
+  "id": "c084",
+  "height": 1.01,
+  "build": "broad",
+  "skin": "golden brown",
+  "hair": {
+   "style": "buzz",
+   "color": "chestnut"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "hardhat",
+   "color": "mustard yellow"
+  },
+  "top": {
+   "type": "vest",
+   "color": "tangerine orange"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "none",
+   "color": "burgundy"
+  },
+  "signature": "casque de chantier et gilet fluo"
+ },
+ {
+  "id": "c085",
+  "height": 1.04,
+  "build": "slim",
+  "skin": "golden brown",
+  "hair": {
+   "style": "bun",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "navy blue"
+  },
+  "top": {
+   "type": "hoodie",
+   "color": "black"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "headphones",
+   "color": "white"
+  },
+  "signature": "sweat à capuche et casque audio"
+ },
+ {
+  "id": "c086",
+  "height": 1.04,
+  "build": "slim",
+  "skin": "deep brown",
+  "hair": {
+   "style": "ponytail",
+   "color": "jet black"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "teal"
+  },
+  "top": {
+   "type": "suit",
+   "color": "sky blue"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "black"
+  },
+  "item": {
+   "type": "tie",
+   "color": "navy blue"
+  },
+  "signature": "costume clair et cravate"
+ },
+ {
+  "id": "c087",
+  "height": 0.98,
+  "build": "average",
+  "skin": "deep brown",
+  "hair": {
+   "style": "buzz",
+   "color": "electric blue"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "fire red"
+  },
+  "top": {
+   "type": "wetsuit",
+   "color": "black"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "mask",
+   "color": "lavender"
+  },
+  "signature": "combinaison et masque de plongée sur le front"
+ },
+ {
+  "id": "c088",
+  "height": 1,
+  "build": "broad",
+  "skin": "deep brown",
+  "hair": {
+   "style": "short",
+   "color": "silver grey"
+  },
+  "facial": "none",
+  "glasses": "sun",
+  "hat": {
+   "type": "cap",
+   "color": "forest green"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "black"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "headphones",
+   "color": "mustard yellow"
+  },
+  "signature": "bomber, casque de DJ et lunettes noires"
+ },
+ {
+  "id": "c089",
+  "height": 1.02,
+  "build": "round",
+  "skin": "warm tan",
+  "hair": {
+   "style": "long",
+   "color": "snow white"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "coral red"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "fire red"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "denim blue"
+  },
+  "item": {
+   "type": "toolbelt",
+   "color": "sky blue"
+  },
+  "signature": "chemise à carreaux et ceinture à outils"
+ },
+ {
+  "id": "c090",
+  "height": 1.02,
+  "build": "slim",
+  "skin": "warm tan",
+  "hair": {
+   "style": "bob",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "helmet",
+   "color": "fire red"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "sand beige"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "none",
+   "color": "safety yellow"
+  },
+  "signature": "veste à bandes jaunes et casque rouge"
+ },
+ {
+  "id": "c091",
+  "height": 0.97,
+  "build": "average",
+  "skin": "dark ebony",
+  "hair": {
+   "style": "short",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "visor",
+   "color": "forest green"
+  },
+  "top": {
+   "type": "tank",
+   "color": "fire red"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "whistle",
+   "color": "mint green"
+  },
+  "signature": "débardeur rouge de sauveteur et sifflet"
+ },
+ {
+  "id": "c092",
+  "height": 0.98,
+  "build": "broad",
+  "skin": "light beige",
+  "hair": {
+   "style": "short",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "beekeeper",
+   "color": "tangerine orange"
+  },
+  "top": {
+   "type": "coat",
+   "color": "cream"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "none",
+   "color": "safety yellow"
+  },
+  "signature": "combinaison blanche et chapeau à voilette"
+ },
+ {
+  "id": "c093",
+  "height": 1.01,
+  "build": "slim",
+  "skin": "light beige",
+  "hair": {
+   "style": "ponytail",
+   "color": "ash blond"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "fire red"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "mustard yellow"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "chocolate brown"
+  },
+  "item": {
+   "type": "gloves",
+   "color": "sky blue"
+  },
+  "signature": "blouson de cuir et gants"
+ },
+ {
+  "id": "c094",
+  "height": 0.98,
+  "build": "slim",
+  "skin": "deep brown",
+  "hair": {
+   "style": "curly",
+   "color": "chestnut"
+  },
+  "facial": "beard",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "mint green"
+  },
+  "top": {
+   "type": "wetsuit",
+   "color": "navy blue"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "slate grey"
+  },
+  "item": {
+   "type": "mask",
+   "color": "cream"
+  },
+  "signature": "combinaison et masque de plongée sur le front"
+ },
+ {
+  "id": "c095",
+  "height": 1,
+  "build": "broad",
+  "skin": "dark ebony",
+  "hair": {
+   "style": "curly",
+   "color": "snow white"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "toque",
+   "color": "white"
+  },
+  "top": {
+   "type": "coat",
+   "color": "white"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "scarf",
+   "color": "safety yellow"
+  },
+  "signature": "toque et veste de chef"
+ },
+ {
+  "id": "c096",
+  "height": 1.05,
+  "build": "average",
+  "skin": "deep brown",
+  "hair": {
+   "style": "short",
+   "color": "chestnut"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "none",
+   "color": "mustard yellow"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "fire red"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "medkit",
+   "color": "cream"
+  },
+  "signature": "uniforme d'ambulancier et trousse"
+ },
+ {
+  "id": "c097",
+  "height": 1.05,
+  "build": "slim",
+  "skin": "light beige",
+  "hair": {
+   "style": "short",
+   "color": "dark brown"
+  },
+  "facial": "none",
+  "glasses": "square",
+  "hat": {
+   "type": "none",
+   "color": "burgundy"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "white"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "sand beige"
+  },
+  "item": {
+   "type": "tie",
+   "color": "fire red"
+  },
+  "signature": "chemise, cravate et lunettes"
+ },
+ {
+  "id": "c098",
+  "height": 1.03,
+  "build": "slim",
+  "skin": "warm tan",
+  "hair": {
+   "style": "curly",
+   "color": "jet black"
+  },
+  "facial": "none",
+  "glasses": "none",
+  "hat": {
+   "type": "visor",
+   "color": "hot pink"
+  },
+  "top": {
+   "type": "tank",
+   "color": "fire red"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "black"
+  },
+  "item": {
+   "type": "whistle",
+   "color": "forest green"
+  },
+  "signature": "débardeur rouge de sauveteur et sifflet"
+ },
+ {
+  "id": "c099",
+  "height": 1.07,
+  "build": "slim",
+  "skin": "light beige",
+  "hair": {
+   "style": "afro",
+   "color": "copper red"
+  },
+  "facial": "stubble",
+  "glasses": "sun",
+  "hat": {
+   "type": "none",
+   "color": "mint green"
+  },
+  "top": {
+   "type": "jacket",
+   "color": "hot pink"
+  },
+  "bottom": {
+   "type": "pants",
+   "color": "charcoal"
+  },
+  "item": {
+   "type": "headphones",
+   "color": "fire red"
+  },
+  "signature": "bomber, casque de DJ et lunettes noires"
+ },
+ {
+  "id": "c100",
+  "height": 1.05,
+  "build": "broad",
+  "skin": "deep brown",
+  "hair": {
+   "style": "bob",
+   "color": "chestnut"
+  },
+  "facial": "stubble",
+  "glasses": "none",
+  "hat": {
+   "type": "cap",
+   "color": "burgundy"
+  },
+  "top": {
+   "type": "shirt",
+   "color": "hot pink"
+  },
+  "bottom": {
+   "type": "shorts",
+   "color": "khaki"
+  },
+  "item": {
+   "type": "camera",
+   "color": "sky blue"
+  },
+  "signature": "chemise à fleurs et appareil photo"
+ }
+]

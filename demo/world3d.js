@@ -499,48 +499,27 @@
     beam: new T.CylinderGeometry(0.05, 0.05, 6, 6, 1, true).translate(0, 4.6, 0),
     arrow: new T.ConeGeometry(0.28, 0.5, 4).rotateX(Math.PI).translate(0, 2.75, 0),
   };
-  // Accessoires des 5 candidats suivis, pour les reconnaître de loin
-  const SIGNATURE = {
-    c046: { beanie: 0x1d3557, shirt: 0xffc43d },                // Noa, bonnet et ciré de navigateur·ice
-    c085: { phones: 0xc08bff, shirt: 0x7fb0ff },                 // Selin, casque audio de développeuse
-    c053: { glasses: 0x111111, tie: 0x7a1f2b, shirt: 0xf2f2f2 }, // Matthias, chemise blanche et cravate
-    c071: { cap: 0xc8a165, pack: 0x7a5230 },                     // Omar, chapeau et sac d'archéologue
-    c086: { glasses: 0x3a2a1a, tie: 0x1f4e8c, shirt: 0xd9c7a3 }, // Louis, costume beige d'agent immobilier
-  };
-
   function makePerson(c) {
     const h = hash(c.id);
-    const g = new T.Group();
-    const sig = SIGNATURE[c.id];
-    const skin = SKIN[h % 6], hair = HAIR[(h >> 3) % 7], shirt = sig?.shirt ?? SHIRT[(h >> 9) % 7], pants = PANTS[(h >> 5) % 4];
-    g.rotation.order = "YXZ";
-    const add = (geo, hex, y = 0) => { const m = new T.Mesh(geo, mat(hex)); m.castShadow = true; m.position.y = y; g.add(m); return m; };
-    add(GEO.legs, pants); add(GEO.body, shirt); add(GEO.head, skin);
-    const armL = add(GEO.arm, shirt); armL.position.set(-0.38, 1.45, 0);
-    const armR = add(GEO.arm, shirt); armR.position.set(0.38, 1.45, 0);
-    const styles = c.gender === "f" ? [1, 2, 3, 1, 0] : c.gender === "m" ? [0, 4, 3, 0, 4] : [0, 1, 2, 3, 4];
-    const style = styles[(h >> 12) % 5];
-    if (style === 3) add(GEO.afro, hair);
-    else { add(GEO.hairCap, hair); if (style === 1) add(GEO.hairLong, hair); if (style === 2) add(GEO.bun, hair); }
-    if (sig?.helmet) { add(GEO.helmet, sig.helmet); add(GEO.brim, sig.helmet); }
-    if (sig?.cap) { add(GEO.hairCap, sig.cap).scale.set(1.05, 0.8, 1.05); const v = add(GEO.visor, sig.cap); v.position.z = 0.1; }
-    if (sig?.beanie) add(GEO.helmet, sig.beanie).scale.set(1, 1.15, 1);
-    if (sig?.visor) add(GEO.visor, sig.visor);
-    if (sig?.pack) add(GEO.pack, sig.pack);
-    if (sig?.gloves) for (const arm of [armL, armR]) { const gl = new T.Mesh(GEO.glove, mat(sig.gloves)); arm.add(gl); }
-    if (sig?.phones) { add(GEO.phones, 0x222222); for (const s of [-1, 1]) add(GEO.cup, sig.phones).position.set(s * 0.32, 1.76, 0); }
-    if (sig?.glasses) add(GEO.glasses, sig.glasses);
-    if (sig?.tie) add(GEO.tie, sig.tie);
+    let g, armL, armR, tall = 1;
+    if (c.look && window.TheLastAvatar) {
+      ({ group: g, armL, armR, height: tall } = window.TheLastAvatar.build(T, c.look, mat));
+      g.rotation.order = "YXZ";
+    } else {
+      g = new T.Group(); g.rotation.order = "YXZ";
+      const add = (geo, hex) => { const m = new T.Mesh(geo, mat(hex)); m.castShadow = true; g.add(m); return m; };
+      add(GEO.legs, PANTS[(h >> 5) % 4]); add(GEO.body, SHIRT[(h >> 9) % 7]); add(GEO.head, SKIN[h % 6]); add(GEO.hairCap, HAIR[(h >> 3) % 7]);
+      armL = add(GEO.arm, SHIRT[(h >> 9) % 7]); armL.position.set(-0.38, 1.45, 0);
+      armR = add(GEO.arm, SHIRT[(h >> 9) % 7]); armR.position.set(0.38, 1.45, 0);
+    }
     // canne à pêche (dans la main droite) et collier d'immunité, cachés par défaut
     const rod = new T.Mesh(GEO.rod, mat(0x8a6a44)); rod.position.set(0, -0.6, 0); rod.rotation.x = 2.14; rod.visible = false; armR.add(rod);
     const necklace = new T.Group(); necklace.add(new T.Mesh(GEO.necklace, mat(0xe6b84a, { emissive: 0x3a2800 })), new T.Mesh(GEO.pendant, mat(0xff8a3d, { emissive: 0x401800 })));
     necklace.visible = false; g.add(necklace);
-    if (!sig && (h >> 15) % 5 === 0) { add(GEO.brim, 0xd9c08a); add(GEO.hairCap, 0xd9c08a).scale.set(0.9, 0.6, 0.9); } // chapeau de paille
     // repère du candidat suivi
     const ring = new T.Mesh(GEO.ring, new T.MeshBasicMaterial({ color: 0xff8a3d })); ring.visible = false; g.add(ring);
     const arrow = new T.Mesh(GEO.arrow, new T.MeshBasicMaterial({ color: 0xff8a3d })); arrow.visible = false; g.add(arrow);
-    const scale = 1.25;
-    g.scale.setScalar(scale);
+    g.scale.setScalar(1.25 * tall);
     g.userData = { id: c.id, armL, armR, ring, arrow, rod, necklace, pos: new T.Vector3(), target: new T.Vector3(), phase: (h % 100) / 16 };
     return g;
   }

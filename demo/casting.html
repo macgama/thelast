@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les 100 personnages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root {
+  --ink: #0b1820; --deep: #10262f; --raise: #173440; --line: #24505e;
+  --sand: #e9cf98; --mist: #9fb9bd; --torch: #ff8a3d;
+  --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--sand); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+header { max-width: 1180px; margin: 0 auto; padding: 28px 16px 8px; }
+h1 { font-family: var(--display); letter-spacing: .14em; font-size: 22px; margin: 0 0 6px; }
+h1 b { color: var(--torch); }
+header p { color: var(--mist); max-width: 720px; margin: 0 0 14px; }
+.tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+input[type=search] { flex: 1 1 220px; max-width: 360px; background: var(--deep); border: 1px solid var(--line); color: var(--sand); border-radius: 999px; padding: 9px 16px; font: inherit; }
+.count { color: var(--mist); font-size: 13px; }
+main { max-width: 1180px; margin: 0 auto; padding: 12px 16px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.card { background: var(--deep); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+.views { display: grid; grid-template-columns: 1fr 1fr 1fr; background: radial-gradient(circle at 50% 70%, #1d5a66, #10262f 75%); }
+.views img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; display: block; }
+.views .main { grid-column: 1 / -1; aspect-ratio: 1 / 1; }
+.info { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.name { font-family: var(--display); font-weight: 700; font-size: 17px; }
+.name small { font-family: var(--body); font-weight: 500; color: var(--mist); font-size: 12px; margin-left: 6px; }
+.job { color: var(--mist); font-size: 13px; }
+.sig { font-size: 13px; }
+.sig::before { content: "★ "; color: var(--torch); }
+button.copy { margin-top: auto; align-self: flex-start; background: var(--raise); color: var(--sand); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font: 600 12px var(--body); cursor: pointer; }
+button.copy:hover { border-color: var(--torch); }
+button.copy.ok { background: var(--torch); color: var(--ink); border-color: var(--torch); }
+details { font-size: 12px; color: var(--mist); }
+details summary { cursor: pointer; }
+details p { margin: 6px 0 0; user-select: all; }
+.loading { grid-column: 1 / -1; color: var(--mist); padding: 40px 0; text-align: center; }
+@media (max-width: 480px) { main { grid-template-columns: 1fr 1fr; gap: 8px; } .views img:not(.main) { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>THE <b>LAST</b> · 100 personnages</h1>
+  <p>Chaque personnage a une fiche visuelle unique. Le jeu fabrique son modèle à partir de cette fiche, et le bouton « Copier le prompt » donne le texte à coller dans un outil d'image ou de 3D pour obtenir sa planche de référence (face, profil, dos).</p>
+  <div class="tools"><input type="search" id="q" placeholder="Chercher un nom, un métier, une ville…" aria-label="Chercher un personnage"><span class="count" id="count"></span></div>
+</header>
+<main id="grid"><div class="loading">Fabrication des 100 personnages…</div></main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="avatar.js"></script>
+<script>
+(async function () {
+  const T = THREE;
+  const list = await (await fetch("casting.json")).json();
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  // un seul moteur 3D hors écran, qui photographie chaque personnage sous trois angles
+  const W = 360, H = 480;
+  const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1); renderer.setSize(W, H);
+  const scene = new T.Scene();
+  scene.add(new T.HemisphereLight(0xfff4e0, 0x35505a, 0.9));
+  const sun = new T.DirectionalLight(0xffffff, 0.75); sun.position.set(3, 6, 5); scene.add(sun);
+  const cam = new T.PerspectiveCamera(24, W / H, 0.1, 50);
+  const matCache = {};
+  const mat = (hex, o = {}) => (matCache[hex + JSON.stringify(o)] ??= new T.MeshLambertMaterial({ color: hex, flatShading: true, ...o }));
+  const shoot = (g, yaw, square) => {
+    g.rotation.y = yaw;
+    renderer.setSize(W, square ? W : H); cam.aspect = W / (square ? W : H); cam.updateProjectionMatrix();
+    renderer.render(scene, cam);
+    return renderer.domElement.toDataURL("image/png");
+  };
+
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+  for (const c of list) {
+    const { group } = TheLastAvatar.build(T, c.look, mat);
+    const s = c.look.height || 1; group.scale.setScalar(s);
+    scene.add(group);
+    cam.position.set(0, 1.25 * s + 0.5, 7.2); cam.lookAt(0, 1.1 * s, 0);
+    const main = shoot(group, 0.55, true);
+    cam.position.set(0, 1.15 * s, 7.6); cam.lookAt(0, 1.08 * s, 0);
+    const front = shoot(group, 0), side = shoot(group, Math.PI / 2), back = shoot(group, Math.PI);
+    scene.remove(group);
+    const el = document.createElement("article");
+    el.className = "card";
+    el.dataset.q = `${c.name} ${c.job} ${c.origin} ${c.id}`.toLowerCase();
+    el.innerHTML = `<div class="views"><img class="main" src="${main}" alt="${esc(c.name)}, vue trois quarts">
+      <img src="${front}" alt="${esc(c.name)} de face"><img src="${side}" alt="${esc(c.name)} de profil"><img src="${back}" alt="${esc(c.name)} de dos"></div>
+      <div class="info"><div class="name">${esc(c.name)}<small>${c.age} ans · ${c.id}</small></div>
+      <div class="job">${esc(c.job)} · ${esc(c.origin)}</div><div class="sig">${esc(c.signature)}</div>
+      <details><summary>Voir le prompt</summary><p>${esc(c.prompt)}</p></details>
+      <button type="button" class="copy">Copier le prompt</button></div>`;
+    el.querySelector(".copy").addEventListener("click", async (ev) => {
+      const b = ev.currentTarget;
+      try { await navigator.clipboard.writeText(c.prompt); b.textContent = "Copié ✓"; }
+      catch { const r = document.createRange(); r.selectNodeContents(el.querySelector("details p")); el.querySelector("details").open = true; getSelection().removeAllRanges(); getSelection().addRange(r); b.textContent = "Texte sélectionné"; }
+      b.classList.add("ok"); setTimeout(() => { b.textContent = "Copier le prompt"; b.classList.remove("ok"); }, 1800);
+    });
+    grid.appendChild(el);
+    if (grid.children.length % 10 === 0) await new Promise((r) => setTimeout(r));
+  }
+  const count = document.getElementById("count");
+  const filter = () => { const q = document.getElementById("q").value.trim().toLowerCase(); let n = 0; for (const el of grid.children) { const ok = !q || el.dataset.q.includes(q); el.hidden = !ok; n += ok; } count.textContent = `${n} personnage${n > 1 ? "s" : ""}`; };
+  document.getElementById("q").addEventListener("input", filter); filter();
+})();
+</script>
+</body>
+</html>
