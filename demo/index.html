@@ -238,6 +238,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .finale p { color: var(--mist); max-width: 46ch; margin: 12px auto 18px; }
 .eyebrow { font-family: var(--display); letter-spacing: .2em; text-transform: uppercase; color: var(--torch); font-size: 13px; }
 @media (prefers-reduced-motion: reduce) { .gauge .bar i { transition: none; } .live::before, .onair .tag::before, .w3-bubble, .toast, .onair p.fresh { animation: none; } }
+.aitag { font: 600 10px var(--body); letter-spacing: .06em; color: var(--mist); border: 1px solid var(--line); border-radius: 999px; padding: 1px 7px; margin-left: 6px; vertical-align: middle; text-transform: none; }
 </style>
 
 <div class="intro" id="intro">
@@ -560,7 +561,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
       const open = days.filter((d) => confUnlock(c, d) <= tick);
       const last = open[open.length - 1];
       const nextD = days.find((d) => confUnlock(c, d) > tick);
-      const current = last ? `<h3>Confessionnal · Jour ${last}</h3><p>« ${esc(c.confessions[last])} »</p>`
+      const current = last ? `<h3>Confessionnal · Jour ${last}${c.ai ? ' <small class="aitag">écrit par l\'IA</small>' : ""}</h3><p>« ${esc(c.confessions[last])} »</p>`
         : `<h3>Confessionnal</h3><p class="wait">${esc(c.name)} te parlera ce soir à 21h.</p>`;
       const waitNext = nextD && last ? `<p class="wait" style="margin-top:10px">Prochain confessionnal : jour ${nextD} à ${hh(confUnlock(c, nextD))}.</p>` : "";
       const older = open.length > 1 ? `<details class="older"><summary>Revoir les jours précédents</summary>${open.slice(0, -1).reverse().map((d) => `<p><b>Jour ${d}</b> · ${esc(c.confessions[d])}</p>`).join("")}</details>` : "";

@@ -10,7 +10,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "replay": "tsx src/cli/export-replay.ts",
-    "looks": "tsx src/cli/gen-looks.ts"
+    "looks": "tsx src/cli/gen-looks.ts",
+    "ai": "tsx src/cli/ai-write.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

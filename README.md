@@ -38,6 +38,14 @@ Tous les réglages (courbe d'élimination, intensité du showrunner, colis, beso
 
 L'IA ne décide pas de qui est éliminé : ce sont des règles et des dés pondérés, rejouables avec la même « graine ». L'IA sert seulement à rendre les récits plus vivants.
 
+## Personnages et écriture par IA
+
+- **Fiches visuelles** : `data/looks.json` décrit chacun des 100 personnages (silhouette, peau, coiffure, barbe, lunettes, chapeau, tenue liée au métier, accessoire signature). `npm run looks` crée les fiches manquantes sans toucher à celles retouchées à la main, puis régénère `docs/prompts-personnages.md` (un prompt anglais par personnage pour obtenir sa planche de référence face, profil, dos) et la planche [`demo/casting.html`](demo/casting.html). Le modèle 3D du jeu est fabriqué à partir de la fiche par [`demo/avatar.js`](demo/avatar.js).
+- **Gemini** : `npm run ai` fait écrire par Gemini les bulles de dialogue de chaque scène et le confessionnal de chaque candidat, chaque soir, en français et en anglais. Le résultat va dans `data/ai/season-<graine>.json`, puis `npm run replay` le met dans la démo. Le travail est sauvegardé après chaque appel : relancer la commande reprend où elle s'est arrêtée.
+  - La clé n'est jamais dans le code ni dans le chat : elle vient de la variable `GEMINI_API_KEY`, ou d'un secret réseau de l'environnement cloud.
+  - Réglages (modèle, rythme des appels pour rester dans le palier gratuit) : [`config/ai.json`](config/ai.json). Consignes envoyées à l'IA : [`src/ai/prompts.ts`](src/ai/prompts.ts).
+  - Sans clé, ou quand le quota est épuisé, rien ne casse : les répliques et confessionnaux écrits à la main prennent le relais.
+
 ## Pour les développeurs
 
 ```bash

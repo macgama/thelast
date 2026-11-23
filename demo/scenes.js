@@ -577,6 +577,9 @@
       cast(...ids) { for (const id of ids) if (id && vis(id) && !this.actors.includes(id)) { this.actors.push(id); this.named.push(id); } return this; }
     }
     let queue = [], cur = null, minis = [], timeScale = 1;
+    // Réplique d'une scène : celle écrite par l'IA pour cet événement s'il y en a une, sinon une réplique écrite à la main.
+    const ev = null; // repli pour les rares répliques hors scène
+    function L(e, r, k) { const v = e?.say?.[k]; return v ? (ctx.lang === "en" && v[1] ? v[1] : v[0]) : pick(r, SAY[k]); }
     const R = (ev) => rng(ev.t * 977 + hash(ev.type + ev.a.join("")));
     const zoneOf = (ev) => ev.z || ctx.snapAt(ev.t)[ev.a[0]]?.[0] || ctx.snapAt(ev.t - 1)[ev.a[0]]?.[0] || "beach";
     const focusOn = (id, y = 1.2) => () => (people[id] ? people[id].position.clone().add(UP(y)) : new T.Vector3());
@@ -588,8 +591,8 @@
       const r = R(ev), st = stageOf(zoneOf(ev));
       return new Sc(ev, 7, st.clone().add(UP(1.2)), 3.3).cast(a, b)
         .at(0, () => { live(`${nm(a)} s'approche ${deN(b)}…`); go(a, off(st, -2.2), 3); go(b, off(st, 1), 3); face(b, a); })
-        .at(1.8, () => { face(a, b); go(a, off(st, -0.15), 1.6); say(a, pick(r, SAY.allyAsk)); })
-        .at(3.4, () => { face(b, a); say(b, pick(r, SAY.allyYes)); })
+        .at(1.8, () => { face(a, b); go(a, off(st, -0.15), 1.6); say(a, L(ev, r, "allyAsk")); })
+        .at(3.4, () => { face(b, a); say(b, L(ev, r, "allyYes")); })
         .at(4.6, () => { pose(a, "shake"); pose(b, "shake"); iconAt(off(st, 0.45).add(UP(3)), "🤝", 2); sparkle(off(st, 0.45).add(UP(2))); live(ev.fr, "result"); ctx.sfx?.("chime"); })
         .at(6.2, () => { pose(a, "cheer", 1.2); pose(b, "cheer", 1.2); if (ev.d?.clan) say(a, `Les ${ev.d.clan} !`, 1.6, "shout"); });
     };
@@ -610,10 +613,10 @@
         go(h, off(st, 0.9), 3); others.forEach((id, i) => { go(id, ring(i + 1), 3); face(id, off(st, -2)); });
         go(g, off(st, -2.4), 3); face(h, g);
       })
-        .at(1.6, () => { face(g, h); go(g, off(st, -0.3), 1.6); say(g, pick(r, SAY.allyAsk)); })
-        .at(3.2, () => { say(h, pick(r, SAY.clanHi)); pose(h, "wave", 1.2); })
+        .at(1.6, () => { face(g, h); go(g, off(st, -0.3), 1.6); say(g, L(ev, r, "allyAsk")); })
+        .at(3.2, () => { say(h, L(ev, r, "clanHi")); pose(h, "wave", 1.2); })
         .at(4.6, () => { pose(g, "shake"); pose(h, "shake"); sparkle(off(st, 0.3).add(UP(2))); others.forEach((id) => pose(id, "cheer", 1.6)); live(ev.fr, "result"); ctx.sfx?.("chime"); })
-        .at(6.0, () => { pose(g, "idle"); pose(h, "idle"); say(g, pick(r, SAY.clanYes), 1.8); });
+        .at(6.0, () => { pose(g, "idle"); pose(h, "idle"); say(g, L(ev, r, "clanYes"), 1.8); });
       return sc;
     };
 
@@ -640,11 +643,11 @@
       const g = giver && ids.includes(giver) ? giver : null;
       if (g) {
         const what = ICON[ev.d?.item] || "💧";
-        sc.at(2.6, () => { pose(g, "hold"); say(g, pick(r, SAY.meal), 2.2); icon(g, what, 1.6); });
+        sc.at(2.6, () => { pose(g, "hold"); say(g, L(ev, r, "meal"), 2.2); icon(g, what, 1.6); });
         ids.filter((id) => id !== g).forEach((id, k) => sc.at(3.8 + k * 0.5, () => icon(id, what, 1.4)));
         sc.at(4.2, () => pose(g, "sit"));
-      } else sc.at(2.6, () => { say(ids[0], pick(r, SAY.meal), 2.2); ids.forEach((id) => icon(id, "🍌", 1.4)); });
-      sc.at(5.0, () => { live(ev.fr.replace(/^🔥 /, ""), "result"); say(ids[ids.length - 1], pick(r, SAY.mealThanks), 2.2); })
+      } else sc.at(2.6, () => { say(ids[0], L(ev, r, "meal"), 2.2); ids.forEach((id) => icon(id, "🍌", 1.4)); });
+      sc.at(5.0, () => { live(ev.fr.replace(/^🔥 /, ""), "result"); say(ids[ids.length - 1], L(ev, r, "mealThanks"), 2.2); })
         .at(6.4, () => ids.forEach((id) => pose(id, "cheer", 0.9)))
         .at(7.4, () => ids.forEach((id) => pose(id, "sit")));
       return sc;
@@ -659,17 +662,17 @@
       if (ev.d?.theft) {
         const bag = sc.prop(makeBag()); bag.position.copy(off(st, 0.1, -0.5));
         sc.at(0.1, () => { pose(v, "gather"); face(v, off(st, 6)); })
-          .at(1.2, () => { go(a, off(st, -0.5, -0.5), 1.1, "sneak"); say(a, pick(r, SAY.sneak), 2.0, "think"); })
+          .at(1.2, () => { go(a, off(st, -0.5, -0.5), 1.1, "sneak"); say(a, L(ev, r, "sneak"), 2.0, "think"); })
           .at(2.6, () => { face(a, bag.position); pose(a, "grab"); });
       } else {
-        sc.at(1.2, () => { pose(a, "argue"); say(a, pick(r, SAY.disA), 2.0, "shout"); iconAt(mid.clone().add(UP(3.1)), "💢", 1.4); })
+        sc.at(1.2, () => { pose(a, "argue"); say(a, L(ev, r, "disA"), 2.0, "shout"); iconAt(mid.clone().add(UP(3.1)), "💢", 1.4); })
           .at(2.5, () => { pose(v, "shiver"); icon(v, "😰", 1.6); go(a, off(st, 0.2), 1.2); });
       }
       sc
         .at(3.2, () => { icon(g, "❗", 1.2); go(g, off(st, 0.15, 0.2), 7, "run"); live(`${nm(g)} accourt !`); })
-        .at(4.1, () => { face(g, a); pose(g, "push"); say(g, pick(r, SAY.defend), 2.4, "shout"); iconAt(off(st, 0.15).add(UP(3.2)), "🛡️", 2); dust(off(st, -0.3).add(UP(0.3)), 4); go(a, off(st, -2.0), 3); ctx.sfx?.("bonk"); })
-        .at(5.8, () => { pose(g, "idle"); pose(a, "idle"); say(a, pick(r, SAY.backOff), 2.0); pose(v, "idle"); face(v, g); })
-        .at(6.9, () => { live(ev.fr.replace(/^🛡️ /, ""), "result"); say(v, pick(r, SAY.thanks), 2); go(a, off(st, -5.5), 3); })
+        .at(4.1, () => { face(g, a); pose(g, "push"); say(g, L(ev, r, "defend"), 2.4, "shout"); iconAt(off(st, 0.15).add(UP(3.2)), "🛡️", 2); dust(off(st, -0.3).add(UP(0.3)), 4); go(a, off(st, -2.0), 3); ctx.sfx?.("bonk"); })
+        .at(5.8, () => { pose(g, "idle"); pose(a, "idle"); say(a, L(ev, r, "backOff"), 2.0); pose(v, "idle"); face(v, g); })
+        .at(6.9, () => { live(ev.fr.replace(/^🛡️ /, ""), "result"); say(v, L(ev, r, "thanks"), 2); go(a, off(st, -5.5), 3); })
         .at(7.8, () => { if (clan) say(g, `Les ${clan}, on se serre les coudes.`, 1.6, "small"); });
       return sc;
     };
@@ -683,7 +686,7 @@
       sc.hidden.add(a);
       sc.at(0, () => { live(`${nm(a)} s'éloigne un peu du clan…`); go(b, off(st, 2.2), 3); pose(b, "gather"); const p = off(st, -2.6, -1.0); if (people[a].userData.pos.distanceTo(p) > 7) place(a, p); else go(a, p, 2.5); })
         .at(1.6, () => { face(a, b); pose(a, "idle"); icon(a, "👀", 2.4); ctx.sfx?.("tension"); })
-        .at(2.8, () => say(a, pick(r, SAY.suspect), 2.6, "think"))
+        .at(2.8, () => say(a, L(ev, r, "suspect"), 2.6, "think"))
         .at(4.6, () => { tag(a); live(ev.fr, "result"); })
         .at(5.4, () => { face(b, a); pose(b, "idle"); icon(b, "❓", 1.4); face(a, off(st, -6)); });
       return sc;
@@ -697,10 +700,10 @@
       const sc = new Sc(ev, 8.5, off(st, 0.4, -0.4).add(UP(1.2)), 2.9).cast(a, acc);
       if (vis(t)) { sc.cast(t); sc.hidden.add(t); }
       sc.at(0, () => { live(`${nm(a)} entraîne ${nm(acc)} à l'écart…`); go(a, pa, 2); go(acc, pb, 2); face(a, acc); face(acc, a); if (vis(t)) { const far = people[t].userData.pos.distanceTo(tp) > 7; if (far) place(t, tp); else go(t, tp, 2); pose(t, "gather"); } })
-        .at(1.4, () => { pose(a, "sneak"); say(a, pick(r, SAY.plot1), 2.0, "think"); icon(a, "🤫", 1.6); })
+        .at(1.4, () => { pose(a, "sneak"); say(a, L(ev, r, "plot1"), 2.0, "think"); icon(a, "🤫", 1.6); })
         .at(3.0, () => { say(a, `${nm(t)}… il faut s'en méfier.`, 2.4, "think"); if (vis(t)) { pose(a, "point"); iconAt(people[t].position.clone().add(UP(3)), "🎯", 2.0); } ctx.sfx?.("tension"); })
-        .at(4.8, () => { pose(a, "idle"); say(acc, pick(r, SAY.plot2), 2.0, "think"); })
-        .at(6.2, () => { say(a, pick(r, SAY.plot3), 2.0, "think"); live(ev.fr, "result"); if (vis(t)) { face(t, a); icon(t, "❓", 1.4); } });
+        .at(4.8, () => { pose(a, "idle"); say(acc, L(ev, r, "plot2"), 2.0, "think"); })
+        .at(6.2, () => { say(a, L(ev, r, "plot3"), 2.0, "think"); live(ev.fr, "result"); if (vis(t)) { face(t, a); icon(t, "❓", 1.4); } });
       return sc;
     };
 
@@ -712,11 +715,11 @@
       const sc = new Sc(ev, 8.5, c0.clone().add(UP(1.2)), 3.4).cast(h, m);
       let pend = null, k0 = 0;
       sc.at(0, () => { live(`Juste avant le vote, ${nm(h)} se lève…`); place(m, safe(off(c0, 1.0))); face(m, FIRE); place(h, safe(off(c0, -2.4))); face(h, m); people[h].userData.necklace.visible = true; people[m].userData.necklace.visible = false; })
-        .at(1.0, () => { go(h, safe(off(c0, -0.4)), 1.4); say(h, pick(r, SAY.neckGift), 2.6); })
+        .at(1.0, () => { go(h, safe(off(c0, -0.4)), 1.4); say(h, L(ev, r, "neckGift"), 2.6); })
         .at(3.4, () => { pose(h, "hold"); people[h].userData.necklace.visible = false; pend = sc.prop(makeRing(0xe6b84a)); pend.scale.setScalar(0.45); k0 = sc.s; ctx.sfx?.("gasp"); })
         .on((s) => { if (pend) { const k = clamp01((s - k0) / 1.2), a = people[h].position.clone().add(UP(2.6)), b = people[m].position.clone().add(UP(2.0)); pend.position.lerpVectors(a, b, k); pend.position.y += Math.sin(k * Math.PI) * 0.6; if (k >= 1 && pend.visible) { pend.visible = false; people[m].userData.necklace.visible = true; sparkle(b); } } })
         .at(4.8, () => { face(m, h); icon(m, "😮", 1.6); live(ev.fr, "result"); })
-        .at(5.8, () => { say(m, pick(r, SAY.giftRx), 2.2); pose(h, "idle"); })
+        .at(5.8, () => { say(m, L(ev, r, "giftRx"), 2.2); pose(h, "idle"); })
         .at(7.2, () => { pose(m, "shake"); pose(h, "shake"); });
       return sc;
     };
@@ -728,9 +731,9 @@
       const sc = new Sc(ev, item ? 12 : 10.5, mid.clone().add(UP(1.2)), 3.3).cast(a, b);
       let crate = null, holder = null;
       sc.at(0, () => { live(`Ça chauffe ${atZone(z)} entre ${nm(a)} et ${nm(b)}…`); go(a, off(st, -0.9), 3); go(b, off(st, 0.9), 3); face(a, b); face(b, a); })
-        .at(1.4, () => { pose(a, "argue"); say(a, pick(r, SAY.disA), 2.2, "shout"); })
-        .at(2.7, () => { pose(b, "argue"); say(b, pick(r, SAY.disB), 2.2, "shout"); iconAt(mid.clone().add(UP(3.2)), "💢", 1.5); })
-        .at(4.0, () => { say(a, pick(r, SAY.disA2), 2, "shout"); });
+        .at(1.4, () => { pose(a, "argue"); say(a, L(ev, r, "disA"), 2.2, "shout"); })
+        .at(2.7, () => { pose(b, "argue"); say(b, L(ev, r, "disB"), 2.2, "shout"); iconAt(mid.clone().add(UP(3.2)), "💢", 1.5); })
+        .at(4.0, () => { say(a, L(ev, r, "disA2"), 2, "shout"); });
       if (item) {
         sc.at(4.8, () => { crate = sc.prop(miniCrate()); pose(a, "tug"); pose(b, "tug"); go(a, off(st, -0.7), 1); go(b, off(st, 0.7), 1); live(`Les deux veulent ${ICON[item] || "le colis"}… personne ne lâche !`); });
         sc.on((s) => { if (crate && !holder && s < 6.8) crate.position.copy(off(st, Math.sin(s * 7) * 0.25)).add(UP(1.6)); });
@@ -746,7 +749,7 @@
           }
           if (holder && crate) crate.position.copy(people[holder].position).add(UP(3.1));
         })
-        .at(T1 + 1.9, () => { go(b, off(st, 1.9), 5, "sit"); pose(b, "sit"); face(b, a); pose(a, item ? "hold" : "cheer"); if (crate) { crate.visible = true; holder = a; } say(b, pick(r, SAY.disEnd), 2.4); live(ev.fr, "result"); })
+        .at(T1 + 1.9, () => { go(b, off(st, 1.9), 5, "sit"); pose(b, "sit"); face(b, a); pose(a, item ? "hold" : "cheer"); if (crate) { crate.visible = true; holder = a; } say(b, L(ev, r, "disEnd"), 2.4); live(ev.fr, "result"); })
         .at(T1 + 3.6, () => pose(a, item ? "hold" : "idle"));
       return sc;
     };
@@ -767,11 +770,11 @@
           const start = off(st, -4.6);
           if (people[a].userData.pos.distanceTo(start) > 7) place(a, start); else go(a, start, 3);
         })
-        .at(1.2, () => { go(a, off(st, -0.5, -0.5), 1.05, "sneak"); say(a, pick(r, SAY.sneak), 2.4, "think"); })
-        .at(5.2, () => { face(a, bagP); pose(a, "grab"); shake = true; if (d.betrayal) { say(a, pick(r, SAY.betray), 2.2, "think"); live(d.clan ? `Trahison en direct : ${nm(a)} vole son propre clan, les ${d.clan}…` : "Trahison en direct : c'est son allié qu'on vole…"); ctx.sfx?.("tension"); } });
+        .at(1.2, () => { go(a, off(st, -0.5, -0.5), 1.05, "sneak"); say(a, L(ev, r, "sneak"), 2.4, "think"); })
+        .at(5.2, () => { face(a, bagP); pose(a, "grab"); shake = true; if (d.betrayal) { say(a, L(ev, r, "betray"), 2.2, "think"); live(d.clan ? `Trahison en direct : ${nm(a)} vole son propre clan, les ${d.clan}…` : "Trahison en direct : c'est son allié qu'on vole…"); ctx.sfx?.("tension"); } });
       if (d.caught) {
-        sc.at(6.0, () => { shake = false; pose(b, "point"); face(b, a); say(b, pick(r, SAY.caughtB), 2.2, "shout"); icon(b, "❗"); })
-          .at(7.4, () => { pose(a, "wave"); face(a, b); say(a, pick(r, SAY.caughtA), 2.2); live(ev.fr, "result"); })
+        sc.at(6.0, () => { shake = false; pose(b, "point"); face(b, a); say(b, L(ev, r, "caughtB"), 2.2, "shout"); icon(b, "❗"); })
+          .at(7.4, () => { pose(a, "wave"); face(a, b); say(a, L(ev, r, "caughtA"), 2.2); live(ev.fr, "result"); })
           .at(8.8, () => go(a, off(st, -5), 4, "run"));
       } else {
         sc.at(6.0, () => { shake = false; icon(a, ICON[d.item] || "🎒", 2); go(a, off(st, -4.6), 1.8, "sneak"); live(ev.fr, "result"); })
@@ -797,7 +800,7 @@
         .at(4.7, () => { face(a, sp); pose(a, "push"); })
         .at(5.2, () => { k0 = 5.2; ctx.sfx?.("crash"); dust(sp.clone().add(UP(0.8)), 10); iconAt(sp.clone().add(UP(2.6)), "💥", 1.2); })
         .at(5.6, () => go(a, off(st, -7), 5, "run"))
-        .at(6.4, () => { pose(b, "sit"); icon(b, "❗"); say(b, pick(r, SAY.sabWake), 2.4, "shout"); })
+        .at(6.4, () => { pose(b, "sit"); icon(b, "❗"); say(b, L(ev, r, "sabWake"), 2.4, "shout"); })
         .at(7.6, () => { tag(a); live(ev.fr, "result"); pose(b, "argue"); face(b, off(st, -7)); });
       return sc;
     };
@@ -829,7 +832,7 @@
         .at(1.8, () => { icon(a, "❗"); pose(a, "idle"); })
         .at(2.3, () => { say(a, cry(ev, r, SAY.wasps), 2.4, "shout"); flee = true; icon(a, ico(ev, "🐝"), 2); });
       if (Rs) sc.at(4.6, () => { go(Rs, off(st, -1.2), 5, "run"); say(Rs, "Par ici, vite !", 1.8, "shout"); });
-      sc.at(6.0, () => { flee = false; away = true; go(a, off(st, 0.3), 3); pose(a, "sit"); icon(a, "😵", 1.6); live(ev.fr, "result"); if (Rs) { face(Rs, a); pose(Rs, "gather"); say(Rs, pick(r, SAY.rescue)); } });
+      sc.at(6.0, () => { flee = false; away = true; go(a, off(st, 0.3), 3); pose(a, "sit"); icon(a, "😵", 1.6); live(ev.fr, "result"); if (Rs) { face(Rs, a); pose(Rs, "gather"); say(Rs, L(ev, r, "rescue")); } });
       return sc;
     };
     HZ.drowning = (ev, a, Rs, r, st, z) => {
@@ -851,9 +854,9 @@
       if (Rs) {
         sc.at(5.4, () => { go(Rs, w.edge.clone().addScaledVector(SIDE, 0.8), 6, "run"); say(Rs, "J'arrive !", 1.6, "shout"); })
           .at(6.4, () => { swim(Rs, w.far, 4); })
-          .at(8.0, () => { splashing = false; say(Rs, pick(r, SAY.rescue), 2); swim(a, w.edge, 3.2); swim(Rs, w.edge.clone().addScaledVector(SIDE, 0.9), 3.2); })
+          .at(8.0, () => { splashing = false; say(Rs, L(ev, r, "rescue"), 2); swim(a, w.edge, 3.2); swim(Rs, w.edge.clone().addScaledVector(SIDE, 0.9), 3.2); })
           .at(10.2, () => { go(a, w.edge, 2); pose(a, "lie"); go(Rs, w.edge.clone().addScaledVector(SIDE, 0.9), 2); face(Rs, a); pose(Rs, "gather"); live(ev.fr, "result"); })
-          .at(11.0, () => say(a, pick(r, SAY.thanks), 1.8));
+          .at(11.0, () => say(a, L(ev, r, "thanks"), 1.8));
       } else {
         sc.at(6.6, () => { splashing = false; swim(a, w.edge, 2.6); })
           .at(9.4, () => { go(a, w.edge, 2); pose(a, "lie"); icon(a, "😮‍💨", 1.6); live(ev.fr, "result"); });
@@ -872,8 +875,8 @@
         .at(5.2, () => { from = null; place(a, bot); pose(a, "dizzy"); dust(bot.clone().add(UP(0.3)), 8); icon(a, "💫", 2.2); })
         .at(5.7, () => live(ev.fr, "result"));
       if (Rs) sc.at(6.0, () => { go(Rs, off(bot, 1.1), 5, "run"); say(Rs, "Ne bouge pas !", 1.8, "shout"); })
-        .at(7.4, () => { face(Rs, a); pose(Rs, "gather"); say(Rs, pick(r, SAY.rescue)); pose(a, "sit"); })
-        .at(8.6, () => { pose(a, "idle"); say(a, pick(r, SAY.thanks), 1.6); });
+        .at(7.4, () => { face(Rs, a); pose(Rs, "gather"); say(Rs, L(ev, r, "rescue")); pose(a, "sit"); })
+        .at(8.6, () => { pose(a, "idle"); say(a, L(ev, r, "thanks"), 1.6); });
       else sc.at(7.0, () => { pose(a, "sit"); say(a, "Ça va… ça va.", 1.8); });
       return sc;
     };
@@ -885,7 +888,7 @@
         .at(0, () => { live(intro(ev, a, `Quelque chose bouge dans les herbes près de ${nm(a)}…`)); go(a, st, 3); pose(a, "gather"); face(a, off(st, -3)); })
         .at(3.2, () => { icon(a, "❗"); pose(a, "panic"); face(a, s1); say(a, cry(ev, r, SAY.snake), 2.2, "shout"); if ((CAT(ev).size || 1) > 1.4) ctx.sfx?.("bonk"); })
         .at(4.4, () => { pose(a, "sit"); icon(a, ico(ev, "🐍"), 1.6); live(ev.fr, "result"); });
-      if (Rs) sc.at(5.0, () => go(Rs, off(st, -1.0), 5, "run")).at(6.3, () => { pose(Rs, "gather"); face(Rs, a); icon(Rs, "🩹"); say(Rs, pick(r, SAY.rescue)); });
+      if (Rs) sc.at(5.0, () => go(Rs, off(st, -1.0), 5, "run")).at(6.3, () => { pose(Rs, "gather"); face(Rs, a); icon(Rs, "🩹"); say(Rs, L(ev, r, "rescue")); });
       return sc;
     };
     HZ.rockslide = (ev, a, Rs, r, st) => {
@@ -900,7 +903,7 @@
         .at(2.3, () => go(a, off(st, 2.6), 7, "run"))
         .at(3.0, () => { pose(a, "lie"); dust(off(st, 2.6).add(UP(0.3)), 6); })
         .at(4.2, () => { pose(a, "sit"); icon(a, "😵", 1.6); live(ev.fr, "result"); });
-      if (Rs) sc.at(4.8, () => go(Rs, off(st, 3.6), 5, "run")).at(6.0, () => { face(Rs, a); pose(Rs, "gather"); say(Rs, pick(r, SAY.rescue)); });
+      if (Rs) sc.at(4.8, () => go(Rs, off(st, 3.6), 5, "run")).at(6.0, () => { face(Rs, a); pose(Rs, "gather"); say(Rs, L(ev, r, "rescue")); });
       return sc;
     };
     HZ.fever = (ev, a, Rs, r, st) => {
@@ -925,10 +928,10 @@
       const sc = new Sc(ev, 6.2, focusOn(a, 2), 2.8).cast(a);
       if (cause === "withdrawal") {
         sc.at(0, () => { live(`${nm(a)} demande à parler à la production…`); pose(a, "idle"); })
-          .at(0.6, () => say(a, pick(r, SAY.quit), 2.4))
+          .at(0.6, () => say(a, L(ev, r, "quit"), 2.4))
           .at(2.0, () => { pose(a, "wave"); evacuate(a, 0.3, "idle"); });
       } else {
-        sc.at(0, () => { live(`Le drone de secours décolle pour ${nm(a)}…`); stop(a); pose(a, "lie"); if (["thirst", "hunger", "exhaustion"].includes(cause)) say(a, pick(r, SAY.weak), 2, "think"); })
+        sc.at(0, () => { live(`Le drone de secours décolle pour ${nm(a)}…`); stop(a); pose(a, "lie"); if (["thirst", "hunger", "exhaustion"].includes(cause)) say(a, L(ev, r, "weak"), 2, "think"); })
           .at(1.2, () => evacuate(a, 0, "lie"));
       }
       sc.at(3.2, () => live(ev.fr, "out"));
@@ -970,16 +973,16 @@
       sc.at(0, () => { if (!mini) live(`Un colis tombe du ciel pour ${nm(a)}…`); })
         .at(0.8, () => { icon(a, "❗"); if (!mini) face(a, land); });
       if (mode === "lost") {
-        sc.at(3.0, () => { if (!mini) { go(a, off(home, 3), 4, "run"); say(a, pick(r, SAY.lost), 2, "shout"); live(ev.fr, "result"); } else icon(a, "😩"); })
+        sc.at(3.0, () => { if (!mini) { go(a, off(home, 3), 4, "run"); say(a, L(ev, r, "lost"), 2, "shout"); live(ev.fr, "result"); } else icon(a, "😩"); })
           .at(4.6, () => { if (!mini) pose(a, "sit"); });
       } else if (mode === "inter" && vis(b)) {
         sc.at(2.6, () => { if (!mini) go(b, off(land, 0.8), 4, "run"); })
           .at(3.1, () => { dust(land, 6); ctx.sfx?.("thud"); })
-          .at(4.2, () => { opened = sc.s; if (!mini) { pose(b, "hold"); face(b, a); say(b, pick(r, SAY.interB), 2.2); live(ev.fr, "result"); go(a, off(land, -1.6), 5, "run"); } icon(b, ICON[it] || "🎁", 2.2); })
-          .at(5.8, () => { if (!mini) { pose(a, "argue"); face(a, b); say(a, pick(r, SAY.interA), 2, "shout"); } });
+          .at(4.2, () => { opened = sc.s; if (!mini) { pose(b, "hold"); face(b, a); say(b, L(ev, r, "interB"), 2.2); live(ev.fr, "result"); go(a, off(land, -1.6), 5, "run"); } icon(b, ICON[it] || "🎁", 2.2); })
+          .at(5.8, () => { if (!mini) { pose(a, "argue"); face(a, b); say(a, L(ev, r, "interA"), 2, "shout"); } });
       } else {
         sc.at(3.0, () => { dust(land, 6); if (!mini) ctx.sfx?.("thud"); if (!mini) go(a, off(land, -0.9), 4, "run"); })
-          .at(4.3, () => { opened = sc.s; icon(a, ICON[it] || "🎁", mini ? 1.8 : 2.4); if (!mini) { pose(a, "hold"); face(a, off(land, 0, 4)); say(a, pick(r, SAY.gift), 2.2); live(ev.fr, "result"); } });
+          .at(4.3, () => { opened = sc.s; icon(a, ICON[it] || "🎁", mini ? 1.8 : 2.4); if (!mini) { pose(a, "hold"); face(a, off(land, 0, 4)); say(a, L(ev, r, "gift"), 2.2); live(ev.fr, "result"); } });
       }
       return sc;
     }
@@ -992,8 +995,8 @@
       const r = R(ev), st = stageOf(zoneOf(ev)), what = ev.d?.what === "water" ? "💧" : "🍌";
       return new Sc(ev, 5.8, st.clone().add(UP(1.2)), 3.4).cast(a, b)
         .at(0, () => { live(`${nm(a)} rejoint ${nm(b)}…`); go(a, off(st, -0.6), 3); go(b, off(st, 0.6), 3); face(a, b); face(b, a); })
-        .at(1.8, () => { pose(a, "point"); say(a, pick(r, SAY.share), 2.2); icon(a, what); })
-        .at(3.2, () => { icon(b, what); pose(a, "idle"); say(b, pick(r, SAY.thanks), 2.2); live(ev.fr, "result"); sparkle(off(st, 0).add(UP(2))); });
+        .at(1.8, () => { pose(a, "point"); say(a, L(ev, r, "share"), 2.2); icon(a, what); })
+        .at(3.2, () => { icon(b, what); pose(a, "idle"); say(b, L(ev, r, "thanks"), 2.2); live(ev.fr, "result"); sparkle(off(st, 0).add(UP(2))); });
     };
 
     // Épreuves : course, poteaux, grimper, radeau, nage. Le public fait la haie sur la plage.
@@ -1145,19 +1148,19 @@
       camp.forEach((e, k) => {
         const [v, who] = e.a, i = thr.indexOf(who);
         sc.at(1.4 + k * 2.6, () => { go(v, safe(spot(i).clone().addScaledVector(DEPTH, 0.2).addScaledVector(SIDE, 0.9)), 2.5); live(`${nm(v)} prend la parole pour ${nm(who)}…`); })
-          .at(2.4 + k * 2.6, () => { pose(v, "wave", 1.4); say(v, pick(r, SAY.plead).replace("{n}", nm(who)), 2.2, "shout"); iconAt(spot(i).clone().add(UP(3.4)), "📣", 1.6); live(e.fr, "result"); });
+          .at(2.4 + k * 2.6, () => { pose(v, "wave", 1.4); say(v, L(ev, r, "plead").replace("{n}", nm(who)), 2.2, "shout"); iconAt(spot(i).clone().add(UP(3.4)), "📣", 1.6); live(e.fr, "result"); });
       });
       sc.at(1.6 + K, () => { live("Le public a voté. Le suspense est total…"); ctx.sfx?.("drum"); })
         .on((s) => { if (s > 1.6 + K && s < 5.4 + K) rings.forEach((g, i) => { g.material.opacity = Math.floor(s * 3) % rings.length === i ? 1 : 0.25; }); });
       saved.forEach((id, k) => sc.at(5.6 + K + k * 1.4, () => {
         const i = thr.indexOf(id);
         rings[i].material.color.setHex(0x62d6a0); rings[i].material.opacity = 1;
-        pose(id, "cheer"); say(id, pick(r, SAY.saved), 1.8); sparkle(people[id].position.clone().add(UP(2)));
+        pose(id, "cheer"); say(id, L(ev, r, "saved"), 1.8); sparkle(people[id].position.clone().add(UP(2)));
         if (k === 0 && savedEv) live(savedEv.fr, "result");
         ctx.sfx?.("cheer");
       }));
       if (out) {
-        sc.at(8.6 + K, () => { const i = thr.indexOf(out); rings[i].material.color.setHex(0xff5b6b); rings[i].material.opacity = 1; pose(out, "wave"); face(out, FIRE); say(out, pick(r, SAY.outVote), 2.4); live(outEv.fr, "out"); ctx.sfx?.("sad"); })
+        sc.at(8.6 + K, () => { const i = thr.indexOf(out); rings[i].material.color.setHex(0xff5b6b); rings[i].material.opacity = 1; pose(out, "wave"); face(out, FIRE); say(out, L(ev, r, "outVote"), 2.4); live(outEv.fr, "out"); ctx.sfx?.("sad"); })
           .at(10.4 + K, () => evacuate(out, 0, "idle"));
       }
       return sc;
