@@ -12,7 +12,8 @@
     "replay": "tsx src/cli/export-replay.ts",
     "looks": "tsx src/cli/gen-looks.ts",
     "ai": "NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 tsx src/cli/ai-write.ts",
-    "sheets": "tsx src/cli/gen-sheets.ts"
+    "sheets": "tsx src/cli/gen-sheets.ts",
+    "site": "tsx src/cli/gen-site.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

@@ -25,7 +25,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .wrap { padding-inline: clamp(16px, 4vw, 56px); max-width: 1600px; margin: 0 auto; }
 .top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--ink) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .top .wrap { display: flex; align-items: center; gap: 18px; padding-block: 12px; }
-.logo { font-family: var(--display); font-weight: 700; letter-spacing: .18em; font-size: 19px; text-decoration: none; }
+.logo { font-family: var(--display); font-weight: 700; letter-spacing: .18em; font-size: 19px; text-decoration: none; white-space: nowrap; }
 .logo b { color: var(--torch); }
 .top nav { margin-left: auto; display: flex; gap: 6px; }
 .top nav a { text-decoration: none; color: var(--mist); font-size: 14px; padding: 6px 12px; border-radius: 999px; }
@@ -76,6 +76,27 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
 .bar i { height: 8px; border-radius: 4px; background: var(--raise); overflow: hidden; display: block; }
 .bar i b { display: block; height: 100%; background: linear-gradient(90deg, var(--torch), #ffc061); border-radius: 4px; }
 .bar span:last-child { text-align: right; color: var(--mist); font-variant-numeric: tabular-nums; }
+.card .ph .lvl { position: absolute; right: 8px; top: 8px; font: 700 11px var(--display); letter-spacing: .06em; background: color-mix(in srgb, var(--ink) 85%, transparent); color: var(--sand); padding: 3px 8px; border-radius: 999px; }
+.card .ph.aura { box-shadow: inset 0 0 0 3px #ffc061, inset 0 0 30px rgba(255, 192, 97, .55); }
+.card .ph.aura img { filter: saturate(1.1) brightness(1.04); }
+.bar i { display: flex; }
+.bar i b.up { background: var(--safe); border-radius: 0 4px 4px 0; }
+.bar em { font-style: normal; color: var(--safe); font-size: 12px; margin-left: 3px; }
+.bar { grid-template-columns: 92px 1fr 52px; }
+.badges span.new { border-color: var(--safe); color: var(--safe); }
+.career { background: var(--raise); border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: grid; gap: 10px; }
+.career h3 { margin: 0; }
+.lv { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center; }
+.lv .big { font-family: var(--display); font-weight: 700; font-size: 20px; color: var(--torch); }
+.lv i { height: 8px; border-radius: 4px; background: var(--deep); overflow: hidden; display: block; }
+.lv i b { display: block; height: 100%; background: var(--torch); }
+.lv small { grid-column: 1 / -1; color: var(--mist); font-size: 12.5px; }
+.palm { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.palm li { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: 14px; }
+.palm li b { font-family: var(--display); }
+.palm li small, .muted { color: var(--mist); font-size: 13px; margin: 0; }
+.acts { display: flex; gap: 8px; flex-wrap: wrap; }
+.watch.alt { background: var(--raise); color: var(--sand); border: 1px solid var(--line); }
 .close, .nav { position: absolute; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: color-mix(in srgb, var(--ink) 85%, transparent); font-size: 22px; line-height: 1; display: grid; place-items: center; }
 .close { top: 12px; right: 12px; }
 .nav.prev { top: 12px; left: 12px; }
@@ -95,8 +116,9 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
   <div class="wrap">
     <a class="logo" href="index.html">THE <b>LAST</b></a>
     <nav aria-label="Navigation principale">
-      <a href="index.html">Émissions</a>
+      <a href="index.html">Accueil</a>
       <a href="personnages.html" aria-current="page">Personnages</a>
+      <a href="selection.html">Sélection</a>
     </nav>
   </div>
 </header>
@@ -110,6 +132,7 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
         <button type="button" data-f="all" aria-pressed="true">Tous</button>
         <button type="button" data-f="season" aria-pressed="false">Sur l'île</button>
         <button type="button" data-f="featured" aria-pressed="false">À suivre</button>
+        <button type="button" data-f="champ" aria-pressed="false">Palmarès</button>
       </div>
       <input type="search" id="q" placeholder="Chercher un nom, un métier, une ville…" aria-label="Chercher un personnage">
       <span class="count" id="count"></span>
@@ -131,7 +154,7 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
   const TRAIT = [["courage", "Courage"], ["empathy", "Empathie"], ["cunning", "Ruse"], ["loyalty", "Loyauté"], ["composure", "Sang-froid"]];
   const grid = document.getElementById("grid");
   grid.innerHTML = list.map((c, i) => `<button type="button" class="card" data-i="${i}" data-q="${esc(`${c.name} ${c.job} ${c.origin}`.toLowerCase())}">
-    <div class="ph"><img src="img/p/${c.id}.webp" alt="" loading="lazy" decoding="async">${c.featured ? `<span class="ribbon star">À suivre</span>` : c.season ? `<span class="ribbon">Sur l'île</span>` : ""}</div>
+    <div class="ph${c.career.cosmetics.some((x) => x.startsWith("aura")) ? " aura" : ""}"><img src="img/p/${c.id}.webp" alt="" loading="lazy" decoding="async"><span class="lvl" title="Niveau ${c.career.level}">Niv. ${c.career.level}</span>${c.featured ? `<span class="ribbon star">À suivre</span>` : c.season ? `<span class="ribbon">Sur l'île</span>` : ""}</div>
     <div class="t"><span class="n">${esc(c.name)}<small>${c.age} ans</small></span><span class="j">${esc(c.job)} · ${esc(c.origin)}</span><span class="q">« ${esc(c.catchphrase)} »</span></div></button>`).join("");
 
   let filter = "all";
@@ -140,7 +163,7 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
     let n = 0;
     for (const el of grid.children) {
       const c = list[el.dataset.i];
-      const ok = (filter === "all" || c[filter]) && (!q || el.dataset.q.includes(q));
+      const ok = (filter === "all" || (filter === "champ" ? c.career.titles.length : c[filter])) && (!q || el.dataset.q.includes(q));
       el.hidden = !ok; n += ok;
     }
     document.getElementById("count").textContent = `${n} personnage${n > 1 ? "s" : ""}`;
@@ -152,6 +175,18 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
   }));
   document.getElementById("q").addEventListener("input", apply);
   apply();
+
+  const COSM = { aura_survivor: "Aura dorée de vainqueur de Survivor", frame_survivor: "Cadre de finaliste de Survivor", aura_arena: "Aura de champion d'Arena Battle", frame_arena: "Cadre de finaliste d'Arena Battle" };
+  const SEASON = (r) => `${r.show === "survivor" ? "Survivor" : r.show === "arena" ? "Arena Battle" : r.show} · ${r.season === 0 ? "saison pilote" : "saison " + r.season}`;
+  function career(c) {
+    const k = c.career, from = [0, 40, 100, 180, 280, 400, 540, 700, 880, 1080][k.level - 1];
+    const pct = k.next ? Math.round(((k.xp - from) / (k.next - from)) * 100) : 100;
+    const res = k.results.map((r) => `<li><span>${SEASON(r)}</span><b>${r.rank === 1 ? "🏆 Vainqueur" : r.rank <= 3 ? `🥈 ${r.rank}e place` : `${r.rank}e sur ${r.of}`}</b>${r.day ? `<small>évacué${c.gender === "f" ? "e" : c.gender === "x" ? "·e" : ""} le jour ${r.day}</small>` : ""}</li>`).join("");
+    return `<div class="career"><h3>Carrière</h3>
+      <div class="lv"><span class="big">Niveau ${k.level}</span><i><b style="width:${pct}%"></b></i><small>${k.xp} XP${k.next ? ` · niveau suivant à ${k.next}` : " · niveau maximum"}</small></div>
+      ${res ? `<ul class="palm">${res}</ul>` : `<p class="muted">Pas encore d'émission terminée. Sa carrière commence ${c.season ? "avec la saison 1 de Survivor" : "dès sa première sélection"}.</p>`}
+      ${k.cosmetics.length ? `<p class="muted">Récompense visuelle : ${k.cosmetics.map((x) => COSM[x] || x).join(", ")}.</p>` : ""}</div>`;
+  }
 
   // fiche
   const sheet = document.getElementById("sheet"), box = document.getElementById("box");
@@ -165,14 +200,15 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
         <div class="seg" role="group" aria-label="Tenue"><button type="button" data-o="s" aria-pressed="${outfit === "s"}">Naufragé${c.gender === "f" ? "e" : c.gender === "x" ? "·e" : ""}</button><button type="button" data-o="b" aria-pressed="${outfit === "b"}">Tenue de départ</button></div></div>
       <div class="info">
         <div><h2 id="sName">${esc(c.name)}</h2><div class="meta">${c.age} ans · ${esc(c.job)} · ${esc(c.origin)}</div></div>
-        <div class="badges">${c.featured ? `<span class="star">★ À suivre cette saison</span>` : ""}${c.season ? `<span>Sur l'île · Saison 1</span>` : `<span>En réserve cette semaine</span>`}${c.wins ? `<span>🏆 ${c.wins} victoire${c.wins > 1 ? "s" : ""}</span>` : ""}</div>
+        <div class="badges">${c.featured ? `<span class="star">★ À suivre cette saison</span>` : ""}${c.season ? `<span>Sur l'île · Saison 1</span>` : `<span>En réserve cette semaine</span>`}${c.career.titles.map((t) => `<span class="star">${t.startsWith("Vainqueur") ? "🏆" : "🥈"} ${esc(t)}</span>`).join("")}</div>
         <p class="quote">« ${esc(c.catchphrase)} »</p>
         <div><h3>Son histoire</h3><p>${esc(c.bio)}</p></div>
         <div><h3>Sa motivation</h3><p>${esc(c.motivation)}</p></div>
-        <div><h3>Caractère</h3><div class="bars">${TRAIT.map(([k, t]) => `<div class="bar"><span>${t}</span><i><b style="width:${c.traits[k]}%"></b></i><span>${c.traits[k]}</span></div>`).join("")}</div></div>
-        <div><h3>Atouts</h3><div class="badges">${c.skills.map((s) => `<span>${SKILL[s] || s}</span>`).join("")}</div></div>
+        <div><h3>Caractère</h3><div class="bars">${TRAIT.map(([k, t]) => { const b = c.career.bonus[k] || 0; return `<div class="bar"><span>${t}</span><i><b style="width:${c.traits[k]}%"></b>${b ? `<b class="up" style="width:${b}%"></b>` : ""}</i><span>${c.traits[k] + b}${b ? `<em>+${b}</em>` : ""}</span></div>`; }).join("")}</div></div>
+        <div><h3>Atouts</h3><div class="badges">${c.skills.map((s) => `<span>${SKILL[s] || s}</span>`).join("")}${c.career.learned.map((s) => `<span class="new">✨ ${SKILL[s] || s}, appris</span>`).join("")}</div></div>
+        ${career(c)}
         <div><h3>Sa grande peur</h3><p>${FEAR[c.phobia] ? FEAR[c.phobia][0].toUpperCase() + FEAR[c.phobia].slice(1) : esc(c.phobia)}. Son secret, lui, se dévoile pendant la saison.</p></div>
-        ${c.season ? `<a class="watch" href="survivor.html">▶ Suivre ${esc(c.name)} dans Survivor</a>` : ""}
+        <div class="acts">${c.season ? `<a class="watch" href="survivor.html">▶ Suivre ${esc(c.name)} dans Survivor</a>` : ""}<a class="watch alt" href="selection.html#${c.id}">⚔️ Voter pour l'envoyer dans Arena Battle</a></div>
       </div>`;
     box.querySelectorAll(".art .seg button").forEach((b) => b.addEventListener("click", () => {
       outfit = b.dataset.o; document.getElementById("sImg").src = `img/${outfit}/${c.id}.webp`;
