@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "participants": 50,
+  "days": 7,
+  "voteHour": 19,
+  "threatened": 3,
+  "eliminationCurve": [8, 15, 22, 28, 34, 39, 41],
+  "showrunner": { "intensity": 1, "maxEventsPerDay": 3 },
+  "gifts": {
+    "perCharacterPerDay": 1,
+    "deliveryRate": 0.75,
+    "catalog": ["flask", "medkit", "map", "rope", "rations", "torch"],
+    "simulatedViewers": 300
+  },
+  "needs": { "thirstPerHour": 2.2, "hungerPerHour": 1.1, "energyPerHour": 2.5 }
+}
