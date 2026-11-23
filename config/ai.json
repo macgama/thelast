@@ -1,10 +1,19 @@
 {
   "_note": "Réglages de l'écriture par IA. La clé n'est JAMAIS ici : elle vient de la variable GEMINI_API_KEY ou d'un secret réseau de l'environnement.",
   "model": "gemini-2.5-flash",
-  "fallbackModels": ["gemini-2.5-flash-lite", "gemini-2.0-flash"],
+  "fallbackModels": [
+    "gemini-2.5-flash-lite",
+    "gemini-2.0-flash"
+  ],
   "temperature": 0.95,
   "minIntervalMs": 6500,
   "maxRetries": 5,
   "eventsPerCall": 30,
-  "charactersPerCall": 12
+  "charactersPerCall": 12,
+  "imageModels": [
+    "gemini-3.1-flash-image-preview",
+    "gemini-3-pro-image-preview",
+    "gemini-2.5-flash-image"
+  ],
+  "imageIntervalMs": 8000
 }
