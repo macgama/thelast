@@ -12,11 +12,12 @@
   const st = load();
   if (!st.days.includes(today())) { st.days.push(today()); st.days = st.days.slice(-60); save(st); }
 
+  const _ = (s) => (window.t ? window.t(s) : s);
   const BADGES = [
-    { id: "supporter", icon: "💛", name: "Supporter", need: 1, text: "Tu as rejoint son fan-club." },
-    { id: "fidele", icon: "🔥", name: "Fidèle", need: 3, text: "3 jours de visite depuis ton adhésion." },
-    { id: "inconditionnel", icon: "💎", name: "Inconditionnel·le", need: 7, text: "7 jours de visite depuis ton adhésion." },
-    { id: "globe", icon: "🌍", name: "Globe-trotter", need: 0, text: "Son parcours compte au moins deux émissions ou saisons." },
+    { id: "supporter", icon: "💛", name: _("Supporter"), need: 1, text: _("Tu as rejoint son fan-club.") },
+    { id: "fidele", icon: "🔥", name: _("Fidèle"), need: 3, text: _("3 jours de visite depuis ton adhésion.") },
+    { id: "inconditionnel", icon: "💎", name: _("Inconditionnel·le"), need: 7, text: _("7 jours de visite depuis ton adhésion.") },
+    { id: "globe", icon: "🌍", name: _("Globe-trotter"), need: 0, text: _("Son parcours compte au moins deux émissions ou saisons.") },
   ];
 
   window.TheLastFans = {

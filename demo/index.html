@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Last</title>
+<script src="i18n.js"></script>
+<script src="i18n-en.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
 <style>
@@ -34,6 +36,8 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid
 .top nav a { text-decoration: none; color: var(--mist); font-size: 14px; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
 .top nav a:hover, .top nav a[aria-current] { color: var(--sand); }
 .top nav a[aria-current] { font-weight: 600; }
+.langsw { flex: none; background: transparent; color: var(--mist); border: 1px solid rgba(159, 185, 189, .4); border-radius: 999px; padding: 5px 10px; font: 600 12px/1 Inter, sans-serif; letter-spacing: .06em; cursor: pointer; }
+.langsw:hover { color: var(--sand); border-color: var(--sand); }
 .wallet { margin-left: auto; font-size: 14px; color: var(--mist); white-space: nowrap; }
 
 /* affiche principale */
@@ -181,25 +185,26 @@ footer { color: var(--mist); font-size: 13px; padding: 20px var(--gut) 30px; bor
 <body>
 <header class="top" id="top">
   <a class="logo" href="index.html">THE <b>LAST</b></a>
-  <nav aria-label="Navigation principale">
-    <a href="index.html" aria-current="page">Accueil</a>
-    <a href="#shows" class="wide">Émissions</a>
-    <a href="personnages.html">Personnages</a>
-    <a href="selection.html">Sélection</a>
+  <nav aria-label="Navigation principale" data-i18n-attr="aria-label">
+    <a href="index.html" aria-current="page" data-i18n>Accueil</a>
+    <a href="#shows" class="wide" data-i18n>Émissions</a>
+    <a href="personnages.html" data-i18n>Personnages</a>
+    <a href="selection.html" data-i18n>Sélection</a>
   </nav>
-  <span class="wallet" id="wallet" title="Ta monnaie gratuite, gagnée avec tes pronostics">🐚 0</span>
+  <span class="wallet" id="wallet" title="Ta monnaie gratuite, gagnée avec tes pronostics" data-i18n-attr="title">🐚 0</span>
+  <button type="button" class="langsw" data-lang-switch></button>
 </header>
 
 <main>
-  <section class="bill" aria-label="À la une">
+  <section class="bill" aria-label="À la une" data-i18n-attr="aria-label">
     <div class="cast" id="billCast" aria-hidden="true"></div>
     <div class="txt">
-      <div class="kick"><span class="live">En direct</span> <span>Série <b>The Last</b> · Saison 1</span></div>
+      <div class="kick"><span class="live" data-i18n>En direct</span> <span data-i18n>Série <b>The Last</b> · Saison 1</span></div>
       <h1>THE LAST<em>Survivor</em></h1>
-      <p>La télé-réalité où tous les candidats sont des IA. 50 naufragés, une île, 7 jours. Chaque soir, tu votes pour sauver tes favoris. Un seul restera.</p>
+      <p data-i18n>La télé-réalité où tous les candidats sont des IA. 50 naufragés, une île, 7 jours. Chaque soir, tu votes pour sauver tes favoris. Un seul restera.</p>
       <div class="cta">
-        <a class="btn main" id="playBtn" href="survivor.html">▶ Regarder</a>
-        <button class="btn" type="button" data-show="survivor">ⓘ Plus d'infos</button>
+        <a class="btn main" id="playBtn" href="survivor.html" data-i18n>▶ Regarder</a>
+        <button class="btn" type="button" data-show="survivor" data-i18n>ⓘ Plus d'infos</button>
       </div>
     </div>
   </section>
@@ -209,13 +214,20 @@ footer { color: var(--mist); font-size: 13px; padding: 20px var(--gut) 30px; bor
 
 <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle"><div class="mbox" id="mbox"></div></div>
 
-<footer><span>The Last · prototype</span><span>Tous les candidats sont des personnages fictifs, joués par des IA. Rien ne s'achète pour gagner.</span></footer>
+<footer><span>The Last · prototype</span><span data-i18n>Tous les candidats sont des personnages fictifs, joués par des IA. Rien ne s'achète pour gagner.</span></footer>
 
 <script src="fanclub.js"></script>
 <script>
 (async function () {
+  const _ = window.t, EN = window.I18N.lang === "en";
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const [site, people] = await Promise.all([fetch("emissions.json").then((r) => r.json()), fetch("personnages.json").then((r) => r.json())]);
+  // version anglaise : les fichiers contiennent les deux langues
+  const swap = (o) => { if (EN && o?.en) Object.assign(o, Object.fromEntries(Object.entries(o.en).filter(([, v]) => v !== "" && v != null))); };
+  if (EN) {
+    for (const c of people) { swap(c); if (c.career.titlesEn) c.career.titles = c.career.titlesEn; }
+    for (const s of site.shows) { swap(s); for (const se of s.seasons) { swap(se); se.episodes.forEach(swap); } }
+  }
   const P = Object.fromEntries(people.map((c) => [c.id, c]));
   const S = Object.fromEntries(site.shows.map((s) => [s.id, s]));
   const pic = (id, cls = "") => `<img class="${cls}" src="img/p/${id}.webp" alt="" loading="lazy" decoding="async">`;
@@ -229,7 +241,7 @@ footer { color: var(--mist); font-size: 13px; padding: 20px var(--gut) 30px; bor
   if (pos && P[pos.me]) {
     const pb = document.getElementById("playBtn");
     pb.href = "survivor.html";
-    pb.innerHTML = `▶ Reprendre <small>Jour ${reached} avec ${esc(P[pos.me].name)}</small>`;
+    pb.innerHTML = `${_("▶ Reprendre")} <small>${_("Jour {d} avec {n}", { d: reached, n: esc(P[pos.me].name) })}</small>`;
   }
 
   // affiche : les 5 candidats à suivre, en pied
@@ -241,38 +253,38 @@ footer { color: var(--mist); font-size: 13px; padding: 20px var(--gut) 30px; bor
   const epCard = (show, season, e, tag = "a") => {
     const seen = season.status !== "live" || e.n <= reached;
     const prog = season.status === "live" && pos ? (e.n < reached ? 100 : e.n === reached ? Math.round(((pos.tick % 24) / 24) * 100) : 0) : 0;
-    const desc = seen ? (e.moments[0] ?? "") : "Regarde l'épisode pour découvrir ce qui se passe.";
+    const desc = seen ? (e.moments[0] ?? "") : _("Regarde l'épisode pour découvrir ce qui se passe.");
     const href = season.play ? `${season.play}?jour=${e.n}` : null;
-    const thumb = `<div class="thumb">${e.faces.map((id) => pic(id)).join("")}<span class="num">${e.n}</span>${e.n === 7 && season.status === "live" ? `<span class="badge on">Prime</span>` : ""}${prog ? `<span class="prog"><b style="width:${prog}%"></b></span>` : ""}</div>`;
+    const thumb = `<div class="thumb">${e.faces.map((id) => pic(id)).join("")}<span class="num">${e.n}</span>${e.n === 7 && season.status === "live" ? `<span class="badge on">${_("Prime")}</span>` : ""}${prog ? `<span class="prog"><b style="width:${prog}%"></b></span>` : ""}</div>`;
     return href
-      ? `<a class="ep" href="${href}">${thumb}<span class="t">Jour ${e.n}${e.title ? " · " + esc(e.title) : ""}</span><span class="d">${esc(desc)}</span></a>`
-      : `<button type="button" class="ep" data-show="${show.id}" data-season="${season.n}">${thumb}<span class="t">Jour ${e.n}${e.title ? " · " + esc(e.title) : ""}</span><span class="d">${esc(desc)}</span></button>`;
+      ? `<a class="ep" href="${href}">${thumb}<span class="t">${_("Jour {d}", { d: e.n })}${e.title ? " · " + esc(e.title) : ""}</span><span class="d">${esc(desc)}</span></a>`
+      : `<button type="button" class="ep" data-show="${show.id}" data-season="${season.n}">${thumb}<span class="t">${_("Jour {d}", { d: e.n })}${e.title ? " · " + esc(e.title) : ""}</span><span class="d">${esc(desc)}</span></button>`;
   };
   const poster = (s) => {
     const bg = s.id === "survivor" ? `<div class="bg">${FEAT.slice(0, 4).map((id) => pic(id)).join("")}</div>` : `<div class="bg icon" aria-hidden="true">${s.icon || "🎬"}</div>`;
-    const badge = { live: `<span class="badge on">En direct</span>`, casting: `<span class="badge cast">Casting ouvert</span>`, soon: `<span class="badge">Bientôt</span>` }[s.status];
-    return `<button type="button" class="poster ${s.id}" data-show="${s.id}">${bg}${badge}${s.special ? `<span class="special">Spécial</span>` : ""}<span class="pt"><small>The Last</small><strong>${esc(s.name.replace("The Last - ", ""))}</strong></span></button>`;
+    const badge = { live: `<span class="badge on">${_("En direct")}</span>`, casting: `<span class="badge cast">${_("Casting ouvert")}</span>`, soon: `<span class="badge">${_("Bientôt")}</span>` }[s.status];
+    return `<button type="button" class="poster ${s.id}" data-show="${s.id}">${bg}${badge}${s.special ? `<span class="special">${_("Spécial")}</span>` : ""}<span class="pt"><small>The Last</small><strong>${esc(s.name.replace("The Last - ", ""))}</strong></span></button>`;
   };
-  const row = (title, items, cls = "", extra = "") => `<section class="row ${cls}"><h2>${title}${extra}</h2><div class="track"><button type="button" class="arrow l" aria-label="Défiler à gauche">‹</button><div class="scroller">${items}</div><button type="button" class="arrow r" aria-label="Défiler à droite">›</button></div></section>`;
+  const row = (title, items, cls = "", extra = "") => `<section class="row ${cls}"><h2>${title}${extra}</h2><div class="track"><button type="button" class="arrow l" aria-label="${_("Défiler à gauche")}">‹</button><div class="scroller">${items}</div><button type="button" class="arrow r" aria-label="${_("Défiler à droite")}">›</button></div></section>`;
 
   const rows = [];
-  if (pos) rows.push(row("Reprendre avec " + esc(P[pos.me]?.name ?? ""), s1.episodes.filter((e) => e.n >= reached).map((e) => epCard(sv, s1, e)).join("")));
-  rows.push(row(`Survivor · Saison 1`, s1.episodes.map((e) => epCard(sv, s1, e)).join(""), "", ` <small>7 épisodes · un par jour, en direct</small>`));
-  rows.push(row(`<span id="shows">Toutes les émissions</span>`, site.shows.map(poster).join("")));
+  if (pos) rows.push(row(_("Reprendre avec {n}", { n: esc(P[pos.me]?.name ?? "") }), s1.episodes.filter((e) => e.n >= reached).map((e) => epCard(sv, s1, e)).join("")));
+  rows.push(row(_("Survivor · Saison 1"), s1.episodes.map((e) => epCard(sv, s1, e)).join(""), "", ` <small>${_("7 épisodes · un par jour, en direct")}</small>`));
+  rows.push(row(`<span id="shows">${_("Toutes les émissions")}</span>`, site.shows.map(poster).join("")));
   const VOTES = [
-    { id: "arena", ic: "⚔️", title: "Choisis qui entre dans l'arène", text: "10 voix gratuites. Les 30 plus votés sont qualifiés, 20 places tirées au sort.", go: "Voter pour le casting" },
-    { id: "retour", ic: "🔁", title: "Repêche un ancien candidat", text: "3 voix gratuites. Les 10 plus repêchés reviennent pour un spécial de 24 heures.", go: "Voter pour le repêchage" },
-    { id: "allstars", ic: "⭐", title: "Réunis les champions", text: "5 voix gratuites. Les 20 plus votés parmi les 30 plus expérimentés entrent dans l'All-Stars.", go: "Voter pour l'All-Stars" },
+    { id: "arena", ic: "⚔️", title: _("Choisis qui entre dans l'arène"), text: _("10 voix gratuites. Les 30 plus votés sont qualifiés, 20 places tirées au sort."), go: _("Voter pour le casting") },
+    { id: "retour", ic: "🔁", title: _("Repêche un ancien candidat"), text: _("3 voix gratuites. Les 10 plus repêchés reviennent pour un spécial de 24 heures."), go: _("Voter pour le repêchage") },
+    { id: "allstars", ic: "⭐", title: _("Réunis les champions"), text: _("5 voix gratuites. Les 20 plus votés parmi les 30 plus expérimentés entrent dans l'All-Stars."), go: _("Voter pour l'All-Stars") },
   ];
-  rows.push(row("Votes ouverts", VOTES.map((v) => {
+  rows.push(row(_("Votes ouverts"), VOTES.map((v) => {
     const mine = Object.keys(store(`thelast-selection-${v.id}`)?.votes || {}).filter((id) => P[id]);
-    return `<a class="vcard ${v.id}" href="selection.html#${v.id}"><span class="ic" aria-hidden="true">${v.ic}</span><div class="kick"><b>${esc(S[v.id].name.replace("The Last - ", ""))}</b></div><h3>${esc(v.title)}</h3><p>${esc(v.text)}</p><div class="faces">${mine.map((id) => pic(id)).join("")}</div><span class="go">${mine.length ? `${mine.length > 1 ? `Tes ${mine.length} choix` : "Ton choix"} · modifier ›` : v.go + " ›"}</span></a>`;
-  }).join(""), "", ` <small>gratuit · la même voix pour tout le monde</small>`));
+    return `<a class="vcard ${v.id}" href="selection.html#${v.id}"><span class="ic" aria-hidden="true">${v.ic}</span><div class="kick"><b>${esc(S[v.id].name.replace("The Last - ", ""))}</b></div><h3>${esc(v.title)}</h3><p>${esc(v.text)}</p><div class="faces">${mine.map((id) => pic(id)).join("")}</div><span class="go">${mine.length ? `${mine.length > 1 ? _("Tes {n} choix", { n: mine.length }) : _("Ton choix")} · ${_("modifier")} ›` : v.go + " ›"}</span></a>`;
+  }).join(""), "", ` <small>${_("gratuit · la même voix pour tout le monde")}</small>`));
   const FAN = window.TheLastFans, fans = FAN ? FAN.list().filter((id) => P[id]) : [];
-  if (fans.length) rows.push(row("Ton fan-club", fans.map((id) => { const b = FAN.badges(P[id]); return `<a href="personnages.html#${id}">${pic(id)}<span>${esc(P[id].name)}</span><small>${P[id].season ? "En jeu · Survivor S1" : "En réserve"}</small><span class="fb">${b.got.map((x) => x.icon).join(" ")}</span></a>`; }).join(""), "faceRow fanRow", ` <a href="personnages.html">ajouter un personnage</a>`));
-  rows.push(row("Top 10 des personnages", site.top.map((id, i) => `<a href="personnages.html#${id}"><span class="big" aria-hidden="true">${i + 1}</span><span class="ph">${pic(id)}<span>${esc(P[id].name)}<small>${P[id].career.legend ? "👑 Légende" : `Niveau ${P[id].career.level}`}${P[id].career.titles[0] ? " · " + esc(P[id].career.titles[0].split(" · ")[0]) : ""}</small></span></span></a>`).join(""), "top10", ` <a href="personnages.html">classés par expérience</a>`));
-  rows.push(row("Saison pilote · terminée", pilot.episodes.map((e) => epCard(sv, pilot, e)).join(""), "", ` <small>le résumé de la saison d'essai</small>`));
-  rows.push(row("Les 50 de la saison 1", people.filter((c) => c.season).map((c) => `<a href="personnages.html#${c.id}">${pic(c.id)}<span>${esc(c.name)}</span>${c.featured ? "<small>★ à suivre</small>" : ""}</a>`).join(""), "faceRow", ` <a href="personnages.html">voir les 100</a>`));
+  if (fans.length) rows.push(row(_("Ton fan-club"), fans.map((id) => { const b = FAN.badges(P[id]); return `<a href="personnages.html#${id}">${pic(id)}<span>${esc(P[id].name)}</span><small>${P[id].season ? _("En jeu · Survivor S1") : _("En réserve")}</small><span class="fb">${b.got.map((x) => x.icon).join(" ")}</span></a>`; }).join(""), "faceRow fanRow", ` <a href="personnages.html">${_("ajouter un personnage")}</a>`));
+  rows.push(row(_("Top 10 des personnages"), site.top.map((id, i) => `<a href="personnages.html#${id}"><span class="big" aria-hidden="true">${i + 1}</span><span class="ph">${pic(id)}<span>${esc(P[id].name)}<small>${P[id].career.legend ? _("👑 Légende") : _("Niveau {n}", { n: P[id].career.level })}${P[id].career.titles[0] ? " · " + esc(P[id].career.titles[0].split(" · ")[0]) : ""}</small></span></span></a>`).join(""), "top10", ` <a href="personnages.html">${_("classés par expérience")}</a>`));
+  rows.push(row(_("Saison pilote · terminée"), pilot.episodes.map((e) => epCard(sv, pilot, e)).join(""), "", ` <small>${_("le résumé de la saison d'essai")}</small>`));
+  rows.push(row(_("Les 50 de la saison 1"), people.filter((c) => c.season).map((c) => `<a href="personnages.html#${c.id}">${pic(c.id)}<span>${esc(c.name)}</span>${c.featured ? `<small>${_("★ à suivre")}</small>` : ""}</a>`).join(""), "faceRow", ` <a href="personnages.html">${_("voir les 100")}</a>`));
   document.getElementById("rows").innerHTML = rows.join("");
   document.querySelectorAll(".track").forEach((t) => {
     const sc = t.querySelector(".scroller");
@@ -286,25 +298,25 @@ footer { color: var(--mist); font-size: 13px; padding: 20px var(--gut) 30px; bor
   function openShow(id, seasonN) {
     const s = S[id];
     const head = id === "survivor" ? `<div class="bg">${FEAT.map((x) => pic(x)).join("")}</div>` : `<div class="bg icon ${id}" aria-hidden="true">${s.icon || "🎬"}</div>`;
-    const status = { live: `<span class="live">En direct</span>`, casting: `<b>Casting ouvert</b>`, soon: `<b>Bientôt</b>` }[s.status];
-    mbox.innerHTML = `<button type="button" class="mclose" id="mClose" aria-label="Fermer">×</button>
+    const status = { live: `<span class="live">${_("En direct")}</span>`, casting: `<b>${_("Casting ouvert")}</b>`, soon: `<b>${_("Bientôt")}</b>` }[s.status];
+    mbox.innerHTML = `<button type="button" class="mclose" id="mClose" aria-label="${_("Fermer")}">×</button>
       <div class="mhead">${head}<div class="ht"><div class="kick">${status}<span>${esc(s.tagline)}</span></div><h2 id="mTitle">${esc(s.name)}</h2>
-      ${s.status === "live" ? `<a class="btn main" href="survivor.html">▶ ${pos ? "Reprendre" : "Regarder"}</a>` : s.status === "casting" ? `<a class="btn main" href="selection.html#${id}">${id === "retour" ? "Voter pour le repêchage" : "Voter pour le casting"}</a>` : ""}</div></div>
+      ${s.status === "live" ? `<a class="btn main" href="survivor.html">${pos ? _("▶ Reprendre") : _("▶ Regarder")}</a>` : s.status === "casting" ? `<a class="btn main" href="selection.html#${id}">${id === "retour" ? _("Voter pour le repêchage") : _("Voter pour le casting")}</a>` : ""}</div></div>
       <div class="mbody"><p>${esc(s.text)}</p><div class="genres">${s.genres.map((g) => `<span>${esc(g)}</span>`).join("")}</div><div id="mSeason"></div></div>`;
     const box = document.getElementById("mSeason");
     const paint = (n) => {
       const se = s.seasons.find((x) => x.n === n);
-      if (!se) { box.innerHTML = `<p class="note">Les saisons et les épisodes apparaîtront ici dès le lancement.</p>`; return; }
-      const pick = s.seasons.length > 1 ? `<select id="mSel" aria-label="Choisir la saison">${s.seasons.map((x) => `<option value="${x.n}" ${x.n === n ? "selected" : ""}>${esc(x.label)}</option>`).join("")}</select>` : `<span class="note">${esc(se.label)}</span>`;
+      if (!se) { box.innerHTML = `<p class="note">${_("Les saisons et les épisodes apparaîtront ici dès le lancement.")}</p>`; return; }
+      const pick = s.seasons.length > 1 ? `<select id="mSel" aria-label="${_("Choisir la saison")}">${s.seasons.map((x) => `<option value="${x.n}" ${x.n === n ? "selected" : ""}>${esc(x.label)}</option>`).join("")}</select>` : `<span class="note">${esc(se.label)}</span>`;
       let body = "";
-      if (se.status === "casting") body = `<p class="note">${se.cast} candidats, choisis par le public : ${se.voted} qualifiés par le vote, ${se.cast - se.voted} tirés au sort. Les épisodes arrivent après le casting.</p>`;
+      if (se.status === "casting") body = `<p class="note">${_("{n} candidats, choisis par le public : {v} qualifiés par le vote, {r} tirés au sort. Les épisodes arrivent après le casting.", { n: se.cast, v: se.voted, r: se.cast - se.voted })}</p>`;
       else body = `${se.podium ? `<div><p class="note">${esc(se.note)}</p><div class="podium">${se.podium.map((x, i) => `<a href="personnages.html#${x}">${pic(x)}<span>${["🥇", "🥈", "🥉"][i]} ${esc(P[x].name)}</span></a>`).join("")}</div></div>` : ""}
         <div class="eplist">${se.episodes.map((e) => {
           const seen = se.status !== "live" || e.n <= reached;
-          const inner = `<span class="n">${e.n}</span><div class="thumb">${e.faces.map((x) => pic(x)).join("")}</div><div><b>Jour ${e.n}${e.title ? " · " + esc(e.title) : ""}</b><p>${seen ? esc(e.moments.slice(0, 2).join(" ")) : "Pas encore vu : on ne te gâche pas la surprise."}</p>${seen && e.out.length ? `<p class="out">Évacué·es : ${esc(e.out.join(", "))}</p>` : ""}<p>${e.left} candidat${e.left > 1 ? "s" : ""} en fin de journée</p></div>`;
+          const inner = `<span class="n">${e.n}</span><div class="thumb">${e.faces.map((x) => pic(x)).join("")}</div><div><b>${_("Jour {d}", { d: e.n })}${e.title ? " · " + esc(e.title) : ""}</b><p>${seen ? esc(e.moments.slice(0, 2).join(" ")) : _("Pas encore vu : on ne te gâche pas la surprise.")}</p>${seen && e.out.length ? `<p class="out">${_("Évacué·es : {l}", { l: esc(e.out.join(", ")) })}</p>` : ""}<p>${e.left > 1 ? _("{n} candidats en fin de journée", { n: e.left }) : _("{n} candidat en fin de journée", { n: e.left })}</p></div>`;
           return se.play ? `<a class="epl" href="${se.play}?jour=${e.n}">${inner}</a>` : `<div class="epl">${inner}</div>`;
         }).join("")}</div>`;
-      box.innerHTML = `<div class="eph"><h3>Épisodes</h3>${pick}</div>${body}`;
+      box.innerHTML = `<div class="eph"><h3>${_("Épisodes")}</h3>${pick}</div>${body}`;
       document.getElementById("mSel")?.addEventListener("change", (ev) => paint(+ev.target.value));
     };
     paint(seasonN ?? s.seasons[0]?.n);

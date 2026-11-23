@@ -1,3 +1,20 @@
 {
-  "42": ["Bienvenue sur l'Île aux Échos", "La cascade de boue", "Hécatombe", "Trahison au clan", "Le largage", "La vague de chaleur", "Le Prime"]
+  "42": [
+    "Bienvenue sur l'Île aux Échos",
+    "La cascade de boue",
+    "Hécatombe",
+    "Trahison au clan",
+    "Le largage",
+    "La vague de chaleur",
+    "Le Prime"
+  ],
+  "42.en": [
+    "Welcome to Echo Island",
+    "The Mud Waterfall",
+    "Bloodbath",
+    "Betrayal in the Clan",
+    "The Drop",
+    "The Heat Wave",
+    "The Finale"
+  ]
 }

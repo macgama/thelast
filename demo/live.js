@@ -114,6 +114,10 @@
     const p = r.payload;
     if (r.kind === "tick") {
       const tk = Number(r.key);
+      if (lang === "en") { // noms de clans écrits en français par le moteur
+        for (const q of Object.values(p.s || {})) if (q[4]) q[4] = t(q[4]);
+        for (const e of p.e || []) if (e.d?.clan) e.d.clan = t(e.d.clan);
+      }
       D.events = D.events.filter((e) => e.t !== tk).concat(p.e).sort(byTick);
       const i = D.snapshots.findIndex(([x]) => x === tk);
       if (i >= 0) D.snapshots[i] = [tk, p.s]; else { D.snapshots.push([tk, p.s]); D.snapshots.sort((a, b) => a[0] - b[0]); }

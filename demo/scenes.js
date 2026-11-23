@@ -170,7 +170,7 @@
     const nm = (id) => C[id]?.name ?? "?";
     const zoneName = (z) => D.arena.zones.find((x) => x.id === z)?.name ?? "";
     const atZone = (z) => { const n = zoneName(z); if (LANG === "en") return z === "jungle" || z === "mangrove" ? "in " + n : "at " + n; return n.startsWith("le ") ? "au " + n.slice(3) : n.startsWith("les ") ? "aux " + n.slice(4) : z === "jungle" || z === "mangrove" ? "dans " + n : "à " + n; };
-    const deN = (id) => (/^[aeiouyhâéèêîôûAEIOUYHÉÈÂÎÔ]/.test(nm(id)) ? "d'" : "de ") + nm(id);
+    const deN = (id) => LANG === "en" ? nm(id) : (/^[aeiouyhâéèêîôûAEIOUYHÉÈÂÎÔ]/.test(nm(id)) ? "d'" : "de ") + nm(id);
     const list = (ids) => { const n = ids.map(nm); return n.length < 2 ? n.join("") : n.slice(0, -1).join(", ") + (LANG === "en" ? " and " : " et ") + n[n.length - 1]; };
     const live = (text, kind = "live") => ctx.live(text, kind);
     const isNight = (t) => { const h = t % 24; return h >= 22 || h < 6; };

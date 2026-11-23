@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Votes du public</title>
+<title data-i18n>Votes du public</title>
+<script src="i18n.js"></script>
+<script src="i18n-en.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
 <style>
@@ -27,6 +29,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .top .wrap { display: flex; align-items: center; gap: 18px; padding-block: 12px; }
 .logo { font-family: var(--display); font-weight: 700; letter-spacing: .18em; font-size: 19px; text-decoration: none; white-space: nowrap; }
 .logo b { color: var(--torch); }
+.langsw { flex: none; background: transparent; color: var(--mist); border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; font: 600 12px/1 Inter, sans-serif; letter-spacing: .06em; cursor: pointer; }
+.langsw:hover { color: var(--sand); border-color: var(--sand); }
 .top nav { margin-left: auto; display: flex; gap: 4px; }
 .top nav a { text-decoration: none; color: var(--mist); font-size: 14px; padding: 6px 10px; border-radius: 999px; }
 .top nav a:hover, .top nav a[aria-current] { color: var(--sand); background: var(--raise); }
@@ -111,15 +115,16 @@ input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep);
 <header class="top">
   <div class="wrap">
     <a class="logo" href="index.html">THE <b>LAST</b></a>
-    <nav aria-label="Navigation principale">
-      <a href="index.html">Accueil</a>
-      <a href="personnages.html">Personnages</a>
-      <a href="selection.html" aria-current="page">Sélection</a>
+    <nav aria-label="Navigation principale" data-i18n-attr="aria-label">
+      <a href="index.html" data-i18n>Accueil</a>
+      <a href="personnages.html" data-i18n>Personnages</a>
+      <a href="selection.html" aria-current="page" data-i18n>Sélection</a>
     </nav>
+    <button type="button" class="langsw" data-lang-switch></button>
   </div>
 </header>
 
-<div class="camps wrap" role="tablist" aria-label="Votes ouverts" id="camps"></div>
+<div class="camps wrap" role="tablist" aria-label="Votes ouverts" data-i18n-attr="aria-label" id="camps"></div>
 
 <div class="hero">
   <div class="wrap">
@@ -134,13 +139,13 @@ input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep);
 
 <main class="wrap">
   <div class="tools">
-    <div class="seg" role="group" aria-label="Trier">
-      <button type="button" data-s="votes" aria-pressed="true">Les plus votés</button>
-      <button type="button" data-s="level" aria-pressed="false">Niveau</button>
-      <button type="button" data-s="mine" aria-pressed="false">Mes choix</button>
+    <div class="seg" role="group" aria-label="Trier" data-i18n-attr="aria-label">
+      <button type="button" data-s="votes" aria-pressed="true" data-i18n>Les plus votés</button>
+      <button type="button" data-s="level" aria-pressed="false" data-i18n>Niveau</button>
+      <button type="button" data-s="mine" aria-pressed="false" data-i18n>Mes choix</button>
     </div>
-    <input type="search" id="q" placeholder="Chercher un nom, un métier…" aria-label="Chercher un personnage">
-    <div class="legend"><span><i style="background:var(--safe)"></i><span id="legQ">Qualifié·e par le vote</span></span><span><i style="background:var(--torch)"></i>Ton choix</span></div>
+    <input type="search" id="q" placeholder="Chercher un nom, un métier…" aria-label="Chercher un personnage" data-i18n-attr="placeholder,aria-label">
+    <div class="legend"><span><i style="background:var(--safe)"></i><span id="legQ" data-i18n>Qualifié·e par le vote</span></span><span><i style="background:var(--torch)"></i><span data-i18n>Ton choix</span></span></div>
   </div>
   <div class="grid" id="grid"></div>
 </main>
@@ -148,7 +153,7 @@ input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep);
 <div class="dock">
   <div class="wrap">
     <div class="left"><span id="left"></span><small id="deadline"></small></div>
-    <div class="chips" id="chips" aria-label="Tes choix"></div>
+    <div class="chips" id="chips" aria-label="Tes choix" data-i18n-attr="aria-label"></div>
     <button type="button" class="btn" id="drawBtn"></button>
   </div>
 </div>
@@ -158,8 +163,10 @@ input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep);
 <script src="fanclub.js"></script>
 <script>
 (async function () {
+  const _ = window.t, EN = window.I18N.lang === "en", LOC = EN ? "en-US" : "fr-FR";
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const [people, site] = await Promise.all([fetch("personnages.json").then((r) => r.json()), fetch("emissions.json").then((r) => r.json())]);
+  if (EN) for (const c of people) { Object.assign(c, Object.fromEntries(Object.entries(c.en || {}).filter(([, v]) => v))); if (c.career.titlesEn) c.career.titles = c.career.titlesEn; }
   const P = Object.fromEntries(people.map((c) => [c.id, c]));
   const FANS = window.TheLastFans;
   const hash = (s) => { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return (h >>> 0) / 4294967296; };
@@ -167,25 +174,25 @@ input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep);
   // les trois votes ouverts : mêmes principes (gratuit, même nombre de voix pour tous), règles adaptées à chaque émission
   const CAMPS = {
     arena: {
-      tab: "⚔️ Arena Battle", kick: "Casting ouvert · The Last - Arena Battle · Saison 1", title: "Choisis qui entre dans l'arène",
-      text: "Les 50 candidats d'Arena Battle viennent du vivier des 100 personnages. C'est toi, avec les autres spectateurs, qui décides qui part se battre. Le vote est gratuit et chaque spectateur a le même nombre de voix.",
-      pool: people.map((c) => c.id), max: 10, voted: 30, size: 50, deadline: "Fin du vote dimanche à 20 h · démo",
-      rules: [["10", "voix gratuites pour toi", "Une voix par personnage au maximum. Tu peux changer d'avis jusqu'à la fin du vote."], ["30", "places pour les plus votés", "Les 30 personnages qui ont le plus de voix sont qualifiés."], ["20", "places tirées au sort", "Parmi tous les autres, pour que les moins connus aient aussi leur chance."]],
-      qualified: "Qualifié·e par le vote (top 30)",
+      tab: _("⚔️ Arena Battle"), kick: _("Casting ouvert · The Last - Arena Battle · Saison 1"), title: _("Choisis qui entre dans l'arène"),
+      text: _("Les 50 candidats d'Arena Battle viennent du vivier des 100 personnages. C'est toi, avec les autres spectateurs, qui décides qui part se battre. Le vote est gratuit et chaque spectateur a le même nombre de voix."),
+      pool: people.map((c) => c.id), max: 10, voted: 30, size: 50, deadline: _("Fin du vote dimanche à 20 h · démo"),
+      rules: [["10", _("voix gratuites pour toi"), _("Une voix par personnage au maximum. Tu peux changer d'avis jusqu'à la fin du vote.")], ["30", _("places pour les plus votés"), _("Les 30 personnages qui ont le plus de voix sont qualifiés.")], ["20", _("places tirées au sort"), _("Parmi tous les autres, pour que les moins connus aient aussi leur chance.")]],
+      qualified: _("Qualifié·e par le vote (top 30)"),
     },
     retour: {
-      tab: "🔁 Le Retour", kick: "Repêchage · The Last - Le Retour · Spécial 1", title: "Offre une seconde chance",
-      text: "Ils ont été évacués pendant la saison pilote de Survivor. Les 10 plus repêchés par le public reviennent pour une émission spéciale de 24 heures. Le vainqueur gagne sa place dans la prochaine saison.",
-      pool: site.eligible.retour, max: 3, voted: 10, size: 10, deadline: "Fin du repêchage samedi à 19 h · démo",
-      rules: [["3", "voix gratuites pour toi", "Une voix par ancien candidat au maximum."], ["10", "anciens candidats repêchés", "Les 10 plus votés reviennent sur l'île pour 24 heures."], ["1", "place en saison 2", "Le vainqueur du spécial rejoint la prochaine saison de Survivor."]],
-      qualified: "Repêché·e (top 10)",
+      tab: _("🔁 Le Retour"), kick: _("Repêchage · The Last - Le Retour · Spécial 1"), title: _("Offre une seconde chance"),
+      text: _("Ils ont été évacués pendant la saison pilote de Survivor. Les 10 plus repêchés par le public reviennent pour une émission spéciale de 24 heures. Le vainqueur gagne sa place dans la prochaine saison."),
+      pool: site.eligible.retour, max: 3, voted: 10, size: 10, deadline: _("Fin du repêchage samedi à 19 h · démo"),
+      rules: [["3", _("voix gratuites pour toi"), _("Une voix par ancien candidat au maximum.")], ["10", _("anciens candidats repêchés"), _("Les 10 plus votés reviennent sur l'île pour 24 heures.")], ["1", _("place en saison 2"), _("Le vainqueur du spécial rejoint la prochaine saison de Survivor.")]],
+      qualified: _("Repêché·e (top 10)"),
     },
     allstars: {
-      tab: "⭐ All-Stars", kick: "Crossover · The Last - All-Stars · Saison 1", title: "Réunis les meilleurs",
-      text: "Les 30 personnages les plus expérimentés de Survivor et d'Arena Battle peuvent entrer dans l'All-Stars. Le public en choisit 20 : trois jours sur l'île, puis quatre jours dans l'arène.",
-      pool: site.eligible.allstars, max: 5, voted: 20, size: 20, deadline: "Fin du vote dans 2 semaines · démo",
-      rules: [["5", "voix gratuites pour toi", "Une voix par champion au maximum."], ["20", "places pour les plus votés", "Les 20 champions qui ont le plus de voix entrent dans l'All-Stars."], ["👑", "une Légende à la clé", "Un vainqueur qui a déjà gagné une autre émission devient Légende."]],
-      qualified: "Sélectionné·e (top 20)",
+      tab: _("⭐ All-Stars"), kick: _("Crossover · The Last - All-Stars · Saison 1"), title: _("Réunis les meilleurs"),
+      text: _("Les 30 personnages les plus expérimentés de Survivor et d'Arena Battle peuvent entrer dans l'All-Stars. Le public en choisit 20 : trois jours sur l'île, puis quatre jours dans l'arène."),
+      pool: site.eligible.allstars, max: 5, voted: 20, size: 20, deadline: _("Fin du vote dans 2 semaines · démo"),
+      rules: [["5", _("voix gratuites pour toi"), _("Une voix par champion au maximum.")], ["20", _("places pour les plus votés"), _("Les 20 champions qui ont le plus de voix entrent dans l'All-Stars.")], ["👑", _("une Légende à la clé"), _("Un vainqueur qui a déjà gagné une autre émission devient Légende.")]],
+      qualified: _("Sélectionné·e (top 20)"),
     },
   };
 
@@ -212,7 +219,7 @@ input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep);
     document.getElementById("hRules").innerHTML = C.rules.map(([n, t, s]) => `<div class="rule"><b>${n}</b><span>${esc(t)}<small>${esc(s)}</small></span></div>`).join("");
     document.getElementById("legQ").textContent = C.qualified;
     document.getElementById("deadline").textContent = C.deadline;
-    document.getElementById("drawBtn").textContent = C.size > C.voted ? "Voir un tirage possible" : "Voir le résultat actuel";
+    document.getElementById("drawBtn").textContent = C.size > C.voted ? _("Voir un tirage possible") : _("Voir le résultat actuel");
     try { history.replaceState(null, "", "#" + k); } catch {}
     paint();
     if (!keepTarget) scrollTo({ top: 0 });
@@ -227,18 +234,19 @@ input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep);
     if (sort === "mine") list = list.filter((id) => mine[id]);
     list = list.filter((id) => !q || `${P[id].name} ${P[id].job} ${P[id].origin}`.toLowerCase().includes(q));
     const used = Object.keys(mine).length;
-    const status = (id, r) => r <= C.voted ? `✓ ${C.qualified.replace(/ \(.*\)$/, "")}` : C.size > C.voted ? `Au tirage au sort · ${(votes(order[C.voted - 1]) - votes(id) + 1).toLocaleString("fr-FR")} voix du top ${C.voted}` : `${(votes(order[C.voted - 1]) - votes(id) + 1).toLocaleString("fr-FR")} voix du top ${C.voted}`;
-    const extra = (id) => { const r = P[id].career.results[0]; return camp === "retour" && r ? `Évacué·e le jour ${r.day} · ${r.rank}e` : camp === "allstars" ? `${P[id].career.titles[0] ? esc(P[id].career.titles[0]) : `${P[id].career.xp} XP`}` : esc(P[id].job); };
+    const gap = (id) => (votes(order[C.voted - 1]) - votes(id) + 1).toLocaleString(LOC);
+    const status = (id, r) => r <= C.voted ? `✓ ${C.qualified.replace(/ \(.*\)$/, "")}` : C.size > C.voted ? _("Au tirage au sort · {n} voix du top {t}", { n: gap(id), t: C.voted }) : _("{n} voix du top {t}", { n: gap(id), t: C.voted });
+    const extra = (id) => { const r = P[id].career.results[0]; return camp === "retour" && r ? _("Évacué·e le jour {d} · {r}e", { d: r.day, r: r.rank }) : camp === "allstars" ? `${P[id].career.titles[0] ? esc(P[id].career.titles[0]) : `${P[id].career.xp} XP`}` : esc(P[id].job); };
     grid.innerHTML = list.length ? list.map((id) => {
       const c = P[id], r = rank[id], qd = r <= C.voted;
       return `<article class="card ${qd ? "q" : ""} ${mine[id] ? "mine" : ""}" id="${id}">
-        <a class="ph" href="personnages.html#${id}"><img src="img/p/${id}.webp" alt="" loading="lazy"><span class="rank">#${r}</span><span class="lvl">${c.career.legend ? "👑" : `Niv. ${c.career.level}`}</span>${FANS.isFan(id) ? `<span class="fan" title="Dans ton fan-club">❤</span>` : ""}</a>
+        <a class="ph" href="personnages.html#${id}"><img src="img/p/${id}.webp" alt="" loading="lazy"><span class="rank">#${r}</span><span class="lvl">${c.career.legend ? "👑" : _("Niv. {n}", { n: c.career.level })}</span>${FANS.isFan(id) ? `<span class="fan" title="${_("Dans ton fan-club")}">❤</span>` : ""}</a>
         <div class="t"><a class="n" href="personnages.html#${id}">${esc(c.name)}</a><span class="j">${extra(id)}</span>
-        <span class="v">${votes(id).toLocaleString("fr-FR")} <small>voix${mine[id] ? " · dont la tienne" : ""}</small></span>
+        <span class="v">${votes(id).toLocaleString(LOC)} <small>${mine[id] ? _("voix · dont la tienne") : _("voix")}</small></span>
         <span class="st">${status(id, r)}</span></div>
-        <button type="button" class="vote" data-id="${id}" aria-pressed="${!!mine[id]}" ${!mine[id] && used >= C.max ? "disabled" : ""}>${mine[id] ? "✓ Ton choix" : "Voter"}</button></article>`;
-    }).join("") : `<p style="color:var(--mist)">${sort === "mine" ? "Tu n'as encore choisi personne. Touche « Voter » sous un personnage." : "Aucun personnage ne correspond."}</p>`;
-    document.getElementById("left").textContent = `${C.max - used} voix restante${C.max - used > 1 ? "s" : ""}`;
+        <button type="button" class="vote" data-id="${id}" aria-pressed="${!!mine[id]}" ${!mine[id] && used >= C.max ? "disabled" : ""}>${mine[id] ? _("✓ Ton choix") : _("Voter")}</button></article>`;
+    }).join("") : `<p style="color:var(--mist)">${sort === "mine" ? _("Tu n'as encore choisi personne. Touche « Voter » sous un personnage.") : _("Aucun personnage ne correspond.")}</p>`;
+    document.getElementById("left").textContent = (C.max - used > 1 ? _("{n} voix restantes", { n: C.max - used }) : _("{n} voix restante", { n: C.max - used }));
     document.getElementById("chips").innerHTML = Object.keys(mine).map((id) => `<button type="button" data-go="${id}" title="${esc(P[id].name)}"><img src="img/p/${id}.webp" alt="${esc(P[id].name)}"></button>`).join("") + Array.from({ length: C.max - used }, () => `<span class="empty" aria-hidden="true"></span>`).join("");
   }
   grid.addEventListener("click", (e) => {
@@ -268,11 +276,11 @@ input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep);
     while (luck.length < C.size - C.voted && rest.length) luck.push(rest.splice(Math.floor(Math.random() * rest.length), 1)[0]);
     const tile = (id, cls) => `<a class="${cls} ${mine[id] ? "mine" : ""}" href="personnages.html#${id}"><img src="img/p/${id}.webp" alt="">${esc(P[id].name)}</a>`;
     const n = Object.keys(mine).length, inMine = Object.keys(mine).filter((id) => top.includes(id) || luck.includes(id)).length;
-    dbox.innerHTML = `<button type="button" class="dclose" id="dClose" aria-label="Fermer">×</button>
-      <div class="kick">Simulation</div><h2 id="dTitle">${esc(C.tab.slice(2))} : le résultat si le vote s'arrêtait maintenant</h2>
-      <p>${n ? `${inMine} de tes ${n} choix ${inMine > 1 ? "seraient" : "serait"} retenu${inMine > 1 ? "s" : ""}.` : "Tu n'as pas encore voté."}${luck.length ? " Le tirage change à chaque fois : relance-le pour voir d'autres chanceux." : ""}</p>
+    dbox.innerHTML = `<button type="button" class="dclose" id="dClose" aria-label="${_("Fermer")}">×</button>
+      <div class="kick">${_("Simulation")}</div><h2 id="dTitle">${_("{s} : le résultat si le vote s'arrêtait maintenant", { s: esc(C.tab.slice(2)) })}</h2>
+      <p>${n ? (inMine > 1 ? _("{k} de tes {n} choix seraient retenus.", { k: inMine, n }) : _("{k} de tes {n} choix serait retenu.", { k: inMine, n })) : _("Tu n'as pas encore voté.")}${luck.length ? " " + _("Le tirage change à chaque fois : relance-le pour voir d'autres chanceux.") : ""}</p>
       <h3>${esc(C.qualified.replace(/ \(.*\)$/, ""))} · ${top.length}</h3><div class="dgrid">${top.map((id) => tile(id, "")).join("")}</div>
-      ${luck.length ? `<h3>Tirés au sort · ${luck.length}</h3><div class="dgrid">${luck.map((id) => tile(id, "luck")).join("")}</div><p style="margin-top:16px"><button type="button" class="btn" id="again">Relancer le tirage</button></p>` : ""}`;
+      ${luck.length ? `<h3>${_("Tirés au sort · {n}", { n: luck.length })}</h3><div class="dgrid">${luck.map((id) => tile(id, "luck")).join("")}</div><p style="margin-top:16px"><button type="button" class="btn" id="again">${_("Relancer le tirage")}</button></p>` : ""}`;
     draw.hidden = false; document.body.style.overflow = "hidden";
     document.getElementById("dClose").addEventListener("click", closeDraw);
     document.getElementById("again")?.addEventListener("click", () => document.getElementById("drawBtn").click());

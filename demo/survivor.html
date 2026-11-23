@@ -483,6 +483,11 @@ body.fs .fsbtn { bottom: 164px; }
       for (const z of D.arena.zones) if (z.en) z.name = z.en;
     }
   }
+  // les noms de clans sont écrits en français par le moteur : on les traduit (en direct, live.js le fait déjà)
+  if (EN && !LIVE) {
+    for (const [, snap] of D.snapshots) for (const p of Object.values(snap)) if (p[4]) p[4] = _(p[4]);
+    for (const ev of D.events) if (ev.d?.clan) ev.d.clan = _(ev.d.clan);
+  }
   const C = Object.fromEntries(D.cast.map((c) => [c.id, c]));
   const FEATURED = D.cast.filter((c) => c.confessions);
   const ORDER = LIVE ? [] : ["c086", "c053", "c046", "c071", "c085"].filter((id) => C[id]);

@@ -18,6 +18,8 @@ export interface ReplayOptions {
   ai: AiSeason | null;
   /** Fiches et confessionnaux écrits à la main (seulement pour la saison de démo, graine 42). */
   featured?: Record<string, Featured>;
+  /** Leur version anglaise (demo/featured-en.json). */
+  featuredEn?: Record<string, Featured>;
 }
 
 type Txt = { fr: string; en: string };
@@ -35,6 +37,7 @@ export function buildReplay(r: SeasonResult, o: ReplayOptions) {
 
   const cast = r.cast.map((c) => {
     const f = featured[c.id];
+    const fe = o.featuredEn?.[c.id];
     const aiFr = conf(c.id, "fr");
     return {
       id: c.id, name: c.name, age: c.age, gender: c.gender,
@@ -47,8 +50,9 @@ export function buildReplay(r: SeasonResult, o: ReplayOptions) {
       look: looks[c.id] ? resolveLook(looks[c.id]) : null,
       // version anglaise : l'interface remplace les champs ci-dessus quand on choisit l'anglais
       en: {
-        origin: c.origin.en, job: c.job.en, bio: c.backstory.en, motivation: c.motivation.en, catchphrase: c.catchphrase.en,
-        secret: c.secret.en, confessions: f?.confessions ? null : conf(c.id, "en"),
+        origin: c.origin.en, job: fe?.job ?? c.job.en, bio: fe?.bio ?? c.backstory.en, motivation: fe?.motivation ?? c.motivation.en,
+        catchphrase: fe?.catchphrase ?? c.catchphrase.en, secret: fe?.secret ?? c.secret.en,
+        confessions: f?.confessions ? (fe?.confessions ?? null) : conf(c.id, "en"),
       },
       career: c.career,
     };

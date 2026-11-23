@@ -4,6 +4,13 @@ import { dayOf, hourOf, type ShowrunnerKind } from "../engine/season";
 import type { Character, GameEvent, HazardId, Item, Lang, SeasonResult } from "../engine/types";
 import { CAUSE, CHALLENGE_NAME, HAZARD, ITEM, LINES, SHOWRUNNER, TRIAL_NAME, UI, WHAT, agree, at, fill, list } from "./templates";
 
+const CLAN_EN: Record<string, string> = {
+  Requins: "Sharks", Lucioles: "Fireflies", Albatros: "Albatrosses", Mangoustes: "Mongooses", Tortues: "Turtles", Coraux: "Corals",
+  Faucons: "Falcons", Iguanes: "Iguanas", Orques: "Orcas", Geckos: "Geckos", Pélicans: "Pelicans", Murènes: "Morays",
+};
+/** Nom de clan dans la langue voulue (le moteur les nomme en français, parfois suivis d'un numéro). */
+export const clanName = (n: string, lang: Lang) => (lang === "en" ? n.replace(/^\S+/, (w) => CLAN_EN[w] ?? w) : n);
+
 export class Narrator {
   private chars: Map<string, Character>;
 
@@ -36,7 +43,7 @@ export class Narrator {
     const [a, b, c] = e.actors.map((id) => this.name(id));
     const d = e.data ?? {};
     const zone = this.zone(e.zone);
-    const clan = String(d.clan ?? "");
+    const clan = clanName(String(d.clan ?? ""), L);
     const base = { a, b, c: c ?? "", clan, zone, at: at(zone, L), e: agree(this.chars.get(e.actors[0])?.gender, L) };
     switch (e.type) {
       case "season_start":
