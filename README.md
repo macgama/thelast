@@ -15,6 +15,7 @@ Télé-réalité 100% IA : 50 personnages IA vivent une aventure de 7 jours, sui
   - Clans : jusqu'à 5 membres, une veillée à 20h où l'on met l'eau et la nourriture en commun, un membre qui s'interpose quand on s'en prend à l'un des siens, un plaidoyer devant le public quand l'un d'eux est menacé, et le collier d'immunité que l'on peut offrir. Les trahisons s'annoncent : méfiance, puis complot à voix basse, puis passage à l'acte.
   - Intrigues suivies : le Réal repère les duos qui s'affrontent (vols, disputes, complots…), annonce « Épisode N » avant chaque nouvel accrochage et repasse sur eux entre deux scènes. L'onglet Direct liste les intrigues en cours.
   - Bouton 🎁 sur la carte : un colis par jour, parachuté sous tes yeux (dans la démo, il ne change pas la simulation).
+  - Spectateur : carte en plein écran, fiche du candidat en fenêtre, alerte rouge « ton candidat est en danger » avec « Voir la scène », carte des relations (alliances et méfiances, jour par jour), pronostic gratuit du soir (coquillages 🐚 et badges, jamais achetables), réactions emojis en direct, « Sa journée en 60 secondes ».
   - « Ce que tu as raté » : après un saut de 3 heures ou plus, ou quand tu reviens (1 minute d'absence = 1 heure sur l'île), un résumé de ton candidat et de l'île, avec la rediffusion des 3 temps forts.
   - Alertes façon notification, et bouton « Gratuit » pour voir ce qu'a un spectateur sans abonnement (la Quotidienne de 19h et le vote).
 - [Exemple de saison en français](exemples/saison-42.fr.md)

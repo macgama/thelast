@@ -51,6 +51,17 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .mechip .mf .face { width: 30px; height: 30px; display: block; }
 .mechip #meChipName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .mechip .badge { position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; border-radius: 50%; background: var(--torch); box-shadow: 0 0 0 2px var(--ink); }
+.reacts { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); z-index: 3; display: grid; gap: 4px; padding: 4px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 70%, transparent); border: 1px solid var(--line); }
+.reacts button { width: 34px; height: 34px; border-radius: 50%; border: 0; background: none; font-size: 19px; line-height: 1; transition: transform .12s; }
+.reacts button:hover { transform: scale(1.18); }
+.reacts button:active { transform: scale(.9); }
+.floaters { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 2; }
+.fl { position: absolute; bottom: 70px; font-size: 26px; animation: floatUp var(--d, 3.2s) ease-out forwards; will-change: transform, opacity; }
+.fl.mine { font-size: 34px; filter: drop-shadow(0 0 6px #ff8a3d); }
+.fl i { font: 700 11px var(--display); font-style: normal; color: #fff; background: #0009; border-radius: 999px; padding: 1px 6px; margin-left: 2px; vertical-align: middle; }
+@keyframes floatUp { 0% { transform: translate(0, 0) scale(.6); opacity: 0; } 12% { opacity: 1; transform: translate(0, -20px) scale(1); } 100% { transform: translate(var(--dx, 0), -260px) scale(1.1); opacity: 0; } }
+@media (max-width: 600px) { .reacts { top: auto; bottom: 64px; transform: none; grid-auto-flow: column; } .reacts button { width: 30px; height: 30px; font-size: 16px; } .fl { font-size: 22px; } }
+@media (prefers-reduced-motion: reduce) { .fl { animation-duration: 1.2s; } }
 .fsbtn { position: absolute; bottom: 62px; right: 10px; z-index: 3; width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--line); background: color-mix(in srgb, var(--ink) 80%, transparent); color: var(--sand); font-size: 18px; line-height: 1; }
 .fsbtn:hover, .mechip:hover { border-color: var(--torch); }
 .sheet { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 20px; background: rgb(4 12 16 / .55); backdrop-filter: blur(2px); }
@@ -146,6 +157,9 @@ body.fs .fsbtn { bottom: 164px; }
 .toast small { font-family: var(--display); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
 .toast span { font-size: 13px; line-height: 1.35; }
 .toast.hot { border-color: var(--danger); }
+.toast.danger { background: color-mix(in srgb, #4a1f2a 96%, transparent); border: 2px solid var(--danger); box-shadow: 0 8px 28px #0009, 0 0 0 4px color-mix(in srgb, var(--danger) 25%, transparent); }
+.toast.danger small { color: #ffb3bb; }
+.toast .go { grid-column: 2; justify-self: start; margin-top: 6px; background: var(--danger); color: #fff; font: 700 12px var(--display); letter-spacing: .06em; padding: 5px 12px; border-radius: 999px; }
 .toast.bye { opacity: 0; transform: translateX(20px); transition: .3s; }
 @keyframes drop { from { transform: translateY(-12px); opacity: 0; } }
 @media (max-width: 600px) { .toasts { left: 12px; right: 12px; width: auto; } }
@@ -196,6 +210,39 @@ body.fs .fsbtn { bottom: 164px; }
 .secret { border-style: dashed; }
 .locked { color: var(--mist); font-style: italic; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.myday { margin: 4px 0 12px; }
+.daycard { position: absolute; inset: 0; z-index: 6; display: grid; place-content: center; justify-items: center; gap: 4px; background: radial-gradient(circle, #1d3a46ee, #0b1820f5); animation: sheetIn .3s ease-out; text-align: center; }
+.daycard small { font: 700 12px var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--torch); }
+.daycard b { font: 700 40px var(--display); }
+.daycard span { color: var(--mist); }
+.wallet { margin-left: 8px; border: 1px solid var(--line); background: none; color: var(--sand); border-radius: 999px; padding: 3px 10px; font-family: var(--display); font-size: 13px; }
+.prono { margin: 0 0 14px; border-color: var(--torch); background: linear-gradient(135deg, #24324a, var(--deep)); }
+.prono p { margin: 0 0 10px; font-size: 14px; }
+.prono small { color: var(--mist); font-size: 12px; }
+.prs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+.pr { display: grid; justify-items: center; gap: 4px; padding: 8px 4px; border-radius: 12px; border: 1px solid var(--line); background: var(--ink); color: var(--sand); font-size: 13px; }
+.pr .face { width: 48px; height: 48px; }
+.pr:not([disabled]):hover { border-color: var(--torch); }
+.pr.on { border-color: var(--torch); background: color-mix(in srgb, var(--torch) 15%, var(--ink)); }
+.pr.out { border-color: var(--danger); }
+.pr[disabled] { cursor: default; }
+.relhead { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.relhead h3 { margin: 0; font-family: var(--display); font-size: 18px; }
+.relDays .chip { background: none; cursor: pointer; }
+.relDays .chip.on { background: var(--torch); color: var(--ink); border-color: var(--torch); }
+.relmap { position: relative; aspect-ratio: 340 / 300; margin-top: 10px; background: radial-gradient(circle at 50% 50%, #173440, var(--deep) 70%); border: 1px solid var(--line); border-radius: 14px; }
+.relmap > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.relnode { position: absolute; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 1px; background: none; border: 0; padding: 0; width: 84px; color: var(--sand); }
+.relnode .face { width: 44px; height: 44px; }
+.relnode.center .face { width: 64px; height: 64px; }
+.relnode b { font-size: 12px; font-family: var(--display); }
+.relnode small { font-size: 10px; color: var(--mist); line-height: 1.2; text-align: center; }
+.relnode.gone b { color: var(--mist); text-decoration: line-through; }
+.relnode:hover .face, .relnode:focus-visible .face { outline: 2px solid var(--torch); border-radius: 50%; }
+.relempty { position: absolute; left: 10%; right: 10%; bottom: 14%; text-align: center; color: var(--mist); font-size: 13px; margin: 0; }
+.rellegend { font-size: 12px; color: var(--mist); display: flex; align-items: center; gap: 6px 14px; flex-wrap: wrap; }
+.lg { display: inline-block; width: 18px; height: 3px; border-radius: 2px; }
+.lg { vertical-align: middle; } .lg.ok { background: var(--safe); } .lg.ko { background: repeating-linear-gradient(90deg, var(--danger) 0 5px, transparent 5px 9px); }
 .chip { font-size: 12px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--mist); }
 
 .feed { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
@@ -281,6 +328,7 @@ body.fs .fsbtn { bottom: 164px; }
     <span class="live">Direct</span>
     <div class="plan" role="group" aria-label="Formule de la démo"><button type="button" data-plan="sub" aria-pressed="true">Abonné·e</button><button type="button" data-plan="free" aria-pressed="false">Gratuit</button></div>
     <button type="button" class="mute" id="mute" aria-pressed="false" title="Son">🔊</button>
+    <button type="button" class="wallet" id="wallet" title="Tes coquillages : la monnaie gratuite, gagnée avec tes pronostics">🐚 <b id="shells">0</b></button>
     <div class="clock"><span class="day" id="clockDay">Jour 1 · 08h</span><span class="left" id="clockLeft">50 en jeu</span></div>
   </div>
 </header>
@@ -308,6 +356,10 @@ body.fs .fsbtn { bottom: 164px; }
         <p id="giftNote">Un colis par jour, gratuit. Il est parachuté sous tes yeux.</p>
       </div>
       <div class="hint">La caméra suit l'action · glisse pour reprendre la main</div>
+      <div class="floaters" id="floaters" aria-hidden="true"></div>
+      <div class="reacts" id="reacts" role="group" aria-label="Réagir en direct">
+        <button type="button" data-r="😱" aria-label="Choqué">😱</button><button type="button" data-r="😂" aria-label="Mort de rire">😂</button><button type="button" data-r="❤️" aria-label="J'adore">❤️</button><button type="button" data-r="🔥" aria-label="Ça chauffe">🔥</button><button type="button" data-r="👏" aria-label="Bravo">👏</button>
+      </div>
       <div class="onair" id="onair" data-kind="ambient"><span class="tag">EN DIRECT</span><p id="onairText" aria-live="polite">Calme plat sur l'île.</p></div>
       <div class="lock" id="lock" hidden><div><b>🔒 Le direct est réservé aux abonnés</b><p id="lockText">Sans abonnement, tu vois la Quotidienne de 19h.</p><button class="btn main" type="button" id="lockDaily">Voir la Quotidienne</button><button class="btn" type="button" id="lockSub">Passer abonné·e (démo)</button></div></div>
     </div>
@@ -323,13 +375,16 @@ body.fs .fsbtn { bottom: 164px; }
   </section>
 
   <aside class="side">
+    <div class="card prono" id="prono" hidden></div>
     <nav class="tabs" role="tablist">
       <button class="tab" role="tab" id="tab-feed" aria-selected="true" type="button">Direct</button>
       <button class="tab" role="tab" id="tab-daily" aria-selected="false" type="button">Quotidienne</button>
+      <button class="tab" role="tab" id="tab-rel" aria-selected="false" type="button">Relations</button>
       <button class="tab" role="tab" id="tab-cast" aria-selected="false" type="button">Casting</button>
     </nav>
     <div id="panel-feed"><div class="card intrigues" id="intrigues" hidden></div><ul class="feed" id="feed"></ul></div>
     <div id="panel-daily" class="daily" hidden></div>
+    <div id="panel-rel" hidden></div>
     <div id="panel-cast" hidden><div class="grid" id="castGrid"></div></div>
   </aside>
 </main>
@@ -425,9 +480,37 @@ body.fs .fsbtn { bottom: 164px; }
   // Bandeau EN DIRECT
   let liveLast = "";
   var replaying = false; // rediffusion des temps forts en cours
+  // ---------- réactions des spectateurs ----------
+  // Les tiennes s'envolent en grand ; celles des autres spectateurs sont simulées dans la démo,
+  // plus nombreuses quand il se passe quelque chose.
+  let liveKind = "ambient", crowdT = null;
+  const floaters = document.getElementById("floaters");
+  function floatEmoji(e, mine, n) {
+    if (floaters.childElementCount > 26) floaters.firstElementChild.remove();
+    const el = document.createElement("span");
+    el.className = "fl" + (mine ? " mine" : "");
+    el.innerHTML = e + (n > 1 ? `<i>×${n}</i>` : "");
+    el.style.left = (mine ? 46 + Math.random() * 8 : 55 + Math.random() * 38) + "%";
+    el.style.setProperty("--dx", ((Math.random() - 0.5) * 60).toFixed(0) + "px");
+    el.style.setProperty("--d", (2.6 + Math.random() * 1.4).toFixed(2) + "s");
+    floaters.appendChild(el);
+    el.addEventListener("animationend", () => el.remove());
+  }
+  document.querySelectorAll("#reacts [data-r]").forEach((b) => b.addEventListener("click", () => { floatEmoji(b.dataset.r, true); SND?.sfx?.("blip"); }));
+  function crowd() {
+    clearTimeout(crowdT);
+    crowdT = setTimeout(crowd, 650);
+    if (!playing || plan !== "sub" || document.hidden || !started) return;
+    const hot = { out: 0.9, result: 0.7, rival: 0.7, sr: 0.8, live: 0.5, replay: 0.3, ambient: 0.12 }[liveKind] ?? 0.3;
+    if (Math.random() > hot) return;
+    const pool = liveKind === "out" ? ["😱", "😢", "😱", "❤️"] : liveKind === "result" ? ["👏", "😂", "🔥", "😱"] : liveKind === "sr" ? ["😱", "🔥", "😱"] : liveKind === "rival" ? ["🔥", "😱", "😂"] : ["❤️", "😂", "🔥", "👏"];
+    floatEmoji(pool[Math.floor(Math.random() * pool.length)], false, Math.random() < 0.35 ? 2 + Math.floor(Math.random() * 40) : 1);
+  }
+  setTimeout(crowd, 1500);
+
   function onLive(text, kind) {
     if (!text || text === liveLast) return;
-    liveLast = text;
+    liveLast = text; liveKind = kind || "live";
     const box = document.getElementById("onair"), p = document.getElementById("onairText");
     box.dataset.kind = replaying && kind !== "ambient" ? "replay" : kind || "live";
     p.textContent = text;
@@ -468,8 +551,9 @@ body.fs .fsbtn { bottom: 164px; }
     const el = document.createElement("button");
     el.type = "button";
     el.className = "toast" + (opt.hot ? " hot" : "");
-    el.innerHTML = `<span class="ico" aria-hidden="true">${ico}</span><small>The Last · ${esc(title)}</small><span>${esc(text)}</span>`;
-    el.addEventListener("click", () => { el.remove(); if (opt.daily) select("daily"); if (opt.id && world && plan === "sub") world.peek(opt.id); if (opt.me) select("me"); });
+    if (opt.go) el.classList.add("danger");
+    el.innerHTML = `<span class="ico" aria-hidden="true">${ico}</span><small>The Last · ${esc(title)}</small><span>${esc(text)}</span>${opt.go ? `<b class="go">Voir la scène ▸</b>` : ""}`;
+    el.addEventListener("click", () => { el.remove(); if (opt.go) return goScene(opt.go); if (opt.daily) select("daily"); if (opt.id && world && plan === "sub") world.peek(opt.id); if (opt.me) select("me"); });
     box.appendChild(el);
     setTimeout(() => { el.classList.add("bye"); setTimeout(() => el.remove(), 320); }, opt.ms || 6500);
   }
@@ -478,6 +562,7 @@ body.fs .fsbtn { bottom: 164px; }
     const m = me && C[me] ? C[me] : null;
     const mine = m ? evs.filter((ev) => ev.a.includes(me)) : [];
     const h = tick % 24;
+    if (h === D.voteHour - 2 && voteOf(dayOf(tick))) toast("🔮", "Pronostic", "Les trois menacés du soir sont connus. Devine qui partira à 19h : c'est gratuit.", { ms: 8000 });
     if (plan === "free") {
       // Sans abonnement : un seul rendez-vous, la Quotidienne de 19h
       if (h === D.voteHour) {
@@ -511,7 +596,12 @@ body.fs .fsbtn { bottom: 164px; }
         winner: ["🏆", "Victoire", ev.fr],
       }[ev.type];
       if (!t) continue;
-      toast(t[0], t[1], t[2], { hot: t[3], id: me, me: ev.type === "evacuated" });
+      // Danger pour mon candidat : alerte rouge avec un bouton qui emmène sur la scène
+      const danger = ev.type === "hazard" || ev.type === "dispute" || ev.type === "vote_threat"
+        || (ev.type === "steal" && ev.a[1] === me) || (ev.type === "sabotage" && ev.a[1] === me)
+        || (ev.type === "suspicion" && ev.a[1] === me) || (ev.type === "conspire" && ev.a[2] === me) || (ev.type === "defend" && ev.a[2] === me);
+      if (danger) toast(t[0], ev.type === "hazard" ? `${m.name} est en danger` : t[1], t[2], { hot: true, go: ev, ms: 12000 });
+      else toast(t[0], t[1], t[2], { hot: t[3], id: me, me: ev.type === "evacuated" });
       shown++;
     }
     if (shown) return;
@@ -611,12 +701,14 @@ body.fs .fsbtn { bottom: 164px; }
       <div class="hero">${face(c, mood, { gray: !!out && !won, ring: !out })}
         <div><h2>${esc(c.name)}</h2><div class="meta">${c.age} ans · ${esc(c.job)} · ${esc(c.origin)}</div>${status}</div></div>
       <p class="quote">« ${esc(c.catchphrase)} »</p>
+      ${p || out ? `<button type="button" class="btn main myday" id="myDayBtn">🎬 Sa journée en 60 secondes</button>` : ""}
       ${gauges}
       ${clanCard}
       ${booth}
       <div class="card"><h4>Son histoire</h4><p>${esc(c.bio)}</p><div class="chips"><span class="chip">Rêve : ${esc(c.motivation)}</span></div></div>
       <div class="card secret"><h4>Son secret</h4>${secretOpen ? `<p>${esc(c.secret)}</p>` : `<p class="locked">🔒 Pas encore révélé. Reste avec ${esc(c.name)} pour le découvrir.</p>`}</div>
       <div class="card"><h4>Ses dernières heures</h4>${plan === "free" ? `<p class="locked">🔒 Réservé aux abonnés. Ce soir à 19h, la Quotidienne raconte sa journée.</p>` : mine.length ? `<ul class="feed">${mine.map((ev) => `<li class="${ev.type === "evacuated" ? "out" : ""}"><time>J${dayOf(ev.t)} ${hh(ev.t)}</time><span>${esc(ev.fr)}</span></li>`).join("")}</ul>` : `<p class="locked">Rien à signaler pour l'instant.</p>`}</div>`;
+    el.querySelector("#myDayBtn")?.addEventListener("click", () => myDay(out ? dayOf(out.t) : undefined));
   }
 
   function badge() {
@@ -664,6 +756,111 @@ body.fs .fsbtn { bottom: 164px; }
     el.querySelectorAll("[data-d]").forEach((b) => b.addEventListener("click", () => { dailyDay = +b.dataset.d; panelDaily(); }));
   }
 
+  // ---------- carte des relations ----------
+  // Alliances et méfiances d'un candidat, calculées à partir de ce qui s'est passé jusqu'au soir choisi.
+  let relDay = null, relWho = null;
+  function relations(id, upto) {
+    const R = {};
+    const add = (a, b, v, why) => {
+      if (a !== id && b !== id) return;
+      const o = a === id ? b : a; if (!o || o === id || !C[o]) return;
+      const r = (R[o] ??= { v: 0, why: [] }); r.v += v; if (!r.why.includes(why)) r.why.push(why);
+    };
+    for (const ev of D.events) {
+      if (ev.t > upto) break;
+      const [a, b, c] = ev.a, d = ev.d || {};
+      switch (ev.type) {
+        case "alliance": add(a, b, 3, "alliance"); break;
+        case "clan_join": add(a, b, 2, "même clan"); break;
+        case "clan_meal": ev.a.forEach((x) => ev.a.forEach((y) => x < y && add(x, y, 0.5, "veillée"))); break;
+        case "defend": add(a, c, 2, "l'a défendu"); add(a, b, -2, "altercation"); add(b, c, -2, "sac fouillé"); break;
+        case "share": add(a, b, 1.5, "partage"); break;
+        case "necklace_gift": add(a, b, 4, "collier offert"); break;
+        case "campaign": add(a, b, 2, "plaidoyer"); break;
+        case "hazard": if (d.rescuedBy) add(a, d.rescuedBy, 2.5, "sauvetage"); break;
+        case "steal": add(a, b, d.betrayal ? -4 : d.caught ? -2 : -1, d.betrayal ? "trahison" : "vol"); break;
+        case "dispute": add(a, b, -2, "dispute"); break;
+        case "sabotage": add(a, b, -3, "abri démoli"); break;
+        case "suspicion": add(a, b, -1.5, "méfiance"); break;
+        case "conspire": add(a, b, 1, "complot"); add(a, c, -2, "complot contre"); break;
+      }
+    }
+    const snap = snapAt(upto), clan = snap[id]?.[4];
+    if (clan) for (const [o, p] of Object.entries(snap)) if (o !== id && p[4] === clan) { const r = (R[o] ??= { v: 0, why: [] }); r.v += 1; if (!r.why.includes("même clan")) r.why.unshift("même clan"); }
+    const all = Object.entries(R).map(([o, r]) => ({ o, ...r }));
+    return { friends: all.filter((r) => r.v > 0).sort((x, y) => y.v - x.v).slice(0, 5), foes: all.filter((r) => r.v < 0).sort((x, y) => x.v - y.v).slice(0, 5) };
+  }
+  function panelRel() {
+    const el = document.getElementById("panel-rel");
+    const today = dayOf(tick);
+    if (relDay === null || relDay > today) relDay = today;
+    const who = relWho && C[relWho] ? relWho : me;
+    if (!who) { el.innerHTML = `<p class="locked">Choisis un candidat dans le casting.</p>`; return; }
+    const upto = Math.min(tick, (relDay - 1) * 24 + 23);
+    const { friends, foes } = relations(who, upto);
+    const snap = snapAt(upto);
+    const W = 340, H = 300, cx = W / 2, cy = H / 2;
+    const place = (list, top) => list.map((r, i) => { const n = list.length; const ang = top ? Math.PI + Math.PI * (i + 1) / (n + 1) : Math.PI * (i + 1) / (n + 1); return { ...r, x: cx + Math.cos(ang) * 128, y: cy + Math.sin(ang) * 112 }; });
+    const nodes = [...place(friends, true), ...place(foes, false)];
+    const line = (n) => `<line x1="${cx}" y1="${cy}" x2="${n.x.toFixed(0)}" y2="${n.y.toFixed(0)}" stroke="${n.v > 0 ? "var(--safe)" : "var(--danger)"}" stroke-width="${Math.min(7, 1.5 + Math.abs(n.v)).toFixed(1)}" stroke-linecap="round" ${n.v < 0 ? 'stroke-dasharray="6 5"' : ""} opacity=".8"/>`;
+    const node = (n) => `<button type="button" class="relnode ${snap[n.o] ? "" : "gone"}" data-id="${n.o}" style="left:${(n.x / W * 100).toFixed(1)}%;top:${(n.y / H * 100).toFixed(1)}%" title="${esc(n.why.join(", "))}">${face(C[n.o], snap[n.o] ? snap[n.o][3] : 20, { gray: !snap[n.o] })}<b>${esc(C[n.o].name)}</b><small>${esc(n.why.slice(0, 2).join(" · "))}</small></button>`;
+    el.innerHTML = `<div class="relhead"><h3>Les liens de ${esc(C[who].name)}</h3>${who !== me ? `<button type="button" class="btn" id="relBack">Revenir à ${esc(C[me].name)}</button>` : ""}</div>
+      <div class="chips relDays">${Array.from({ length: today }, (_, i) => `<button type="button" class="chip ${i + 1 === relDay ? "on" : ""}" data-rd="${i + 1}">J${i + 1}</button>`).join("")}</div>
+      <div class="relmap"><svg viewBox="0 0 ${W} ${H}" aria-hidden="true">${nodes.map(line).join("")}</svg>
+        <button type="button" class="relnode center" data-id="${who}" style="left:50%;top:50%">${face(C[who], snap[who] ? snap[who][3] : 20, { gray: !snap[who], ring: true })}<b>${esc(C[who].name)}</b></button>
+        ${nodes.map(node).join("")}
+        ${!nodes.length ? `<p class="relempty">Pas encore de lien fort. Les premières alliances se nouent vite…</p>` : ""}</div>
+      <p class="rellegend"><span><span class="lg ok"></span> Alliés</span><span><span class="lg ko"></span> Méfiance</span><span>Touche un visage pour voir ses propres liens.</span></p>`;
+    el.querySelectorAll("[data-rd]").forEach((b) => b.addEventListener("click", () => { relDay = +b.dataset.rd; panelRel(); }));
+    el.querySelectorAll(".relnode:not(.center)").forEach((b) => b.addEventListener("click", () => { relWho = b.dataset.id; panelRel(); }));
+    el.querySelector(".relnode.center").addEventListener("click", () => { if (who === me) openSheet(); else { follow(who); relWho = null; openSheet(); } });
+    el.querySelector("#relBack")?.addEventListener("click", () => { relWho = null; panelRel(); });
+  }
+
+  // ---------- pronostic du soir (gratuit) ----------
+  // Les trois menacés sont annoncés à 17h ; on devine qui quittera l'île au vote de 19h.
+  // Bonne réponse : 20 coquillages (monnaie gratuite, jamais achetable) ; participer : 2. Badges cosmétiques.
+  const store = (k, v) => { try { if (v === undefined) return JSON.parse(localStorage.getItem(k) || "null"); localStorage.setItem(k, JSON.stringify(v)); } catch {} return null; };
+  const P = store("thelast-prono") || { picks: {}, done: {}, shells: 0, good: 0 };
+  const BADGES = [[1, "🔮", "Premier flair"], [3, "🦉", "Fin limier"], [5, "🌟", "Oracle de l'île"]];
+  function voteOf(day) {
+    const t = (day - 1) * 24 + D.voteHour;
+    const thr = D.events.find((e) => e.t === t && e.type === "vote_threat");
+    if (!thr) return null;
+    const out = D.events.find((e) => e.t === t && e.type === "evacuated" && e.d?.cause === "vote" && thr.a.includes(e.a[0]))
+      || D.events.find((e) => e.t === t && e.type === "evacuated" && thr.a.includes(e.a[0]));
+    return { t, ids: thr.a.slice(0, 3), out: out ? out.a[0] : null };
+  }
+  function prono() {
+    const box = document.getElementById("prono");
+    document.getElementById("shells").textContent = P.shells;
+    const day = dayOf(tick), h = tick % 24, v = voteOf(day);
+    if (!v || h < D.voteHour - 2 || h > 23) return (box.hidden = true);
+    const pick = P.picks[day];
+    // résultat, une seule fois par jour
+    if (h >= D.voteHour && pick && !P.done[day]) {
+      P.done[day] = true;
+      const ok = pick === v.out;
+      P.shells += ok ? 20 : 2; if (ok) P.good++;
+      store("thelast-prono", P);
+      const badge = ok && BADGES.find(([n]) => n === P.good);
+      toast(ok ? "🎯" : "🐚", "Pronostic", ok ? `Bien vu ! ${C[v.out].name} quitte l'île. +20 coquillages.${badge ? ` Nouveau badge : ${badge[1]} ${badge[2]}.` : ""}` : `Raté, cette fois. +2 coquillages pour avoir joué.`, { hot: ok });
+      document.getElementById("shells").textContent = P.shells;
+    }
+    box.hidden = false;
+    const faceBtn = (id) => `<button type="button" class="pr ${pick === id ? "on" : ""} ${h >= D.voteHour && v.out === id ? "out" : ""}" data-pr="${id}" ${pick || h >= D.voteHour ? "disabled" : ""}>${face(C[id], 50, { ring: pick === id })}<span>${esc(C[id].name)}</span></button>`;
+    const badges = BADGES.filter(([n]) => P.good >= n).map(([, i, t]) => `<span class="chip" title="${t}">${i} ${t}</span>`).join("");
+    box.innerHTML = `<h4>🔮 Pronostic du soir · gratuit</h4>
+      <p>${h < D.voteHour ? (pick ? `Ton choix : <b>${esc(C[pick].name)}</b>. Réponse au vote de 19h.` : "Les trois menacés de ce soir sont connus. Qui quittera l'île au vote de 19h ?") : v.out ? `${esc(C[v.out].name)} a quitté l'île.${pick ? (pick === v.out ? " Tu l'avais vu venir : +20 🐚" : " Raté cette fois : +2 🐚") : ""}` : "Personne n'a quitté l'île ce soir."}</p>
+      <div class="prs">${v.ids.map(faceBtn).join("")}</div>
+      <small>Gagne des coquillages 🐚 et des badges. Rien ne s'achète, tout se gagne.</small>${badges ? `<div class="chips">${badges}</div>` : ""}`;
+    box.querySelectorAll("[data-pr]:not([disabled])").forEach((b) => b.addEventListener("click", () => { P.picks[day] = b.dataset.pr; store("thelast-prono", P); prono(); }));
+  }
+  document.getElementById("wallet").addEventListener("click", () => {
+    const badges = BADGES.filter(([n]) => P.good >= n).map(([, i, t]) => `${i} ${t}`).join(", ");
+    toast("🐚", "Tes coquillages", `${P.shells} coquillages · ${P.good} bon${P.good > 1 ? "s" : ""} pronostic${P.good > 1 ? "s" : ""}${badges ? ` · ${badges}` : ""}. Ils servent à débloquer des cadres et des badges, jamais à acheter un avantage.`, { ms: 8000 });
+  });
+
   function panelCast() {
     const people = snapAt(tick);
     const ids = [...ORDER, ...D.cast.map((c) => c.id).filter((id) => !ORDER.includes(id))];
@@ -694,13 +891,13 @@ body.fs .fsbtn { bottom: 164px; }
   function select(name) {
     if (name === "me") return openSheet();
     active = name;
-    for (const n of ["feed", "daily", "cast"]) {
+    for (const n of ["feed", "daily", "rel", "cast"]) {
       document.getElementById("tab-" + n).setAttribute("aria-selected", n === name);
       document.getElementById("panel-" + n).hidden = n !== name;
     }
     render();
   }
-  for (const n of ["feed", "daily", "cast"]) document.getElementById("tab-" + n).addEventListener("click", () => select(n));
+  for (const n of ["feed", "daily", "rel", "cast"]) document.getElementById("tab-" + n).addEventListener("click", () => select(n));
 
   // ---------- plein écran ----------
   const fsBtn = document.getElementById("fsBtn");
@@ -731,9 +928,11 @@ body.fs .fsbtn { bottom: 164px; }
     if (active === "feed") panelFeed();
     if (active === "daily") panelDaily();
     if (active === "cast") panelCast();
+    if (active === "rel") panelRel();
     badge();
     lockState();
     paintGift();
+    prono();
     if (started) try { localStorage.setItem("thelast-pos", JSON.stringify({ tick, at: Date.now(), me })); } catch {}
     clearTimeout(finaleTimer);
     if (tick >= TN) {
@@ -841,16 +1040,41 @@ body.fs .fsbtn { bottom: 164px; }
     (document.getElementById("recapPlay") || document.getElementById("recapClose")).focus();
   }
   // Rediffusion : chaque temps fort est rejoué à son heure, puis retour au direct
-  function replay(list) {
+  // « Voir la scène » : en direct si elle passe maintenant, sinon en rediffusion, puis retour au direct
+  function goScene(ev) {
+    if (sheetOpen) closeSheet();
+    if (!world || plan !== "sub") return;
+    if (ev.t === tick && world.busy) { setView("director"); world.peek(me); return; }
+    pause(); replay([ev]);
+  }
+
+  // « Ma journée en 60 secondes » : les meilleures scènes du jour de mon candidat, à la suite
+  function myDay(day = dayOf(tick)) {
+    if (sheetOpen) closeSheet();
+    if (!world || plan !== "sub") return toast("🎬", "Ma journée", "Réservé aux abonnés dans cette démo. Sans abonnement, la Quotidienne de 19h raconte la journée.");
+    const from = (day - 1) * 24, to = Math.min(tick, day * 24 - 1);
+    const evs = D.events.filter((ev) => ev.t >= from && ev.t <= to && ev.a.includes(me) && RECAP_W[ev.type]);
+    const picks = evs.sort((a, b) => recapScore(b) - recapScore(a)).slice(0, 4).sort((a, b) => a.t - b.t);
+    if (!picks.length) return toast("🎬", "Ma journée", `Journée calme pour ${C[me].name} : pêche, sieste et recherche d'eau.`);
+    pause();
+    const card = document.createElement("div");
+    card.className = "daycard";
+    card.innerHTML = `<small>🎬 Ma journée en 60 secondes</small><b>${esc(C[me].name)}</b><span>Jour ${day} · ${picks.length} temps fort${picks.length > 1 ? "s" : ""}</span>`;
+    document.querySelector(".mapbox").appendChild(card);
+    setTimeout(() => card.remove(), 2600);
+    setTimeout(() => replay(picks, "🎬 MA JOURNÉE"), 1800);
+  }
+
+  function replay(list, label = "⏪ REDIFFUSION") {
     const tag = document.querySelector("#onair .tag");
     if (!world || !list.length) { replaying = false; tag.textContent = "EN DIRECT"; world?.setTick(tick, false); lastRendered = tick; toast("📺", "Retour au direct", `Jour ${dayOf(tick)} · ${hh(tick)}`); return play(); }
     replaying = true;
     const ev = list.shift();
     setView("director");
-    tag.textContent = `⏪ REDIFFUSION · J${dayOf(ev.t)} ${hh(ev.t)}`;
+    tag.textContent = `${label} · J${dayOf(ev.t)} ${hh(ev.t)}`;
     world.setTick(ev.t, true, 1, [ev]);
     const t0 = performance.now();
-    const wait = () => { if (world.busy && performance.now() - t0 < 90000) setTimeout(wait, 300); else setTimeout(() => replay(list), 600); };
+    const wait = () => { if (world.busy && performance.now() - t0 < 90000) setTimeout(wait, 300); else setTimeout(() => replay(list, label), 600); };
     setTimeout(wait, 800);
   }
 
