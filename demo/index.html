@@ -48,18 +48,18 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .stage > * { min-width: 0; }
 
 /* Carte */
-.mapbox { background: radial-gradient(ellipse at 50% 55%, #14424d 0%, var(--ink) 75%); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; position: relative; }
-.mapbox svg { display: block; width: 100%; height: auto; }
-.zone-label { font-family: var(--display); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; fill: var(--mist); }
-.dot { transition: transform .9s cubic-bezier(.4,.1,.2,1), opacity .6s; cursor: pointer; }
-.dot circle.p { fill: var(--sand); stroke: var(--ink); stroke-width: 1; }
-.dot.feat circle.p { fill: var(--sea); stroke: var(--sand); }
-.dot.me circle.p { fill: var(--torch); stroke: #fff; stroke-width: 1.5; }
-.dot.gone { opacity: 0; pointer-events: none; }
-.dot text { font-family: var(--display); font-size: 8px; fill: var(--sand); paint-order: stroke; stroke: var(--ink); stroke-width: 3px; font-weight: 600; }
-.ping { fill: none; stroke: var(--torch); stroke-width: 1.5; animation: ping 1.8s infinite; transform-origin: center; transform-box: fill-box; }
-@keyframes ping { from { opacity: .9; transform: scale(.6); } to { opacity: 0; transform: scale(2.2); } }
-.flash { margin: 0 10px 10px; min-height: 40px; background: var(--deep); border: 1px solid var(--line); border-left: 3px solid var(--torch); border-radius: 8px; padding: 8px 12px; font-size: 13px; }
+.mapbox { background: var(--deep); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; position: relative; }
+.mapbox canvas { display: block; width: 100%; aspect-ratio: 4 / 3.1; touch-action: none; cursor: grab; }
+@media (max-width: 600px) { .mapbox canvas { aspect-ratio: 1 / 1.12; } }
+.views { position: absolute; top: 10px; right: 10px; display: flex; gap: 4px; background: color-mix(in srgb, var(--ink) 75%, transparent); padding: 4px; border-radius: 999px; border: 1px solid var(--line); }
+.views button { background: none; border: 0; border-radius: 999px; padding: 5px 11px; font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--mist); }
+.views button[aria-pressed="true"] { background: var(--torch); color: var(--ink); }
+.hint { position: absolute; top: 12px; left: 12px; font-size: 11px; color: var(--sand); background: color-mix(in srgb, var(--ink) 65%, transparent); padding: 3px 8px; border-radius: 6px; pointer-events: none; max-width: 45%; }
+@media (max-width: 600px) { .hint { display: none; } }
+.w3-label, .w3-zone { position: absolute; left: 0; top: 0; pointer-events: none; white-space: nowrap; font-family: var(--display); font-weight: 700; }
+.w3-label { background: var(--torch); color: var(--ink); font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+.w3-zone { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 3px #000c, 0 0 8px #0008; }
+.flash { margin: 10px; min-height: 40px; background: var(--deep); border: 1px solid var(--line); border-left: 3px solid var(--torch); border-radius: 8px; padding: 8px 12px; font-size: 13px; }
 .flash.out { border-left-color: var(--danger); }
 .flash:empty::before { content: "Calme plat sur l'île."; color: var(--mist); }
 
@@ -154,7 +154,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .finale h2 { font-family: var(--display); font-size: clamp(32px, 8vw, 56px); margin: 0; line-height: 1; }
 .finale p { color: var(--mist); max-width: 46ch; margin: 12px auto 18px; }
 .eyebrow { font-family: var(--display); letter-spacing: .2em; text-transform: uppercase; color: var(--torch); font-size: 13px; }
-@media (prefers-reduced-motion: reduce) { .dot, .gauge .bar i { transition: none; } .live::before, .ping { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .gauge .bar i { transition: none; } .live::before { animation: none; } }
 </style>
 
 <div class="intro" id="intro">
@@ -178,7 +178,13 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 <main class="wrap stage">
   <section>
     <div class="mapbox">
-      <svg id="map" viewBox="0 0 400 300" role="img" aria-label="Carte de l'île avec la position des candidats"></svg>
+      <canvas id="world" aria-label="L'île en 3D avec la position des candidats. Glisse pour tourner, pince ou molette pour zoomer, touche un candidat pour le suivre."></canvas>
+      <div class="views" role="group" aria-label="Vue">
+        <button type="button" data-view="island" aria-pressed="true">Île</button>
+        <button type="button" data-view="zone" aria-pressed="false">Zone</button>
+        <button type="button" data-view="follow" aria-pressed="false">Suivre</button>
+      </div>
+      <div class="hint">Glisse pour tourner · pince pour zoomer · touche un candidat</div>
       <div class="flash" id="flash" aria-live="polite"></div>
     </div>
     <div class="controls">
@@ -208,6 +214,9 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 
 <div class="finale" id="finale" hidden></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="world3d.js"></script>
 <script>
 (async function () {
   const D = await (await fetch("data.json")).json();
@@ -258,23 +267,18 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
       <path d="${m}" stroke="#3a1c14" stroke-width="1.8" fill="none" stroke-linecap="round"/></g>${ring}</svg>`;
   }
 
-  // ---------- carte ----------
-  const POS = { beach: [200, 250], lagoon: [88, 222], cliffs: [318, 214], jungle: [195, 168], mangrove: [88, 140], river: [148, 92], ruins: [292, 140], waterfall: [212, 56], summit: [322, 58] };
-  const ZTINT = { beach: "#e9cf9833", lagoon: "#3fb6c933", cliffs: "#9a8a7a40", jungle: "#2f8a5a44", mangrove: "#3f6a4a44", river: "#3f8ec944", ruins: "#8a7a6a40", waterfall: "#6fc6e044", summit: "#c9c3b840" };
-  const svg = document.getElementById("map");
-  const island = `<path d="M60 230 C30 190 40 120 70 95 C100 60 150 30 210 25 C270 20 345 25 360 70 C375 115 360 170 350 215 C340 260 270 285 200 282 C130 280 85 265 60 230 Z" fill="#1f4a3a" stroke="#e9cf9855" stroke-width="3"/>`;
-  const edges = D.arena.zones.flatMap((z) => z.neighbors.filter((n) => n > z.id).map((n) => `<line x1="${POS[z.id][0]}" y1="${POS[z.id][1]}" x2="${POS[n][0]}" y2="${POS[n][1]}" stroke="#e9cf9840" stroke-dasharray="3 4"/>`)).join("");
-  const zones = D.arena.zones.map((z) => `<circle cx="${POS[z.id][0]}" cy="${POS[z.id][1]}" r="30" fill="${ZTINT[z.id]}"/><text class="zone-label" x="${POS[z.id][0]}" y="${POS[z.id][1] + (z.id === "beach" ? 40 : -34)}" text-anchor="middle">${esc(z.name.replace(/^(la |le |les |l')/, ""))}</text>`).join("");
-  svg.innerHTML = island + edges + zones + `<g id="dots"></g>`;
-  const dotsG = svg.querySelector("#dots");
-  const dotEl = {};
-  for (const c of D.cast) {
-    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    g.setAttribute("class", "dot" + (c.confessions ? " feat" : ""));
-    g.innerHTML = `<title>${esc(c.name)}</title><circle class="p" r="${c.confessions ? 5 : 3.6}"/>`;
-    g.addEventListener("click", () => follow(c.id));
-    dotsG.appendChild(g);
-    dotEl[c.id] = g;
+  // ---------- île en 3D ----------
+  let world = null, lastRendered = null;
+  try {
+    world = World3D.init(document.getElementById("world"), D, { onPick: (id) => { follow(id); select("me"); } });
+  } catch (err) {
+    document.getElementById("world").replaceWith(Object.assign(document.createElement("p"), { className: "locked", textContent: "La 3D n'a pas pu démarrer sur cet appareil." }));
+  }
+  document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
+  function setView(m) {
+    if (!world) return;
+    world.view(m);
+    document.querySelectorAll("[data-view]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.view === m));
   }
 
   // ---------- état ----------
@@ -283,28 +287,10 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   scrub.max = TN - T0;
 
   function placeDots() {
-    const people = snapAt(tick);
-    const byZone = {};
-    for (const id of Object.keys(people)) (byZone[people[id][0]] ??= []).push(id);
-    for (const c of D.cast) {
-      const g = dotEl[c.id];
-      const p = people[c.id];
-      g.classList.toggle("gone", !p);
-      g.classList.toggle("me", c.id === me);
-      if (!p) continue;
-      const list = byZone[p[0]].sort();
-      const i = list.indexOf(c.id);
-      const ang = i * 2.4, rad = 6 + 3.3 * Math.sqrt(i) * 2;
-      const [x, y] = POS[p[0]];
-      g.style.transform = `translate(${(x + Math.cos(ang) * rad).toFixed(1)}px, ${(y + Math.sin(ang) * rad * 0.8).toFixed(1)}px)`;
-    }
-    // le candidat suivi passe au premier plan, avec son prénom
-    dotsG.querySelectorAll(".lbl,.ping").forEach((n) => n.remove());
-    if (me && people[me]) {
-      const g = dotEl[me];
-      dotsG.appendChild(g);
-      g.insertAdjacentHTML("beforeend", `<circle class="ping" r="6"/><text class="lbl" y="-9" text-anchor="middle">${esc(C[me].name)}</text>`);
-    }
+    if (!world) return;
+    world.setTick(tick, lastRendered !== null && tick === lastRendered + 1);
+    world.setFollow(me);
+    lastRendered = tick;
   }
 
   function flash() {
@@ -478,9 +464,11 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   scrub.addEventListener("input", () => go(T0 + Number(scrub.value)));
 
   function follow(id) {
+    const changed = me !== id;
     me = id;
     try { localStorage.setItem("thelast-me", id); } catch {}
     render();
+    if (changed && world && started) setView("follow");
   }
 
   // ---------- écran d'accueil ----------
@@ -488,8 +476,10 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     const c = C[id];
     return `<button class="pick" type="button" data-id="${id}">${face(c, 70)}<div><strong>${esc(c.name)}, ${c.age} ans</strong><small>${esc(c.job)} · ${esc(c.origin)}</small><em>« ${esc(c.catchphrase)} »</em></div></button>`;
   }).join("");
+  let started = false;
   document.querySelectorAll(".pick").forEach((b) => b.addEventListener("click", () => {
     document.getElementById("intro").hidden = true;
+    started = true;
     follow(b.dataset.id);
     select("me");
   }));
