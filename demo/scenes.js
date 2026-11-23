@@ -5,6 +5,9 @@
 (function () {
   "use strict";
   const T = window.THREE;
+  // Langue : les phrases passent par _("…") (le français sert de clé, traduction dans i18n-en.js)
+  const LANG = window.I18N?.lang === "en" ? "en" : "fr";
+  const _ = (s, v) => (window.t ? window.t(s, v) : s);
 
   function rng(seed) {
     let s = seed >>> 0;
@@ -25,11 +28,13 @@
   const lerpAngle = (a, b, t) => { let d = ((b - a + Math.PI) % (Math.PI * 2)) - Math.PI; if (d < -Math.PI) d += Math.PI * 2; return a + d * t; };
 
   const ICON = { flask: "💧", medkit: "🩹", map: "🗺️", rope: "🪢", rations: "🍌", torch: "🔦" };
-  const CHALLENGE = { raft: "le radeau", chest: "le coffre immergé", puzzle: "le grand puzzle", pole: "les poteaux", coconut: "la noix de coco", relay: "le relais en binôme" };
-  const TRIAL = { endurance: "d'endurance", orientation: "d'orientation", trust: "de confiance" };
+  const CHALLENGE = LANG === "en"
+    ? { raft: "the raft", chest: "the sunken chest", puzzle: "the giant puzzle", pole: "the poles", coconut: "the coconut climb", relay: "the pairs relay" }
+    : { raft: "le radeau", chest: "le coffre immergé", puzzle: "le grand puzzle", pole: "les poteaux", coconut: "la noix de coco", relay: "le relais en binôme" };
+  const TRIAL = LANG === "en" ? { endurance: "endurance", orientation: "orientation", trust: "trust" } : { endurance: "d'endurance", orientation: "d'orientation", trust: "de confiance" };
 
-  // Répliques écrites à la main (variantes tirées au sort, de façon reproductible)
-  const SAY = {
+  // Répliques écrites à la main (variantes tirées au sort, de façon reproductible), en français et en anglais
+  const SAY_FR = {
     allyAsk: ["On fait équipe ?", "Toi et moi, jusqu'au bout ?", "J'ai besoin de quelqu'un de fiable.", "On s'allie ? Personne ne saura."],
     allyYes: ["Marché conclu !", "Tope là.", "Ok. Mais pas de coup bas.", "Je te couvre, tu me couvres."],
     disA: ["C'est à moi, ça !", "Tu te crois où ?", "Recule !", "Tu me cherches depuis ce matin."],
@@ -79,6 +84,57 @@
       ["Tu crois au vote ?", "Je crois au public."], ["Ton abri tiendra ?", "Il a intérêt."],
     ],
   };
+  const SAY_EN = {
+    allyAsk: ["Team up?", "You and me, all the way?", "I need someone I can trust.", "Shall we team up? Nobody needs to know."],
+    allyYes: ["Deal!", "You're on.", "OK. But no dirty tricks.", "I've got your back, you've got mine."],
+    disA: ["That's mine!", "Who do you think you are?", "Back off!", "You've been on my case all morning."],
+    disB: ["In your dreams!", "I was here first!", "Calm down!", "Let go of it!"],
+    disA2: ["You'll see…", "Last warning!", "I'm not letting go!"],
+    disEnd: ["Fine, keep it…", "OK, OK… you win.", "This isn't over."],
+    sneak: ["Nobody's looking…", "Just a little bit…", "Shh…"],
+    caughtB: ["Hey! Drop that!", "Hey! What are you doing?!", "I saw you!"],
+    caughtA: ["Er… I was looking for my flask!", "It's not what it looks like!", "I… tripped?"],
+    betray: ["Sorry, partner…", "Nothing personal.", "That's the game…"],
+    sabWake: ["My shelter!", "Who did this?!", "No, no, no…"],
+    help: ["Help!", "Somebody help!", "I can't touch the bottom!"],
+    wasps: ["Ow ow ow!", "Wasps!!", "Run!"],
+    snake: ["A snake!", "Ow, my ankle!", "Don't move…"],
+    fall: ["Whoa…", "It's slippery…", "Don't look down…"],
+    fever: ["I'm freezing…", "My head…", "Everything's spinning…"],
+    rock: ["Watch out!!", "It's coming down!"],
+    rescue: ["I've got you!", "Hold on!", "Breathe, you'll be fine."],
+    thanks: ["Thank you… really.", "I owe you one.", "I won't forget this."],
+    share: ["Here, take it.", "I've got enough, this is for you.", "For you."],
+    gift: ["Thank you, everyone!", "You're the best!", "I can't believe it!"],
+    lost: ["Nooo!", "My parcel!", "Not in the trees…"],
+    interB: ["Thanks for the present!", "Finders keepers!"],
+    interA: ["That was for me!", "Give it back!"],
+    quit: ["I'm done.", "It's over for me.", "I'm going home."],
+    weak: ["I can't go on…", "Everything's blurry…"],
+    win: ["Yesss!", "Immunity!", "Nobody touches me tonight!"],
+    saved: ["Thank you!!", "One more night!", "Love you all!"],
+    outVote: ["It was an honour.", "Thanks for everything.", "Win it for me."],
+    clanHi: ["Welcome to the family!", "One more, we're stronger.", "Here, we share everything."],
+    clanYes: ["Thanks, I won't let you down.", "Count on me.", "A family at last."],
+    meal: ["We pool everything.", "Nobody goes thirsty tonight.", "To us!", "A clan shares."],
+    mealThanks: ["Thank you, really.", "That feels good…", "We stick together."],
+    defend: ["Hands off my clan!", "Back off. Now.", "You'll have to go through me.", "Leave our people alone!"],
+    backOff: ["OK, OK…", "Fine, I get it.", "You won't always be around…"],
+    suspect: ["I don't trust them anymore…", "Something's going on…", "What if it's time?", "I've got a bad feeling…"],
+    plot1: ["Psst… can we talk?", "Come here, away from the others."],
+    plot2: ["You look surprised…", "Do you really think so?", "Are you sure?"],
+    plot3: ["Trust me.", "I'm telling you what I see.", "Keep it to yourself."],
+    neckGift: ["Take it. You need it more than I do.", "For you. That's what a clan is.", "You're staying. I owe you."],
+    giftRx: ["You… you mean it?", "I don't know what to say…", "Thank you… thank you!"],
+    plead: ["Save {n}, please!", "Vote for {n}!", "Don't let {n} go!", "Keep {n}, they're one of us!"],
+    chat: [
+      ["Found any water?", "Near the waterfall, maybe."], ["Are you watching me?", "Me? Never."],
+      ["I'm starving…", "Same. I'm dreaming of pasta."], ["Where are you sleeping tonight?", "Far from you, no offence."],
+      ["Who do we not trust?", "Everyone."], ["It's so hot…", "Don't get me started."],
+      ["Do you believe in the vote?", "I believe in the public."], ["Will your shelter hold?", "It had better."],
+    ],
+  };
+  const SAY = LANG === "en" ? SAY_EN : SAY_FR;
 
   // Les intrigues : qui s'oppose à qui, épisode après épisode (partagé avec la page)
   const CONFLICT = {
@@ -113,9 +169,9 @@
     const C = Object.fromEntries(D.cast.map((c) => [c.id, c]));
     const nm = (id) => C[id]?.name ?? "?";
     const zoneName = (z) => D.arena.zones.find((x) => x.id === z)?.name ?? "";
-    const atZone = (z) => { const n = zoneName(z); return n.startsWith("le ") ? "au " + n.slice(3) : n.startsWith("les ") ? "aux " + n.slice(4) : z === "jungle" || z === "mangrove" ? "dans " + n : "à " + n; };
+    const atZone = (z) => { const n = zoneName(z); if (LANG === "en") return z === "jungle" || z === "mangrove" ? "in " + n : "at " + n; return n.startsWith("le ") ? "au " + n.slice(3) : n.startsWith("les ") ? "aux " + n.slice(4) : z === "jungle" || z === "mangrove" ? "dans " + n : "à " + n; };
     const deN = (id) => (/^[aeiouyhâéèêîôûAEIOUYHÉÈÂÎÔ]/.test(nm(id)) ? "d'" : "de ") + nm(id);
-    const list = (ids) => { const n = ids.map(nm); return n.length < 2 ? n.join("") : n.slice(0, -1).join(", ") + " et " + n[n.length - 1]; };
+    const list = (ids) => { const n = ids.map(nm); return n.length < 2 ? n.join("") : n.slice(0, -1).join(", ") + (LANG === "en" ? " and " : " et ") + n[n.length - 1]; };
     const live = (text, kind = "live") => ctx.live(text, kind);
     const isNight = (t) => { const h = t % 24; return h >= 22 || h < 6; };
     let now = 0;
@@ -526,14 +582,14 @@
     function ambientText(id) {
       const u = people[id].userData, a = u.amb || { kind: "wander" }, z = ctx.snapAt(ctx.tick())[id]?.[0] || "beach", at = atZone(z);
       switch (a.kind) {
-        case "sleep": return `${nm(id)} dort ${at}. Enfin.`;
-        case "rest": return `${nm(id)} reprend des forces ${at}.`;
-        case "fire": return `${nm(id)} se réchauffe près du feu de camp.`;
-        case "fish": return `${nm(id)} pêche ${at}.`;
-        case "gather": return `${nm(id)} cherche de quoi manger ${at}.`;
-        case "lookout": return `${nm(id)} scrute l'horizon ${at}.`;
-        case "wary": return a.faceId ? `${nm(id)} garde un œil sur ${nm(a.faceId)}.` : `${nm(id)} se méfie de tout le monde.`;
-        default: return `${nm(id)} explore ${at}.`;
+        case "sleep": return _("{n} dort {at}. Enfin.", { n: nm(id), at });
+        case "rest": return _("{n} reprend des forces {at}.", { n: nm(id), at });
+        case "fire": return _("{n} se réchauffe près du feu de camp.", { n: nm(id) });
+        case "fish": return _("{n} pêche {at}.", { n: nm(id), at });
+        case "gather": return _("{n} cherche de quoi manger {at}.", { n: nm(id), at });
+        case "lookout": return _("{n} scrute l'horizon {at}.", { n: nm(id), at });
+        case "wary": return a.faceId ? _("{n} garde un œil sur {m}.", { n: nm(id), m: nm(a.faceId) }) : _("{n} se méfie de tout le monde.", { n: nm(id) });
+        default: return _("{n} explore {at}.", { n: nm(id), at });
       }
     }
     let chatT = 2, fishT = 3, zzzT = 1;
@@ -579,7 +635,7 @@
     let queue = [], cur = null, minis = [], timeScale = 1;
     // Réplique d'une scène : celle écrite par l'IA pour cet événement s'il y en a une, sinon une réplique écrite à la main.
     const ev = null; // repli pour les rares répliques hors scène
-    function L(e, r, k) { const v = e?.say?.[k]; return v ? (ctx.lang === "en" && v[1] ? v[1] : v[0]) : pick(r, SAY[k]); }
+    function L(e, r, k) { const v = e?.say?.[k]; return v ? (LANG === "en" && v[1] ? v[1] : v[0]) : pick(r, SAY[k]); }
     const R = (ev) => rng(ev.t * 977 + hash(ev.type + ev.a.join("")));
     const zoneOf = (ev) => ev.z || ctx.snapAt(ev.t)[ev.a[0]]?.[0] || ctx.snapAt(ev.t - 1)[ev.a[0]]?.[0] || "beach";
     const focusOn = (id, y = 1.2) => () => (people[id] ? people[id].position.clone().add(UP(y)) : new T.Vector3());
@@ -609,7 +665,7 @@
       const sc = new Sc(ev, 7.5, st.clone().add(UP(1.2)), 3.2).cast(g, h, ...others);
       const ring = (i) => off(st, 0.9 + (i % 2 ? 1 : -1) * Math.ceil(i / 2) * 0.9, -0.6 - Math.ceil(i / 2) * 0.4);
       sc.at(0, () => {
-        live(`${nm(g)} vient frapper à la porte du clan des ${clan}…`);
+        live(_("{a} vient frapper à la porte du clan des {c}…", { a: nm(g), c: clan }));
         go(h, off(st, 0.9), 3); others.forEach((id, i) => { go(id, ring(i + 1), 3); face(id, off(st, -2)); });
         go(g, off(st, -2.4), 3); face(h, g);
       })
@@ -638,7 +694,7 @@
       cf.position.copy(fire);
       cf.scale.setScalar(2);
       sc.on((s) => { cf.userData.flick(now); if (Math.random() < 0.06) burst(fire.clone().add(UP(0.8)), { n: 1, colors: [0xffd23f, 0xff8a3d], speed: 0.3, up: 2, gravity: 0.5, life: 1.2, size: 0.25 }); });
-      sc.at(0, () => { live(`Le clan des ${clan} se rassemble pour la veillée…`); ids.forEach((id, i) => { go(id, seat(i), 3); face(id, fire); }); })
+      sc.at(0, () => { live(_("Le clan des {c} se rassemble pour la veillée…", { c: clan })); ids.forEach((id, i) => { go(id, seat(i), 3); face(id, fire); }); })
         .at(2.0, () => ids.forEach((id) => { pose(id, "sit"); face(id, fire); }));
       const g = giver && ids.includes(giver) ? giver : null;
       if (g) {
@@ -658,7 +714,7 @@
       if (!vis(g) || !vis(a) || !vis(v)) return null;
       const r = R(ev), st = stageOf(zoneOf(ev)), mid = off(st, 0);
       const sc = new Sc(ev, 9, mid.clone().add(UP(1.2)), 3.2).cast(a, v, g);
-      sc.at(0, () => { live(ev.d?.theft ? `${nm(a)} rôde autour du sac ${deN(v)}…` : `${nm(a)} s'en prend à ${nm(v)}…`); go(a, off(st, -1.0), 3); go(v, off(st, 1.0), 3); face(a, v); face(v, a); const far = off(st, 1.5, -4.5); if (people[g].userData.pos.distanceTo(far) > 7) place(g, far); else go(g, far, 3); face(g, v); })
+      sc.at(0, () => { live(ev.d?.theft ? _("{a} rôde autour du sac {deB}…", { a: nm(a), b: nm(v), deB: deN(v) }) : _("{a} s'en prend à {b}…", { a: nm(a), b: nm(v) })); go(a, off(st, -1.0), 3); go(v, off(st, 1.0), 3); face(a, v); face(v, a); const far = off(st, 1.5, -4.5); if (people[g].userData.pos.distanceTo(far) > 7) place(g, far); else go(g, far, 3); face(g, v); })
       if (ev.d?.theft) {
         const bag = sc.prop(makeBag()); bag.position.copy(off(st, 0.1, -0.5));
         sc.at(0.1, () => { pose(v, "gather"); face(v, off(st, 6)); })
@@ -673,7 +729,7 @@
         .at(4.1, () => { face(g, a); pose(g, "push"); say(g, L(ev, r, "defend"), 2.4, "shout"); iconAt(off(st, 0.15).add(UP(3.2)), "🛡️", 2); dust(off(st, -0.3).add(UP(0.3)), 4); go(a, off(st, -2.0), 3); ctx.sfx?.("bonk"); })
         .at(5.8, () => { pose(g, "idle"); pose(a, "idle"); say(a, L(ev, r, "backOff"), 2.0); pose(v, "idle"); face(v, g); })
         .at(6.9, () => { live(ev.fr.replace(/^🛡️ /, ""), "result"); say(v, L(ev, r, "thanks"), 2); go(a, off(st, -5.5), 3); })
-        .at(7.8, () => { if (clan) say(g, `Les ${clan}, on se serre les coudes.`, 1.6, "small"); });
+        .at(7.8, () => { if (clan) say(g, _("Les {c}, on se serre les coudes.", { c: clan }), 1.6, "small"); });
       return sc;
     };
 
@@ -684,7 +740,7 @@
       const r = R(ev), st = stageOf(zoneOf(ev));
       const sc = new Sc(ev, 7, () => people[a].position.clone().lerp(people[b].position, 0.35).add(UP(1.2)), 2.9).cast(a, b);
       sc.hidden.add(a);
-      sc.at(0, () => { live(`${nm(a)} s'éloigne un peu du clan…`); go(b, off(st, 2.2), 3); pose(b, "gather"); const p = off(st, -2.6, -1.0); if (people[a].userData.pos.distanceTo(p) > 7) place(a, p); else go(a, p, 2.5); })
+      sc.at(0, () => { live(_("{a} s'éloigne un peu du clan…", { a: nm(a) })); go(b, off(st, 2.2), 3); pose(b, "gather"); const p = off(st, -2.6, -1.0); if (people[a].userData.pos.distanceTo(p) > 7) place(a, p); else go(a, p, 2.5); })
         .at(1.6, () => { face(a, b); pose(a, "idle"); icon(a, "👀", 2.4); ctx.sfx?.("tension"); })
         .at(2.8, () => say(a, L(ev, r, "suspect"), 2.6, "think"))
         .at(4.6, () => { tag(a); live(ev.fr, "result"); })
@@ -699,9 +755,9 @@
       const pa = off(st, -0.4), pb = off(st, 0.4), tp = off(st, 3.6, -2.6);
       const sc = new Sc(ev, 8.5, off(st, 0.4, -0.4).add(UP(1.2)), 2.9).cast(a, acc);
       if (vis(t)) { sc.cast(t); sc.hidden.add(t); }
-      sc.at(0, () => { live(`${nm(a)} entraîne ${nm(acc)} à l'écart…`); go(a, pa, 2); go(acc, pb, 2); face(a, acc); face(acc, a); if (vis(t)) { const far = people[t].userData.pos.distanceTo(tp) > 7; if (far) place(t, tp); else go(t, tp, 2); pose(t, "gather"); } })
+      sc.at(0, () => { live(_("{a} entraîne {b} à l'écart…", { a: nm(a), b: nm(acc) })); go(a, pa, 2); go(acc, pb, 2); face(a, acc); face(acc, a); if (vis(t)) { const far = people[t].userData.pos.distanceTo(tp) > 7; if (far) place(t, tp); else go(t, tp, 2); pose(t, "gather"); } })
         .at(1.4, () => { pose(a, "sneak"); say(a, L(ev, r, "plot1"), 2.0, "think"); icon(a, "🤫", 1.6); })
-        .at(3.0, () => { say(a, `${nm(t)}… il faut s'en méfier.`, 2.4, "think"); if (vis(t)) { pose(a, "point"); iconAt(people[t].position.clone().add(UP(3)), "🎯", 2.0); } ctx.sfx?.("tension"); })
+        .at(3.0, () => { say(a, _("{n}… il faut s'en méfier.", { n: nm(t) }), 2.4, "think"); if (vis(t)) { pose(a, "point"); iconAt(people[t].position.clone().add(UP(3)), "🎯", 2.0); } ctx.sfx?.("tension"); })
         .at(4.8, () => { pose(a, "idle"); say(acc, L(ev, r, "plot2"), 2.0, "think"); })
         .at(6.2, () => { say(a, L(ev, r, "plot3"), 2.0, "think"); live(ev.fr, "result"); if (vis(t)) { face(t, a); icon(t, "❓", 1.4); } });
       return sc;
@@ -714,7 +770,7 @@
       const r = R(ev), c0 = FIRE.clone().addScaledVector(DEPTH, 2.2);
       const sc = new Sc(ev, 8.5, c0.clone().add(UP(1.2)), 3.4).cast(h, m);
       let pend = null, k0 = 0;
-      sc.at(0, () => { live(`Juste avant le vote, ${nm(h)} se lève…`); place(m, safe(off(c0, 1.0))); face(m, FIRE); place(h, safe(off(c0, -2.4))); face(h, m); people[h].userData.necklace.visible = true; people[m].userData.necklace.visible = false; })
+      sc.at(0, () => { live(_("Juste avant le vote, {a} se lève…", { a: nm(h) })); place(m, safe(off(c0, 1.0))); face(m, FIRE); place(h, safe(off(c0, -2.4))); face(h, m); people[h].userData.necklace.visible = true; people[m].userData.necklace.visible = false; })
         .at(1.0, () => { go(h, safe(off(c0, -0.4)), 1.4); say(h, L(ev, r, "neckGift"), 2.6); })
         .at(3.4, () => { pose(h, "hold"); people[h].userData.necklace.visible = false; pend = sc.prop(makeRing(0xe6b84a)); pend.scale.setScalar(0.45); k0 = sc.s; ctx.sfx?.("gasp"); })
         .on((s) => { if (pend) { const k = clamp01((s - k0) / 1.2), a = people[h].position.clone().add(UP(2.6)), b = people[m].position.clone().add(UP(2.0)); pend.position.lerpVectors(a, b, k); pend.position.y += Math.sin(k * Math.PI) * 0.6; if (k >= 1 && pend.visible) { pend.visible = false; people[m].userData.necklace.visible = true; sparkle(b); } } })
@@ -735,7 +791,7 @@
         .at(2.7, () => { pose(b, "argue"); say(b, L(ev, r, "disB"), 2.2, "shout"); iconAt(mid.clone().add(UP(3.2)), "💢", 1.5); })
         .at(4.0, () => { say(a, L(ev, r, "disA2"), 2, "shout"); });
       if (item) {
-        sc.at(4.8, () => { crate = sc.prop(miniCrate()); pose(a, "tug"); pose(b, "tug"); go(a, off(st, -0.7), 1); go(b, off(st, 0.7), 1); live(`Les deux veulent ${ICON[item] || "le colis"}… personne ne lâche !`); });
+        sc.at(4.8, () => { crate = sc.prop(miniCrate()); pose(a, "tug"); pose(b, "tug"); go(a, off(st, -0.7), 1); go(b, off(st, 0.7), 1); live(_("Les deux veulent {i}… personne ne lâche !", { i: ICON[item] || _("le colis") })); });
         sc.on((s) => { if (crate && !holder && s < 6.8) crate.position.copy(off(st, Math.sin(s * 7) * 0.25)).add(UP(1.6)); });
       }
       const T1 = item ? 6.8 : 5.2;
@@ -765,7 +821,7 @@
       let shake = false;
       sc.on((s) => { bag.rotation.z = shake ? Math.sin(s * 30) * 0.12 : 0; })
         .at(0, () => {
-          live(night ? `En pleine nuit, ${nm(a)} rôde près du sac ${deN(b)}…` : `${nm(a)} rôde autour du sac ${deN(b)}…`);
+          live(night ? _("En pleine nuit, {a} rôde près du sac {deB}…", { a: nm(a), b: nm(b), deB: deN(b) }) : _("{a} rôde autour du sac {deB}…", { a: nm(a), b: nm(b), deB: deN(b) }));
           go(b, off(st, 1.2), 3); pose(b, night ? "sleep" : "gather"); face(b, off(st, 6));
           const start = off(st, -4.6);
           if (people[a].userData.pos.distanceTo(start) > 7) place(a, start); else go(a, start, 3);
@@ -794,7 +850,7 @@
       sh.rotation.y = Math.atan2(DEPTH.x, DEPTH.z);
       let k0 = null;
       sc.on((s) => { if (k0 !== null) sh.userData.collapse((s - k0) / 0.7); })
-        .at(0, () => { live(`En pleine nuit, une ombre s'approche de l'abri ${deN(b)}…`); place(b, sp.clone().addScaledVector(DEPTH, 0.1)); pose(b, "sleep"); face(b, sp.clone().addScaledVector(SIDE, 3)); place(a, off(st, -5)); icon(b, "💤", 2.4); })
+        .at(0, () => { live(_("En pleine nuit, une ombre s'approche de l'abri {deB}…", { b: nm(b), deB: deN(b) })); place(b, sp.clone().addScaledVector(DEPTH, 0.1)); pose(b, "sleep"); face(b, sp.clone().addScaledVector(SIDE, 3)); place(a, off(st, -5)); icon(b, "💤", 2.4); })
         .at(0.6, () => go(a, sp.clone().addScaledVector(SIDE, -1.5), 1.15, "sneak"))
         .at(3.0, () => icon(b, "💤", 2))
         .at(4.7, () => { face(a, sp); pose(a, "push"); })
@@ -809,8 +865,9 @@
     // Le catalogue des catastrophes (config/catastrophes.json) : icône, couleur, phrase d'intro, cris
     const CAT = (ev) => D.catastrophes?.[ev.d?.variant] || {};
     const hex = (c, dflt) => (c ? parseInt(c.slice(1), 16) : dflt);
-    const intro = (ev, a, dflt) => { const c = CAT(ev); return c.intro ? c.intro.replace("{a}", nm(a)) : dflt; };
-    const cry = (ev, r, dflt) => pick(r, CAT(ev).cry || dflt);
+    // les textes des catastrophes (config/catastrophes.json) sont en français : en anglais, on garde les textes génériques
+    const intro = (ev, a, dflt) => { const c = CAT(ev); return c.intro && LANG === "fr" ? c.intro.replace("{a}", nm(a)) : dflt; };
+    const cry = (ev, r, dflt) => pick(r, (LANG === "fr" && CAT(ev).cry) || dflt);
     const ico = (ev, dflt) => CAT(ev).icon || dflt;
     const HZ = {};
     HZ.wasps = (ev, a, Rs, r, st) => {
@@ -828,10 +885,10 @@
         moveSwarm(sw, c, s > 1.4 && !away ? 1.0 : 1.5);
         if (flee) { const ang = s * 2.2; go(a, st.clone().add(new T.Vector3(Math.cos(ang) * 2.2, 0, Math.sin(ang) * 2.2)), 5.5, "panic"); }
       })
-        .at(0, () => { live(intro(ev, a, `${nm(a)} s'approche d'un nid de guêpes… mauvaise idée.`)); go(a, st, 3); pose(a, low ? "sit" : "gather"); })
+        .at(0, () => { live(intro(ev, a, _("{a} s'approche d'un nid de guêpes… mauvaise idée.", { a: nm(a) }))); go(a, st, 3); pose(a, low ? "sit" : "gather"); })
         .at(1.8, () => { icon(a, "❗"); pose(a, "idle"); })
         .at(2.3, () => { say(a, cry(ev, r, SAY.wasps), 2.4, "shout"); flee = true; icon(a, ico(ev, "🐝"), 2); });
-      if (Rs) sc.at(4.6, () => { go(Rs, off(st, -1.2), 5, "run"); say(Rs, "Par ici, vite !", 1.8, "shout"); });
+      if (Rs) sc.at(4.6, () => { go(Rs, off(st, -1.2), 5, "run"); say(Rs, _("Par ici, vite !"), 1.8, "shout"); });
       sc.at(6.0, () => { flee = false; away = true; go(a, off(st, 0.3), 3); pose(a, "sit"); icon(a, "😵", 1.6); live(ev.fr, "result"); if (Rs) { face(Rs, a); pose(Rs, "gather"); say(Rs, L(ev, r, "rescue")); } });
       return sc;
     };
@@ -841,7 +898,7 @@
       const sc = new Sc(ev, Rs ? 12 : 11, focusOn(a, 0.6), 3.0).cast(a, Rs);
       let splashing = false;
       sc.on(() => { if (splashing && Math.random() < 0.25) splash(people[a].position.clone().setY(w.surf + 0.1), 3); })
-        .at(0, () => { live(intro(ev, a, `${nm(a)} part se rafraîchir dans l'eau…`)); go(a, w.edge, 3); })
+        .at(0, () => { live(intro(ev, a, _("{a} part se rafraîchir dans l'eau…", { a: nm(a) }))); go(a, w.edge, 3); })
         .at(1.6, () => { swim(a, w.deep, 1.6); splash(w.deep.clone().setY(w.surf + 0.1)); ctx.sfx?.("splash"); })
         .at(3.4, () => {
           const v = ev.d?.variant;
@@ -868,16 +925,16 @@
       const steep = top.y - bot.y > 1.2;
       const sc = new Sc(ev, Rs ? 9.6 : 8.8, focusOn(a, 1), 2.8).cast(a, Rs);
       let from = null;
-      sc.at(0, () => { live(intro(ev, a, `${nm(a)} s'aventure sur les rochers…`)); if (steep) { place(a, new T.Vector3().lerpVectors(bot, top, 0.35)); go(a, top, 1.6, "climb"); } else go(a, off(st, 1.5), 2); say(a, cry(ev, r, SAY.fall), 2.4, "think"); })
+      sc.at(0, () => { live(intro(ev, a, _("{a} s'aventure sur les rochers…", { a: nm(a) }))); if (steep) { place(a, new T.Vector3().lerpVectors(bot, top, 0.35)); go(a, top, 1.6, "climb"); } else go(a, off(st, 1.5), 2); say(a, cry(ev, r, SAY.fall), 2.4, "think"); })
         .at(3.4, () => { icon(a, ico(ev, "❗")); stop(a); pose(a, "panic"); })
         .at(4.0, () => { from = people[a].userData.pos.clone(); })
         .on((s) => { if (from && s < 5.2) { const k = clamp01((s - 4.0) / 1.2); const p = new T.Vector3().lerpVectors(from, bot, k); p.y = lerp(from.y, bot.y, k) + Math.sin(k * Math.PI) * 1.6; place(a, p, true); pose(a, "tumble"); } })
         .at(5.2, () => { from = null; place(a, bot); pose(a, "dizzy"); dust(bot.clone().add(UP(0.3)), 8); icon(a, "💫", 2.2); })
         .at(5.7, () => live(ev.fr, "result"));
-      if (Rs) sc.at(6.0, () => { go(Rs, off(bot, 1.1), 5, "run"); say(Rs, "Ne bouge pas !", 1.8, "shout"); })
+      if (Rs) sc.at(6.0, () => { go(Rs, off(bot, 1.1), 5, "run"); say(Rs, _("Ne bouge pas !"), 1.8, "shout"); })
         .at(7.4, () => { face(Rs, a); pose(Rs, "gather"); say(Rs, L(ev, r, "rescue")); pose(a, "sit"); })
         .at(8.6, () => { pose(a, "idle"); say(a, L(ev, r, "thanks"), 1.6); });
-      else sc.at(7.0, () => { pose(a, "sit"); say(a, "Ça va… ça va.", 1.8); });
+      else sc.at(7.0, () => { pose(a, "sit"); say(a, _("Ça va… ça va."), 1.8); });
       return sc;
     };
     HZ.snake = (ev, a, Rs, r, st) => {
@@ -885,7 +942,7 @@
       const sn = sc.prop(makeSnake(CAT(ev).color || null, CAT(ev).size || 1));
       const s0 = off(st, 3, 1.2), s1 = off(st, 0.5, 0.2), dir = new T.Vector3().subVectors(s1, s0).setY(0).normalize();
       sc.on((s) => { const k = s < 4.2 ? ease(s / 3.2) : 1 - ease((s - 4.2) / 2); slither(sn, new T.Vector3().lerpVectors(s0, s1, k), s < 4.2 ? dir : dir.clone().negate()); })
-        .at(0, () => { live(intro(ev, a, `Quelque chose bouge dans les herbes près de ${nm(a)}…`)); go(a, st, 3); pose(a, "gather"); face(a, off(st, -3)); })
+        .at(0, () => { live(intro(ev, a, _("Quelque chose bouge dans les herbes près de {a}…", { a: nm(a) }))); go(a, st, 3); pose(a, "gather"); face(a, off(st, -3)); })
         .at(3.2, () => { icon(a, "❗"); pose(a, "panic"); face(a, s1); say(a, cry(ev, r, SAY.snake), 2.2, "shout"); if ((CAT(ev).size || 1) > 1.4) ctx.sfx?.("bonk"); })
         .at(4.4, () => { pose(a, "sit"); icon(a, ico(ev, "🐍"), 1.6); live(ev.fr, "result"); });
       if (Rs) sc.at(5.0, () => go(Rs, off(st, -1.0), 5, "run")).at(6.3, () => { pose(Rs, "gather"); face(Rs, a); icon(Rs, "🩹"); say(Rs, L(ev, r, "rescue")); });
@@ -898,7 +955,7 @@
       const rocks = [...Array(nR)].map((_, i) => { const m = sc.prop(new T.Mesh(v === "coconuts" ? new T.SphereGeometry(0.25, 7, 5) : new T.DodecahedronGeometry(nR === 1 ? 0.9 : 0.35 + (i % 3) * 0.15, 0), mat(hex(CAT(ev).color, 0x8f877d)))); m.castShadow = true; m.userData.j = new T.Vector3((Math.random() - 0.5) * 2, 0, (Math.random() - 0.5) * 2); m.userData.d = i * 0.15; return m; });
       const beyond = st.clone().add(new T.Vector3().subVectors(st, top).setY(0).normalize().multiplyScalar(3));
       sc.on((s) => { for (const m of rocks) { const k = clamp01((s - 0.8 - m.userData.d) / 2.2); const p = new T.Vector3().lerpVectors(top, beyond, k).add(m.userData.j); p.y = ground(p.x, p.z) + 0.3 + Math.abs(Math.sin(k * 10)) * 0.8; m.position.copy(p); m.rotation.x += 0.2; m.rotation.z += 0.15; if (Math.abs(Math.sin(k * 10)) < 0.08 && k > 0 && k < 1) dust(p, 1); } })
-        .at(0, () => { live(intro(ev, a, `Un grondement au-dessus de ${nm(a)}…`)); go(a, st, 3); pose(a, "gather"); })
+        .at(0, () => { live(intro(ev, a, _("Un grondement au-dessus de {a}…", { a: nm(a) }))); go(a, st, 3); pose(a, "gather"); })
         .at(1.5, () => { icon(a, ico(ev, "❗")); pose(a, "idle"); face(a, top); say(a, cry(ev, r, SAY.rock), 1.6, "shout"); ctx.sfx?.("crash"); })
         .at(2.3, () => go(a, off(st, 2.6), 7, "run"))
         .at(3.0, () => { pose(a, "lie"); dust(off(st, 2.6).add(UP(0.3)), 6); })
@@ -908,7 +965,7 @@
     };
     HZ.fever = (ev, a, Rs, r, st) => {
       const sc = new Sc(ev, Rs ? 7.6 : 6.4, st.clone().add(UP(1)), 3.4).cast(a, Rs);
-      sc.at(0, () => { live(intro(ev, a, `${nm(a)} ne se sent pas bien…`)); go(a, st, 2); pose(a, ev.d?.variant === "sunstroke" ? "fan" : "shiver"); icon(a, ico(ev, "🤒"), 2); })
+      sc.at(0, () => { live(intro(ev, a, _("{a} ne se sent pas bien…", { a: nm(a) }))); go(a, st, 2); pose(a, ev.d?.variant === "sunstroke" ? "fan" : "shiver"); icon(a, ico(ev, "🤒"), 2); })
         .at(1.6, () => say(a, cry(ev, r, SAY.fever), 2.4, "think"))
         .at(3.2, () => { pose(a, "lie"); live(ev.fr, "result"); });
       if (Rs) sc.at(3.8, () => go(Rs, off(st, 1.1), 4)).at(5.2, () => { face(Rs, a); pose(Rs, "gather"); icon(Rs, "💧"); say(Rs, "Bois, doucement."); });
@@ -927,11 +984,11 @@
       const r = R(ev);
       const sc = new Sc(ev, 6.2, focusOn(a, 2), 2.8).cast(a);
       if (cause === "withdrawal") {
-        sc.at(0, () => { live(`${nm(a)} demande à parler à la production…`); pose(a, "idle"); })
+        sc.at(0, () => { live(_("{a} demande à parler à la production…", { a: nm(a) })); pose(a, "idle"); })
           .at(0.6, () => say(a, L(ev, r, "quit"), 2.4))
           .at(2.0, () => { pose(a, "wave"); evacuate(a, 0.3, "idle"); });
       } else {
-        sc.at(0, () => { live(`Le drone de secours décolle pour ${nm(a)}…`); stop(a); pose(a, "lie"); if (["thirst", "hunger", "exhaustion"].includes(cause)) say(a, L(ev, r, "weak"), 2, "think"); })
+        sc.at(0, () => { live(_("Le drone de secours décolle pour {a}…", { a: nm(a) })); stop(a); pose(a, "lie"); if (["thirst", "hunger", "exhaustion"].includes(cause)) say(a, L(ev, r, "weak"), 2, "think"); })
           .at(1.2, () => evacuate(a, 0, "lie"));
       }
       sc.at(3.2, () => live(ev.fr, "out"));
@@ -941,12 +998,12 @@
     // Le colis du spectateur, envoyé depuis la carte : il joue juste après la scène en cours
     function viewerGift(id, item, label) {
       if (!vis(id)) return false;
-      const ev = { t: ctx.tick(), type: "gift_delivered", a: [id], d: { item }, w: 2, fr: `Ton colis est arrivé : ${nm(id)} reçoit ${label} !`, viewer: true };
+      const ev = { t: ctx.tick(), type: "gift_delivered", a: [id], d: { item }, w: 2, fr: _("Ton colis est arrivé : {n} reçoit {l} !", { n: nm(id), l: label }), viewer: true };
       const sc = giftScene(ev, false, "ok");
       if (!sc) return false;
-      sc.at(0, () => { live(`Ton colis survole l'île en direction ${deN(id)}…`, "result"); ctx.sfx?.("whoosh"); })
+      sc.at(0, () => { live(_("Ton colis survole l'île en direction {deB}…", { b: nm(id), deB: deN(id) }), "result"); ctx.sfx?.("whoosh"); })
         .at(4.4, () => { confetti(people[id].position.clone().add(UP(2.5))); ctx.sfx?.("chime"); })
-        .at(5.4, () => say(id, "Merci à toi, qui que tu sois !", 2.2));
+        .at(5.4, () => say(id, _("Merci à toi, qui que tu sois !"), 2.2));
       sc.dur = 8;
       queue.unshift(sc);
       return true;
@@ -970,7 +1027,7 @@
         if (mode === "lost" && k >= 1) cr.visible = false;
         if (opened !== null) cr.scale.setScalar(Math.max(0.01, 1 - (s - opened) * 2));
       });
-      sc.at(0, () => { if (!mini) live(`Un colis tombe du ciel pour ${nm(a)}…`); })
+      sc.at(0, () => { if (!mini) live(_("Un colis tombe du ciel pour {a}…", { a: nm(a) })); })
         .at(0.8, () => { icon(a, "❗"); if (!mini) face(a, land); });
       if (mode === "lost") {
         sc.at(3.0, () => { if (!mini) { go(a, off(home, 3), 4, "run"); say(a, L(ev, r, "lost"), 2, "shout"); live(ev.fr, "result"); } else icon(a, "😩"); })
@@ -1079,7 +1136,7 @@
         });
       });
       if (m === "race" || water) sc.at((t0 + tWin) / 2, () => live(`${nm(racers[1])} mène… mais ${nm(racers[0])} revient !`));
-      if (m === "climb") sc.at((t0 + tWin) / 2, () => live(`${nm(racers[0])} grimpe comme jamais !`));
+      if (m === "climb") sc.at((t0 + tWin) / 2, () => live(_("{a} grimpe comme jamais !", { a: nm(racers[0]) })));
       sc.at(tWin + 0.1, () => {
         const w = racers[0];
         if (m === "pole") pose(w, "cheer");
@@ -1101,7 +1158,7 @@
       const snap = ctx.snapAt(ev.t);
       const extra = Object.keys(snap).filter((id) => vis(id) && ![w, b, c, ev.d?.last].includes(id)).sort((x, y) => hash(x + ev.t) - hash(y + ev.t))[0];
       const mode = kind === "pole" ? "pole" : kind === "coconut" ? "climb" : kind === "raft" ? "raft" : kind === "chest" ? "swim" : "race";
-      return contest(ev, { racers: [w, b, c, extra, ev.d?.last], mode, dur: 16, necklace: true, title: `Épreuve d'immunité : ${CHALLENGE[kind] || kind}. Qui sera protégé ce soir ?` });
+      return contest(ev, { racers: [w, b, c, extra, ev.d?.last], mode, dur: 16, necklace: true, title: _("Épreuve d'immunité : {k}. Qui sera protégé ce soir ?", { k: CHALLENGE[kind] || kind }) });
     };
 
     B.trial = (ev) => {
@@ -1112,8 +1169,8 @@
       const n = losers.length;
       return contest(ev, {
         racers: order, mode: kind === "endurance" ? "pole" : "race", dur: 16,
-        title: `Épreuve ${TRIAL[kind] || ""} : ${n} candidat${n > 1 ? "s" : ""} va${n > 1 ? "nt" : ""} devoir partir…`,
-        extra: (sc, racers, tWin) => sc.at(tWin + 1.6, () => losers.forEach((id, k) => { if (vis(id)) { evacuate(id, k * 0.6, "idle"); } live(`${list(losers)} quitte${n > 1 ? "nt" : ""} l'île.`, "out"); })),
+        title: n > 1 ? _("Épreuve {k} : {n} candidats vont devoir partir…", { k: TRIAL[kind] || "", n }) : _("Épreuve {k} : 1 candidat va devoir partir…", { k: TRIAL[kind] || "" }),
+        extra: (sc, racers, tWin) => sc.at(tWin + 1.6, () => losers.forEach((id, k) => { if (vis(id)) { evacuate(id, k * 0.6, "idle"); } live(n > 1 ? _("{l} quittent l'île.", { l: list(losers) }) : _("{l} quitte l'île.", { l: list(losers) }), "out"); })),
       });
     };
 
@@ -1124,8 +1181,8 @@
       const winEv = D.events.find((e) => e.type === "winner");
       return contest(ev, {
         racers: order, mode: "pole", dur: 18, zoom: 2.6,
-        title: `Grande finale aux poteaux : ${list(fin)}. Un seul deviendra The Last.`,
-        result: winEv ? winEv.fr.replace(/^🏆 /, "") : ev.fr, winLines: ["JE SUIS THE LAST !", "C'est pas de la chance !"],
+        title: _("Grande finale aux poteaux : {l}. Un seul deviendra The Last.", { l: list(fin) }),
+        result: winEv ? winEv.fr.replace(/^🏆 /, "") : ev.fr, winLines: [_("JE SUIS THE LAST !"), _("C'est pas de la chance !")],
         extra: (sc, racers, tWin) => sc.on((s) => { if (s > tWin && Math.random() < 0.12) (Math.random() < 0.4 && ctx.sfx?.("pop"), firework(BEACH_C.clone().add(new T.Vector3((Math.random() - 0.5) * 14, 9 + Math.random() * 4, (Math.random() - 0.5) * 10)), [0xff8a3d, 0x62d6a0, 0x7fb0ff, 0xffd23f, 0xff5b6b][Math.floor(Math.random() * 5)])); }),
       });
     };
@@ -1144,13 +1201,13 @@
       const K = camp.length * 2.6;
       const sc = new Sc(ev, (out ? 13 : 9.5) + K, FIRE.clone().addScaledVector(DEPTH, 1.6).add(UP(1.2)), 3.0).cast(...thr, ...camp.map((e) => e.a[0]));
       const rings = thr.map((id, i) => { const g = sc.prop(makeRing()); g.position.copy(spot(i)).add(UP(0.08)); return g; });
-      sc.at(0, () => { live(`19h, le feu de camp. ${list(thr)} sont menacés…`); thr.forEach((id, i) => { place(id, spot(i)); face(id, spot(i).clone().addScaledVector(DEPTH, 6)); pose(id, "idle"); }); camp.forEach((e) => { const i = thr.indexOf(e.a[1]); place(e.a[0], safe(spot(i).clone().addScaledVector(DEPTH, -1.6))); face(e.a[0], spot(i).clone().addScaledVector(DEPTH, 6)); }); });
+      sc.at(0, () => { live(_("{h}, le feu de camp. {l} sont menacés…", { h: LANG === "en" ? `${D.voteHour}:00` : `${D.voteHour}h`, l: list(thr) })); thr.forEach((id, i) => { place(id, spot(i)); face(id, spot(i).clone().addScaledVector(DEPTH, 6)); pose(id, "idle"); }); camp.forEach((e) => { const i = thr.indexOf(e.a[1]); place(e.a[0], safe(spot(i).clone().addScaledVector(DEPTH, -1.6))); face(e.a[0], spot(i).clone().addScaledVector(DEPTH, 6)); }); });
       camp.forEach((e, k) => {
         const [v, who] = e.a, i = thr.indexOf(who);
-        sc.at(1.4 + k * 2.6, () => { go(v, safe(spot(i).clone().addScaledVector(DEPTH, 0.2).addScaledVector(SIDE, 0.9)), 2.5); live(`${nm(v)} prend la parole pour ${nm(who)}…`); })
+        sc.at(1.4 + k * 2.6, () => { go(v, safe(spot(i).clone().addScaledVector(DEPTH, 0.2).addScaledVector(SIDE, 0.9)), 2.5); live(_("{a} prend la parole pour {b}…", { a: nm(v), b: nm(who) })); })
           .at(2.4 + k * 2.6, () => { pose(v, "wave", 1.4); say(v, L(ev, r, "plead").replace("{n}", nm(who)), 2.2, "shout"); iconAt(spot(i).clone().add(UP(3.4)), "📣", 1.6); live(e.fr, "result"); });
       });
-      sc.at(1.6 + K, () => { live("Le public a voté. Le suspense est total…"); ctx.sfx?.("drum"); })
+      sc.at(1.6 + K, () => { live(_("Le public a voté. Le suspense est total…")); ctx.sfx?.("drum"); })
         .on((s) => { if (s > 1.6 + K && s < 5.4 + K) rings.forEach((g, i) => { g.material.opacity = Math.floor(s * 3) % rings.length === i ? 1 : 0.25; }); });
       saved.forEach((id, k) => sc.at(5.6 + K + k * 1.4, () => {
         const i = thr.indexOf(id);
@@ -1231,15 +1288,15 @@
       return before && before.heat >= 1.5 ? { ...before, a, b } : null;
     }
     const deArt = (w) => (w.startsWith("le ") ? "du " + w.slice(3) : w.startsWith("les ") ? "des " + w.slice(4) : "de " + w);
-    const dayTxt = (t) => `jour ${Math.floor(t / 24) + 1}`;
+    const dayTxt = (t) => _("jour {d}", { d: Math.floor(t / 24) + 1 });
     function recap(ev, rv) {
       const { a, b } = rv;
       if (!vis(a) || !vis(b)) return null;
       const mid = () => people[a].position.clone().lerp(people[b].position, 0.5).add(UP(1.2));
       const sc = new Sc({ ...ev, type: "recap" }, 3.4, mid, 2.6).cast(a, b);
       const ep = rv.n + 1;
-      const when = Math.floor(rv.last / 24) === Math.floor(ev.t / 24) ? "plus tôt aujourd'hui" : `au ${dayTxt(rv.last)}`;
-      sc.at(0, () => { live(`Épisode ${ep} entre ${nm(a)} et ${nm(b)}. Souvenez-vous ${deArt(rv.lastWhat)}, ${when}…`, "rival"); icon(a, "⚡", 2.6); icon(b, "⚡", 2.6); face(a, b); face(b, a); ctx.sfx?.("tension"); });
+      const when = Math.floor(rv.last / 24) === Math.floor(ev.t / 24) ? _("plus tôt aujourd'hui") : _("au {d}", { d: dayTxt(rv.last) });
+      sc.at(0, () => { live(_("Épisode {ep} entre {a} et {b}. Souvenez-vous {w}, {when}…", { ep, a: nm(a), b: nm(b), w: LANG === "en" ? _(rv.lastWhat) : deArt(rv.lastWhat), when }), "rival"); icon(a, "⚡", 2.6); icon(b, "⚡", 2.6); face(a, b); face(b, a); ctx.sfx?.("tension"); });
       return sc;
     }
 
@@ -1337,14 +1394,14 @@
       if (shot % 4 === 0) {
         vign = null;
         const h = ctx.tick() % 24;
-        live(h >= 22 || h < 6 ? `La nuit est tombée sur l'île. ${ids.length} candidats encore en jeu.` : `Vue du ciel : ${ids.length} candidats encore en jeu.`, "ambient");
+        live(h >= 22 || h < 6 ? _("La nuit est tombée sur l'île. {n} candidats encore en jeu.", { n: ids.length }) : _("Vue du ciel : {n} candidats encore en jeu.", { n: ids.length }), "ambient");
         return;
       }
       const rv = shot % 4 === 2 ? rivalries(D, ctx.tick()).filter((r) => r.heat >= 3 && vis(r.a) && vis(r.b) && !people[r.a].userData.ctl).sort((x, y) => y.heat - x.heat || y.last - x.last)[0] : null;
       if (rv) {
         vign = rv.a;
         if (people[rv.a].userData.amb && people[rv.a].userData.amb.kind !== "sleep") people[rv.a].userData.amb.faceId = rv.b;
-        live(`${nm(rv.a)} n'a pas oublié ${rv.lastWhat} avec ${nm(rv.b)}. ${rv.n} accrochage${rv.n > 1 ? "s" : ""} depuis le ${dayTxt(rv.first)}.`, "ambient");
+        live(_("{a} n'a pas oublié {w} avec {b}. {n} accrochage(s) depuis le {d}.", { a: nm(rv.a), w: _(rv.lastWhat), b: nm(rv.b), n: rv.n, d: dayTxt(rv.first) }), "ambient");
         return;
       }
       if (m && vis(m) && shot % 2 === 1) vign = m;

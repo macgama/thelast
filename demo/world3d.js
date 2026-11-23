@@ -738,7 +738,7 @@
     const zoneLabels = Object.entries(ZONES).map(([id, [x, z]]) => {
       const el = document.createElement("div");
       el.className = "w3-zone";
-      el.textContent = D.arena.zones.find((zz) => zz.id === id).name.replace(/^(la |le |les |l')/, "");
+      el.textContent = D.arena.zones.find((zz) => zz.id === id).name.replace(/^(la |le |les |l'|the )/i, "");
       host.appendChild(el);
       return { el, v: new T.Vector3(x, height(x, z) + 3, z) };
     });
@@ -752,7 +752,7 @@
     // La mise en scène (scenes.js)
     const director = window.World3DScenes.create({
       scene, camera, canvas, host, D, people, ZONES, height, riverDist, mat, box, makeDrone,
-      snapAt, S, me: () => me, tick: () => tick, camTarget: () => controls.target,
+      snapAt, S, me: () => me, tick: () => tick, camTarget: () => controls.target, lang: opts.lang || "fr",
       live: (text, kind) => opts.onLive?.(text, kind),
       lightning: () => { flashUntil = clock.elapsedTime + 0.12; opts.onSfx?.("bonk"); },
       sfx: (name) => opts.onSfx?.(name),
