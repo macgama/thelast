@@ -36,6 +36,9 @@ main { max-width: 1180px; margin: 0 auto; padding: 12px 16px 40px; display: grid
 .sig::before { content: "★ "; color: var(--torch); }
 button.copy { margin-top: auto; align-self: flex-start; background: var(--raise); color: var(--sand); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font: 600 12px var(--body); cursor: pointer; }
 button.copy:hover { border-color: var(--torch); }
+.btns { margin-top: auto; display: flex; gap: 6px; flex-wrap: wrap; }
+.btns button.copy { margin-top: 0; }
+button.copy:not(.alt):not(.ok) { border-color: var(--torch); }
 button.copy.ok { background: var(--torch); color: var(--ink); border-color: var(--torch); }
 details { font-size: 12px; color: var(--mist); }
 details summary { cursor: pointer; }
@@ -47,7 +50,7 @@ details p { margin: 6px 0 0; user-select: all; }
 <body>
 <header>
   <h1>THE <b>LAST</b> · 100 personnages</h1>
-  <p>Chaque personnage a une fiche visuelle unique. Le jeu fabrique son modèle à partir de cette fiche, et le bouton « Copier le prompt » donne le texte à coller dans un outil d'image ou de 3D pour obtenir sa planche de référence (face, profil, dos).</p>
+  <p>Chaque personnage a une fiche visuelle unique. Le jeu fabrique son modèle à partir de cette fiche. Deux prompts à copier pour obtenir sa planche de référence (face, profil, dos, gros plan du visage) dans un outil d'image ou de 3D : « Cinématique », en 3D stylisée haut de gamme pour les petites cinématiques, et « Low poly », le style du jeu.</p>
   <div class="tools"><input type="search" id="q" placeholder="Chercher un nom, un métier, une ville…" aria-label="Chercher un personnage"><span class="count" id="count"></span></div>
 </header>
 <main id="grid"><div class="loading">Fabrication des 100 personnages…</div></main>
@@ -95,14 +98,14 @@ details p { margin: 6px 0 0; user-select: all; }
       <img src="${front}" alt="${esc(c.name)} de face"><img src="${side}" alt="${esc(c.name)} de profil"><img src="${back}" alt="${esc(c.name)} de dos"></div>
       <div class="info"><div class="name">${esc(c.name)}<small>${c.age} ans · ${c.id}</small></div>
       <div class="job">${esc(c.job)} · ${esc(c.origin)}</div><div class="sig">${esc(c.signature)}</div>
-      <details><summary>Voir le prompt</summary><p>${esc(c.prompt)}</p></details>
-      <button type="button" class="copy">Copier le prompt</button></div>`;
-    el.querySelector(".copy").addEventListener("click", async (ev) => {
-      const b = ev.currentTarget;
-      try { await navigator.clipboard.writeText(c.prompt); b.textContent = "Copié ✓"; }
+      <details><summary>Voir le prompt cinématique</summary><p>${esc(c.cine)}</p></details>
+      <div class="btns"><button type="button" class="copy" data-k="cine">Prompt cinématique</button><button type="button" class="copy alt" data-k="prompt">Prompt low poly</button></div></div>`;
+    el.querySelectorAll(".copy").forEach((btn) => btn.addEventListener("click", async (ev) => {
+      const b = ev.currentTarget, label = b.textContent;
+      try { await navigator.clipboard.writeText(c[b.dataset.k]); b.textContent = "Copié ✓"; }
       catch { const r = document.createRange(); r.selectNodeContents(el.querySelector("details p")); el.querySelector("details").open = true; getSelection().removeAllRanges(); getSelection().addRange(r); b.textContent = "Texte sélectionné"; }
-      b.classList.add("ok"); setTimeout(() => { b.textContent = "Copier le prompt"; b.classList.remove("ok"); }, 1800);
-    });
+      b.classList.add("ok"); setTimeout(() => { b.textContent = label; b.classList.remove("ok"); }, 1800);
+    }));
     grid.appendChild(el);
     if (grid.children.length % 10 === 0) await new Promise((r) => setTimeout(r));
   }

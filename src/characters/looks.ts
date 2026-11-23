@@ -24,7 +24,10 @@ export interface Look {
   bottom: { type: Bottom; color: string };
   item: { type: Item; color: string };
   signature: string;   // ce qui le rend reconnaissable au premier coup d'œil (FR)
+  face?: Face;         // détails du visage, utilisés par les prompts des cinématiques
 }
+
+export interface Face { shape: string; eyes: string; feature: string; expression: string }
 
 // Palettes : un nom anglais précis (pour les prompts) et sa couleur.
 export const SKIN: Record<string, string> = {
@@ -105,7 +108,7 @@ function rngFor(id: string) {
 }
 const pick = <T>(r: () => number, a: readonly T[]): T => a[Math.floor(r() * a.length)];
 
-export interface CharLite { id: string; age: number; gender: string; origin: { en: string }; job: { en: string } }
+export interface CharLite { id: string; age: number; gender: string; origin: { en: string }; job: { en: string }; traits?: Record<string, number> }
 
 export function makeLook(c: CharLite): Look {
   const r = rngFor(c.id);
@@ -200,4 +203,55 @@ export function resolveLook(l: Look) {
     bottom: { type: l.bottom.type, color: hx(l.bottom.color) },
     item: { type: l.item.type, color: hx(l.item.color) },
   };
+}
+
+// ---------- Visage et prompt « cinématique » ----------
+const SHAPES = ["oval face", "round face", "square jaw", "heart-shaped face", "long face with high cheekbones", "soft round cheeks"];
+const FEATURES = ["freckles across the nose", "deep dimples", "a small beauty mark on the cheek", "thick expressive eyebrows", "a slightly crooked nose",
+  "a gap-toothed smile", "laugh lines around the eyes", "a tiny scar through one eyebrow", "big bright eyes", "a strong straight nose", "sun-kissed cheeks", "long eyelashes"];
+const EXPRESSION: Record<string, [string, string]> = {
+  courage: ["a fearless, confident grin", "a wary, hesitant look"],
+  empathy: ["a warm, kind smile", "a cool, unreadable face"],
+  cunning: ["a sly, knowing half-smile", "an open, trusting expression"],
+  loyalty: ["a steady, dependable look", "a restless, opportunistic glint in the eyes"],
+  composure: ["a calm, relaxed expression", "a nervous, fidgety smile"],
+};
+
+export function makeFace(c: CharLite, l: Look): Face {
+  const r = rngFor(c.id + "face");
+  const darkSkin = ["golden brown", "deep brown", "dark ebony"].includes(l.skin);
+  const eyes = pick(r, darkSkin ? ["dark brown", "deep brown", "warm brown", "hazel"] : ["brown", "hazel", "green", "blue", "grey", "dark brown", "amber"]);
+  const t = Object.entries(c.traits ?? { empathy: 60 }).sort((a, b) => b[1] - a[1]);
+  const [top, val] = t[0], low = t[t.length - 1];
+  const expression = val >= 70 || !low ? EXPRESSION[top]?.[0] ?? "a friendly smile" : EXPRESSION[low[0]]?.[1] ?? "a friendly smile";
+  return { shape: pick(r, SHAPES), eyes: `${eyes} eyes`, feature: c.age > 55 ? pick(r, ["laugh lines around the eyes", "deep wrinkles from years of smiling", "weathered sun-tanned skin", ...FEATURES.slice(0, 4)]) : pick(r, FEATURES), expression };
+}
+
+const CINE_TOP: Record<Top, string> = {
+  tshirt: "fitted cotton t-shirt", shirt: "short-sleeved button shirt with rolled sleeves", tank: "athletic tank top", jacket: "lightweight zip jacket",
+  hoodie: "soft hoodie with the sleeves pushed up", coat: "long tailored work coat", apron: "canvas apron over a t-shirt", overalls: "worn denim-style overalls over a t-shirt",
+  scrubs: "medical scrubs", suit: "sharp tailored suit jacket over an open-collar shirt", vest: "utility vest over a t-shirt", raincoat: "glossy fisherman's raincoat",
+  wetsuit: "short-sleeved wetsuit top", cardigan: "cosy knitted cardigan over a shirt",
+};
+
+// Prompt pour la planche de référence des cinématiques : 3D stylisée haut de gamme, belle et fun.
+export function cinePrompt(c: CharLite & { name: string }, l: Look): string {
+  const f = l.face ?? makeFace(c, l);
+  const who = c.gender === "f" ? "woman" : c.gender === "m" ? "man" : "androgynous non-binary person";
+  const col = (k: string) => k;
+  const hair = l.hair.style === "bald" ? "a clean shaved head" : `${col(l.hair.color)} ${HAIR_EN[l.hair.style]}`;
+  const parts = [
+    `${c.name}, a ${c.age}-year-old ${who}, ${c.job.en} from ${c.origin.en}`,
+    `${BUILD_EN[l.build]}, ${l.height >= 1.03 ? "tall" : l.height <= 0.96 ? "short" : "medium height"}`,
+    `${l.skin} skin, ${f.shape}, ${f.eyes}, ${f.feature}, ${f.expression}`,
+    hair,
+    l.facial !== "none" && FACIAL_EN[l.facial],
+    l.glasses !== "none" && GLASSES_EN[l.glasses],
+    l.hat.type !== "none" && `${col(l.hat.color)} ${HAT_EN[l.hat.type]}`,
+    `${col(l.top.color)} ${CINE_TOP[l.top.type]}`,
+    `${col(l.bottom.color)} ${l.bottom.type}`,
+    l.item.type !== "none" && `signature accessory: ${col(l.item.color)} ${ITEM_EN[l.item.type]}`,
+    "clothes slightly sun-faded and sandy after days on a tropical island",
+  ].filter(Boolean);
+  return `High-end stylized 3D character for an animated reality-show cinematic: modern animated feature film quality, appealing slightly exaggerated proportions, expressive face with lifelike eyes, detailed skin, hair and fabric textures, vibrant colors, cinematic rim lighting, fun and charismatic, family-friendly. ${parts.join("; ")}. Character reference sheet of the same person: full body front, side and back views in a relaxed A-pose, plus a close-up portrait of the face; consistent design in every view; plain light grey background; no text, no logo, no watermark.`;
 }

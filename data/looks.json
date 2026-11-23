@@ -26,7 +26,13 @@
    "type": "bag",
    "color": "cream"
   },
-  "signature": "sacoche de coursier en bandoulière"
+  "signature": "sacoche de coursier en bandoulière",
+  "face": {
+   "shape": "round face",
+   "eyes": "warm brown eyes",
+   "feature": "a tiny scar through one eyebrow",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c002",
@@ -55,7 +61,13 @@
    "type": "rope",
    "color": "burgundy"
   },
-  "signature": "corde enroulée sur l'épaule et bonnet"
+  "signature": "corde enroulée sur l'épaule et bonnet",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "warm brown eyes",
+   "feature": "long eyelashes",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c003",
@@ -84,7 +96,13 @@
    "type": "none",
    "color": "navy blue"
   },
-  "signature": "bandeau et débardeur de danse"
+  "signature": "bandeau et débardeur de danse",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "amber eyes",
+   "feature": "freckles across the nose",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c004",
@@ -113,7 +131,13 @@
    "type": "scarf",
    "color": "teal"
   },
-  "signature": "toque et veste de chef"
+  "signature": "toque et veste de chef",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "deep brown eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c005",
@@ -142,7 +166,13 @@
    "type": "none",
    "color": "lavender"
   },
-  "signature": "salopette et chapeau de paille"
+  "signature": "salopette et chapeau de paille",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "blue eyes",
+   "feature": "long eyelashes",
+   "expression": "a restless, opportunistic glint in the eyes"
+  }
  },
  {
   "id": "c006",
@@ -171,7 +201,13 @@
    "type": "rope",
    "color": "hot pink"
   },
-  "signature": "corde enroulée sur l'épaule et bonnet"
+  "signature": "corde enroulée sur l'épaule et bonnet",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "brown eyes",
+   "feature": "freckles across the nose",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c007",
@@ -200,7 +236,13 @@
    "type": "none",
    "color": "burgundy"
   },
-  "signature": "ciré et bob de pêcheur"
+  "signature": "ciré et bob de pêcheur",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "dark brown eyes",
+   "feature": "a small beauty mark on the cheek",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c008",
@@ -229,7 +271,13 @@
    "type": "none",
    "color": "hot pink"
   },
-  "signature": "visière de croupier et lunettes noires"
+  "signature": "visière de croupier et lunettes noires",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "hazel eyes",
+   "feature": "big bright eyes",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c009",
@@ -258,7 +306,13 @@
    "type": "gloves",
    "color": "forest green"
   },
-  "signature": "blouson de cuir et gants"
+  "signature": "blouson de cuir et gants",
+  "face": {
+   "shape": "oval face",
+   "eyes": "amber eyes",
+   "feature": "freckles across the nose",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c010",
@@ -287,7 +341,13 @@
    "type": "none",
    "color": "cream"
   },
-  "signature": "casquette plate de chauffeur"
+  "signature": "casquette plate de chauffeur",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "hazel eyes",
+   "feature": "freckles across the nose",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c011",
@@ -316,7 +376,13 @@
    "type": "gloves",
    "color": "plum"
   },
-  "signature": "blouson de cuir et gants"
+  "signature": "blouson de cuir et gants",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "warm brown eyes",
+   "feature": "a gap-toothed smile",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c012",
@@ -345,7 +411,13 @@
    "type": "none",
    "color": "teal"
   },
-  "signature": "bandeau et débardeur de danse"
+  "signature": "bandeau et débardeur de danse",
+  "face": {
+   "shape": "oval face",
+   "eyes": "warm brown eyes",
+   "feature": "big bright eyes",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c013",
@@ -374,7 +446,13 @@
    "type": "none",
    "color": "safety yellow"
   },
-  "signature": "ciré et bob de pêcheur"
+  "signature": "ciré et bob de pêcheur",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "deep brown eyes",
+   "feature": "weathered sun-tanned skin",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c014",
@@ -403,7 +481,13 @@
    "type": "none",
    "color": "plum"
   },
-  "signature": "salopette et chapeau de paille"
+  "signature": "salopette et chapeau de paille",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "blue eyes",
+   "feature": "big bright eyes",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c015",
@@ -432,7 +516,13 @@
    "type": "camera",
    "color": "sky blue"
   },
-  "signature": "chemise à fleurs et appareil photo"
+  "signature": "chemise à fleurs et appareil photo",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "green eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c016",
@@ -461,7 +551,13 @@
    "type": "scarf",
    "color": "mustard yellow"
   },
-  "signature": "toque et veste de chef"
+  "signature": "toque et veste de chef",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "brown eyes",
+   "feature": "deep wrinkles from years of smiling",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c017",
@@ -490,7 +586,13 @@
    "type": "whistle",
    "color": "safety yellow"
   },
-  "signature": "survêtement et sifflet"
+  "signature": "survêtement et sifflet",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "brown eyes",
+   "feature": "laugh lines around the eyes",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c018",
@@ -519,7 +621,13 @@
    "type": "backpack",
    "color": "burgundy"
   },
-  "signature": "chapeau d'aventurier et sac à dos"
+  "signature": "chapeau d'aventurier et sac à dos",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "brown eyes",
+   "feature": "freckles across the nose",
+   "expression": "a wary, hesitant look"
+  }
  },
  {
   "id": "c019",
@@ -548,7 +656,13 @@
    "type": "none",
    "color": "coral red"
   },
-  "signature": "ciré et bob de pêcheur"
+  "signature": "ciré et bob de pêcheur",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "deep brown eyes",
+   "feature": "weathered sun-tanned skin",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c020",
@@ -577,7 +691,13 @@
    "type": "tie",
    "color": "forest green"
   },
-  "signature": "costume et cravate"
+  "signature": "costume et cravate",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "brown eyes",
+   "feature": "laugh lines around the eyes",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c021",
@@ -606,7 +726,13 @@
    "type": "notebook",
    "color": "burgundy"
   },
-  "signature": "gilet en laine et cahier"
+  "signature": "gilet en laine et cahier",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "dark brown eyes",
+   "feature": "a strong straight nose",
+   "expression": "a wary, hesitant look"
+  }
  },
  {
   "id": "c022",
@@ -635,7 +761,13 @@
    "type": "dogtags",
    "color": "lavender"
   },
-  "signature": "débardeur kaki et plaques militaires"
+  "signature": "débardeur kaki et plaques militaires",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "brown eyes",
+   "feature": "a tiny scar through one eyebrow",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c023",
@@ -664,7 +796,13 @@
    "type": "notebook",
    "color": "tangerine orange"
   },
-  "signature": "tablier de service et carnet de commandes"
+  "signature": "tablier de service et carnet de commandes",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "dark brown eyes",
+   "feature": "a gap-toothed smile",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c024",
@@ -693,7 +831,13 @@
    "type": "tie",
    "color": "safety yellow"
   },
-  "signature": "costume clair et cravate"
+  "signature": "costume clair et cravate",
+  "face": {
+   "shape": "round face",
+   "eyes": "warm brown eyes",
+   "feature": "laugh lines around the eyes",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c025",
@@ -722,7 +866,13 @@
    "type": "none",
    "color": "forest green"
   },
-  "signature": "casque de chantier et gilet fluo"
+  "signature": "casque de chantier et gilet fluo",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "hazel eyes",
+   "feature": "deep dimples",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c026",
@@ -751,7 +901,13 @@
    "type": "none",
    "color": "teal"
   },
-  "signature": "visière de croupier et lunettes noires"
+  "signature": "visière de croupier et lunettes noires",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "blue eyes",
+   "feature": "freckles across the nose",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c027",
@@ -780,7 +936,13 @@
    "type": "medkit",
    "color": "cream"
   },
-  "signature": "uniforme d'ambulancier et trousse"
+  "signature": "uniforme d'ambulancier et trousse",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "brown eyes",
+   "feature": "laugh lines around the eyes",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c028",
@@ -809,7 +971,13 @@
    "type": "gloves",
    "color": "mint green"
   },
-  "signature": "sweat à capuche et gants de boxe"
+  "signature": "sweat à capuche et gants de boxe",
+  "face": {
+   "shape": "round face",
+   "eyes": "brown eyes",
+   "feature": "a small beauty mark on the cheek",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c029",
@@ -838,7 +1006,13 @@
    "type": "dogtags",
    "color": "white"
   },
-  "signature": "débardeur kaki et plaques militaires"
+  "signature": "débardeur kaki et plaques militaires",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "green eyes",
+   "feature": "a slightly crooked nose",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c030",
@@ -867,7 +1041,13 @@
    "type": "none",
    "color": "mustard yellow"
   },
-  "signature": "salopette et chapeau de paille"
+  "signature": "salopette et chapeau de paille",
+  "face": {
+   "shape": "oval face",
+   "eyes": "hazel eyes",
+   "feature": "a slightly crooked nose",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c031",
@@ -896,7 +1076,13 @@
    "type": "stethoscope",
    "color": "sky blue"
   },
-  "signature": "blouse d'infirmier·e et stéthoscope"
+  "signature": "blouse d'infirmier·e et stéthoscope",
+  "face": {
+   "shape": "round face",
+   "eyes": "dark brown eyes",
+   "feature": "freckles across the nose",
+   "expression": "an open, trusting expression"
+  }
  },
  {
   "id": "c032",
@@ -925,7 +1111,13 @@
    "type": "none",
    "color": "coral red"
   },
-  "signature": "casque de chantier et gilet fluo"
+  "signature": "casque de chantier et gilet fluo",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "dark brown eyes",
+   "feature": "freckles across the nose",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c033",
@@ -954,7 +1146,13 @@
    "type": "none",
    "color": "hot pink"
   },
-  "signature": "tablier enfariné et bandana"
+  "signature": "tablier enfariné et bandana",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "blue eyes",
+   "feature": "big bright eyes",
+   "expression": "a nervous, fidgety smile"
+  }
  },
  {
   "id": "c034",
@@ -983,7 +1181,13 @@
    "type": "notebook",
    "color": "white"
   },
-  "signature": "gilet en laine et cahier"
+  "signature": "gilet en laine et cahier",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "grey eyes",
+   "feature": "a slightly crooked nose",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c035",
@@ -1012,7 +1216,13 @@
    "type": "whistle",
    "color": "cream"
   },
-  "signature": "survêtement et sifflet"
+  "signature": "survêtement et sifflet",
+  "face": {
+   "shape": "round face",
+   "eyes": "brown eyes",
+   "feature": "laugh lines around the eyes",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c036",
@@ -1041,7 +1251,13 @@
    "type": "stethoscope",
    "color": "fire red"
   },
-  "signature": "blouse verte et stéthoscope"
+  "signature": "blouse verte et stéthoscope",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "amber eyes",
+   "feature": "a strong straight nose",
+   "expression": "a cool, unreadable face"
+  }
  },
  {
   "id": "c037",
@@ -1070,7 +1286,13 @@
    "type": "toolbelt",
    "color": "hot pink"
   },
-  "signature": "chemise à carreaux et ceinture à outils"
+  "signature": "chemise à carreaux et ceinture à outils",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "warm brown eyes",
+   "feature": "freckles across the nose",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c038",
@@ -1099,7 +1321,13 @@
    "type": "dogtags",
    "color": "safety yellow"
   },
-  "signature": "débardeur kaki et plaques militaires"
+  "signature": "débardeur kaki et plaques militaires",
+  "face": {
+   "shape": "oval face",
+   "eyes": "grey eyes",
+   "feature": "deep dimples",
+   "expression": "an open, trusting expression"
+  }
  },
  {
   "id": "c039",
@@ -1128,7 +1356,13 @@
    "type": "headphones",
    "color": "tangerine orange"
   },
-  "signature": "sweat à capuche et casque audio"
+  "signature": "sweat à capuche et casque audio",
+  "face": {
+   "shape": "oval face",
+   "eyes": "deep brown eyes",
+   "feature": "long eyelashes",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c040",
@@ -1157,7 +1391,13 @@
    "type": "notebook",
    "color": "safety yellow"
   },
-  "signature": "col roulé et carnet de notes"
+  "signature": "col roulé et carnet de notes",
+  "face": {
+   "shape": "oval face",
+   "eyes": "grey eyes",
+   "feature": "freckles across the nose",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c041",
@@ -1186,7 +1426,13 @@
    "type": "mask",
    "color": "hot pink"
   },
-  "signature": "combinaison et masque de plongée sur le front"
+  "signature": "combinaison et masque de plongée sur le front",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "green eyes",
+   "feature": "long eyelashes",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c042",
@@ -1215,7 +1461,13 @@
    "type": "none",
    "color": "teal"
   },
-  "signature": "veste à bandes jaunes et casque rouge"
+  "signature": "veste à bandes jaunes et casque rouge",
+  "face": {
+   "shape": "round face",
+   "eyes": "hazel eyes",
+   "feature": "deep dimples",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c043",
@@ -1244,7 +1496,13 @@
    "type": "stethoscope",
    "color": "mustard yellow"
   },
-  "signature": "blouse verte et stéthoscope"
+  "signature": "blouse verte et stéthoscope",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "hazel eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c044",
@@ -1273,7 +1531,13 @@
    "type": "toolbelt",
    "color": "lavender"
   },
-  "signature": "casquette, chemise à carreaux et outils"
+  "signature": "casquette, chemise à carreaux et outils",
+  "face": {
+   "shape": "oval face",
+   "eyes": "blue eyes",
+   "feature": "sun-kissed cheeks",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c045",
@@ -1302,7 +1566,13 @@
    "type": "camera",
    "color": "fire red"
   },
-  "signature": "gilet multipoches et téléobjectif"
+  "signature": "gilet multipoches et téléobjectif",
+  "face": {
+   "shape": "round face",
+   "eyes": "warm brown eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c046",
@@ -1331,7 +1601,13 @@
    "type": "none",
    "color": "navy blue"
   },
-  "signature": "casque de chantier et gilet fluo"
+  "signature": "casque de chantier et gilet fluo",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "hazel eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c047",
@@ -1360,7 +1636,13 @@
    "type": "toolbelt",
    "color": "forest green"
   },
-  "signature": "casquette, chemise à carreaux et outils"
+  "signature": "casquette, chemise à carreaux et outils",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "brown eyes",
+   "feature": "deep wrinkles from years of smiling",
+   "expression": "a cool, unreadable face"
+  }
  },
  {
   "id": "c048",
@@ -1389,7 +1671,13 @@
    "type": "stethoscope",
    "color": "plum"
   },
-  "signature": "blouse verte et stéthoscope"
+  "signature": "blouse verte et stéthoscope",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "deep brown eyes",
+   "feature": "a gap-toothed smile",
+   "expression": "a nervous, fidgety smile"
+  }
  },
  {
   "id": "c049",
@@ -1418,7 +1706,13 @@
    "type": "gloves",
    "color": "fire red"
   },
-  "signature": "sweat à capuche et gants de boxe"
+  "signature": "sweat à capuche et gants de boxe",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "brown eyes",
+   "feature": "a slightly crooked nose",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c050",
@@ -1447,7 +1741,13 @@
    "type": "stethoscope",
    "color": "cream"
   },
-  "signature": "blouse d'infirmier·e et stéthoscope"
+  "signature": "blouse d'infirmier·e et stéthoscope",
+  "face": {
+   "shape": "oval face",
+   "eyes": "amber eyes",
+   "feature": "a slightly crooked nose",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c051",
@@ -1476,7 +1776,13 @@
    "type": "medkit",
    "color": "safety yellow"
   },
-  "signature": "uniforme d'ambulancier et trousse"
+  "signature": "uniforme d'ambulancier et trousse",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "warm brown eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a wary, hesitant look"
+  }
  },
  {
   "id": "c052",
@@ -1505,7 +1811,13 @@
    "type": "none",
    "color": "lavender"
   },
-  "signature": "salopette et chapeau de paille"
+  "signature": "salopette et chapeau de paille",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "hazel eyes",
+   "feature": "big bright eyes",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c053",
@@ -1534,7 +1846,13 @@
    "type": "tie",
    "color": "mint green"
   },
-  "signature": "costume et cravate"
+  "signature": "costume et cravate",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "deep brown eyes",
+   "feature": "a strong straight nose",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c054",
@@ -1563,7 +1881,13 @@
    "type": "headset",
    "color": "fire red"
   },
-  "signature": "blouson et casque radio"
+  "signature": "blouson et casque radio",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "warm brown eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c055",
@@ -1592,7 +1916,13 @@
    "type": "none",
    "color": "forest green"
   },
-  "signature": "casque de chantier et gilet fluo"
+  "signature": "casque de chantier et gilet fluo",
+  "face": {
+   "shape": "round face",
+   "eyes": "dark brown eyes",
+   "feature": "deep dimples",
+   "expression": "a nervous, fidgety smile"
+  }
  },
  {
   "id": "c056",
@@ -1621,7 +1951,13 @@
    "type": "notebook",
    "color": "burgundy"
   },
-  "signature": "gilet en laine et cahier"
+  "signature": "gilet en laine et cahier",
+  "face": {
+   "shape": "round face",
+   "eyes": "amber eyes",
+   "feature": "long eyelashes",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c057",
@@ -1650,7 +1986,13 @@
    "type": "spray",
    "color": "fire red"
   },
-  "signature": "sweat taché de peinture et bombe aérosol"
+  "signature": "sweat taché de peinture et bombe aérosol",
+  "face": {
+   "shape": "round face",
+   "eyes": "blue eyes",
+   "feature": "deep dimples",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c058",
@@ -1679,7 +2021,13 @@
    "type": "gloves",
    "color": "forest green"
   },
-  "signature": "sweat à capuche et gants de boxe"
+  "signature": "sweat à capuche et gants de boxe",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "hazel eyes",
+   "feature": "a slightly crooked nose",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c059",
@@ -1708,7 +2056,13 @@
    "type": "none",
    "color": "burgundy"
   },
-  "signature": "tablier enfariné et bandana"
+  "signature": "tablier enfariné et bandana",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "green eyes",
+   "feature": "laugh lines around the eyes",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c060",
@@ -1737,7 +2091,13 @@
    "type": "toolbelt",
    "color": "white"
   },
-  "signature": "casquette, chemise à carreaux et outils"
+  "signature": "casquette, chemise à carreaux et outils",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "green eyes",
+   "feature": "a tiny scar through one eyebrow",
+   "expression": "a nervous, fidgety smile"
+  }
  },
  {
   "id": "c061",
@@ -1766,7 +2126,13 @@
    "type": "scarf",
    "color": "olive green"
   },
-  "signature": "toque et veste de chef"
+  "signature": "toque et veste de chef",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "amber eyes",
+   "feature": "deep dimples",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c062",
@@ -1795,7 +2161,13 @@
    "type": "stethoscope",
    "color": "fire red"
   },
-  "signature": "blouse verte et stéthoscope"
+  "signature": "blouse verte et stéthoscope",
+  "face": {
+   "shape": "round face",
+   "eyes": "hazel eyes",
+   "feature": "freckles across the nose",
+   "expression": "a restless, opportunistic glint in the eyes"
+  }
  },
  {
   "id": "c063",
@@ -1824,7 +2196,13 @@
    "type": "toolbelt",
    "color": "mint green"
   },
-  "signature": "chemise à carreaux et ceinture à outils"
+  "signature": "chemise à carreaux et ceinture à outils",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "green eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c064",
@@ -1853,7 +2231,13 @@
    "type": "toolbelt",
    "color": "sky blue"
   },
-  "signature": "casquette, chemise à carreaux et outils"
+  "signature": "casquette, chemise à carreaux et outils",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "dark brown eyes",
+   "feature": "a slightly crooked nose",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c065",
@@ -1882,7 +2266,13 @@
    "type": "wrench",
    "color": "navy blue"
   },
-  "signature": "combinaison de garagiste et clé à molette"
+  "signature": "combinaison de garagiste et clé à molette",
+  "face": {
+   "shape": "round face",
+   "eyes": "grey eyes",
+   "feature": "big bright eyes",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c066",
@@ -1911,7 +2301,13 @@
    "type": "headphones",
    "color": "teal"
   },
-  "signature": "sweat à capuche et casque audio"
+  "signature": "sweat à capuche et casque audio",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "dark brown eyes",
+   "feature": "freckles across the nose",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c067",
@@ -1940,7 +2336,13 @@
    "type": "gloves",
    "color": "safety yellow"
   },
-  "signature": "blouson de cuir et gants"
+  "signature": "blouson de cuir et gants",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "deep brown eyes",
+   "feature": "freckles across the nose",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c068",
@@ -1969,7 +2371,13 @@
    "type": "rope",
    "color": "navy blue"
   },
-  "signature": "corde enroulée sur l'épaule et bonnet"
+  "signature": "corde enroulée sur l'épaule et bonnet",
+  "face": {
+   "shape": "oval face",
+   "eyes": "dark brown eyes",
+   "feature": "long eyelashes",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c069",
@@ -1998,7 +2406,13 @@
    "type": "wrench",
    "color": "mustard yellow"
   },
-  "signature": "combinaison de garagiste et clé à molette"
+  "signature": "combinaison de garagiste et clé à molette",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "green eyes",
+   "feature": "big bright eyes",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c070",
@@ -2027,7 +2441,13 @@
    "type": "none",
    "color": "hot pink"
   },
-  "signature": "visière de croupier et lunettes noires"
+  "signature": "visière de croupier et lunettes noires",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "blue eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c071",
@@ -2056,7 +2476,13 @@
    "type": "backpack",
    "color": "lavender"
   },
-  "signature": "chapeau d'aventurier et sac à dos"
+  "signature": "chapeau d'aventurier et sac à dos",
+  "face": {
+   "shape": "round face",
+   "eyes": "blue eyes",
+   "feature": "a strong straight nose",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c072",
@@ -2085,7 +2511,13 @@
    "type": "medkit",
    "color": "white"
   },
-  "signature": "uniforme d'ambulancier et trousse"
+  "signature": "uniforme d'ambulancier et trousse",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "warm brown eyes",
+   "feature": "deep dimples",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c073",
@@ -2114,7 +2546,13 @@
    "type": "gloves",
    "color": "coral red"
   },
-  "signature": "sweat à capuche et gants de boxe"
+  "signature": "sweat à capuche et gants de boxe",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "warm brown eyes",
+   "feature": "a gap-toothed smile",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c074",
@@ -2143,7 +2581,13 @@
    "type": "backpack",
    "color": "fire red"
   },
-  "signature": "chapeau d'aventurier et sac à dos"
+  "signature": "chapeau d'aventurier et sac à dos",
+  "face": {
+   "shape": "round face",
+   "eyes": "dark brown eyes",
+   "feature": "big bright eyes",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c075",
@@ -2172,7 +2616,13 @@
    "type": "tie",
    "color": "coral red"
   },
-  "signature": "chemise, cravate et lunettes"
+  "signature": "chemise, cravate et lunettes",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "hazel eyes",
+   "feature": "deep wrinkles from years of smiling",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c076",
@@ -2201,7 +2651,13 @@
    "type": "gloves",
    "color": "olive green"
   },
-  "signature": "sweat à capuche et gants de boxe"
+  "signature": "sweat à capuche et gants de boxe",
+  "face": {
+   "shape": "oval face",
+   "eyes": "amber eyes",
+   "feature": "freckles across the nose",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c077",
@@ -2230,7 +2686,13 @@
    "type": "headset",
    "color": "olive green"
   },
-  "signature": "blouson et casque radio"
+  "signature": "blouson et casque radio",
+  "face": {
+   "shape": "oval face",
+   "eyes": "warm brown eyes",
+   "feature": "freckles across the nose",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c078",
@@ -2259,7 +2721,13 @@
    "type": "mask",
    "color": "burgundy"
   },
-  "signature": "combinaison et masque de plongée sur le front"
+  "signature": "combinaison et masque de plongée sur le front",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "green eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c079",
@@ -2288,7 +2756,13 @@
    "type": "scarf",
    "color": "cream"
   },
-  "signature": "gilet, écharpe et lunettes rondes"
+  "signature": "gilet, écharpe et lunettes rondes",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "blue eyes",
+   "feature": "deep dimples",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c080",
@@ -2317,7 +2791,13 @@
    "type": "tie",
    "color": "mint green"
   },
-  "signature": "costume et cravate"
+  "signature": "costume et cravate",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "hazel eyes",
+   "feature": "a gap-toothed smile",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c081",
@@ -2346,7 +2826,13 @@
    "type": "none",
    "color": "olive green"
   },
-  "signature": "bandeau et débardeur de danse"
+  "signature": "bandeau et débardeur de danse",
+  "face": {
+   "shape": "oval face",
+   "eyes": "hazel eyes",
+   "feature": "long eyelashes",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c082",
@@ -2375,7 +2861,13 @@
    "type": "notebook",
    "color": "teal"
   },
-  "signature": "gilet en laine et cahier"
+  "signature": "gilet en laine et cahier",
+  "face": {
+   "shape": "round face",
+   "eyes": "grey eyes",
+   "feature": "a gap-toothed smile",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c083",
@@ -2404,7 +2896,13 @@
    "type": "none",
    "color": "plum"
   },
-  "signature": "tablier enfariné et bandana"
+  "signature": "tablier enfariné et bandana",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "grey eyes",
+   "feature": "long eyelashes",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c084",
@@ -2433,7 +2931,13 @@
    "type": "none",
    "color": "burgundy"
   },
-  "signature": "casque de chantier et gilet fluo"
+  "signature": "casque de chantier et gilet fluo",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "deep brown eyes",
+   "feature": "sun-kissed cheeks",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c085",
@@ -2462,7 +2966,13 @@
    "type": "headphones",
    "color": "white"
   },
-  "signature": "sweat à capuche et casque audio"
+  "signature": "sweat à capuche et casque audio",
+  "face": {
+   "shape": "oval face",
+   "eyes": "hazel eyes",
+   "feature": "a small beauty mark on the cheek",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c086",
@@ -2491,7 +3001,13 @@
    "type": "tie",
    "color": "navy blue"
   },
-  "signature": "costume clair et cravate"
+  "signature": "costume clair et cravate",
+  "face": {
+   "shape": "round face",
+   "eyes": "hazel eyes",
+   "feature": "freckles across the nose",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c087",
@@ -2520,7 +3036,13 @@
    "type": "mask",
    "color": "lavender"
   },
-  "signature": "combinaison et masque de plongée sur le front"
+  "signature": "combinaison et masque de plongée sur le front",
+  "face": {
+   "shape": "oval face",
+   "eyes": "dark brown eyes",
+   "feature": "laugh lines around the eyes",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c088",
@@ -2549,7 +3071,13 @@
    "type": "headphones",
    "color": "mustard yellow"
   },
-  "signature": "bomber, casque de DJ et lunettes noires"
+  "signature": "bomber, casque de DJ et lunettes noires",
+  "face": {
+   "shape": "heart-shaped face",
+   "eyes": "deep brown eyes",
+   "feature": "a small beauty mark on the cheek",
+   "expression": "a wary, hesitant look"
+  }
  },
  {
   "id": "c089",
@@ -2578,7 +3106,13 @@
    "type": "toolbelt",
    "color": "sky blue"
   },
-  "signature": "chemise à carreaux et ceinture à outils"
+  "signature": "chemise à carreaux et ceinture à outils",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "hazel eyes",
+   "feature": "deep dimples",
+   "expression": "a sly, knowing half-smile"
+  }
  },
  {
   "id": "c090",
@@ -2607,7 +3141,13 @@
    "type": "none",
    "color": "safety yellow"
   },
-  "signature": "veste à bandes jaunes et casque rouge"
+  "signature": "veste à bandes jaunes et casque rouge",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "amber eyes",
+   "feature": "a slightly crooked nose",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c091",
@@ -2636,7 +3176,13 @@
    "type": "whistle",
    "color": "mint green"
   },
-  "signature": "débardeur rouge de sauveteur et sifflet"
+  "signature": "débardeur rouge de sauveteur et sifflet",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "deep brown eyes",
+   "feature": "a small beauty mark on the cheek",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c092",
@@ -2665,7 +3211,13 @@
    "type": "none",
    "color": "safety yellow"
   },
-  "signature": "combinaison blanche et chapeau à voilette"
+  "signature": "combinaison blanche et chapeau à voilette",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "amber eyes",
+   "feature": "weathered sun-tanned skin",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c093",
@@ -2694,7 +3246,13 @@
    "type": "gloves",
    "color": "sky blue"
   },
-  "signature": "blouson de cuir et gants"
+  "signature": "blouson de cuir et gants",
+  "face": {
+   "shape": "round face",
+   "eyes": "brown eyes",
+   "feature": "a slightly crooked nose",
+   "expression": "a warm, kind smile"
+  }
  },
  {
   "id": "c094",
@@ -2723,7 +3281,13 @@
    "type": "mask",
    "color": "cream"
   },
-  "signature": "combinaison et masque de plongée sur le front"
+  "signature": "combinaison et masque de plongée sur le front",
+  "face": {
+   "shape": "soft round cheeks",
+   "eyes": "hazel eyes",
+   "feature": "deep dimples",
+   "expression": "a cool, unreadable face"
+  }
  },
  {
   "id": "c095",
@@ -2752,7 +3316,13 @@
    "type": "scarf",
    "color": "safety yellow"
   },
-  "signature": "toque et veste de chef"
+  "signature": "toque et veste de chef",
+  "face": {
+   "shape": "round face",
+   "eyes": "deep brown eyes",
+   "feature": "long eyelashes",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c096",
@@ -2781,7 +3351,13 @@
    "type": "medkit",
    "color": "cream"
   },
-  "signature": "uniforme d'ambulancier et trousse"
+  "signature": "uniforme d'ambulancier et trousse",
+  "face": {
+   "shape": "oval face",
+   "eyes": "dark brown eyes",
+   "feature": "deep dimples",
+   "expression": "a fearless, confident grin"
+  }
  },
  {
   "id": "c097",
@@ -2810,7 +3386,13 @@
    "type": "tie",
    "color": "fire red"
   },
-  "signature": "chemise, cravate et lunettes"
+  "signature": "chemise, cravate et lunettes",
+  "face": {
+   "shape": "oval face",
+   "eyes": "brown eyes",
+   "feature": "sun-kissed cheeks",
+   "expression": "a steady, dependable look"
+  }
  },
  {
   "id": "c098",
@@ -2839,7 +3421,13 @@
    "type": "whistle",
    "color": "forest green"
   },
-  "signature": "débardeur rouge de sauveteur et sifflet"
+  "signature": "débardeur rouge de sauveteur et sifflet",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "hazel eyes",
+   "feature": "thick expressive eyebrows",
+   "expression": "a nervous, fidgety smile"
+  }
  },
  {
   "id": "c099",
@@ -2868,7 +3456,13 @@
    "type": "headphones",
    "color": "fire red"
   },
-  "signature": "bomber, casque de DJ et lunettes noires"
+  "signature": "bomber, casque de DJ et lunettes noires",
+  "face": {
+   "shape": "square jaw",
+   "eyes": "grey eyes",
+   "feature": "a small beauty mark on the cheek",
+   "expression": "a calm, relaxed expression"
+  }
  },
  {
   "id": "c100",
@@ -2897,6 +3491,12 @@
    "type": "camera",
    "color": "sky blue"
   },
-  "signature": "chemise à fleurs et appareil photo"
+  "signature": "chemise à fleurs et appareil photo",
+  "face": {
+   "shape": "long face with high cheekbones",
+   "eyes": "deep brown eyes",
+   "feature": "a strong straight nose",
+   "expression": "a steady, dependable look"
+  }
  }
 ]
