@@ -12,9 +12,11 @@
     "replay": "tsx src/cli/export-replay.ts",
     "looks": "tsx src/cli/gen-looks.ts",
     "ai": "NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 tsx src/cli/ai-write.ts",
-    "sheets": "tsx src/cli/gen-sheets.ts"
+    "sheets": "tsx src/cli/gen-sheets.ts",
+    "live": "NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 tsx src/cli/live.ts"
   },
   "devDependencies": {
+    "@supabase/supabase-js": "^2.118.0",
     "@types/node": "^22.10.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",

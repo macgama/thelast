@@ -652,6 +652,12 @@ export class Season {
       const amount = this.rng.chance(0.05) ? 100 : this.rng.int(1, 5); // quelques gros donateurs
       sparks.set(target.id, [...(sparks.get(target.id) ?? []), amount]);
     }
+    // Vrai direct : chaque colis d'un vrai spectateur compte comme une étincelle de 9 (racine : 3)
+    const real = this.config.realGifts?.[String(dayOf(this.tick))] ?? {};
+    for (const [id, items] of Object.entries(real)) {
+      const n = Object.values(items).reduce((a, b) => a + (b ?? 0), 0);
+      if (n > 0 && this.state.get(id)?.alive) sparks.set(id, [...(sparks.get(id) ?? []), ...Array(n).fill(9)]);
+    }
     // Rendement décroissant : la racine carrée de chaque don, puis somme. 100 petits fans > 1 gros donateur.
     const score = (list: number[]) => list.reduce((a, x) => a + Math.sqrt(x), 0);
     const threshold = 22;
@@ -659,7 +665,10 @@ export class Season {
       const sc = score(sparks.get(s.id) ?? []);
       if (sc < threshold) continue;
       // 1 colis maximum par personnage et par jour, quel que soit le montant
-      const item: Item = s.thirst > 50 ? "flask" : s.health < 60 ? "medkit" : s.hunger > 50 ? "rations" : this.rng.pick(this.config.gifts.catalog);
+      const auto: Item = s.thirst > 50 ? "flask" : s.health < 60 ? "medkit" : s.hunger > 50 ? "rations" : this.rng.pick(this.config.gifts.catalog);
+      // l'objet le plus demandé par les vrais spectateurs, s'il y en a
+      const asked = Object.entries(real[s.id] ?? {}).filter(([, n]) => (n ?? 0) > 0).sort((a, b) => (b[1] ?? 0) - (a[1] ?? 0) || a[0].localeCompare(b[0]))[0];
+      const item: Item = asked ? (asked[0] as Item) : auto;
       if (this.rng.chance(this.config.gifts.deliveryRate)) {
         s.inventory.push(item);
         s.morale = clamp(s.morale + 15); // se savoir soutenu remonte le moral
@@ -711,7 +720,14 @@ export class Season {
       const id = threatened[Math.min(i, threatened.length - 1)].id;
       votes.set(id, votes.get(id)! + 1);
     }
-    const ranked = [...votes.entries()].sort((a, b) => b[1] - a[1]);
+    // Vrai direct : les voix des vrais spectateurs décident (le public simulé a quand même tiré ses dés,
+    // pour que le reste de la saison ne change que par le résultat du vote). Égalité : le plus populaire est sauvé.
+    const real = this.config.realVotes?.[String(dayOf(this.tick))];
+    if (real && threatened.some((s) => (real[s.id] ?? 0) > 0)) {
+      for (const s of threatened) votes.set(s.id, real[s.id] ?? 0);
+    }
+    const score = (id: string) => { const s = this.state.get(id)!; return s.popularity + s.spotlight; };
+    const ranked = [...votes.entries()].sort((a, b) => b[1] - a[1] || score(b[0]) - score(a[0]) || a[0].localeCompare(b[0]));
     const out = this.state.get(ranked[ranked.length - 1][0])!;
     const saved = ranked.slice(0, -1).map(([id]) => id);
     for (const id of saved) this.state.get(id)!.popularity += 5;

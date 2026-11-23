@@ -172,6 +172,13 @@ export interface SeasonConfig {
     simulatedViewers: number;
   };
   needs: { thirstPerHour: number; hungerPerHour: number; energyPerHour: number };
+  /**
+   * Vrai direct : votes des vrais spectateurs, par jour puis par candidat (nombre de voix « je le sauve »).
+   * Quand un jour a au moins une voix, ce sont elles qui décident qui part ; sinon, le public simulé vote.
+   */
+  realVotes?: Record<string, Record<string, number>>;
+  /** Vrai direct : colis des vrais spectateurs, par jour puis par candidat (objet choisi -> nombre de colis). */
+  realGifts?: Record<string, Record<string, Partial<Record<Item, number>>>>;
 }
 
 export interface SeasonResult {

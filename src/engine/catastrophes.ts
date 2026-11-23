@@ -35,3 +35,14 @@ export function pickVariant(rng: Rng, family: string, zone: ZoneId | null, night
   for (const c of list) if ((x -= c.weight ?? 1) < 0) return c.id;
   return list[list.length - 1].id;
 }
+
+/**
+ * Remplace le catalogue (vrai direct : il vient du back-office). Les tableaux sont modifiés sur place
+ * pour que tous les modules qui les ont importés voient le nouveau catalogue.
+ */
+export function loadCatastrophes(cat: { individual: Catastrophe[]; island: Catastrophe[] }) {
+  INDIVIDUAL.splice(0, INDIVIDUAL.length, ...cat.individual);
+  ISLAND.splice(0, ISLAND.length, ...cat.island);
+  for (const k of Object.keys(CATASTROPHES)) delete CATASTROPHES[k];
+  for (const c of [...INDIVIDUAL, ...ISLAND]) CATASTROPHES[c.id] = c;
+}
