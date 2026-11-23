@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n>Nouveau mot de passe</title>
+<meta name="robots" content="noindex">
+<script src="config.js"></script>
+<script src="vendor/supabase.js"></script>
+<script src="i18n.js"></script>
+<script src="i18n-en.js"></script>
+<script src="live.js"></script>
+<style>
+:root { --ink: #0b1820; --deep: #10262f; --line: #24505e; --sand: #e9cf98; --mist: #9fb9bd; --torch: #ff8a3d; --safe: #62d6a0; --danger: #ff5b6b; }
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--ink); color: var(--sand); font: 16px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 420px; margin: 0 auto; padding: 48px 16px; }
+.logo { font-weight: 800; letter-spacing: .18em; text-decoration: none; color: var(--sand); }
+.logo b { color: var(--torch); }
+.card { margin-top: 24px; background: var(--deep); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+h1 { font-size: 22px; margin: 0 0 8px; }
+p { color: var(--mist); margin: 0 0 14px; }
+label { display: block; font-size: 14px; color: var(--mist); margin-bottom: 6px; }
+input { width: 100%; font: inherit; color: var(--sand); background: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 44px; }
+button, .btn { display: inline-block; margin-top: 14px; width: 100%; text-align: center; font: inherit; font-weight: 700; border: 0; border-radius: 10px; padding: 12px; min-height: 44px; background: var(--torch); color: #1a0f05; cursor: pointer; text-decoration: none; }
+.err { color: var(--danger); min-height: 1.5em; margin: 10px 0 0; }
+.ok { color: var(--safe); }
+</style>
+</head>
+<body>
+<main>
+  <a class="logo" href="index.html">THE <b>LAST</b></a>
+  <div class="card" id="box"><p data-i18n>Chargement…</p></div>
+</main>
+<script>
+(async function () {
+  const _ = window.t, LV = window.TheLastLive, box = document.getElementById("box");
+  const done = (msg) => { box.innerHTML = `<h1>${msg}</h1><a class="btn" href="survivor.html">${_("Retour à l'émission")}</a>`; };
+  if (!LV?.enabled) return done(_("Les comptes ne sont pas encore ouverts."));
+  await LV.init();
+  // le lien reçu par e-mail ouvre une session temporaire : on demande le nouveau mot de passe
+  await new Promise((r) => setTimeout(r, 400));
+  if (!LV.user) {
+    box.innerHTML = `<h1>${_("Lien expiré")}</h1><p>${_("Ce lien n'est plus valable. Redemande un lien depuis « Mot de passe oublié ? ».")}</p><a class="btn" href="survivor.html">${_("Retour à l'émission")}</a>`;
+    return;
+  }
+  box.innerHTML = `<h1>${_("Nouveau mot de passe")}</h1><p>${_("Choisis ton nouveau mot de passe (6 caractères minimum).")}</p>
+    <form id="f" novalidate><label for="pw">${_("Nouveau mot de passe")}</label><input id="pw" type="password" autocomplete="new-password" minlength="6" required>
+    <p class="err" id="err" role="alert"></p><button type="submit">${_("Enregistrer")}</button></form>`;
+  document.getElementById("pw").focus();
+  document.getElementById("f").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const pw = document.getElementById("pw").value, err = document.getElementById("err");
+    if (pw.length < 6) return (err.textContent = _("Le mot de passe doit faire au moins 6 caractères."));
+    const { error } = await LV.sb.auth.updateUser({ password: pw });
+    if (error) return (err.textContent = LV.errText(error));
+    done(_("Mot de passe changé ✓"));
+  });
+})();
+</script>
+</body>
+</html>

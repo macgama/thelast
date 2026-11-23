@@ -1,0 +1,38 @@
+# Moteur du vrai direct : toutes les 10 minutes, il fait avancer la saison en cours, compte les votes
+# et les colis, publie les heures déjà passées et fait écrire les textes par Gemini.
+# Secrets nécessaires (Settings > Secrets and variables > Actions > onglet « Secrets ») :
+#   SUPABASE_SECRET_KEY (obligatoire) et GEMINI_API_KEY (facultatif).
+# Variable : SUPABASE_URL (la même que pour le site).
+# GitHub ne lance les tâches programmées que depuis la branche main, et parfois avec quelques minutes de retard.
+name: Direct
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: direct
+  cancel-in-progress: false
+
+jobs:
+  engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Faire avancer la saison
+        env:
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AI_BUDGET_MS: "360000"
+        run: npm run live

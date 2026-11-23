@@ -7,8 +7,9 @@ import { LiveStore, Rest } from "../live/store";
 
 const url = process.env.SUPABASE_URL, key = process.env.SUPABASE_SECRET_KEY;
 if (!url || !key) {
-  console.log("Il manque SUPABASE_URL ou SUPABASE_SECRET_KEY (voir docs/mise-en-ligne.md, étape « Secrets GitHub »).");
-  process.exit(1);
+  // pas encore configuré : on s'arrête sans erreur (sinon GitHub enverrait un e-mail d'échec toutes les 10 minutes)
+  console.log("Il manque SUPABASE_URL ou SUPABASE_SECRET_KEY (voir le guide de mise en ligne, étape « Secrets GitHub »). Rien à faire.");
+  process.exit(0);
 }
 const gem = process.env.GEMINI_API_KEY || process.env.GEMINI_VIA_PROXY ? new Gemini(JSON.parse(readFileSync("config/ai.json", "utf8"))) : null;
 if (!gem) console.log("Pas de clé Gemini : les textes écrits à la main seront utilisés.");

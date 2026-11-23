@@ -634,4 +634,14 @@ window.I18N && window.I18N.add({
   "Le tirage change à chaque fois : relance-le pour voir d'autres chanceux.": "The draw changes every time: run it again to see other lucky ones.",
   "Tirés au sort · {n}": "Drawn at random · {n}",
   "Relancer le tirage": "Run the draw again",
+  // ---------- Mot de passe (compte.html) ----------
+  "Nouveau mot de passe": "New password",
+  "Chargement…": "Loading…",
+  "Retour à l'émission": "Back to the show",
+  "Les comptes ne sont pas encore ouverts.": "Accounts aren't open yet.",
+  "Lien expiré": "Link expired",
+  "Ce lien n'est plus valable. Redemande un lien depuis « Mot de passe oublié ? ».": "This link is no longer valid. Request a new one from “Forgot your password?”.",
+  "Choisis ton nouveau mot de passe (6 caractères minimum).": "Choose your new password (at least 6 characters).",
+  "Enregistrer": "Save",
+  "Mot de passe changé ✓": "Password changed ✓",
 });

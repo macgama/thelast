@@ -21,6 +21,23 @@ Télé-réalité 100% IA : 50 personnages IA vivent une aventure de 7 jours, sui
 - [Exemple de saison en français](exemples/saison-42.fr.md)
 - [Example season in English](exemples/saison-42.en.md)
 
+## Le vrai direct (saison de test)
+
+Le site est prévu pour tourner gratuitement : **GitHub Pages** (le dossier `demo/`), **Supabase** (comptes, votes, colis, back-office) et **GitHub Actions** (le moteur passe toutes les 10 minutes). Tout est expliqué pas à pas dans [`docs/mise-en-ligne.md`](docs/mise-en-ligne.md).
+
+| Élément | Fichier |
+| --- | --- |
+| Base de données (à coller dans Supabase > SQL Editor) | [`supabase/schema.sql`](supabase/schema.sql) |
+| Moteur du direct : rejoue la saison avec les vrais votes et colis, publie chaque heure à son heure | [`src/live/`](src/live/), `npm run live` |
+| Comptes, vote du soir, colis, mises à jour chaque minute | [`demo/live.js`](demo/live.js) |
+| Back-office (saisons, personnages, catastrophes, spectateurs, réglages) | [`demo/admin.html`](demo/admin.html) |
+| Version anglaise : le texte français sert de clé, la traduction est dans [`demo/i18n-en.js`](demo/i18n-en.js) ; `npm test` signale tout texte oublié | [`demo/i18n.js`](demo/i18n.js) |
+| Mise en ligne du site / moteur toutes les 10 minutes | [`.github/workflows/site.yml`](.github/workflows/site.yml), [`.github/workflows/direct.yml`](.github/workflows/direct.yml) |
+
+Sans réglages Supabase (`demo/config.js` vide), le site reste la démo : une saison déjà simulée, sans comptes.
+
+Pour tester le direct en local, sans compte Supabase (il faut un Postgres local) : `npx tsx tests/supabase/scenario.ts`, puis ouvrir http://localhost:54321/survivor.html.
+
 ## Comment ça marche
 
 | Élément | Fonctionnement |

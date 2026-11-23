@@ -1,0 +1,50 @@
+# Met le site en ligne sur GitHub Pages à chaque changement de la branche main (ou à la demande).
+# Le fichier demo/config.js est réécrit avec l'adresse Supabase et la clé PUBLIQUE, rangées dans
+# Settings > Secrets and variables > Actions > onglet « Variables » : SUPABASE_URL et SUPABASE_PUBLISHABLE_KEY.
+# Sans ces variables, le site reste la démo (saison déjà simulée, sans comptes).
+name: Site en ligne
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Préparer le site
+        env:
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          mkdir -p demo/vendor
+          cp node_modules/@supabase/supabase-js/dist/umd/supabase.js demo/vendor/supabase.js
+          node -e 'const c={supabaseUrl:(process.env.SUPABASE_URL||"").trim().replace(/\/+$/,""),supabaseKey:(process.env.SUPABASE_PUBLISHABLE_KEY||"").trim()};
+          require("fs").writeFileSync("demo/config.js","// Écrit automatiquement par .github/workflows/site.yml\nwindow.THELAST_CONFIG = "+JSON.stringify(c)+";\n");
+          console.log(c.supabaseUrl ? "Site relié à Supabase : "+c.supabaseUrl : "Pas de variables Supabase : le site reste la démo.")'
+          touch demo/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: demo
+      - id: deployment
+        uses: actions/deploy-pages@v4
