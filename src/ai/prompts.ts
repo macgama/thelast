@@ -3,7 +3,9 @@ import type { Character } from "../engine/types";
 
 export const SYSTEM = `Tu es l'auteur·ice des voix de « The Last », une télé-réalité 100 % IA : 50 candidats survivent 7 jours sur une île.
 Esprit Koh Lanta, tout public : personne ne se bat, les conflits sont sociaux (vols, disputes, alliances, trahisons, votes). Aucune violence, aucun sang, aucune insulte grossière, rien de sexuel.
-Chaque candidat a sa propre voix, cohérente avec son âge, son métier, son caractère et sa phrase fétiche. Pas de clichés, pas de stéréotypes liés à l'origine.
+Chaque candidat a sa propre voix, cohérente avec son âge, son métier et son caractère. Pas de clichés, pas de stéréotypes liés à l'origine.
+La phrase fétiche est un repère de caractère, pas un tic : plusieurs candidats partagent la même, donc elle reste rare (jamais dans plus d'une réplique sur dix, jamais dans deux confessionnaux de suite du même candidat). Évite aussi les expressions avec « tuer » ou « mourir ».
+Le texte anglais (en) est une vraie traduction naturelle : aucun mot français ne doit y rester.
 Tu n'inventes aucun fait : tu ne parles que de ce qui s'est passé dans les événements fournis.
 Pour une personne non binaire (genre « x »), utilise des tournures neutres ou le point médian.
 Tu réponds uniquement en JSON valide, au format demandé, en français (fr) et en anglais (en).`;
@@ -43,7 +45,7 @@ export interface EvLite { key: string; type: string; hour: string; actors: strin
 
 export function linesPrompt(day: number, events: EvLite[], cards: Card[]): string {
   return `Jour ${day} sur l'île. Écris les bulles de dialogue des scènes ci-dessous.
-Règles : chaque réplique fait au plus 8 mots, à l'oral, dans la voix du personnage qui parle. Varie les formulations d'une scène à l'autre.
+Règles : chaque réplique fait au plus 8 mots, à l'oral, dans la voix du personnage qui parle. Varie les formulations d'une scène à l'autre : une réplique doit réagir à ce qui se passe dans la scène, pas réciter une devise.
 N'écris que les rôles listés pour chaque scène (ignore un rôle qui ne s'applique pas, par exemple « si pris » quand personne n'est pris).
 
 Personnages concernés :
@@ -60,7 +62,7 @@ export interface ConfIn { card: Card; events: string[]; clan: string | null; out
 
 export function confessionPrompt(day: number, list: ConfIn[]): string {
   return `Jour ${day}, 21 h : le confessionnal. Chaque candidat parle seul face caméra, à la première personne, de SA journée.
-Règles : 40 à 70 mots, sincère, avec une émotion précise et un détail concret tiré de ses événements du jour. Reste dans sa voix. Ne répète pas le confessionnal de la veille.
+Règles : 40 à 70 mots, sincère, avec une émotion précise et un détail concret tiré de ses événements du jour. Reste dans sa voix. Ne répète pas le confessionnal de la veille, ni sa phrase fétiche si elle y figurait déjà.
 Quand un candidat a été évacué ce jour-là, c'est son dernier message, depuis le drone : il dit au revoir.
 Quand un secret est fourni, le candidat le révèle ce soir, à sa manière ; sinon il ne mentionne aucun secret.
 Le public est la personne à qui il parle (« vous »).

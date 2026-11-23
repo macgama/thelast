@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "replay": "tsx src/cli/export-replay.ts",
     "looks": "tsx src/cli/gen-looks.ts",
-    "ai": "tsx src/cli/ai-write.ts",
+    "ai": "NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 tsx src/cli/ai-write.ts",
     "sheets": "tsx src/cli/gen-sheets.ts"
   },
   "devDependencies": {

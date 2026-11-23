@@ -1,0 +1,2662 @@
+{
+ "seed": 42,
+ "model": "gemini-3.1-flash-lite",
+ "lines": {
+  "9:hazard:c073": {
+   "help": {
+    "fr": "Ils sont partout ! C'est affreux !",
+    "en": "They're everywhere! This is horrible!"
+   }
+  },
+  "10:alliance:c076,c029": {
+   "allyAsk": {
+    "fr": "Oscar, on s'allie ? On sera plus forts.",
+    "en": "Oscar, shall we ally? We'll be stronger."
+   },
+   "allyYes": {
+    "fr": "D'accord. Les Requins ne lâcheront rien.",
+    "en": "Agreed. The Sharks won't give up."
+   }
+  },
+  "10:hazard:c099": {
+   "help": {
+    "fr": "Juste quelques insectes. Je reste concentré.",
+    "en": "Just a few insects. Staying focused."
+   }
+  },
+  "10:hazard:c092": {
+   "help": {
+    "fr": "Au secours ! Ils me dévorent toute !",
+    "en": "Help! They're eating me alive!"
+   }
+  },
+  "11:alliance:c031,c057": {
+   "allyAsk": {
+    "fr": "Mila, on fait équipe pour la suite ?",
+    "en": "Mila, shall we team up for this?"
+   },
+   "allyYes": {
+    "fr": "Pourquoi pas. Les Lucioles vont briller.",
+    "en": "Why not. The Fireflies will shine."
+   }
+  },
+  "11:alliance:c032,c010": {
+   "allyAsk": {
+    "fr": "Pas de panique, j'ai un plan.",
+    "en": "Don't panic, I have a plan."
+   },
+   "allyYes": {
+    "fr": "D'accord, un pas après l'autre.",
+    "en": "Alright, one step at a time."
+   }
+  },
+  "12:gift_delivered:c071": {
+   "gift": {
+    "fr": "Une lampe ? Qui a faim ? Moi !",
+    "en": "A light? Who's hungry? Me!"
+   }
+  },
+  "12:gift_delivered:c086": {
+   "gift": {
+    "fr": "Des rations ! Merci infiniment au public !",
+    "en": "Rations! Thank you so much, everyone!"
+   }
+  },
+  "12:gift_delivered:c078": {
+   "gift": {
+    "fr": "Une corde, c'est parfait pour nous.",
+    "en": "A rope, that's perfect for us."
+   }
+  },
+  "12:gift_delivered:c087": {
+   "gift": {
+    "fr": "La carte ! On va enfin s'orienter !",
+    "en": "The map! We can finally find our way!"
+   }
+  },
+  "12:gift_delivered:c020": {
+   "gift": {
+    "fr": "Merci pour l'eau, c'est vital ici.",
+    "en": "Thanks for the water, it's vital here."
+   }
+  },
+  "12:gift_lost:c074,c087": {
+   "lost": {
+    "fr": "Hé ! Mon colis tombe vers toi !",
+    "en": "Hey! My package is falling toward you!"
+   },
+   "interB": {
+    "fr": "Je l'ai ! C'est pour moi maintenant ?",
+    "en": "Got it! Is it mine now?"
+   },
+   "interA": {
+    "fr": "Rends-le moi, c'est mon cadeau !",
+    "en": "Give it back, it's my gift!"
+   }
+  },
+  "12:gift_lost:c006": {
+   "lost": {
+    "fr": "Oh non, il est coincé là-haut !",
+    "en": "Oh no, it's stuck up there!"
+   },
+   "interA": {
+    "fr": "Je vais devoir grimper le chercher.",
+    "en": "I'll have to climb to get it."
+   }
+  },
+  "12:gift_delivered:c040": {
+   "gift": {
+    "fr": "Une lampe ! Le public est génial !",
+    "en": "A flashlight! The audience is awesome!"
+   }
+  },
+  "12:gift_lost:c063,c083": {
+   "lost": {
+    "fr": "Mon colis ! Il part à droite !",
+    "en": "My package! It's going right!"
+   },
+   "interB": {
+    "fr": "Bien reçu. Il est à moi.",
+    "en": "Received. It belongs to me."
+   },
+   "interA": {
+    "fr": "Non, c'est le mien ! Rends-le !",
+    "en": "No, it's mine! Give it back!"
+   }
+  },
+  "13:alliance:c099,c056": {
+   "allyAsk": {
+    "fr": "Sana, on s'unit pour le camp ?",
+    "en": "Sana, shall we unite for the camp?"
+   },
+   "allyYes": {
+    "fr": "D'accord pour les Mangoustes. Soyons ruses.",
+    "en": "Agreed for the Mongooses. Let's be clever."
+   }
+  },
+  "14:clan_join:c071,c056": {
+   "allyAsk": {
+    "fr": "Je peux faire équipe avec vous ?",
+    "en": "Can I team up with you?"
+   },
+   "clanHi": {
+    "fr": "Bienvenue. Chacun pour soi, n'oublie pas.",
+    "en": "Welcome. Every man for himself, remember."
+   },
+   "clanYes": {
+    "fr": "Merci, je serai utile, promis.",
+    "en": "Thanks, I'll be useful, I promise."
+   }
+  },
+  "14:hazard:c029": {
+   "help": {
+    "fr": "Argh ! Ma cheville a tourné !",
+    "en": "Argh! I twisted my ankle!"
+   },
+   "rescue": {
+    "fr": "Vite, appuie-toi sur moi, Oscar !",
+    "en": "Quick, lean on me, Oscar!"
+   },
+   "thanks": {
+    "fr": "Je gère, mais merci quand même.",
+    "en": "I'm fine, but thanks anyway."
+   }
+  },
+  "15:clan_join:c082,c032": {
+   "allyAsk": {
+    "fr": "Je peux rejoindre les Albatros ?",
+    "en": "Can I join the Albatrosses?"
+   },
+   "clanHi": {
+    "fr": "Bien sûr ! J'ai déjà un plan.",
+    "en": "Sure! I already have a plan."
+   },
+   "clanYes": {
+    "fr": "Génial, on va gagner ensemble !",
+    "en": "Great, we're going to win together!"
+   }
+  },
+  "15:hazard:c068": {
+   "help": {
+    "fr": "Des guêpes ! Restez calmes, ne bougez pas !",
+    "en": "Wasps! Stay calm, don't move!"
+   }
+  },
+  "15:challenge:c007,c086,c031": {
+   "win": {
+    "fr": "Oui ! L'immunité est pour moi !",
+    "en": "Yes! Immunity is mine!"
+   }
+  },
+  "17:alliance:c046,c086": {
+   "allyAsk": {
+    "fr": "Louis, doucement mais sûrement, on s'allie ?",
+    "en": "Louis, slowly but surely, shall we team?"
+   },
+   "allyYes": {
+    "fr": "On fonce. Les Tortues arrivent !",
+    "en": "Let's go. The Turtles are coming!"
+   }
+  },
+  "17:hazard:c006": {
+   "help": {
+    "fr": "La liane a lâché ! Je tiens !",
+    "en": "The vine snapped! I'm holding on!"
+   }
+  },
+  "19:alliance:c078,c036": {
+   "allyAsk": {
+    "fr": "Raphaël, on crée le clan des Coraux ?",
+    "en": "Raphael, shall we start the Coral clan?"
+   },
+   "allyYes": {
+    "fr": "On n'a pas le choix. Marché conclu.",
+    "en": "No other choice. It's a deal."
+   }
+  },
+  "19:steal:c016,c041": {
+   "sneak": {
+    "fr": "Voyons ce qu'il cache là-dedans...",
+    "en": "Let's see what he's hiding in there..."
+   },
+   "caughtB": {
+    "fr": "Hé ! Qu'est-ce que tu fais là ?",
+    "en": "Hey! What are you doing there?"
+   },
+   "caughtA": {
+    "fr": "Je... je cherchais juste un pansement.",
+    "en": "I... I was just looking for a bandage."
+   }
+  },
+  "19:steal:c083,c019": {
+   "sneak": {
+    "fr": "Un pas après l'autre, discrètement...",
+    "en": "One step at a time, discreetly..."
+   },
+   "caughtB": {
+    "fr": "Tu touches à mes affaires, là ?",
+    "en": "Are you touching my stuff?"
+   },
+   "caughtA": {
+    "fr": "Je voulais juste t'aider à ranger.",
+    "en": "I just wanted to help you tidy."
+   }
+  },
+  "19:hazard:c038": {
+   "help": {
+    "fr": "Un sanglier ! Même pas peur !",
+    "en": "A boar! I'm not even scared!"
+   }
+  },
+  "19:hazard:c041": {
+   "help": {
+    "fr": "Mes mains ! Ça me gratte trop !",
+    "en": "My hands! They're itching so much!"
+   }
+  },
+  "19:evacuated:c006": {
+   "quit": {
+    "fr": "L'aventure s'arrête ici. Bonne chance !",
+    "en": "The adventure ends here. Good luck!"
+   }
+  },
+  "19:vote_threat:c019,c088,c036": {
+   "saved": {
+    "fr": "Tout le monde a un prix.",
+    "en": "Everyone has a price."
+   },
+   "outVote": {
+    "fr": "C'est le jeu, je pars sans regret.",
+    "en": "That's the game, no regrets."
+   }
+  },
+  "19:campaign:c078,c036": {
+   "plead": {
+    "fr": "Sauvez Raphaël, c'est un atout majeur ici.",
+    "en": "Save Raphaël, he is a major asset here."
+   }
+  },
+  "19:evacuated:c019": {
+   "quit": {
+    "fr": "Ma ruse ne m'a pas sauvé cette fois.",
+    "en": "My cunning did not save me this time."
+   }
+  },
+  "20:steal:c008,c086": {
+   "sneak": {
+    "fr": "Sa lampe me sera bien plus utile.",
+    "en": "His flashlight will be more useful to me."
+   }
+  },
+  "20:steal:c074,c082": {
+   "sneak": {
+    "fr": "Besoin d'énergie, elle ne remarquera rien.",
+    "en": "I need energy, she won't notice anything."
+   }
+  },
+  "20:dispute:c029,c088": {
+   "disA": {
+    "fr": "Écoute-moi, tu ralentis tout le monde ici !",
+    "en": "Listen to me, you're slowing everyone down!"
+   },
+   "disB": {
+    "fr": "Calme-toi, je fais de mon mieux !",
+    "en": "Calm down, I'm doing my best!"
+   },
+   "disA2": {
+    "fr": "Ton mieux ne suffit pas dans la jungle.",
+    "en": "Your best is not enough in the jungle."
+   },
+   "disEnd": {
+    "fr": "D'accord, j'ai compris. On fait comme ça.",
+    "en": "Alright, I understand. We'll do it that way."
+   }
+  },
+  "20:alliance:c024,c083": {
+   "allyAsk": {
+    "fr": "Inès, ensemble on ira plus loin. D'accord ?",
+    "en": "Inès, together we'll go further. Agreed?"
+   },
+   "allyYes": {
+    "fr": "D'accord Samuel. On se serre les coudes.",
+    "en": "Agreed, Samuel. Let's stick together."
+   }
+  },
+  "20:hazard:c078": {
+   "help": {
+    "fr": "Je... j'ai trop chaud... aidez-moi...",
+    "en": "I... I'm too hot... help me..."
+   },
+   "rescue": {
+    "fr": "Tiens bon Moussa, je vais t'aider.",
+    "en": "Hang on Moussa, I'm going to help you."
+   },
+   "thanks": {
+    "fr": "Merci Raphaël. Je te revaudrai ça.",
+    "en": "Thanks Raphaël. I'll pay you back."
+   }
+  },
+  "20:clan_meal:c071,c099,c056": {
+   "meal": {
+    "fr": "On partage tout ? J'ai une faim de loup.",
+    "en": "Are we sharing everything? I'm starving."
+   },
+   "mealThanks": {
+    "fr": "Merci Omar. C'est l'esprit du clan.",
+    "en": "Thanks Omar. That is the clan spirit."
+   }
+  },
+  "20:clan_meal:c031,c057": {
+   "meal": {
+    "fr": "Prends un peu de mes rations, Mila.",
+    "en": "Take some of my rations, Mila."
+   },
+   "mealThanks": {
+    "fr": "Merci Alma, c'est vraiment gentil.",
+    "en": "Thanks Alma, that is really kind."
+   }
+  },
+  "20:clan_meal:c086,c046": {
+   "meal": {
+    "fr": "Tiens Noa, partageons ça ensemble ce soir.",
+    "en": "Here Noa, let's share this together tonight."
+   },
+   "mealThanks": {
+    "fr": "Merci Louis. C'est bon d'être soudés.",
+    "en": "Thanks Louis. It's good to be united."
+   }
+  },
+  "20:clan_meal:c078,c036": {
+   "meal": {
+    "fr": "Même stock pour nous deux, d'accord ?",
+    "en": "Same stock for both of us, okay?"
+   },
+   "mealThanks": {
+    "fr": "C'est plus logique ainsi. Merci Moussa.",
+    "en": "It's more logical this way. Thanks Moussa."
+   }
+  },
+  "20:clan_meal:c076,c029": {
+   "meal": {
+    "fr": "On met tout au milieu pour tenir.",
+    "en": "We put everything together to survive."
+   },
+   "mealThanks": {
+    "fr": "Sage décision. On sera plus forts.",
+    "en": "Wise decision. We will be stronger."
+   }
+  },
+  "20:clan_meal:c010,c032,c082": {
+   "meal": {
+    "fr": "Buvez un peu, cette eau est pour nous.",
+    "en": "Drink some, this water is for us."
+   },
+   "mealThanks": {
+    "fr": "Merci Robin. Un pas après l'autre.",
+    "en": "Thanks Robin. One step at a time."
+   }
+  },
+  "20:clan_meal:c083,c024": {
+   "meal": {
+    "fr": "On mange ensemble pour sceller notre alliance.",
+    "en": "We eat together to seal our alliance."
+   },
+   "mealThanks": {
+    "fr": "Merci Inès. Restons unis pour la suite.",
+    "en": "Thanks Inès. Let's stay united for what's next."
+   }
+  },
+  "21:clan_join:c050,c086": {
+   "allyAsk": {
+    "fr": "Je peux me joindre à vous, les Tortues ?",
+    "en": "Can I join you, Turtles?"
+   },
+   "clanHi": {
+    "fr": "Bienvenue Charlie. Il y a de la place.",
+    "en": "Welcome Charlie. There is room."
+   },
+   "clanYes": {
+    "fr": "Merci ! Ça va bien se passer.",
+    "en": "Thanks! It is going to be fine."
+   }
+  },
+  "21:hazard:c094": {
+   "help": {
+    "fr": "L'eau monte trop vite ! À l'aide !",
+    "en": "The water's rising too fast! Help!"
+   },
+   "thanks": {
+    "fr": "C'était juste, mais j'ai tenu bon.",
+    "en": "That was close, but I held on."
+   }
+  },
+  "22:hazard:c029": {
+   "help": {
+    "fr": "Argh ! Un serpent m'a mordu !",
+    "en": "Argh! A snake bit me!"
+   },
+   "rescue": {
+    "fr": "Ne bouge plus Oscar ! Je m'occupe de toi.",
+    "en": "Don't move Oscar! I'm taking care of you."
+   },
+   "thanks": {
+    "fr": "Merci Iris. Ton intervention a été rapide.",
+    "en": "Thanks Iris. Your intervention was quick."
+   }
+  },
+  "23:hazard:c046": {
+   "help": {
+    "fr": "Attention ! Ça s'écroule ! Aidez-moi !",
+    "en": "Watch out! It's collapsing! Help me!"
+   },
+   "rescue": {
+    "fr": "Je te tiens, Noa ! Ne lâche pas !",
+    "en": "I've got you, Noa! Don't let go!"
+   },
+   "thanks": {
+    "fr": "Merci Charlie. Tu m'as sauvé·e.",
+    "en": "Thanks Charlie. You saved me."
+   }
+  },
+  "23:hazard:c020": {
+   "help": {
+    "fr": "Le courant est trop fort ! Je dérive !",
+    "en": "The current is too strong! I'm drifting!"
+   },
+   "thanks": {
+    "fr": "J'ai réussi à regagner le bord. Ouf.",
+    "en": "I made it back to shore. Phew."
+   }
+  },
+  "23:hazard:c076": {
+   "help": {
+    "fr": "Un mille-pattes ! Enlevez-le, pitié !",
+    "en": "A centipede! Get it off, please!"
+   },
+   "rescue": {
+    "fr": "Bouge pas, je l'écrase avec mon bâton.",
+    "en": "Don't move, I'll crush it with my stick."
+   },
+   "thanks": {
+    "fr": "Merci Oscar. J'ai eu une de ces frousses.",
+    "en": "Thanks Oscar. I was so scared."
+   }
+  },
+  "23:hazard:c040": {
+   "help": {
+    "fr": "Aïe ! Des fourmis rouges ! Ça brûle !",
+    "en": "Ouch! Red ants! It burns!"
+   },
+   "thanks": {
+    "fr": "C'était horrible, mais j'ai pu fuir.",
+    "en": "It was horrible, but I could flee."
+   }
+  },
+  "25:hazard:c085": {
+   "help": {
+    "fr": "Au secours ! Elles m'attaquent partout !",
+    "en": "Help! They're attacking me everywhere!"
+   }
+  },
+  "26:hazard:c100": {
+   "help": {
+    "fr": "Hé ! C'est quoi cette bête ?",
+    "en": "Hey! What is that thing?"
+   }
+  },
+  "26:hazard:c008": {
+   "help": {
+    "fr": "Aïe ! Un serpent m'a mordue !",
+    "en": "Ouch! A snake just bit me!"
+   }
+  },
+  "26:hazard:c009": {
+   "help": {
+    "fr": "À l'aide ! Il y en a plein !",
+    "en": "Help! There are so many!"
+   }
+  },
+  "27:hazard:c068": {
+   "help": {
+    "fr": "L'eau monte trop vite, aidez-moi !",
+    "en": "The water is rising, help me!"
+   }
+  },
+  "28:evacuated:c020": {
+   "quit": {
+    "fr": "Désolé, la douleur est trop forte.",
+    "en": "Sorry, the pain is too much."
+   }
+  },
+  "28:hazard:c049": {
+   "help": {
+    "fr": "Attention ! La vague m'emporte !",
+    "en": "Watch out! The wave is taking me!"
+   }
+  },
+  "29:hazard:c078": {
+   "help": {
+    "fr": "Je tremble, il fait trop froid.",
+    "en": "I'm shivering, it's way too cold."
+   }
+  },
+  "30:steal:c008,c083": {
+   "sneak": {
+    "fr": "Juste un coup d'œil rapide...",
+    "en": "Just a quick look..."
+   },
+   "caughtB": {
+    "fr": "Léa ? Tu fais quoi là ?",
+    "en": "Léa? What are you doing?"
+   },
+   "caughtA": {
+    "fr": "Je... je cherchais ma gourde.",
+    "en": "I... I was looking for my flask."
+   }
+  },
+  "30:hazard:c009": {
+   "help": {
+    "fr": "Il est énorme ! Au secours !",
+    "en": "It's huge! Help!"
+   }
+  },
+  "31:steal:c046,c024": {
+   "sneak": {
+    "fr": "Il dort, c'est le moment.",
+    "en": "He's sleeping, now's the time."
+   }
+  },
+  "31:hazard:c100": {
+   "help": {
+    "fr": "Ça déborde ! Je perds pied !",
+    "en": "It's overflowing! I'm losing my footing!"
+   }
+  },
+  "31:hazard:c054": {
+   "help": {
+    "fr": "Vite, elles arrivent par nuées !",
+    "en": "Quick, they're coming in swarms!"
+   }
+  },
+  "31:hazard:c068": {
+   "help": {
+    "fr": "Quelle horreur ! Elle est immense !",
+    "en": "How horrific! It's massive!"
+   }
+  },
+  "31:hazard:c073": {
+   "help": {
+    "fr": "Ils me dévorent ! C'est l'enfer !",
+    "en": "They're eating me alive! It's hell!"
+   }
+  },
+  "32:steal:c082,c041": {
+   "sneak": {
+    "fr": "Voyons ce qu'il cache ici.",
+    "en": "Let's see what he's hiding here."
+   },
+   "caughtB": {
+    "fr": "Zara ! Pose ça tout de suite !",
+    "en": "Zara! Put that down right now!"
+   },
+   "caughtA": {
+    "fr": "Oh, je voulais juste ranger.",
+    "en": "Oh, I just wanted to tidy up."
+   }
+  },
+  "32:steal:c049,c038": {
+   "sneak": {
+    "fr": "Discrètement... personne ne verra rien.",
+    "en": "Quietly... nobody will see a thing."
+   }
+  },
+  "32:hazard:c099": {
+   "help": {
+    "fr": "Le courant me tire au large !",
+    "en": "The current is pulling me out!"
+   },
+   "rescue": {
+    "fr": "Attrape ma main ! Je te tiens !",
+    "en": "Grab my hand! I've got you!"
+   },
+   "thanks": {
+    "fr": "Merci Sana. On ne laisse personne derrière.",
+    "en": "Thanks Sana. We leave no one behind."
+   }
+  },
+  "32:hazard:c085": {
+   "help": {
+    "fr": "Je n'arrive plus à nager !",
+    "en": "I can't swim anymore!"
+   }
+  },
+  "33:suspicion:c078,c036": {
+   "suspect": {
+    "fr": "Raphaël cache quelque chose, j'en suis sûr.",
+    "en": "Raphaël is hiding something, I'm sure."
+   }
+  },
+  "33:hazard:c069": {
+   "help": {
+    "fr": "Aidez-moi ! C'est trop fort !",
+    "en": "Help me! It's too strong!"
+   }
+  },
+  "33:hazard:c025": {
+   "help": {
+    "fr": "Elles piquent ! Sortez-moi de là !",
+    "en": "They're stinging! Get me out!"
+   }
+  },
+  "33:evacuated:c009": {
+   "quit": {
+    "fr": "Ma jambe brûle trop... j'arrête.",
+    "en": "My leg burns too much... I'm quitting."
+   }
+  },
+  "33:hazard:c033": {
+   "help": {
+    "fr": "J'ai trop mal au ventre !",
+    "en": "My stomach hurts so much!"
+   }
+  },
+  "34:clan_join:c068,c029": {
+   "allyAsk": {
+    "fr": "Oscar, je veux être un Requin.",
+    "en": "Oscar, I want to be a Shark."
+   },
+   "clanHi": {
+    "fr": "Bienvenue. On a besoin de force.",
+    "en": "Welcome. We need strength."
+   },
+   "clanYes": {
+    "fr": "Je suis là pour gagner.",
+    "en": "I am here to win."
+   }
+  },
+  "35:defend:c068,c056,c029": {
+   "sneak": {
+    "fr": "Juste voir s'il a un collier...",
+    "en": "Just seeing if he has a necklace..."
+   },
+   "defend": {
+    "fr": "Touche pas au sac d'Oscar, Sana.",
+    "en": "Don't touch Oscar's bag, Sana."
+   },
+   "backOff": {
+    "fr": "C'est bon, je m'en vais.",
+    "en": "Fine, I'm leaving."
+   },
+   "thanks": {
+    "fr": "Merci Kenji. La confiance se mérite.",
+    "en": "Thanks Kenji. Trust is earned."
+   }
+  },
+  "35:clan_join:c090,c078": {
+   "allyAsk": {
+    "fr": "Moussa, les Coraux me plaisent bien.",
+    "en": "Moussa, I like the Corals."
+   },
+   "clanHi": {
+    "fr": "Ta force nous sera utile, Margaux.",
+    "en": "Your strength will be useful, Margaux."
+   },
+   "clanYes": {
+    "fr": "On ne laisse personne derrière.",
+    "en": "We leave no one behind."
+   }
+  },
+  "35:clan_join:c016,c086": {
+   "allyAsk": {
+    "fr": "Louis, je peux rejoindre les Tortues ?",
+    "en": "Louis, can I join the Turtles?"
+   },
+   "clanHi": {
+    "fr": "Avec plaisir, Rafael. Viens là.",
+    "en": "With pleasure, Rafael. Come here."
+   },
+   "clanYes": {
+    "fr": "Merci. La confiance, ça se mérite.",
+    "en": "Thanks. Trust is earned."
+   }
+  },
+  "36:alliance:c054,c040": {
+   "allyAsk": {
+    "fr": "Aaliyah, on fonde les Iguanes ?",
+    "en": "Aaliyah, shall we start the Iguanas?"
+   },
+   "allyYes": {
+    "fr": "Marché conclu. Respire. Observe. Agis.",
+    "en": "Deal. Breathe. Observe. Act."
+   }
+  },
+  "36:hazard:c031": {
+   "help": {
+    "fr": "Je coule ! À l'aide !",
+    "en": "I'm sinking! Help!"
+   },
+   "rescue": {
+    "fr": "Tiens bon ! Je t'attrape !",
+    "en": "Hang on! I'm catching you!"
+   },
+   "thanks": {
+    "fr": "Merci Mila... c'était moins une.",
+    "en": "Thanks Mila... that was close."
+   }
+  },
+  "36:hazard:c044": {
+   "help": {
+    "fr": "Aïe ! Un serpent dans les ruines !",
+    "en": "Ouch! A snake in the ruins!"
+   }
+  },
+  "36:hazard:c062": {
+   "help": {
+    "fr": "Ah ! Je suis tombée !",
+    "en": "Ah! I just fell!"
+   }
+  },
+  "36:hazard:c063": {
+   "help": {
+    "fr": "Vite ! Ces guêpes attaquent !",
+    "en": "Quick! These wasps are attacking!"
+   }
+  },
+  "36:gift_delivered:c054": {
+   "gift": {
+    "fr": "Merci pour ce kit de secours.",
+    "en": "Thank you for this first aid kit."
+   }
+  },
+  "36:gift_delivered:c008": {
+   "gift": {
+    "fr": "Une corde ! Merci pour l'avantage.",
+    "en": "A rope! Thanks for the advantage."
+   }
+  },
+  "36:gift_delivered:c078": {
+   "gift": {
+    "fr": "Merci. La sécurité avant tout.",
+    "en": "Thank you. Safety comes first."
+   }
+  },
+  "36:gift_delivered:c040": {
+   "gift": {
+    "fr": "Merci ! Ça va me rendre célèbre.",
+    "en": "Thanks! This will make me famous."
+   }
+  },
+  "36:gift_delivered:c085": {
+   "gift": {
+    "fr": "Merci ! Je vais pouvoir me soigner.",
+    "en": "Thank you! I can treat myself now."
+   }
+  },
+  "37:clan_join:c007,c031": {
+   "allyAsk": {
+    "fr": "Je peux rejoindre vos Lucioles ?",
+    "en": "Can I join your Fireflies?"
+   },
+   "clanHi": {
+    "fr": "Bien sûr Lucas, bienvenue ici !",
+    "en": "Of course Lucas, welcome here!"
+   },
+   "clanYes": {
+    "fr": "Merci, je me sens mieux.",
+    "en": "Thank you, I feel better."
+   }
+  },
+  "37:evacuated:c062": {
+   "quit": {
+    "fr": "J'ai trop mal... l'aventure s'arrête.",
+    "en": "It hurts too much... the adventure ends."
+   }
+  },
+  "37:hazard:c032": {
+   "help": {
+    "fr": "Oh non ! Quel énorme crabe !",
+    "en": "Oh no! What a huge crab!"
+   }
+  },
+  "38:hazard:c097": {
+   "help": {
+    "fr": "À l'aide ! Le courant est fort !",
+    "en": "Help! The current is too strong!"
+   }
+  },
+  "38:hazard:c024": {
+   "help": {
+    "fr": "Beurk ! Cette eau est immonde !",
+    "en": "Yuck! This water is disgusting!"
+   }
+  },
+  "39:steal:c074,c082": {
+   "sneak": {
+    "fr": "Discrètement... cette corde sera à moi.",
+    "en": "Quietly... this rope will be mine."
+   }
+  },
+  "39:steal:c088,c090": {
+   "sneak": {
+    "fr": "La confiance se mérite, mais j'ai faim.",
+    "en": "Trust is earned, but I'm hungry."
+   }
+  },
+  "39:steal:c041,c033": {
+   "sneak": {
+    "fr": "Désolé Ethan, je dois survivre.",
+    "en": "Sorry Ethan, I have to survive."
+   }
+  },
+  "39:hazard:c016": {
+   "help": {
+    "fr": "Je m'étouffe ! À l'aide !",
+    "en": "I'm choking! Help me!"
+   },
+   "rescue": {
+    "fr": "Respire Rafael, je m'en occupe.",
+    "en": "Breathe Rafael, I've got you."
+   },
+   "thanks": {
+    "fr": "Merci Noa, j'ai eu si peur.",
+    "en": "Thank you Noa, I was so scared."
+   }
+  },
+  "39:hazard:c038": {
+   "help": {
+    "fr": "Attention aux guêpes ! Repliez-vous !",
+    "en": "Watch out for wasps! Fall back!"
+   }
+  },
+  "39:hazard:c088": {
+   "help": {
+    "fr": "Ouh là ! La liane a cassé !",
+    "en": "Whoa! The vine just snapped!"
+   }
+  },
+  "39:hazard:c075": {
+   "help": {
+    "fr": "Aïe ! Quelque chose m'a mordue !",
+    "en": "Ouch! Something just bit me!"
+   }
+  },
+  "39:hazard:c040": {
+   "help": {
+    "fr": "Aïe ! Ces fourmis sont partout !",
+    "en": "Ouch! These ants are everywhere!"
+   },
+   "rescue": {
+    "fr": "Ne bouge plus. Respire. Observe. Agis.",
+    "en": "Don't move. Breathe. Observe. Act."
+   },
+   "thanks": {
+    "fr": "Merci Hana, quelle horreur !",
+    "en": "Thank you Hana, that was awful!"
+   }
+  },
+  "39:hazard:c063": {
+   "help": {
+    "fr": "Un frelon ! Barrez-vous vite !",
+    "en": "A hornet! Get out of here!"
+   }
+  },
+  "39:challenge:c082,c078,c100": {
+   "win": {
+    "fr": "Gagné ! Je suis à l'abri.",
+    "en": "I won! I am safe."
+   }
+  },
+  "41:hazard:c086": {
+   "help": {
+    "fr": "Au secours ! Ils me dévorent !",
+    "en": "Help! They are eating me alive!"
+   },
+   "rescue": {
+    "fr": "Viens par là, on va s'abriter.",
+    "en": "Come this way, let's find cover."
+   },
+   "thanks": {
+    "fr": "Merci Noa, c'était insupportable.",
+    "en": "Thanks Noa, that was unbearable."
+   }
+  },
+  "41:hazard:c087": {
+   "help": {
+    "fr": "Trop de moustiques ici ! Fuyons !",
+    "en": "Too many mosquitoes here! Let's run!"
+   }
+  },
+  "41:hazard:c012": {
+   "help": {
+    "fr": "Attention ! Des rochers tombent !",
+    "en": "Look out! Rocks are falling!"
+   }
+  },
+  "41:hazard:c083": {
+   "help": {
+    "fr": "C'est une invasion ! On part d'ici.",
+    "en": "It's an invasion! Let's get out."
+   }
+  },
+  "41:hazard:c056": {
+   "help": {
+    "fr": "Maudits moustiques ! Vite, dans l'eau !",
+    "en": "Stupid mosquitoes! Quick, into the water!"
+   }
+  },
+  "42:alliance:c088,c097": {
+   "allyAsk": {
+    "fr": "On s'entraide pour former les Orques ?",
+    "en": "Shall we help each other as Orcas?"
+   },
+   "allyYes": {
+    "fr": "D'accord. Doucement, mais sûrement.",
+    "en": "Okay. Slowly, but surely."
+   }
+  },
+  "42:hazard:c054": {
+   "help": {
+    "fr": "Moustiques ! On quitte la plage.",
+    "en": "Mosquitoes! We're leaving the beach."
+   }
+  },
+  "42:hazard:c008": {
+   "help": {
+    "fr": "Ces moustiques... Je ne bougerai pas.",
+    "en": "These mosquitoes... I will not move."
+   }
+  },
+  "42:hazard:c097": {
+   "help": {
+    "fr": "Ma jambe ! À l'aide, je suis tombé !",
+    "en": "My leg! Help, I fell down!"
+   },
+   "rescue": {
+    "fr": "Je suis là, Yusuf. Ne bouge pas.",
+    "en": "I'm here, Yusuf. Don't move."
+   },
+   "thanks": {
+    "fr": "Merci Dmitri. On va s'en sortir.",
+    "en": "Thanks Dmitri. We'll get through this."
+   }
+  },
+  "42:hazard:c090": {
+   "help": {
+    "fr": "La marée monte ! Je dois partir.",
+    "en": "The tide's rising! I must leave."
+   }
+  },
+  "43:alliance:c008,c087": {
+   "allyAsk": {
+    "fr": "Camille, faisons équipe. On sera plus forts.",
+    "en": "Camille, let's team up. We'll be stronger."
+   },
+   "allyYes": {
+    "fr": "D'accord. Un pas après l'autre.",
+    "en": "Okay. One step at a time."
+   }
+  },
+  "43:hazard:c083": {
+   "help": {
+    "fr": "Ça pique de partout ! C'est affreux.",
+    "en": "It stings everywhere! This is awful."
+   }
+  },
+  "43:vote_threat:c064,c010,c053": {
+   "saved": {
+    "fr": "Merci le public ! L'aventure continue.",
+    "en": "Thank you everyone! The adventure continues."
+   },
+   "outVote": {
+    "fr": "C'est fini. Bonne chance à tous.",
+    "en": "It's over. Good luck to everyone."
+   }
+  },
+  "43:campaign:c032,c010": {
+   "plead": {
+    "fr": "S'il vous plaît, sauvez Ayumi ce soir !",
+    "en": "Please, save Ayumi tonight!"
+   }
+  },
+  "43:evacuated:c064": {
+   "quit": {
+    "fr": "Ça va bien se passer pour vous.",
+    "en": "Everything will be fine for you."
+   }
+  },
+  "44:dispute:c100,c094": {
+   "disA": {
+    "fr": "Tu es trop lent, Nils !",
+    "en": "You're too slow, Nils!"
+   },
+   "disB": {
+    "fr": "Je préfère observer avant d'agir.",
+    "en": "I prefer to observe before acting."
+   },
+   "disA2": {
+    "fr": "On n'a pas le temps pour ça !",
+    "en": "We don't have time for that!"
+   },
+   "disEnd": {
+    "fr": "Bon, on fait à ta manière.",
+    "en": "Fine, we'll do it your way."
+   }
+  },
+  "44:hazard:c053": {
+   "help": {
+    "fr": "Des guêpes ! Pas de panique, j'ai un plan.",
+    "en": "Wasps! Don't panic, I have a plan."
+   }
+  },
+  "44:clan_meal:c054,c040": {
+   "meal": {
+    "fr": "Mangeons ensemble ce soir, les Iguanes.",
+    "en": "Let's eat together tonight, Iguanas."
+   },
+   "mealThanks": {
+    "fr": "Merci Hana. C'est ça, la solidarité.",
+    "en": "Thanks Hana. This is what solidarity is."
+   }
+  },
+  "44:clan_meal:c008,c087": {
+   "meal": {
+    "fr": "Léa, prends une part de mes rations.",
+    "en": "Léa, take a share of my rations."
+   },
+   "mealThanks": {
+    "fr": "Merci Camille. On verra bien demain.",
+    "en": "Thanks Camille. We'll see tomorrow."
+   }
+  },
+  "44:clan_meal:c071,c099,c056": {
+   "meal": {
+    "fr": "Qui a faim ? Moi, toujours !",
+    "en": "Who's hungry? Me, always!"
+   },
+   "mealThanks": {
+    "fr": "Merci pour le partage, Omar.",
+    "en": "Thanks for sharing, Omar."
+   }
+  },
+  "44:clan_meal:c031,c007,c057": {
+   "meal": {
+    "fr": "J'ai trouvé de quoi nous nourrir.",
+    "en": "I found something for us to eat."
+   },
+   "mealThanks": {
+    "fr": "Merci Mila. C'est très gentil.",
+    "en": "Thanks Mila. That's very kind."
+   }
+  },
+  "44:clan_meal:c068,c076,c029": {
+   "meal": {
+    "fr": "On partage cette eau entre nous.",
+    "en": "We're sharing this water between us."
+   },
+   "mealThanks": {
+    "fr": "Merci Kenji. Je souris, mais je note.",
+    "en": "Thanks Kenji. I'm smiling, but I'm noting."
+   }
+  },
+  "44:clan_meal:c016,c086,c046,c050": {
+   "meal": {
+    "fr": "Buvez un peu, ça nous fera du bien.",
+    "en": "Drink some, it will do us good."
+   },
+   "mealThanks": {
+    "fr": "Merci Charlie. La confiance se mérite.",
+    "en": "Thanks Charlie. Trust is earned."
+   }
+  },
+  "44:clan_meal:c078,c036,c090": {
+   "meal": {
+    "fr": "On met tout en commun ici.",
+    "en": "We pool everything together here."
+   },
+   "mealThanks": {
+    "fr": "On ne laisse personne derrière.",
+    "en": "We leave no one behind."
+   }
+  },
+  "44:clan_meal:c010,c032,c082": {
+   "meal": {
+    "fr": "Voici quelques fruits pour le groupe.",
+    "en": "Here is some fruit for the group."
+   },
+   "mealThanks": {
+    "fr": "Merci Ayumi. C'est un beau geste.",
+    "en": "Thanks Ayumi. It's a nice gesture."
+   }
+  },
+  "44:clan_meal:c083,c024": {
+   "meal": {
+    "fr": "Partageons nos ressources pour ce soir.",
+    "en": "Let's share our resources for tonight."
+   },
+   "mealThanks": {
+    "fr": "Merci Inès. Un pas après l'autre.",
+    "en": "Thanks Inès. One step at a time."
+   }
+  },
+  "44:clan_meal:c088,c097": {
+   "meal": {
+    "fr": "C'est important de tout partager.",
+    "en": "It's important to share everything."
+   },
+   "mealThanks": {
+    "fr": "Merci Dmitri. On se soutient.",
+    "en": "Thanks Dmitri. We support each other."
+   }
+  },
+  "45:conspire:c078,c068,c036": {
+   "plot1": {
+    "fr": "Kenji, écarte-toi un peu avec moi.",
+    "en": "Kenji, step aside with me a bit."
+   },
+   "plot2": {
+    "fr": "Qu'est-ce qu'il y a, Moussa ?",
+    "en": "What's the matter, Moussa?"
+   },
+   "plot3": {
+    "fr": "Raphaël me semble louche, méfie-toi.",
+    "en": "Raphaël seems fishy to me, watch out."
+   }
+  },
+  "45:evacuated:c087": {
+   "quit": {
+    "fr": "Prenez soin de vous. Bonne chance.",
+    "en": "Take care of yourselves. Good luck."
+   }
+  },
+  "45:hazard:c092": {
+   "help": {
+    "fr": "Un serpent ! J'ai été mordue !",
+    "en": "A snake! I've been bitten!"
+   }
+  },
+  "46:hazard:c100": {
+   "help": {
+    "fr": "Au secours ! Des chauves-souris partout !",
+    "en": "Help! Bats everywhere!"
+   }
+  },
+  "46:hazard:c071": {
+   "help": {
+    "fr": "L'eau monte ! Je vais me noyer !",
+    "en": "The water's rising! I'm going to drown!"
+   },
+   "rescue": {
+    "fr": "Donne-moi ta main, Omar ! Vite !",
+    "en": "Give me your hand, Omar! Quick!"
+   },
+   "thanks": {
+    "fr": "Merci Sana. Tu m'as sauvé.",
+    "en": "Thanks Sana. You saved me."
+   }
+  },
+  "46:hazard:c076": {
+   "help": {
+    "fr": "Argh ! Un serpent m'a eue !",
+    "en": "Argh! A snake got me!"
+   }
+  },
+  "46:hazard:c025": {
+   "help": {
+    "fr": "J'ai si froid... Je tremble.",
+    "en": "I'm so cold... I'm shivering."
+   }
+  },
+  "47:hazard:c053": {
+   "help": {
+    "fr": "Encore des guêpes ? C'est une blague !",
+    "en": "More wasps? This is a joke!"
+   }
+  },
+  "47:hazard:c050": {
+   "help": {
+    "fr": "Le courant est trop fort ! Aide-moi !",
+    "en": "The current is too strong! Help me!"
+   },
+   "rescue": {
+    "fr": "Je te tiens, Charlie ! Ne lâche pas !",
+    "en": "I've got you, Charlie! Don't let go!"
+   },
+   "thanks": {
+    "fr": "Merci Noa. Ça va bien se passer.",
+    "en": "Thanks Noa. Everything will be fine."
+   }
+  },
+  "48:hazard:c094": {
+   "help": {
+    "fr": "Un mille-pattes ! Je garde mon calme.",
+    "en": "A centipede! I am staying calm."
+   }
+  },
+  "48:evacuated:c068": {
+   "quit": {
+    "fr": "Le courant a gagné. Bonne chance.",
+    "en": "The current won. Good luck."
+   }
+  },
+  "48:hazard:c057": {
+   "help": {
+    "fr": "À l'aide ! L'eau m'emporte !",
+    "en": "Help! The water is taking me!"
+   },
+   "thanks": {
+    "fr": "Merci Lucas. J'ai eu si peur.",
+    "en": "Thanks Lucas. I was so scared."
+   }
+  },
+  "49:evacuated:c094": {
+   "quit": {
+    "fr": "J'arrête ici. Respire. Observe. Agis.",
+    "en": "I'm stopping here. Breathe. Observe. Act."
+   }
+  },
+  "49:hazard:c075": {
+   "help": {
+    "fr": "Oups ! Ce rocher glisse énormément.",
+    "en": "Oops! This rock is very slippery."
+   }
+  },
+  "49:evacuated:c092": {
+   "quit": {
+    "fr": "Ces guêpes... Je ne peux plus.",
+    "en": "Those wasps... I can't anymore."
+   }
+  },
+  "50:evacuated:c069": {
+   "quit": {
+    "fr": "Ma jambe me lance. C'est fini.",
+    "en": "My leg is throbbing. It's over."
+   }
+  },
+  "50:hazard:c032": {
+   "help": {
+    "fr": "Attention ! Le courant est trop fort !",
+    "en": "Watch out! The current is too strong!"
+   }
+  },
+  "50:evacuated:c032": {
+   "quit": {
+    "fr": "Désolé·e, la fièvre est trop forte.",
+    "en": "Sorry, the fever is too high."
+   }
+  },
+  "50:hazard:c050": {
+   "help": {
+    "fr": "Je coule ! Aidez-moi, s'il vous plaît !",
+    "en": "I'm sinking! Help me, please!"
+   },
+   "rescue": {
+    "fr": "Je t'ai ! Agrippe-toi à moi !",
+    "en": "I've got you! Grab onto me!"
+   },
+   "thanks": {
+    "fr": "Merci Noa, ça va bien se passer.",
+    "en": "Thanks Noa, it's going to be okay."
+   }
+  },
+  "51:evacuated:c044": {
+   "quit": {
+    "fr": "L'éboulement m'a eu. Adieu l'île.",
+    "en": "The landslide got me. Goodbye island."
+   }
+  },
+  "51:evacuated:c012": {
+   "quit": {
+    "fr": "Cette vague... Je rentre chez moi.",
+    "en": "That wave... I'm going home."
+   }
+  },
+  "54:evacuated:c025": {
+   "quit": {
+    "fr": "Cette araignée... C'était le signe.",
+    "en": "That spider... It was the sign."
+   }
+  },
+  "55:clan_join:c041,c046": {
+   "allyAsk": {
+    "fr": "Noa, je peux intégrer les Tortues ?",
+    "en": "Noa, can I join the Turtles?"
+   },
+   "clanHi": {
+    "fr": "Bienvenue Liam. On a besoin d'aide.",
+    "en": "Welcome Liam. We need help."
+   },
+   "clanYes": {
+    "fr": "Merci. On ne laisse personne derrière.",
+    "en": "Thanks. We leave no one behind."
+   }
+  },
+  "56:steal:c054,c085": {
+   "sneak": {
+    "fr": "Juste une petite vérification discrète...",
+    "en": "Just a quick discreet check..."
+   },
+   "caughtB": {
+    "fr": "Hana ? Qu'est-ce que tu fais là ?",
+    "en": "Hana? What are you doing there?"
+   },
+   "caughtA": {
+    "fr": "Je... Je cherchais juste ma gourde.",
+    "en": "I... I was just looking for my flask."
+   }
+  },
+  "57:suspicion:c090,c036": {
+   "suspect": {
+    "fr": "Il cache quelque chose, ce gamin.",
+    "en": "That kid is hiding something."
+   }
+  },
+  "58:steal:c078,c036": {
+   "sneak": {
+    "fr": "Désolé Raphaël, mais j'ai faim.",
+    "en": "Sorry Raphaël, but I'm hungry."
+   },
+   "betray": {
+    "fr": "Tout le monde a un prix.",
+    "en": "Everyone has a price."
+   }
+  },
+  "58:hazard:c008": {
+   "help": {
+    "fr": "Ma tête tourne... Je reste calme.",
+    "en": "My head is spinning... Staying calm."
+   }
+  },
+  "59:steal:c016,c097": {
+   "sneak": {
+    "fr": "Pardon Yusuf, la survie avant tout.",
+    "en": "Sorry Yusuf, survival comes first."
+   }
+  },
+  "59:evacuated:c097": {
+   "quit": {
+    "fr": "Cette statue... J'ai eu si peur.",
+    "en": "That statue... I was so scared."
+   }
+  },
+  "59:hazard:c085": {
+   "help": {
+    "fr": "Attention ! Ça s'écroule partout !",
+    "en": "Watch out! It's all collapsing!"
+   }
+  },
+  "60:hazard:c083": {
+   "help": {
+    "fr": "Ces guêpes m'attaquent. Restons groupés.",
+    "en": "These wasps are attacking. Stay together."
+   }
+  },
+  "60:evacuated:c083": {
+   "quit": {
+    "fr": "Un pas après l'autre... vers l'avion.",
+    "en": "One step at a time... to the plane."
+   }
+  },
+  "60:hazard:c041": {
+   "help": {
+    "fr": "Les pierres ! Je suis coincé !",
+    "en": "The stones! I'm stuck!"
+   },
+   "rescue": {
+    "fr": "Je dégage ça. Tiens bon !",
+    "en": "I'm clearing this. Hang on!"
+   },
+   "thanks": {
+    "fr": "Merci Charlie. Tu m'as sauvé.",
+    "en": "Thanks Charlie. You saved me."
+   }
+  },
+  "60:hazard:c049": {
+   "help": {
+    "fr": "Eh ! Reviens ici avec ça !",
+    "en": "Hey! Come back here with that!"
+   }
+  },
+  "60:gift_delivered:c100": {
+   "gift": {
+    "fr": "Une trousse ! Merci le public !",
+    "en": "A kit! Thank you, audience!"
+   }
+  },
+  "60:gift_delivered:c054": {
+   "gift": {
+    "fr": "Une gourde ! C'est exactement le plan.",
+    "en": "A bottle! Exactly the plan."
+   }
+  },
+  "60:gift_delivered:c016": {
+   "gift": {
+    "fr": "Merci ! J'en avais vraiment besoin.",
+    "en": "Thanks! I really needed this."
+   }
+  },
+  "60:gift_lost:c046,c086": {
+   "lost": {
+    "fr": "Non ! Mon colis tombe là-bas !",
+    "en": "No! My package is falling there!"
+   },
+   "interB": {
+    "fr": "C'est pour moi ! Quelle chance !",
+    "en": "It's for me! What luck!"
+   },
+   "interA": {
+    "fr": "Louis, c'est mon nom dessus !",
+    "en": "Louis, that's my name on it!"
+   }
+  },
+  "60:gift_delivered:c010": {
+   "gift": {
+    "fr": "Des rations ? Merci infiniment.",
+    "en": "Rations? Thank you so much."
+   }
+  },
+  "60:gift_lost:c024,c090": {
+   "lost": {
+    "fr": "Non ! Mon colis s'envole !",
+    "en": "No! My package is flying away!"
+   },
+   "interB": {
+    "fr": "Je l'ai attrapé ! Quel réflexe.",
+    "en": "I caught it! What a reflex."
+   },
+   "interA": {
+    "fr": "Margaux, c'est à moi, s'il te plaît.",
+    "en": "Margaux, that belongs to me, please."
+   }
+  },
+  "60:gift_delivered:c082": {
+   "gift": {
+    "fr": "Merci pour la corde, chers spectateurs !",
+    "en": "Thanks for the rope, dear viewers!"
+   }
+  },
+  "60:gift_delivered:c075": {
+   "gift": {
+    "fr": "Une trousse de secours ! Merci beaucoup !",
+    "en": "A first aid kit! Thank you so much!"
+   }
+  },
+  "60:gift_delivered:c050": {
+   "gift": {
+    "fr": "C'est génial ! Merci à tout le monde.",
+    "en": "This is great! Thanks everyone."
+   }
+  },
+  "61:steal:c016,c088": {
+   "sneak": {
+    "fr": "Dmitri dort... je prends juste ça.",
+    "en": "Dmitri is asleep... taking this."
+   },
+   "betray": {
+    "fr": "Il n'en saura jamais rien.",
+    "en": "He will never know a thing."
+   }
+  },
+  "61:defend:c056,c073,c099": {
+   "sneak": {
+    "fr": "Voyons ce que Victor cache ici...",
+    "en": "Let's see what Victor is hiding here..."
+   },
+   "defend": {
+    "fr": "Vera ! Touche pas à ce sac.",
+    "en": "Vera! Don't touch that bag."
+   },
+   "backOff": {
+    "fr": "Désolée, je cherchais juste un truc.",
+    "en": "Sorry, I was just looking for something."
+   },
+   "thanks": {
+    "fr": "Merci Sana. On ne laisse personne derrière.",
+    "en": "Thanks Sana. We leave no one behind."
+   }
+  },
+  "61:hazard:c071": {
+   "help": {
+    "fr": "Ils me dévorent ! Au secours !",
+    "en": "They're eating me alive! Help!"
+   }
+  },
+  "62:steal:c016,c007": {
+   "sneak": {
+    "fr": "Lucas regarde ailleurs... c'est le moment.",
+    "en": "Lucas is looking away... now's the time."
+   },
+   "caughtB": {
+    "fr": "Hé ! Qu'est-ce que tu fabriques ?",
+    "en": "Hey! What are you doing?"
+   },
+   "caughtA": {
+    "fr": "Je... je rangeais juste tes affaires.",
+    "en": "I... I was just tidying your things."
+   }
+  },
+  "62:clan_join:c085,c054": {
+   "allyAsk": {
+    "fr": "Je peux me joindre à vous ?",
+    "en": "Can I join you guys?"
+   },
+   "clanHi": {
+    "fr": "Bienvenue chez les Iguanes, Selin.",
+    "en": "Welcome to the Iguanas, Selin."
+   },
+   "clanYes": {
+    "fr": "Merci ! Si ça ne me tue pas...",
+    "en": "Thanks! If it doesn't kill me..."
+   }
+  },
+  "62:hazard:c016": {
+   "help": {
+    "fr": "L'eau monte trop vite ! À l'aide !",
+    "en": "The water's rising too fast! Help!"
+   }
+  },
+  "63:evacuated:c008": {
+   "quit": {
+    "fr": "Ces fourmis... je n'en peux plus.",
+    "en": "Those ants... I can't take it anymore."
+   }
+  },
+  "63:challenge:c053,c016,c024": {
+   "win": {
+    "fr": "Victoire ! Pas de panique, j'avais un plan.",
+    "en": "Victory! Don't panic, I had a plan."
+   }
+  },
+  "64:clan_join:c075,c088": {
+   "allyAsk": {
+    "fr": "Est-ce qu'il reste de la place ?",
+    "en": "Is there any room left?"
+   },
+   "clanHi": {
+    "fr": "Les Orques t'accueillent avec plaisir.",
+    "en": "The Orcas welcome you with pleasure."
+   },
+   "clanYes": {
+    "fr": "Merci ! Moi, j'y crois.",
+    "en": "Thanks! I believe in us."
+   }
+  },
+  "64:conspire:c090,c099,c036": {
+   "plot1": {
+    "fr": "Victor, viens deux minutes. Écoute-moi.",
+    "en": "Victor, come here a second. Listen."
+   },
+   "plot2": {
+    "fr": "Qu'est-ce qu'il se passe, Margaux ?",
+    "en": "What's going on, Margaux?"
+   },
+   "plot3": {
+    "fr": "Méfie-toi de Raphaël, il joue double.",
+    "en": "Watch out for Raphaël, he's playing double."
+   }
+  },
+  "64:evacuated:c085": {
+   "quit": {
+    "fr": "Le courant était trop fort... adieu.",
+    "en": "The current was too strong... goodbye."
+   }
+  },
+  "65:evacuated:c078": {
+   "quit": {
+    "fr": "Ma jambe... cette méduse m'a eu.",
+    "en": "My leg... that jellyfish got me."
+   }
+  },
+  "65:evacuated:c056": {
+   "quit": {
+    "fr": "Cette vague... mon aventure s'arrête là.",
+    "en": "That wave... my adventure ends here."
+   }
+  },
+  "67:evacuated:c049": {
+   "quit": {
+    "fr": "Je suis au bout. Bonne chance.",
+    "en": "I'm exhausted. Good luck."
+   }
+  },
+  "67:steal:c029,c024": {
+   "sneak": {
+    "fr": "Samuel ne verra rien. Silencieusement.",
+    "en": "Samuel won't see a thing. Silently."
+   },
+   "betray": {
+    "fr": "Désolé, mais j'en ai besoin.",
+    "en": "Sorry, but I need this."
+   }
+  },
+  "67:steal:c050,c100": {
+   "sneak": {
+    "fr": "Juste un coup d'œil là-dedans...",
+    "en": "Just a quick look in here..."
+   },
+   "caughtB": {
+    "fr": "Charlie ? Tu fais quoi là ?",
+    "en": "Charlie? What are you doing?"
+   },
+   "caughtA": {
+    "fr": "Euh... je cherchais juste ma gourde !",
+    "en": "Uh... I was just looking for my flask!"
+   }
+  },
+  "67:vote_threat:c074,c057,c016": {
+   "saved": {
+    "fr": "Merci au public ! Je continue !",
+    "en": "Thanks to the audience! I'm staying!"
+   },
+   "outVote": {
+    "fr": "C'est le jeu. Je note tout.",
+    "en": "That's the game. I'm noting everything."
+   }
+  },
+  "67:campaign:c007,c057": {
+   "plead": {
+    "fr": "S'il vous plaît, votez pour Mila !",
+    "en": "Please, vote for Mila!"
+   }
+  },
+  "67:campaign:c041,c016": {
+   "plead": {
+    "fr": "Sauvez Rafael, il mérite sa place !",
+    "en": "Save Rafael, he deserves his spot!"
+   }
+  },
+  "67:evacuated:c074": {
+   "quit": {
+    "fr": "L'aventure s'arrête. Merci quand même.",
+    "en": "The adventure ends. Thanks anyway."
+   }
+  },
+  "68:evacuated:c073": {
+   "quit": {
+    "fr": "Mon corps ne suit plus. Désolée.",
+    "en": "My body can't keep up. Sorry."
+   }
+  },
+  "68:evacuated:c100": {
+   "quit": {
+    "fr": "Ce courant m'a brisé. Courage.",
+    "en": "This current broke me. Stay strong."
+   }
+  },
+  "68:clan_meal:c054,c040": {
+   "meal": {
+    "fr": "Mangeons ensemble. On partage tout.",
+    "en": "Let's eat together. We share everything."
+   },
+   "mealThanks": {
+    "fr": "Merci Hana. C'est plus sage.",
+    "en": "Thanks Hana. It's wiser."
+   }
+  },
+  "68:clan_meal:c071,c099": {
+   "meal": {
+    "fr": "Qui a faim ? Moi, toujours !",
+    "en": "Who's hungry? Me, always!"
+   },
+   "mealThanks": {
+    "fr": "Merci pour le partage, Omar.",
+    "en": "Thanks for sharing, Omar."
+   }
+  },
+  "68:clan_meal:c031,c007,c057": {
+   "meal": {
+    "fr": "C'est peu, mais on partage.",
+    "en": "It's little, but we share."
+   },
+   "mealThanks": {
+    "fr": "Merci Alma. On tient ensemble.",
+    "en": "Thanks Alma. We hold together."
+   }
+  },
+  "68:clan_meal:c016,c086,c046,c041,c050": {
+   "meal": {
+    "fr": "Tenez, un peu d'eau pour tous.",
+    "en": "Here, some water for everyone."
+   },
+   "mealThanks": {
+    "fr": "Merci Louis. Un geste précieux.",
+    "en": "Thanks Louis. A precious gesture."
+   }
+  },
+  "68:clan_meal:c076,c029": {
+   "meal": {
+    "fr": "On partage tout, c'est vital pour nous.",
+    "en": "We share everything, it's vital for us."
+   },
+   "mealThanks": {
+    "fr": "Bien reçu. On reste solides comme ça.",
+    "en": "Understood. We stay strong this way."
+   }
+  },
+  "68:clan_meal:c036,c090": {
+   "meal": {
+    "fr": "Tenez. On doit être forts demain.",
+    "en": "Take this. We must be strong tomorrow."
+   },
+   "mealThanks": {
+    "fr": "Merci. On ne laisse personne derrière.",
+    "en": "Thanks. We leave no one behind."
+   }
+  },
+  "68:clan_meal:c088,c075": {
+   "meal": {
+    "fr": "C'est pour le groupe. Mangez un peu.",
+    "en": "It's for the group. Eat a bit."
+   },
+   "mealThanks": {
+    "fr": "Merci Dmitri. Moi, j'y crois vraiment.",
+    "en": "Thanks Dmitri. I really believe in us."
+   }
+  },
+  "69:steal:c082,c057": {
+   "sneak": {
+    "fr": "Silence... Elle ne verra rien du tout.",
+    "en": "Quiet... She won't see a thing."
+   },
+   "betray": {
+    "fr": "Je souris, mais je note tout.",
+    "en": "I'm smiling, but I'm noting everything."
+   }
+  },
+  "71:sabotage:c090,c088": {
+   "sabWake": {
+    "fr": "C'est pas vrai ! Qui a fait ça ?",
+    "en": "No way! Who did this?"
+   }
+  },
+  "85:steal:c016,c024": {
+   "sneak": {
+    "fr": "Cette corde va me servir.",
+    "en": "This rope will be useful."
+   }
+  },
+  "85:steal:c076,c010": {
+   "sneak": {
+    "fr": "Personne ne regarde, c'est parfait.",
+    "en": "Nobody is watching, perfect."
+   }
+  },
+  "86:steal:c053,c054": {
+   "sneak": {
+    "fr": "Je prends juste ça discrètement.",
+    "en": "I am just taking this quietly."
+   },
+   "caughtB": {
+    "fr": "Mais qu'est-ce que tu fais là ?",
+    "en": "What on earth are you doing?"
+   },
+   "caughtA": {
+    "fr": "Je cherchais juste un truc, vraiment.",
+    "en": "I was just looking for something."
+   }
+  },
+  "86:evacuated:c040": {
+   "quit": {
+    "fr": "Si ça ne me tue pas, ça me rend célèbre.",
+    "en": "If it doesn't kill me, it makes me famous."
+   }
+  },
+  "87:hazard:c054": {
+   "help": {
+    "fr": "Aïe, ça a piqué sec ici !",
+    "en": "Ouch, that stung badly here!"
+   }
+  },
+  "87:hazard:c050": {
+   "help": {
+    "fr": "Au secours, ces fourmis me piquent !",
+    "en": "Help me, these ants are biting!"
+   },
+   "rescue": {
+    "fr": "Bouge pas, je t'enlève ça vite.",
+    "en": "Don't move, I will clear this."
+   },
+   "thanks": {
+    "fr": "Merci, tu m'as sauvé la mise.",
+    "en": "Thanks, you saved my day."
+   }
+  },
+  "87:evacuated:c033": {
+   "quit": {
+    "fr": "Tout le monde a un prix.",
+    "en": "Everyone has a price."
+   }
+  },
+  "87:challenge:c071,c053,c090": {
+   "win": {
+    "fr": "Oui, je l'ai fait, c'est gagné !",
+    "en": "Yes, I did it, I won!"
+   }
+  },
+  "88:hazard:c038": {
+   "help": {
+    "fr": "Ce courant est vraiment trop fort !",
+    "en": "This current is way too strong!"
+   }
+  },
+  "89:evacuated:c031": {
+   "quit": {
+    "fr": "C'est pas la taille qui compte, c'est la ruse.",
+    "en": "Size doesn't matter, cunning does."
+   }
+  },
+  "89:hazard:c046": {
+   "help": {
+    "fr": "Aidez-moi, je perds pied ici !",
+    "en": "Help me, I am losing my footing!"
+   },
+   "rescue": {
+    "fr": "Attends, je te tire vers moi.",
+    "en": "Wait, I am pulling you in."
+   },
+   "thanks": {
+    "fr": "Merci infiniment pour ton aide précieuse.",
+    "en": "Thanks so much for your help."
+   }
+  },
+  "90:steal:c016,c090": {
+   "sneak": {
+    "fr": "Cette lampe va bien m'aider.",
+    "en": "This flashlight will help me."
+   }
+  },
+  "91:defend:c071,c036,c099": {
+   "sneak": {
+    "fr": "Je regarde juste ce qu'il y a.",
+    "en": "I am just checking what is inside."
+   },
+   "defend": {
+    "fr": "On ne touche pas aux affaires ici.",
+    "en": "Do not touch our things here."
+   },
+   "backOff": {
+    "fr": "Désolé, je ne savais pas vraiment.",
+    "en": "Sorry, I really did not know."
+   },
+   "thanks": {
+    "fr": "Merci d'avoir veillé sur mon sac.",
+    "en": "Thanks for watching my bag."
+   }
+  },
+  "91:evacuated:c038": {
+   "quit": {
+    "fr": "Tout le monde a un prix.",
+    "en": "Everyone has a price."
+   }
+  },
+  "91:evacuated:c041": {
+   "quit": {
+    "fr": "On ne laisse personne derrière.",
+    "en": "We leave no one behind."
+   }
+  },
+  "91:vote_threat:c010,c036,c050": {
+   "saved": {
+    "fr": "Merci au public pour ce soutien.",
+    "en": "Thanks to the public for support."
+   },
+   "outVote": {
+    "fr": "C'est la fin de l'aventure pour moi.",
+    "en": "This is the end of the road."
+   }
+  },
+  "91:campaign:c082,c010": {
+   "plead": {
+    "fr": "Sauvez Ayumi, elle le mérite vraiment.",
+    "en": "Save Ayumi, she truly deserves it."
+   }
+  },
+  "91:campaign:c086,c050": {
+   "plead": {
+    "fr": "Veuillez sauver Charlie de l'élimination.",
+    "en": "Please save Charlie from elimination."
+   }
+  },
+  "91:evacuated:c036": {
+   "quit": {
+    "fr": "Tout le monde a un prix.",
+    "en": "Everyone has a price."
+   }
+  },
+  "92:clan_meal:c071,c099": {
+   "meal": {
+    "fr": "Bois un peu, ça fait du bien.",
+    "en": "Drink a bit, that feels good."
+   },
+   "mealThanks": {
+    "fr": "Merci, c'est très gentil à toi.",
+    "en": "Thanks, that is very kind."
+   }
+  },
+  "92:clan_meal:c016,c086,c046,c050": {
+   "meal": {
+    "fr": "Prenez des forces avec ces rations.",
+    "en": "Get some strength from these rations."
+   },
+   "mealThanks": {
+    "fr": "C'est parfait, merci beaucoup Rafael.",
+    "en": "That is perfect, thanks Rafael."
+   }
+  },
+  "92:clan_meal:c076,c029": {
+   "meal": {
+    "fr": "Partageons cette eau fraîche ensemble.",
+    "en": "Let us share this fresh water."
+   },
+   "mealThanks": {
+    "fr": "Merci Iris, j'en avais bien besoin.",
+    "en": "Thanks Iris, I really needed it."
+   }
+  },
+  "92:clan_meal:c007,c057": {
+   "meal": {
+    "fr": "Tout est en commun ce soir.",
+    "en": "Everything is shared tonight."
+   },
+   "mealThanks": {
+    "fr": "C'est super de tout partager ainsi.",
+    "en": "It is great sharing everything."
+   }
+  },
+  "92:clan_meal:c088,c075": {
+   "meal": {
+    "fr": "Mettons toutes nos provisions ensemble.",
+    "en": "Let us put all food together."
+   },
+   "mealThanks": {
+    "fr": "Merci, c'est une excellente idée.",
+    "en": "Thanks, that is a great idea."
+   }
+  },
+  "95:hazard:c090": {
+   "help": {
+    "fr": "Attention, l'eau monte trop vite ici !",
+    "en": "Watch out, water is rising fast!"
+   }
+  }
+ },
+ "confessions": {
+  "c100": {
+   "1": {
+    "fr": "Cette première journée sur l'île est intense. Je n'ai pas encore trouvé d'alliés, mais j'ai passé mon temps à chercher de quoi nous nourrir et à sécuriser de l'eau. C'est plus dur que dans mes vlogs de voyage, la réalité me rattrape. Je reste positif·ve, je veux prouver que je mérite ma place ici pour mon futur refuge.",
+    "en": "This first day on the island is intense. I haven't found any allies yet, but I spent my time looking for food and securing water. It’s much harder than in my travel vlogs; reality is hitting me. I’m staying positive; I want to prove I deserve my spot here for my future shelter."
+   },
+   "2": {
+    "fr": "La nature me teste violemment aujourd'hui. Entre ce crabe de cocotier géant et la crue de la cascade ce matin, j'ai eu mon lot d'émotions. J'ai terminé sur le podium de l'épreuve, ce qui me redonne confiance. Par contre, le ton est monté avec Nils dans la jungle. Je ne me laisserai pas intimider, je reste fidèle à mes principes.",
+    "en": "Nature is testing me hard today. Between that giant coconut crab and the flash flood at the waterfall this morning, I've had my share of scares. Finishing on the podium during the challenge gave me some confidence back. However, things got heated with Nils in the jungle. I won't be intimidated; I'm staying true to my principles."
+   },
+   "3": {
+    "fr": "Je quitte l'aventure le cœur lourd. Ce courant traître m'a emporté·e si vite... Avant de partir, je dois vous dire la vérité : si je suis venu·e, c'est pour éponger une énorme dette de jeu. Merci pour la trousse de secours, elle m'a aidé·e jusqu'au bout. J'ai même surpris Charlie en plein vol aujourd'hui. Prenez soin des animaux.",
+    "en": "I'm leaving the adventure with a heavy heart. That treacherous current swept me away so fast... Before I go, I have to tell you the truth: I came here to pay off a massive gambling debt. Thank you for the medical kit; it helped me until the very end. I even caught Charlie stealing today. Take care of the animals."
+   }
+  },
+  "c054": {
+   "1": {
+    "fr": "La survie a commencé. J'observe beaucoup les autres, sans trop me dévoiler pour l'instant. J'ai passé la journée à sécuriser les ressources de base, l'eau et la nourriture. C'est un environnement hostile qui me rappelle ma solitude en Laponie. Je ne suis pas ici pour plaisanter, mais pour analyser chaque mouvement avant d'agir. Respire. Observe. Agis.",
+    "en": "Survival has begun. I’m observing the others closely without revealing too much for now. I spent the day securing basic resources like water and food. This hostile environment reminds me of my solitude in Lapland. I'm not here to joke around; I'm here to analyze every move before acting. Breathe. Observe. Act."
+   },
+   "2": {
+    "fr": "L'alliance avec Aaliyah est scellée, nous sommes désormais les Iguanes. Ce colis de secours envoyé par le public est un soulagement après l'attaque des guêpes ce matin. J'analyse chaque profil avec soin. La veillée sur la plage a permis de mettre nos ressources en commun. Tout se déroule selon mon plan, malgré ces insectes insupportables.",
+    "en": "The alliance with Aaliyah is sealed; we are now the Iguanas. This medical kit from the viewers is a relief after the wasp attack this morning. I am carefully analyzing everyone’s profile. The bonfire on the beach allowed us to pool our resources. Everything is going according to plan, despite these unbearable insects."
+   },
+   "3": {
+    "fr": "La journée a été riche en rebondissements. Je me suis fait prendre en essayant d'emprunter les affaires de Selin ce matin, mais l'ironie du sort l'a conduite à rejoindre les Iguanes. Respire. Observe. Agis. Avec Aaliyah, nous avons tout mis en commun ce soir. Grâce à vous, j'ai enfin une gourde. L'alliance est plus forte que jamais.",
+    "en": "Today was full of twists. I got caught trying to borrow Selin’s things this morning, but ironically, it led her to join the Iguanas. Breathe. Observe. Act. Aaliyah and I pooled all our resources tonight. Thanks to you, I finally have a water bottle. The alliance is stronger than ever."
+   },
+   "4": {
+    "fr": "Aujourd'hui, j'ai voulu jouer fin en volant des rations, mais j'ai fini par me faire prendre la main dans le sac deux fois avant que Matthias ne pique mon propre colis. Pour couronner le tout, un serpent m'a mordue dans la mangrove. Respire. Observe. Agis. Je ne lâcherai pas, vous m'avez donné les moyens de survivre ici.",
+    "en": "Today, I wanted to play it smart by stealing rations, but I ended up getting caught red-handed twice before Matthias snatched my own package. To top it all off, a snake bit me in the mangrove. Breathe. Observe. Act. I will not give up, you have given me the means to survive here."
+   }
+  },
+  "c008": {
+   "1": {
+    "fr": "Le jeu a déjà commencé pour moi. Vous savez, au poker, il faut savoir saisir les opportunités au bon moment. Ce soir, j'ai récupéré la lampe torche de Louis sans qu'il s'en aperçoive. C'est un petit avantage tactique qui pourrait s'avérer utile dans le noir. Je reste calme, je cache mon jeu, et on verra bien.",
+    "en": "The game has already started for me. You know, in poker, you have to know how to seize opportunities at the right moment. Tonight, I took Louis's flashlight without him noticing. It's a small tactical advantage that could prove useful in the dark. I'm staying calm, hiding my hand, and we'll see how it goes."
+   },
+   "2": {
+    "fr": "Bluffer n'a pas suffi aujourd'hui ; Inès m'a surprise en train de fouiller ses affaires. C'est un faux pas, mais j'ai rebondi en créant le clan des Geckos avec Camille. Cette corde parachutée est un atout précieux. Malgré les moustiques et cette morsure de serpent cette nuit, je garde mon sang-froid. L'important est de rester dans la partie.",
+    "en": "Bluffing wasn't enough today; Inès caught me going through her things. It was a misstep, but I bounced back by forming the Geckos clan with Camille. This parachuted rope is a valuable asset. Despite the mosquitoes and that snake bite last night, I'm keeping my cool. The important thing is staying in the game."
+   },
+   "3": {
+    "fr": "Mon jeu s'arrête ici, terrassée par une colonne de fourmis rouges. Quelle ironie pour une joueuse de poker. Je vous confie mon dernier secret : je vois toujours mon ex en cachette, et il ignore que je suis sur cette île. J'ai lutté contre la fièvre ce matin, mais la nature a eu le dernier mot.",
+    "en": "My game ends here, taken down by a column of fire ants. What irony for a poker player. I’ll leave you with my last secret: I’m still seeing my ex in secret, and he has no idea I’m on this island. I fought through a fever this morning, but nature had the final word."
+   }
+  },
+  "c094": {
+   "1": {
+    "fr": "La nature ne pardonne aucune distraction. J'ai failli me faire piéger par la marée montante au lagon ce soir. L'eau montait vite, mais j'ai gardé mon sang-froid pour tenir bon. En tant que biologiste, je devrais être plus vigilant. C'était un avertissement sérieux. Je vais devoir redoubler de prudence si je veux venger l'honneur de mon quartier.",
+    "en": "Nature doesn't forgive any distractions. I almost got trapped by the rising tide at the lagoon tonight. The water was rising fast, but I kept my cool to hold my ground. As a biologist, I should be more vigilant. It was a serious warning. I’ll have to be twice as careful if I want to avenge my neighborhood's honor."
+   },
+   "2": {
+    "fr": "La tension sociale est plus épuisante que le terrain. Morgan a cherché le conflit dans la jungle ce soir. J'ai préféré céder pour ne pas gaspiller mon énergie inutilement. Respire. Observe. Agis. Ma priorité reste l'observation de cet écosystème et des autres candidats. Je vengerai l'honneur de mon quartier en restant lucide face à ces provocations enfantines.",
+    "en": "The social tension is more exhausting than the terrain. Morgan picked a fight in the jungle tonight. I chose to back down so I wouldn't waste my energy. Breathe. Observe. Act. My priority remains observing this ecosystem and the other contestants. I will avenge my neighborhood's honor by staying clear-headed despite these childish provocations."
+   },
+   "3": {
+    "fr": "Je m'en vais. Ce mille-pattes géant cette nuit a été le déclic : ma place n'est plus ici. Je me sens terriblement coupable car j'avais promis à ma fille de gagner l'aventure. C'est mon plus grand regret. L'écosystème de cette île est fascinant, mais la solitude et la fatigue ont eu raison de ma détermination. Je rentre.",
+    "en": "I'm leaving. That giant centipede last night was the breaking point: I don't belong here anymore. I feel terribly guilty because I promised my daughter I would win this adventure. It’s my biggest regret. The island’s ecosystem is fascinating, but the loneliness and exhaustion finally broke my resolve. I’m going home."
+   }
+  },
+  "c031": {
+   "1": {
+    "fr": "Quelle journée riche en émotions ! J'ai créé le clan des Lucioles avec Mila, c'est une belle rencontre. J'ai terminé troisième à l'épreuve du radeau, ce qui n'est pas si mal pour un début. Ce soir, j'ai partagé mes rations avec elle sur la plage. Je veux montrer que la gentillesse peut gagner ici. C'est pas la taille qui compte, c'est la ruse.",
+    "en": "What an emotional day! I formed the Fireflies clan with Mila; she’s a wonderful person. I finished third in the raft challenge, which isn't too bad for a start. Tonight, I shared my rations with her on the beach. I want to show that kindness can win here. It’s not the size that matters, it’s the trickery."
+   },
+   "2": {
+    "fr": "J'ai eu la peur de ma vie à la rivière, mais Mila a été mon ange gardien face au courant. Le clan des Lucioles s'agrandit avec l'arrivée de Lucas, ce qui me réchauffe le cœur. Partager nos maigres rations ce soir sur le sable était un moment de pure sincérité. Je refuse de laisser la peur de la solitude m'envahir.",
+    "en": "I had the scare of my life at the river, but Mila was my guardian angel against the current. The Fireflies clan is growing with Lucas joining, which warms my heart. Sharing our meager rations on the sand tonight was a moment of pure sincerity. I refuse to let the fear of loneliness take over."
+   },
+   "3": {
+    "fr": "Quel bonheur de se sentir entourée. Ce soir, avec Lucas et Mila, nous avons scellé notre union chez les Lucioles en mettant tout en commun sur la plage. La gentillesse est notre plus grande force. Après les tensions des derniers jours, ce moment de partage authentique me redonne l'espoir. On est plus que de simples alliés, on est une équipe.",
+    "en": "It feels so good to be surrounded by people. Tonight, with Lucas and Mila, we sealed our bond within the Fireflies by sharing everything on the beach. Kindness is our greatest strength. After the tension of the last few days, this moment of genuine sharing gives me hope. We are more than just allies; we are a team."
+   },
+   "4": {
+    "fr": "Quelle journée intense. Une araignée velue a failli me mordre, mais Mila m'a sauvée à temps, et votre colis m'a apporté une gourde précieuse. Malheureusement, la marée montante m'oblige à partir. Je dois vous l'avouer ce soir, j'ai promis à ma fille de gagner. Prenez soin de vous.",
+    "en": "What an intense day. A hairy spider almost bit me, but Mila saved me in time, and your package brought me a precious water bottle. Unfortunately, the rising tide forces me to leave. I must confess to you tonight, I promised my daughter I would win. Take care of yourselves."
+   }
+  },
+  "c069": {
+   "1": {
+    "fr": "C'est le début de l'aventure et le stress est déjà là. J'ai passé ma journée à chercher de quoi manger et de l'eau potable. C'est physiquement éprouvant, mais je ne lâcherai rien. Je pense souvent à mon rêve de refuge pour animaux. Je suis venu ici pour prouver ma valeur, malgré ma nervosité. Il faut que je reste concentré.",
+    "en": "The adventure has started, and the stress is already building up. I spent my day looking for food and clean water. It's physically draining, but I won't give up. I often think about my dream of opening an animal shelter. I came here to prove my worth, despite my nerves. I need to stay focused."
+   },
+   "2": {
+    "fr": "Le courant à la plage m'a rappelé mes traversées en solitaire, mais sans bateau pour me protéger. C'était terrifiant. Je me sens encore nerveux et seul sur cette île. C'est pas la taille qui compte, c'est la ruse, alors je vais essayer de me calmer et de trouver une stratégie. Pour l'instant, je me contente de survivre.",
+    "en": "The current at the beach reminded me of my solo crossings, but without a boat to protect me. It was terrifying. I still feel nervous and alone on this island. It's not the size that matters, but the cunning, so I'll try to calm down and find a strategy. For now, I'm just focusing on surviving."
+   },
+   "3": {
+    "fr": "C'est fini pour moi. Ce courant traître m'a brisé net dans mon élan. Je quitte l'île avec un aveu : je n'avais pas besoin de l'argent, je suis déjà millionnaire. Je voulais juste me prouver que j'en étais capable, loin de mon confort habituel. Je suis triste de ne pas ouvrir ce refuge, mais j'ai vécu une expérience incroyable.",
+    "en": "It’s over for me. That treacherous current cut my journey short. I’m leaving the island with a confession: I didn’t need the money; I’m actually a millionaire. I just wanted to prove to myself that I could do it, far from my usual comfort. I’m sad I won’t be opening that shelter, but I’ve had an incredible experience."
+   }
+  },
+  "c068": {
+   "1": {
+    "fr": "La jungle est impitoyable. Cet après-midi, un essaim de guêpes m'est tombé dessus. J'ai dû rester immobile et encaisser pour ne pas aggraver la situation. C'était un test de volonté, mais j'ai tenu bon. Je suis là pour gagner, pas pour me faire des amis, et encore moins pour me laisser abattre par des insectes. Je vais effacer mes dettes.",
+    "en": "The jungle is unforgiving. This afternoon, a swarm of wasps came at me. I had to stay still and take it to avoid making the situation worse. It was a test of will, but I held my ground. I’m here to win, not to make friends, and certainly not to be beaten by insects. I will clear my debts."
+   },
+   "2": {
+    "fr": "Les Requins sont officiels avec Oscar. J'ai dû remettre Sana à sa place quand elle a essayé de fouiller dans nos affaires. Ici, on ne touche pas à ma meute. Moussa m'a mis en garde contre Raphaël ce soir ; je vais garder un œil sur lui. Entre les araignées et la marée, la journée a été rude, mais je ne faiblirai pas.",
+    "en": "The Sharks are official with Oscar. I had to put Sana in her place when she tried to dig through our things. You don't touch my pack here. Moussa warned me about Raphaël tonight; I'm going to keep an eye on him. Between the spiders and the tide, it’s been a rough day, but I won't weaken."
+   },
+   "3": {
+    "fr": "Sorti par le courant dès la première heure... C'est dur à avaler pour un guide de montagne. Je vais quand même pouvoir finir mon livre secret sur les coulisses de l'émission. Je suis là pour gagner, pas pour me faire des amis, mais l'aventure en a décidé autrement. J'espère que mon récit rendra justice à la rudesse de cette île.",
+    "en": "Taken out by the current in the very first hour... That’s a tough pill to swallow for a mountain guide. At least I’ll be able to finish my secret book about the behind-the-scenes of the show. I came to win, not to make friends, but the adventure decided otherwise. I hope my story does justice to the harshness of this island."
+   }
+  },
+  "c016": {
+   "1": {
+    "fr": "Je me sens vraiment mal ce soir. J'ai essayé de voler Liam à 19 heures, mais il m'a surpris. Ce n'est pas mon genre d'habitude, mais la faim et le stress me font perdre mes moyens. J'ai peur du noir et de ce qui nous attend ici. J'espère pouvoir regagner sa confiance, car la confiance, ça se mérite, et là, j'ai tout gâché.",
+    "en": "I feel terrible tonight. I tried to steal from Liam at 7 PM, but he caught me. It’s not usually like me, but hunger and stress are making me lose my grip. I'm afraid of the dark and what awaits us here. I hope I can earn his trust back because trust is earned, and I just ruined everything."
+   },
+   "2": {
+    "fr": "Le clan des Tortues est né, c'est mon seul réconfort. J'ai fait une réaction allergique violente à un fruit cet après-midi, heureusement que Noa était là pour intervenir. La peur du noir me gagne dès que le soleil décline sur la plage. Charlie a partagé sa gourde avec nous ce soir, c'est un beau geste qui me touche.",
+    "en": "The Turtles clan is born; it's my only comfort. I had a violent allergic reaction to a fruit this afternoon; luckily, Noa was there to step in. The fear of the dark grips me as soon as the sun sets on the beach. Charlie shared her water bottle with us tonight, which was a touching gesture."
+   },
+   "3": {
+    "fr": "Quelle journée éprouvante ! J'ai failli me noyer lors de la crue à la cascade, puis j'ai fini deuxième au puzzle. Merci au public de m'avoir sauvé, je vous dois tout. J'ai dû ruser pour nourrir mon clan, même si Lucas m'a surpris cet après-midi. Ce soir, l'ambiance chez les Tortues était apaisée grâce à la gourde de Louis.",
+    "en": "What an exhausting day! I nearly drowned during the flash flood at the waterfall, then I finished second in the puzzle challenge. Thank you to the public for saving me; I owe you everything. I had to be crafty to feed my clan, even if Lucas caught me this afternoon. Tonight, the atmosphere among the Turtles was peaceful thanks to Louis’s water bottle."
+   },
+   "4": {
+    "fr": "Cette journée a été mouvementée entre mes petits vols de matériel pour m'assurer un peu de sécurité et la super veillée avec Louis, Noa et Charlie au clan des Tortues. La confiance, ça se mérite, et je dois vous faire une confidence : j'ai menti sur mon âge pour participer à cette aventure.",
+    "en": "This day was eventful between my little gear thefts to ensure some safety and the great evening gathering with Louis, Noa, and Charlie at the Tortoises clan. Trust is earned, and I must make a confession to you: I lied about my age to participate in this adventure."
+   }
+  },
+  "c078": {
+   "1": {
+    "fr": "Quelle journée incroyable. Le public m'a envoyé une corde, merci infiniment ! J'ai créé le clan des Coraux avec Raphaël. Quand j'ai eu cette forte fièvre ce soir, il m'a sauvé. On a décidé de tout mettre en commun dans la mangrove. Tout le monde a un prix, mais sa loyauté semble sincère. On est plus forts ensemble.",
+    "en": "What an incredible day. The audience sent me a rope; thank you so much! I formed the Corals clan with Raphaël. When I caught that high fever tonight, he saved me. We decided to share everything in the mangrove. Everyone has a price, but his loyalty seems genuine. We are stronger together."
+   },
+   "2": {
+    "fr": "Le public me soutient et cette trousse de secours tombe à pic. Après une deuxième place encourageante à l'épreuve, le clan des Coraux s'est consolidé avec Margaux. Je surveille Raphaël de près, son comportement m'intrigue. J'ai même prévenu Kenji. Tout le monde a un prix, et je compte bien découvrir celui de chacun pour protéger mes intérêts.",
+    "en": "The viewers are supporting me, and this medical kit came at the perfect time. After an encouraging second-place finish in the challenge, the Corals clan strengthened with Margaux joining. I'm watching Raphaël closely; his behavior is intriguing. I even warned Kenji. Everyone has a price, and I intend to find out everyone's to protect my interests."
+   },
+   "3": {
+    "fr": "Une méduse a mis fin à mes rêves. C'est frustrant après avoir été recalé trois fois au casting avant d'enfin réussir à intégrer l'aventure. Ce matin, j'ai quitté les Coraux car la loyauté a ses limites. J'ai même pris quelques rations à Raphaël en partant. Je quitte l'île avec des regrets, mais j'ai joué mes cartes jusqu'au bout.",
+    "en": "A jellyfish put an end to my dreams. It’s frustrating after being rejected three times during casting before finally making it onto the show. This morning, I left the Corals because loyalty has its limits. I even took some rations from Raphaël on my way out. I’m leaving the island with regrets, but I played my cards until the end."
+   }
+  },
+  "c087": {
+   "1": {
+    "fr": "La chance me sourit enfin ! Le public m'a envoyé une carte de l'île, ce qui est un atout majeur. En plus, j'ai intercepté le colis destiné à Ingrid. C'est opportuniste, je sais, mais ici, chaque avantage compte pour survivre. Je reste calme et j'avance discrètement. Un pas après l'autre, je compte bien aller jusqu'au bout.",
+    "en": "Luck is finally on my side! The audience sent me a map of the island, which is a major asset. Plus, I intercepted the package meant for Ingrid. It’s opportunistic, I know, but here, every advantage counts for survival. I’m staying calm and moving forward discreetly. One step at a time, I intend to go all the way."
+   },
+   "2": {
+    "fr": "Mon aventure s'arrête ici, emportée par ce courant qui m'a blessé·e. Je vous quitte avec un aveu : j'ai toujours caché que je ne savais pas nager. Participer à cette émission était un défi immense malgré ce secret. Je suis fier·e d'avoir créé le clan des Geckos avec Léa avant de partir. Prenez soin d'elle. Adieu l'île.",
+    "en": "My adventure ends here, swept away by the current that injured me. I leave you with a confession: I always hid the fact that I don't know how to swim. Taking part in this show was a huge challenge despite that secret. I'm proud to have created the Geckos clan with Léa before leaving. Take care of her. Goodbye, island."
+   }
+  },
+  "c020": {
+   "1": {
+    "fr": "Merci au public pour cette gourde, c'est vital ici. Ce soir, j'ai failli me faire emporter par un courant traître à la plage. J'ai lutté de toutes mes forces pour regagner le sable. C'était terrifiant, mais je n'ai pas abandonné. Je suis là pour gagner, pas pour me faire des amis, et je prouverai ma force malgré mon âge.",
+    "en": "Thank you to the audience for this water bottle; it’s vital here. Tonight, I almost got swept away by a treacherous current at the beach. I fought with all my strength to get back to the sand. It was terrifying, but I didn’t give up. I’m here to win, not to make friends, and I will prove my strength despite my age."
+   },
+   "2": {
+    "fr": "Une méduse a eu raison de ma détermination. C'est difficile de partir si tôt, surtout avec ce poids sur le cœur : je n'ai jamais su nager, et j'ai masqué cette faiblesse tout ce temps. Je voulais prouver ma force, mais la mer a été plus forte. Je rentre chez moi, déçu mais enfin honnête envers vous.",
+    "en": "A jellyfish got the better of my determination. It's hard to leave so soon, especially with this weight on my heart: I never knew how to swim, and I masked that weakness the whole time. I wanted to prove my strength, but the sea was stronger. I'm going home, disappointed but finally honest with you."
+   }
+  },
+  "c044": {
+   "1": {
+    "fr": "Premier jour terminé. C'est plus complexe que de construire une étagère dans mon garage ! J'ai passé mon temps à chercher de l'eau et de la nourriture pour assurer ma base. Je n'ai pas encore d'alliance, mais j'observe les autres. Je veux transformer ce rêve de refuge en réalité. Ça va bien se passer, il suffit de rester ingénieux.",
+    "en": "First day over. It’s more complex than building a shelf in my garage! I spent my time searching for water and food to secure my base. I don't have an alliance yet, but I'm observing the others. I want to turn this dream of a shelter into a reality. It’s going to be fine; I just need to stay resourceful."
+   },
+   "2": {
+    "fr": "Une morsure de serpent aux ruines, voilà mon souvenir du jour. J'ai tenu bon, mais ça calme direct. Je continue de bricoler ma survie en solo, observant les clans qui se forment. Je garde mon objectif en tête : ce refuge pour animaux. Ça va bien se passer, tant que je reste vigilant et que je garde mon ingéniosité.",
+    "en": "A snake bite at the ruins, that's my memory of the day. I held on, but it definitely cools you down. I'm still crafting my survival solo, watching the clans form. I'm keeping my goal in mind: that animal shelter. Everything's going to be fine as long as I stay vigilant and keep my ingenuity."
+   },
+   "3": {
+    "fr": "Évacué à cause d'un éboulement en pleine nuit... ma chance a tourné. Avant de partir, je dois vous avouer que j'ai menti sur mon âge pour participer. Je voulais prouver qu'un homme plus mûr pouvait encore tenir le coup. Je suis déçu de ne pas voir mon projet de refuge se concrétiser ici, mais je continuerai de bricoler ma vie ailleurs.",
+    "en": "Evacuated because of a landslide in the middle of the night... my luck ran out. Before I go, I have to confess that I lied about my age to participate. I wanted to prove that a more mature man could still hack it. I’m disappointed I won’t see my shelter project come to life here, but I’ll keep building my life elsewhere."
+   }
+  },
+  "c076": {
+   "1": {
+    "fr": "Cette première journée a été riche en émotions. Fonder le clan des Requins avec Oscar me rassure énormément. On a tout mis en commun ce soir, c'est l'esprit que je voulais insuffler. Mais j'ai eu une peur bleue quand ce mille-pattes géant a grimpé sur moi. Heureusement qu'Oscar était là pour intervenir. Je souris, mais je note tout : la solidarité est notre plus grande force.",
+    "en": "This first day has been very emotional. Forming the Sharks with Oscar gives me a lot of comfort. We shared everything tonight; it's exactly the spirit I wanted to bring. But I was terrified when that giant centipede crawled on me. Thankfully, Oscar was there to help. I’m smiling, but I’m taking notes: solidarity is our greatest strength."
+   },
+   "2": {
+    "fr": "La soirée au lagon avec Kenji et Oscar était paisible, ce partage de gourde a renforcé nos liens. Mais la mangrove m'a rappelé à l'ordre. Un serpent m'a mordue dans l'obscurité. La douleur était vive, mais je n'ai pas faibli. Je refuse de laisser la peur gagner. On reste soudés chez les Requins, coûte que coûte pour la suite.",
+    "en": "The evening at the lagoon with Kenji and Oscar was peaceful; sharing that water bottle really strengthened our bonds. But the mangrove quickly reminded me of the stakes. A snake bit me in the dark. The pain was sharp, but I didn't falter. I refuse to let fear win. We're staying united as Sharks, no matter what happens next."
+   },
+   "3": {
+    "fr": "Chez les Requins, la solidarité n'est pas un vain mot. Ce soir, aux falaises, Oscar et moi avons décidé de tout mettre en commun. C'est une étape cruciale pour notre survie. Je me sens nerveuse mais déterminée. Je surveille chaque détail autour de nous pour protéger notre duo. On ne lâchera rien, la route est encore longue.",
+    "en": "Among the Sharks, solidarity isn't just a word. Tonight, at the cliffs, Oscar and I decided to pool everything together. It’s a crucial step for our survival. I feel nervous but determined. I’m watching every detail around us to protect our duo. We won’t give up; the road ahead is still long."
+   },
+   "4": {
+    "fr": "Je souris, mais je note tout. Entre les rations volées par Zara, mon colis égaré qui a fini chez Oscar et mes propres larcins, le camp des Requins bouillonne. Heureusement, la veillée dans la jungle m'a apaisée. Partager cette gourde avec Oscar m'a redonné le sourire grâce à votre soutien.",
+    "en": "I smile, but I note everything. Between the rations stolen by Zara, my lost package that ended up with Oscar, and my own petty thefts, the Shark camp is buzzing. Fortunately, the evening gathering in the jungle calmed me. Sharing this water bottle with Oscar brought my smile back thanks to your support."
+   }
+  },
+  "c029": {
+   "1": {
+    "fr": "Le terrain est plus traître que prévu. Je me suis blessé en tombant, et Iris m'a aidé. Puis, ce serpent... elle m'a encore sauvé la mise. On a scellé notre alliance, les Requins, autour du feu. J'ai dû remettre Dmitri à sa place lors d'une dispute, il a fini par céder. Ici, l'efficacité prime sur le reste. Je prouverai ma valeur, quoi qu'il arrive.",
+    "en": "The terrain is more treacherous than expected. I got hurt in a fall, and Iris helped me. Then, that snake... she saved me again. We sealed our alliance, the Sharks, around the fire. I had to put Dmitri in his place during an argument, and he eventually backed down. Out here, efficiency is everything. I will prove my worth, no matter what."
+   },
+   "2": {
+    "fr": "Le clan des Requins s'agrandit avec l'arrivée de Kenji. Il a déjà prouvé sa loyauté en surprenant Sana en train de fouiller mon sac dans la mangrove. On ne touche pas à mes affaires. Ce soir, au lagon, partager cette gourde avec lui et Iris a scellé notre fraternité. Je reste vigilant, car ici, la confiance est une denrée rare.",
+    "en": "The Sharks are growing with Kenji joining us. He’s already proven his loyalty by catching Sana rooting through my bag in the mangrove. No one touches my gear. Tonight at the lagoon, sharing that water with him and Iris sealed our brotherhood. I'm staying vigilant because out here, trust is a very rare commodity."
+   },
+   "3": {
+    "fr": "La survie demande parfois des sacrifices moraux. J'ai récupéré une corde appartenant à Samuel ce soir, sans qu'il s'en aperçoive. C'est un outil nécessaire pour notre campement aux falaises. Avec Iris, nous sommes désormais totalement liés par nos ressources. On avance avec méthode et discipline, loin des distractions inutiles des autres candidats de l'île.",
+    "en": "Survival sometimes requires moral sacrifices. I secured a rope belonging to Samuel this evening without him noticing. It’s a necessary tool for our camp at the cliffs. Iris and I are now completely linked by our resources. We move forward with method and discipline, far from the useless distractions of the other contestants on the island."
+   },
+   "4": {
+    "fr": "Si ça ne me tue pas, ça me rend célèbre. J'ai bien débuté la journée en prenant des rations à Ethan, puis j'ai évité de peu une vilaine chute dans un trou grâce à Iris. La veillée de ce soir avec elle m'a prouvé qu'on forme un duo solide face à vous tous.",
+    "en": "If it doesn't kill me, it makes me famous. I started the day well by taking rations from Ethan, then I narrowly avoided a nasty fall into a hole thanks to Iris. Tonight's gathering with her proved to me that we form a solid duo in front of all of you."
+   }
+  },
+  "c012": {
+   "1": {
+    "fr": "Je prends mes marques sur cette île. La journée a été calme, passée à chercher de l'eau et de quoi manger. C'est plus dur que ce que j'imaginais, mais je garde le rythme. Je n'ai pas encore rejoint de clan, je préfère observer pour ne pas revivre les trahisons de mon passé. Je construis mon chemin sereinement vers mon projet d'entreprise.",
+    "en": "I'm finding my feet on this island. It's been a quiet day, spent searching for water and food. It’s tougher than I imagined, but I’m keeping the pace. I haven't joined a clan yet; I prefer to observe so I don't repeat the betrayals of my past. I’m building my path calmly toward my business goals."
+   },
+   "2": {
+    "fr": "Quelle frayeur aujourd'hui aux falaises ! Un éboulement a failli m'emporter, les pierres roulaient partout autour de moi. J'ai tenu bon, mais ça m'a secoué. Je continue mon chemin seul pour l'instant, sans clan. J'apprends à compter sur mes propres forces pour avancer vers mon rêve. Doucement, mais sûrement, je finirai par trouver ma place parmi vous.",
+    "en": "What a scare at the cliffs today! A landslide nearly swept me away; rocks were tumbling everywhere around me. I held on, but it really shook me. I’m still going solo for now, without a clan. I’m learning to rely on my own strength to move toward my dream. Slowly but surely, I will eventually find my place among you."
+   },
+   "3": {
+    "fr": "Je pars avec un goût amer. Cette vague scélérate m'a brisé le corps et mes rêves d'entreprise. Mais avant de m'envoler, sachez que mon sourire cachait une rancœur : je connais un autre candidat ici et je le déteste profondément. Ma naïveté m'a perdu, mais lui, il ne mérite pas d'être là. Adieu l'île.",
+    "en": "I'm leaving with a bitter taste. That rogue wave broke my body and my business dreams. Before I fly away, you should know my smile hid a grudge: I already know another contestant here and I loathe them. My naivety lost me the game, but they don't deserve to stay. Farewell, island."
+   }
+  },
+  "c007": {
+   "1": {
+    "fr": "Quel soulagement ! Gagner cette épreuve d'immunité sur le radeau face à Louis et Alma était crucial. Je connais la mer, c'est mon élément de prédilection. Ce soir, je dormirai l'esprit tranquille car je ne suis pas menacé. Je reste méfiant envers les insectes, mais cette victoire me donne l'élan nécessaire pour mon rêve de créer un refuge animalier.",
+    "en": "What a relief! Winning that raft immunity challenge against Louis and Alma was crucial. I know the sea; it's my element. Tonight, I'll sleep soundly because I'm not at risk. I'm still wary of the insects, but this victory gives me the momentum I need for my dream of opening an animal shelter."
+   },
+   "2": {
+    "fr": "J'ai rejoint les Lucioles aujourd'hui aux côtés d'Alma. C'est un soulagement de ne plus être seul. Ce soir, sur la plage, Mila a partagé ses rations avec nous. C'était un moment de pure convivialité sous les étoiles. Je reste sur mes gardes, mais faire partie de ce groupe m'apaise. Pour mon futur refuge, je dois tenir bon. Doucement, mais sûrement.",
+    "en": "I joined the Fireflies today alongside Alma. It’s a relief not to be alone anymore. Tonight on the beach, Mila shared her rations with us. It was a moment of pure friendliness under the stars. I’m staying on my guard, but being part of this group calms me. For my future shelter, I have to persevere. Slowly but surely."
+   },
+   "3": {
+    "fr": "Quelle journée agitée ! J'ai surpris Rafael la main dans le sac, essayant de me voler. Moi qui suis de nature calme, j'ai dû sortir les griffes. Heureusement, la veillée des Lucioles avec Alma et Mila m'a réchauffé le cœur. J'ai même plaidé pour Mila auprès de vous, car sa générosité est sincère et rare.",
+    "en": "What a hectic day! I caught Rafael red-handed, trying to steal from me. Though I'm usually calm, I had to show some teeth. Luckily, the Lucioles' vigil with Alma and Mila warmed my heart. I even pleaded with you for Mila because her generosity is genuine and rare."
+   },
+   "4": {
+    "fr": "Doucement, mais sûrement. Après les tensions de la veille, j'ai savouré notre veillée au clan des Lucioles avec Mila en mettant tout en commun. Votre présence à travers nos échanges me réchauffe le cœur. Je veille à protéger notre petit groupe, loin des disputes inutiles des autres.",
+    "en": "Slowly, but surely. After yesterday's tensions, I savored our gathering at the Fireflies clan with Mila by pooling everything together. Your presence through our exchanges warms my heart. I make sure to protect our little group, far from the useless arguments of the others."
+   }
+  },
+  "c073": {
+   "1": {
+    "fr": "Cette île ne nous fait aucun cadeau. Ce matin, sur la plage, j'ai été assaillie par un véritable nuage de moustiques. C'était insupportable, mais j'ai tenu bon, je n'ai pas flanché. Je pense souvent à ma mère et à l'opération que je veux financer. Cela me donne la force de rester debout. La confiance, ça se mérite.",
+    "en": "This island shows no mercy. This morning on the beach, I was swarmed by a literal cloud of mosquitoes. It was unbearable, but I held firm; I didn't flinch. I think of my mother and the surgery I want to fund often. It gives me the strength to stay standing. Trust is earned."
+   },
+   "2": {
+    "fr": "La mangrove est un enfer dès l'aube. Ce matin, j'ai été encerclée par un nuage de moustiques agressifs. J'avais l'impression de suffoquer, mais j'ai résisté pour ma mère. Je n'ai toujours pas de clan, car je préfère observer avant de m'engager. Je cherche des gens sincères. Ici, la solitude me pèse, mais ma détermination reste intacte pour financer cette opération.",
+    "en": "The mangrove is hell at dawn. This morning, I was surrounded by a cloud of aggressive mosquitoes. I felt like I was suffocating, but I resisted for my mother’s sake. I still don’t have a clan because I prefer to observe before committing. I’m looking for sincere people. Solitude weighs on me here, but my determination to fund that surgery remains intact."
+   },
+   "3": {
+    "fr": "Je n'ai plus de force. Me faire surprendre par Sana alors que je fouillais le sac de Victor a été l'humiliation de trop. Je quitte l'aventure à bout de nerfs. Mon plus grand regret est d'avoir échoué pour ma fille, à qui j'avais promis la victoire. Pardonnez-moi, je n'ai pas été à la hauteur.",
+    "en": "I have no strength left. Getting caught by Sana while searching Victor's bag was the ultimate humiliation. I'm leaving the adventure exhausted. My biggest regret is failing my daughter, whom I promised victory to. Please forgive me, I simply wasn't good enough."
+   }
+  },
+  "c010": {
+   "1": {
+    "fr": "Je suis contente d'avoir trouvé des alliés si vite. Robin m'a proposé de former les Albatros et j'ai accepté sans hésiter. Ce soir, à la veillée sur la plage, partager cette gourde avec lui et Zara m'a réchauffé le cœur. C'est ce genre de solidarité qui me permettra d'aller loin. Je découvre mes limites et j'apprends à les repousser.",
+    "en": "I'm happy to have found allies so quickly. Robin asked me to form the Albatrosses, and I accepted without hesitation. Tonight, at the campfire on the beach, sharing that water bottle with him and Zara warmed my heart. This kind of solidarity will allow me to go far. I'm discovering my limits and learning to push them."
+   },
+   "2": {
+    "fr": "J'ai cru que mon aventure s'arrêtait là. Quand mon nom est apparu parmi les menacés, mon cœur a lâché. Merci à Robin d'avoir plaidé ma cause et merci à vous de m'avoir sauvée. Ce soir, à la rivière, nous avons tout mis en commun chez les Albatros. Je me sens redevable. Un pas après l'autre, je compte bien prouver que j'ai ma place.",
+    "en": "I thought my adventure was ending right there. When my name appeared among those threatened, my heart sank. Thank you to Robin for pleading my case and thank you to all of you for saving me. Tonight at the river, we shared everything within the Albatross clan. I feel indebted. One step at a time, I intend to prove that I belong here."
+   },
+   "3": {
+    "fr": "Je n'en reviens toujours pas ! Onze d'entre vous ont voté pour m'envoyer ce colis de rations. C'est le plus beau cadeau de ma vie. Un pas après l'autre, je commence à croire que je peux vraiment aller loin. Cette solidarité me donne une énergie incroyable pour affronter la jungle demain avec les Albatros.",
+    "en": "I still can't believe it! Eleven of you voted to send me this ration package. It's the greatest gift of my life. One step at a time, I'm starting to believe I can really go far. This support gives me incredible energy to face the jungle tomorrow with the Albatrosses."
+   },
+   "4": {
+    "fr": "Un pas après l'autre. Après qu'Iris m'a subtilisé mes rations, j'ai eu une grosse frayeur en voyant mon nom menacé ce soir, mais vous m'avez sauvée avec Charlie ! Votre soutien est un carburant incroyable pour continuer cette aventure avec les Albatros la tête haute.",
+    "en": "One step after the other. After Iris stole my rations, I had a big scare seeing my name threatened tonight, but you saved me with Charlie! Your support is incredible fuel to continue this adventure with the Albatrosses with my head held high."
+   }
+  },
+  "c062": {
+   "1": {
+    "fr": "La vie sauvage me convient, mon métier de vétérinaire m'y a préparée. J'ai passé la journée à chercher des ressources et à observer les autres. L'ambiance est encore calme, mais on sent que les alliances se dessinent. Je reste en retrait pour l'instant, sans clan, car je veux voir qui est vraiment fiable avant de m'engager totalement.",
+    "en": "Wildlife suits me; my job as a vet prepared me for this. I spent the day searching for resources and watching the others. The atmosphere is still calm, but you can feel the alliances forming. I'm staying back for now, without a clan, because I want to see who is truly reliable before fully committing."
+   },
+   "2": {
+    "fr": "C'est fini pour moi. Ce trou caché sous les feuilles a eu raison de mon aventure. Je suis déçue, car j'ai lutté pour être ici : j'ai été recalée trois fois au casting avant d'être prise. Partez sans moi, mais sachez que chaque instant comptait. Prenez soin des animaux de l'île. On verra bien ce que l'avenir me réserve désormais. Au revoir.",
+    "en": "It's over for me. That hidden hole under the leaves got the better of my adventure. I’m disappointed because I fought so hard to be here: I was rejected three times during casting before making it. Go on without me, but know that every moment counted. Take care of the island's animals. We’ll see what the future holds for me now. Goodbye."
+   }
+  },
+  "c038": {
+   "1": {
+    "fr": "L'adrénaline a grimpé d'un coup ce soir. Un sanglier m'a chargée en pleine jungle, mais mon entraînement a repris le dessus : je n'ai pas bougé d'un pouce et il a fini par s'enfuir. Je suis ici pour l'honneur de mon quartier et je ne me laisserai pas intimider. J'observe les dynamiques de groupe avant de choisir mes alliés.",
+    "en": "The adrenaline spiked suddenly tonight. A wild boar charged at me in the middle of the jungle, but my training kicked in: I didn't budge an inch, and it eventually ran off. I'm here for the honor of my neighborhood, and I won't be intimidated. I'm watching the group dynamics before choosing my allies."
+   },
+   "2": {
+    "fr": "Journée difficile. Sacha m'a volé des rations ce matin sans que je m'en aperçoive, c'est bas. Ensuite, j'ai dû affronter un essaim de guêpes furieuses dans la jungle. Je n'ai pas bronché, mon corps est une armure. Je reste sans clan pour l'instant, j'analyse qui mérite ma loyauté. Tout le monde a un prix, et je découvrirai bientôt celui des autres candidats.",
+    "en": "A tough day. Sacha stole rations from me this morning without me noticing; that’s low. Then, I had to face a swarm of angry wasps in the jungle. I didn't flinch; my body is armor. I’m staying without a clan for now, analyzing who deserves my loyalty. Everyone has a price, and I will soon discover what the other candidates' prices are."
+   },
+   "3": {
+    "fr": "La journée a été calme, presque trop. J'en ai profité pour renforcer mes défenses et chercher de l'eau. Seule, sans clan, j'observe les autres se déchirer. Ma formation militaire me sert bien : je reste disciplinée malgré l'obscurité qui m'angoisse chaque soir. Je n'ai besoin de personne pour venger l'honneur de mon quartier.",
+    "en": "The day was calm, almost too much so. I took the opportunity to strengthen my defenses and find water. Alone, without a clan, I watch the others tear each other apart. My military training serves me well: I stay disciplined despite the darkness that scares me every night. I need no one to avenge my neighborhood's honor."
+   },
+   "4": {
+    "fr": "Tout le monde a un prix. J'ai récupéré le colis de Charlie aujourd'hui et j'ai lutté contre ce fichu courant à la plage avant que le drone ne vienne me chercher. Je pars blessée, mais avant de m'envoler, je dois l'avouer : je cache une dette de jeu importante.",
+    "en": "Everyone has a price. I recovered Charlie's package today and fought against that pesky current at the beach before the drone came to get me. I am leaving injured, but before flying away, I must admit it: I am hiding a significant gambling debt."
+   }
+  },
+  "c025": {
+   "1": {
+    "fr": "Cette première journée a été une leçon de patience. J'ai passé des heures à chercher de l'eau et de la nourriture sous un soleil de plomb. C'est épuisant, surtout quand on n'a pas l'habitude de ce climat. Je reste discret, j'analyse les forces en présence sans me précipiter. Je garde la tête froide pour atteindre mon objectif financier.",
+    "en": "This first day was a lesson in patience. I spent hours searching for water and food under a blazing sun. It's exhausting, especially when you're not used to this climate. I'm staying low-key, analyzing the players without rushing. I'm keeping a cool head to reach my financial goal."
+   },
+   "2": {
+    "fr": "Entre les guêpes ce matin et ce froid glacial qui tombe sur la mangrove, je suis servi. Mon corps tremble, mais mon esprit reste focalisé sur mes dettes. Je n'ai pas encore de clan, je préfère rester mobile et discret. C'est dur de dormir quand on a l'estomac vide et les membres gelés. Qui a faim ? Moi, toujours. Mais je tiendrai.",
+    "en": "Between the wasps this morning and this freezing cold descending on the mangrove, I’ve had my fill. My body is shaking, but my mind stays focused on my debts. I don’t have a clan yet; I prefer to stay mobile and discreet. It’s hard to sleep with an empty stomach and frozen limbs. Who's hungry? Me, always. But I’ll hold on."
+   },
+   "3": {
+    "fr": "Cette araignée velue a eu raison de moi. C'est ironique pour un ingénieur de finir ainsi. En partant, je vous livre mon secret : je faisais d'horribles crises de panique chaque nuit, loin des regards. L'île a eu raison de mes nerfs avant mes dettes. Je repars à zéro, mais sans ce trophée tant espéré.",
+    "en": "That furry spider got the best of me. It's ironic for an engineer to end up like this. As I leave, I'll share my secret: I had terrible panic attacks every night, hidden from view. The island broke my nerves before my debts did. I'm starting over, but without the trophy I hoped for."
+   }
+  },
+  "c099": {
+   "1": {
+    "fr": "On a survécu à une attaque massive de moustiques ce matin, une vraie épreuve pour les nerfs. Heureusement, la journée s'est terminée sur une note positive en fondant les Mangoustes avec Sana. On a tout mis en commun avec Omar pendant la veillée sur le sable. Faire équipe me permet d'oublier un peu la douleur qui m'a poussé à venir.",
+    "en": "We survived a massive mosquito attack this morning; it was a real test of nerves. Fortunately, the day ended on a positive note by forming the Mongooses with Sana. We shared everything with Omar during the campfire on the sand. Teamwork helps me forget a bit of the pain that pushed me to come here."
+   },
+   "2": {
+    "fr": "J'ai frôlé le drame ce matin. Un courant traître m'emportait, mais Sana a réagi immédiatement pour me sortir de là. Je lui dois une fière chandelle. Ce soir, avec Omar au lagon, nous avons tout mis en commun pour les Mangoustes. Cette solidarité me touche beaucoup. On avance ensemble, et je sais désormais que je peux compter sur mes partenaires.",
+    "en": "I narrowly avoided disaster this morning. A treacherous current was pulling me under, but Sana reacted immediately to pull me out. I owe her big time. Tonight, with Omar at the lagoon, we pooled everything for the Mongooses. This solidarity deeply moves me. We’re moving forward together, and I now know I can count on my partners."
+   },
+   "3": {
+    "fr": "Je me sens trahi. Vera a osé fouiller dans mon sac au lagon. Heureusement que Sana veillait. Margaux m'a aussi mis en garde contre Raphaël, l'ambiance devient glaciale. Je tiens bon pour ma fille, car je lui ai promis de gagner cette aventure. La veillée avec Omar m'a rappelé qu'on ne laisse personne derrière.",
+    "en": "I feel betrayed. Vera dared to rummage through my bag at the lagoon. Thank goodness Sana was watching. Margaux also warned me about Raphael; the atmosphere is turning icy. I'm holding on for my daughter because I promised her I'd win this adventure. The vigil with Omar reminded me that we leave no one behind."
+   },
+   "4": {
+    "fr": "On ne laisse personne derrière. Raphaël a osé fouiller mon sac aujourd'hui, mais Omar l'a remis à sa place. Heureusement, notre veillée aux Mangoustes avec sa gourde partagée m'a fait du bien. Je tiens bon pour ma fille malgré la solitude qui pèse sur mes épaules.",
+    "en": "We leave no one behind. Raphaël dared to search my bag today, but Omar put him in his place. Fortunately, our gathering at the Mongooses with his shared water bottle did me good. I'm holding on for my daughter despite the loneliness weighing on my shoulders."
+   }
+  },
+  "c036": {
+   "1": {
+    "fr": "Quelle montagne russe ! Je me suis senti menacé dès le premier soir, mais le soutien de Moussa et le vote du public m'ont sauvé. Faire partie du clan des Coraux me donne un sentiment d'appartenance important. On a tout partagé dans la mangrove ce soir. Je réalise que la solidarité est la clé pour durer dans cette aventure.",
+    "en": "What a roller coaster! I felt threatened from the very first night, but Moussa's support and the public vote saved me. Being part of the Corals clan gives me an important sense of belonging. We shared everything in the mangrove tonight. I realize that solidarity is the key to lasting in this adventure."
+   },
+   "2": {
+    "fr": "L'ambiance chez les Coraux est étrange. On a tout partagé au lagon avec Moussa et Margaux, mais je sens le regard pesant de Moussa sur moi toute la journée. Je ne sais pas ce qu'il mijote. Je reste loyal au groupe, mais je commence à me demander si ma place est vraiment assurée. Tout le monde a un prix, même au sein d'une alliance.",
+    "en": "The atmosphere within the Corals is strange. We shared everything at the lagoon with Moussa and Margaux, but I felt Moussa’s heavy gaze on me all day. I don’t know what he’s up to. I remain loyal to the group, but I’m starting to wonder if my spot is truly secure. Everyone has a price, even within an alliance."
+   },
+   "3": {
+    "fr": "Quelle déception. Moussa, que je croyais mon allié chez les Coraux, m'a volé mes rations avant de nous abandonner. C'est un coup bas que je n'avais pas anticipé. Margaux est restée, mais son regard insistant m'inquiète. Tout le monde a un prix, et Moussa a visiblement vendu sa loyauté pour quelques grammes de riz. Je reste méfiant.",
+    "en": "What a disappointment. Moussa, whom I thought was my ally in the Corals, stole my rations before abandoning us. It's a low blow I didn't see coming. Margaux stayed, but her lingering gaze worries me. Everyone has a price, and Moussa clearly sold his loyalty for a few grams of rice. I remain wary."
+   },
+   "4": {
+    "fr": "Tout le monde a un prix, et le mien a été de me faire lâcher par Margaux avant de me faire éliminer par vos votes. Le drone vient me chercher. Avant de partir, je dois vous révéler un secret : j'ai menti sur mon âge pour pouvoir participer.",
+    "en": "Everyone has a price, and mine was being dropped by Margaux before being eliminated by your votes. The drone is coming to get me. Before leaving, I must reveal a secret to you: I lied about my age to be able to participate."
+   }
+  },
+  "c083": {
+   "1": {
+    "fr": "J'ai eu de la chance en récupérant ce colis destiné à Mei, mais ma tentative de vol auprès de Tariq a mal tourné. Me faire prendre la main dans le sac était humiliant. Heureusement, Samuel m'a tendu la main pour créer les Faucons. On a tout mis en commun aux ruines. Je vais devoir prouver ma valeur et regagner la confiance du groupe.",
+    "en": "I got lucky picking up that package meant for Mei, but my attempt to steal from Tariq went sideways. Getting caught red-handed was humiliating. Luckily, Samuel reached out to form the Falcons. We shared everything at the ruins. I’ll have to prove my worth and earn back the group's trust."
+   },
+   "2": {
+    "fr": "Léa a essayé de me voler ce matin, mais je l'ai prise sur le fait. Je ne laisserai personne me marcher dessus. La plage était infestée de moustiques aujourd'hui, une véritable torture physique. Heureusement, la veillée avec Samuel m'a permis de souffler en partageant nos rations chez les Faucons. Je regagne doucement le respect du groupe, malgré les épreuves.",
+    "en": "Léa tried to steal from me this morning, but I caught her red-handed. I won’t let anyone walk all over me. The beach was infested with mosquitoes today; it was pure physical torture. Luckily, the evening with Samuel allowed me to catch my breath while sharing our rations with the Falcons. I’m slowly regaining the group’s respect, despite the hardships."
+   },
+   "3": {
+    "fr": "Ces guêpes à la rivière ont été ma fin. Je quitte l'île avec une immense frustration. Personne ne saura jamais que mon ex, que je vois toujours en secret, ignore totalement ma présence ici. Je voulais la gloire pour lui prouver ma valeur, mais le sort en a décidé autrement. Un pas après l'autre, je rentrerai soigner mes blessures.",
+    "en": "Those wasps at the river were the end of me. I'm leaving the island with immense frustration. No one will ever know that my ex, whom I still see secretly, has no idea I'm even here. I wanted fame to prove my worth to him, but fate decided otherwise. One step at a time, I'll go home to heal."
+   }
+  },
+  "c041": {
+   "1": {
+    "fr": "Je ne pensais pas vivre une telle journée. Entre l'allergie aux sources chaudes qui m'a bien fait souffrir et cette déception avec Rafael... Je l'ai surpris en train de fouiller dans mon sac. Ça me blesse car j'essaie de faire confiance. Malgré les démangeaisons, je reste debout. J'ai grandi avec les tempêtes, ce n'est pas un petit fruit qui m'arrêtera.",
+    "en": "I didn't expect such a day. Between the allergy at the hot springs that really hurt and this disappointment with Rafael... I caught him red-handed going through my bag. It hurts because I try to trust people. Despite the itching, I'm staying strong. I grew up with storms; a little fruit won't stop me now."
+   },
+   "2": {
+    "fr": "J’ai surpris Zara en train de fouiller mon sac ce matin. Ça m’a fait mal, moi qui déteste la trahison. Pourtant, la faim m’a poussé à faire la même chose avec les rations d'Ethan plus tard. L'instinct de survie brouille toutes mes valeurs de biologiste. Je dois rester vigilant pour ne pas me perdre sur cette île.",
+    "en": "I caught Zara going through my bag this morning. It hurt, since I despise betrayal. Yet, hunger pushed me to do the same with Ethan's rations later. The survival instinct is blurring all my values as a biologist. I must stay vigilant so I don't lose myself on this island."
+   },
+   "3": {
+    "fr": "Je suis encore sous le choc de l'éboulement de ce midi. Sans l'intervention rapide de Charlie, je serais peut-être sous les pierres. Rejoindre les Tortues m'a sauvé la vie socialement aussi. J'ai plaidé pour Rafael ce soir car, malgré ses erreurs, on ne laisse personne derrière. Cette solidarité au coin du feu me redonne espoir.",
+    "en": "I'm still in shock from the rockfall at noon. Without Charlie's quick intervention, I might be under those stones. Joining the Tortoises saved my life socially too. I pleaded for Rafael tonight because, despite his mistakes, we leave no one behind. This solidarity by the fire gives me hope again."
+   },
+   "4": {
+    "fr": "On ne laisse personne derrière. J'ai voulu tenter un vol chez Leila qui s'est mal terminé, puis j'ai vu mon colis atterrir chez Charlie. Une méduse m'a achevé, et le drone m'emmène. Je vous confie enfin mon secret : j'ai été recalé trois fois au casting avant d'être pris.",
+    "en": "We leave no one behind. I wanted to try a theft at Leila's which ended badly, then I saw my package land at Charlie's. A jellyfish finished me off, and the drone is taking me away. I am finally entrusting you with my secret: I was rejected three times at casting before being taken."
+   }
+  },
+  "c088": {
+   "1": {
+    "fr": "Quelle tension ! Faire partie des trois premiers menacés, c'est un choc pour mon ego. Merci au public de m'avoir sauvé, c'est un soulagement immense. Par contre, ce conflit avec Oscar dans la jungle m'a épuisé. J'ai préféré céder pour garder la paix, mais je reste sur mes gardes. L'ambiance est lourde ce soir et je n'aime pas ça.",
+    "en": "What tension! Being among the first three threatened was a blow to my ego. Thank you to the public for saving me; it’s a huge relief. However, that clash with Oscar in the jungle exhausted me. I chose to back down to keep the peace, but I’m staying alert. The atmosphere is heavy tonight and I don't like it."
+   },
+   "2": {
+    "fr": "Quelle journée riche en émotions ! Entre cette liane qui a failli me lâcher à la cascade et la création du clan des Orques avec Yusuf, je n'ai pas soufflé. On a tout mis en commun ce soir. C'est un soulagement d'avoir enfin un allié fiable pour affronter la suite de l'aventure.",
+    "en": "What an emotional day! Between that vine nearly snapping at the waterfall and forming the Orcas clan with Yusuf, I haven't caught my breath. We pooled everything together tonight. It’s a relief to finally have a reliable ally to face the rest of the adventure."
+   },
+   "3": {
+    "fr": "Rafael m'a volé des vivres, c'est inacceptable. Mais l'arrivée de Freya chez les Orques me redonne du baume au cœur. La confiance, ça se mérite, et elle semble loyale. Cependant, je cache un lourd secret : je connais déjà un autre candidat ici, et je ne peux pas le supporter. La cohabitation va devenir un véritable défi tactique.",
+    "en": "Rafael stole food from me, which is unacceptable. But Freya joining the Orcas cheers me up. Trust is earned, and she seems loyal. However, I'm hiding a heavy secret: I already know another contestant here, and I can't stand them. Living together is going to become a real tactical challenge."
+   },
+   "4": {
+    "fr": "La confiance, ça se mérite. J'ai bien reçu ma trousse de secours grâce à vous, et la veillée avec Freya chez les Orques m'a fait un bien fou. On a tout mis en commun. C'est précieux de se sentir entouré quand la peur des insectes refait surface.",
+    "en": "Trust is earned. I well received my first aid kit thanks to you, and the evening gathering with Freya at the Orcas did me a world of good. We pooled everything. It's precious to feel surrounded when the fear of insects resurfaces."
+   }
+  },
+  "c009": {
+   "1": {
+    "fr": "Pour ce premier jour, j'ai préféré rester en retrait et me concentrer sur l'essentiel : l'eau et la nourriture. Le calme avant la tempête, sans doute. J'ai passé mon temps à explorer pour assurer nos arrières. On se sent petite face à cette nature sauvage, mais mon expérience de cascadeuse m'aide à garder mon sang-froid malgré ma peur de l'océan.",
+    "en": "For this first day, I preferred to stay back and focus on the essentials: water and food. The calm before the storm, no doubt. I spent my time exploring to secure our resources. You feel small facing this wild nature, but my stuntwork experience helps me keep my cool despite my fear of the ocean."
+   },
+   "2": {
+    "fr": "La nature a eu le dernier mot. Après les guêpes et ce frelon géant, cette morsure de serpent m'oblige à partir. Avant que le drone ne m'emmène, je dois vous avouer que je suis millionnaire. L'argent m'importe peu, je voulais juste me tester pour ma mère. Adieu à tous.",
+    "en": "Nature had the final word. After the wasps and that giant hornet, this snake bite is forcing me to leave. Before the drone takes me away, I must confess that I am a millionaire. The money doesn't matter to me; I just wanted to test myself for my mother. Farewell, everyone."
+   }
+  },
+  "c097": {
+   "1": {
+    "fr": "La survie commence doucement. J'ai passé la journée à chercher de quoi manger et à sécuriser notre point d'eau. C'est un environnement qui me rappelle la ferme de mon enfance, la solitude en moins. Je reste vigilant, j'observe les autres sans trop en dire. Pour l'instant, tout est paisible, mais je sais que l'équilibre est fragile sur cette île.",
+    "en": "Survival is starting slowly. I spent the day looking for food and securing our water source. This environment reminds me of the farm from my childhood, minus the solitude. I'm staying vigilant, observing others without saying too much. For now, everything is peaceful, but I know the balance on this island is fragile."
+   },
+   "2": {
+    "fr": "Le courant m'a presque emporté à la crique, puis j'ai fait une chute effrayante. Sans Dmitri pour me secourir, je ne serais plus là. Nous avons scellé notre alliance chez les Orques ce soir en partageant nos ressources sur la plage. C'est un soulagement d'avoir un allié aussi solide.",
+    "en": "The current almost swept me away at the creek, and then I had a terrifying fall. If Dmitri hadn't rescued me, I wouldn't be here anymore. We sealed our alliance with the Orcas tonight by sharing our resources on the beach. It’s such a relief to have such a solid ally."
+   },
+   "3": {
+    "fr": "Partir à cause d'une statue qui roule... c'est ridicule. Je quitte l'aventure avec un pincement au cœur, surtout après m'être fait voler par Rafael. Sachez que j'ai été recalé trois fois au casting avant d'être enfin pris. C'était mon rêve, et il s'arrête brutalement aujourd'hui. Doucement, mais sûrement, je me remettrai de cette chute.",
+    "en": "Leaving because of a rolling statue... it's ridiculous. I leave the adventure with a heavy heart, especially after being robbed by Rafael. You should know I was rejected three times at casting before finally being picked. This was my dream, and it ends abruptly today. Slowly but surely, I'll recover from this fall."
+   }
+  },
+  "c024": {
+   "1": {
+    "fr": "Je suis ravi ! Créer le clan des Faucons avec Inès est la meilleure chose qui pouvait m'arriver. Cette poignée de main près du feu aux ruines a scellé notre loyauté. On a tout mis en commun, sans hésiter. Je ne veux pas me retrouver seul ici, et cette alliance me rassure énormément. Un pas après l'autre, nous irons loin ensemble.",
+    "en": "I'm thrilled! Forming the Falcons clan with Inès is the best thing that could have happened to me. That handshake by the fire at the ruins sealed our loyalty. We pooled everything together without hesitation. I don't want to be alone here, and this alliance reassures me greatly. One step at a time, we will go far together."
+   },
+   "2": {
+    "fr": "Le réveil a été brutal quand j'ai vu que Noa m'avait volé des rations. Ensuite, l'eau de la mangrove m'a rendu malade. Heureusement, la solidarité existe encore : Inès a partagé son repas avec moi lors de la veillée des Faucons. Ce geste m'a redonné la force de continuer.",
+    "en": "Waking up was rough when I realized Noa had stolen my rations. Then, the mangrove water made me sick. Fortunately, solidarity still exists: Inès shared her meal with me during the Falcons' vigil. That gesture gave me the strength to keep going."
+   },
+   "3": {
+    "fr": "J'ai le moral en berne ce soir. Voir mon colis tomber entre les mains de Margaux à midi m'a brisé le cœur, c'était ma bouffée d'oxygène. J'ai tout donné sur le puzzle, finir troisième derrière Matthias est une déception. En plus, Oscar m'a chipé ma corde en douce. Je me sens vulnérable. Un pas après l'autre.",
+    "en": "My spirits are low tonight. Seeing my package fall into Margaux's hands at noon broke my heart; it was supposed to be my lifeline. I gave everything during the puzzle challenge, so finishing third behind Matthias is a real disappointment. On top of that, Oscar sneakily took my rope. I feel vulnerable. One step at a time."
+   },
+   "4": {
+    "fr": "Quelle journée épuisante. Cette corde arrivée par miracle m'a redonné un peu d'espoir, mais Rafael a réussi à me la subtiliser sans que je m'en rende compte. C'est frustrant de se sentir si vulnérable quand on essaie juste de construire un abri stable. J'essaie de rester lucide malgré la fatigue et les coups bas. Un pas après l'autre.",
+    "en": "What an exhausting day. This rope that arrived by miracle gave me some hope, but Rafael managed to steal it from me without me noticing. It is frustrating to feel so vulnerable when you are just trying to build a stable shelter. I am trying to stay lucid despite the fatigue and the low blows. One step at a time."
+   }
+  },
+  "c064": {
+   "1": {
+    "fr": "C'est enfin le grand saut. J'ai passé ma première journée à chercher de quoi subsister. J'aime ce côté bricolage de la survie, trouver des solutions avec ce que la nature nous offre. Pour l'instant, l'ambiance est plutôt bonne entre nous. Je reste optimiste, je suis sûr que tout se passera bien tant qu'on reste soudés et qu'on respecte la nature.",
+    "en": "The big leap has finally happened. I spent my first day searching for ways to subsist. I love the DIY aspect of survival, finding solutions with what nature provides. For now, the mood between us is pretty good. I'm staying optimistic; I'm sure things will go well as long as we stay united and respect nature."
+   },
+   "2": {
+    "fr": "Le public ne m'a pas choisi, et c'est difficile à accepter. Je quitte l'île avec le sentiment d'avoir été moi-même. Un dernier secret : je suis déjà millionnaire, je n'étais pas là pour le gain. Je voulais juste vivre l'aventure. Bonne chance aux autres, l'île est magnifique et impitoyable.",
+    "en": "The public didn't choose me, and that's hard to accept. I leave the island feeling like I was true to myself. One last secret: I'm already a millionaire; I wasn't here for the money. I just wanted to experience the adventure. Good luck to the others; the island is beautiful and unforgiving."
+   }
+  },
+  "c032": {
+   "1": {
+    "fr": "Je suis soulagé·e d'avoir trouvé des allié·es. Avec Ayumi et Zara, nous formons désormais le clan des Albatros. Ce soir, sur la plage, partager ma gourde avec elles était un moment fort. On se serre les coudes. J'ai toujours dû me débrouiller, mais ici, l'union fait la force. Pas de panique, j'ai un plan pour que notre petit groupe tienne.",
+    "en": "I'm relieved to have found allies. With Ayumi and Zara, we now form the Albatross clan. Tonight on the beach, sharing my canteen with them was a powerful moment. We're sticking together. I've always had to fend for myself, but here, there's strength in numbers. No need to panic; I have a plan for our little group to last."
+   },
+   "2": {
+    "fr": "J'ai eu une sacrée frayeur avec ce crabe de cocotier dans la mangrove ! Heureusement, la journée s'est mieux finie. J'ai tout fait pour que le public sauve Ayumi et je suis ravi·e qu'elle soit encore là. Ce soir, avec les Albatros, on a mis nos ressources en commun. L'union fait la force.",
+    "en": "I had quite a scare with that coconut crab in the mangrove! Fortunately, the day ended on a better note. I did everything I could to get the public to save Ayumi, and I’m thrilled she’s still here. Tonight, with the Albatrosses, we pooled our resources. Unity is strength."
+   },
+   "3": {
+    "fr": "Je dois partir, la fièvre est trop forte. C'est un déchirement de vous quitter ainsi. Je n'ai pas eu le temps de finir ma mission : j'étais venu·e ici pour retrouver quelqu'un de mon passé parmi les candidats. Ce courant à la rivière m'avait pourtant prouvé que j'étais solide. Prenez soin de vous, mon aventure s'arrête ici.",
+    "en": "I have to leave; the fever is just too high. It's heartbreaking to leave you like this. I didn't have time to finish my mission: I came here to find someone from my past among the contestants. That river current had shown me I was strong. Take care of yourselves; my journey ends here."
+   }
+  },
+  "c090": {
+   "1": {
+    "fr": "Premier jour sur l'île et j'analyse déjà tout. J'ai passé mon temps à sécuriser de la nourriture et de l'eau, tout en observant le comportement des autres candidats. Mon expérience en mer m'a appris la patience. Ici, chaque ressource compte. Je reste calme, mais je sais saisir les opportunités quand elles se présentent. Pour l'instant, je joue la carte de l'indépendance.",
+    "en": "First day on the island and I'm already analyzing everything. I spent my time securing food and water while observing the other candidates' behavior. My experience at sea taught me patience. Here, every resource counts. I'm staying calm, but I know how to seize opportunities when they arise. For now, I'm playing the independence card."
+   },
+   "2": {
+    "fr": "J'ai officiellement rejoint Moussa et Raphaël chez les Coraux. La marée montante m'a surprise au lagon, mais mes réflexes m'ont sauvée. Malgré la perte inexpliquée de quelques rations, l'ambiance à la veillée était apaisante. On a tout mis en commun pour tenir sur la durée. Je reste vigilante et déterminée.",
+    "en": "I’ve officially joined Moussa and Raphaël in the Corals clan. The rising tide caught me off guard at the lagoon, but my reflexes saved me. Despite the unexplained loss of some rations, the atmosphere at the vigil was soothing. We pooled everything to last. I remain vigilant and determined."
+   },
+   "3": {
+    "fr": "Quelle journée stratégique. J'ai récupéré le colis de Samuel, une opportunité que je ne pouvais pas laisser passer. Je garde un œil sur Raphaël ; même si on a partagé nos ressources ce soir, j'ai prévenu Victor qu'il fallait s'en méfier. On joue serré chez les Coraux. Je reste calme, j'observe, et je saisis chaque avantage pour avancer.",
+    "en": "What a strategic day. I intercepted Samuel’s package, an opportunity I simply couldn't pass up. I’m keeping a close eye on Raphaël; even though we shared our resources tonight, I warned Victor to be wary of him. We’re playing a tight game in the Corals. I’m staying calm, observing, and seizing every advantage to move forward."
+   },
+   "4": {
+    "fr": "J'ai pris la décision de quitter les Coraux, c'était devenu invivable. En partant, j'ai pris quelques rations, c'est la survie qui veut ça. La marée montante m'a surprise ce soir sur la plage, j'ai eu une frayeur bleue, mais j'ai tenu bon. On ne laisse personne derrière, mais aujourd'hui, j'ai dû penser à moi avant tout.",
+    "en": "I made the decision to leave the Corals, it had become unlivable. On my way out, I took some rations; survival demands it. The rising tide surprised me tonight on the beach, I had a real scare, but I held on. We leave no one behind, but today, I had to think of myself first."
+   }
+  },
+  "c057": {
+   "1": {
+    "fr": "Quelle belle rencontre avec Alma. En créant le clan des Lucioles, je me sens moins vulnérable face à l'immensité de l'océan qui m'effraie tant. Ce soir, sur la plage, elle a partagé ses rations avec moi, un geste qui m'a beaucoup touchée. C'est rassurant de savoir qu'on peut compter sur quelqu'un dès le premier jour dans cette aventure incroyable.",
+    "en": "What a wonderful meeting with Alma. By forming the Fireflies clan, I feel less vulnerable facing the vastness of the ocean that scares me so much. Tonight on the beach, she shared her rations with me, a gesture that touched me deeply. It's reassuring to know you can count on someone from the very first day in this incredible adventure."
+   },
+   "2": {
+    "fr": "Ce soir, la veillée des Lucioles m'a réchauffé le cœur. Partager mes maigres rations avec Alma et Lucas a créé un lien fort. Au milieu de cette île sauvage et de cette eau qui me fait si peur, ces moments de partage sont essentiels pour tenir le coup. On est plus forts ensemble.",
+    "en": "Tonight, the Fireflies' vigil warmed my heart. Sharing my meager rations with Alma and Lucas created a strong bond. In the middle of this wild island and this water that scares me so much, these moments of sharing are essential to hold on. We are stronger together."
+   },
+   "3": {
+    "fr": "J'ai eu si peur cette nuit dans ce courant, merci encore à Lucas de m'avoir sauvée. Passer par le vote du public à 19h a été une épreuve nerveuse, mais vous m'avez choisie et cela me touche énormément. On a tout mis en commun avec les Lucioles ce soir. Je me sens enfin acceptée, malgré la fatigue et cette faim.",
+    "en": "I was so scared in that current last night; thank you again to Lucas for saving me. Facing the public vote at 7 PM was nerve-wracking, but you chose me, and that means the world to me. We pooled all our resources with the Fireflies tonight. I finally feel accepted, despite the exhaustion and this hunger."
+   },
+   "4": {
+    "fr": "La veillée avec Lucas était un moment suspendu. Partager nos maigres ressources nous a soudés, et je me sens enfin à ma place parmi les Lucioles. La peur de l'eau est toujours là, mais cette solidarité m'apaise. Si ça ne me tue pas, ça me rend célèbre. Je me sens capable de tout affronter pour aller le plus loin possible.",
+    "en": "The evening with Lucas was a suspended moment. Sharing our meager resources bonded us, and I finally feel at home among the Fireflies. The fear of water is still there, but this solidarity calms me. If it doesn't kill me, it makes me famous. I feel capable of facing anything to go as far as possible."
+   }
+  },
+  "c074": {
+   "1": {
+    "fr": "La journée a été frustrante quand j'ai vu mon colis tomber entre les mains de Camille. J'ai dû improviser pour ne pas finir la journée l'estomac vide. Alors, j'ai profité d'un moment d'inattention de Zara pour lui subtiliser quelques rations sans qu'elle s'en aperçoive. C'est la loi de la jungle, non ? Je surveille tout ce qui se passe.",
+    "en": "The day was frustrating when I saw my package fall into Camille's hands. I had to improvise so I wouldn't end the day with an empty stomach. So, I took advantage of a moment when Zara wasn't looking to steal some rations without her noticing. It's the law of the jungle, right? I'm watching everything that happens."
+   },
+   "2": {
+    "fr": "L'observation est ma meilleure arme. J'ai réussi à subtiliser une corde à Zara sans qu'elle ne s'en doute un instant. C'est peut-être cruel, mais chaque outil est une victoire ici. Je souris, mais je note tout. Mon aventure se joue sur la discrétion et l'analyse constante des autres candidats.",
+    "en": "Observation is my best weapon. I managed to swipe a rope from Zara without her suspecting a thing. It might be cruel, but every tool is a victory here. I’m smiling, but I’m taking notes. My adventure is played on discretion and the constant analysis of the other contestants."
+   },
+   "3": {
+    "fr": "Mon voyage s'arrête là, le public en a décidé autrement. Je pars avec mes secrets, comme cette lourde dette de jeu qui me hantait et que j'espérais éponger ici. C'est difficile de dire au revoir alors que j'avais encore tant à observer. Je n'ai pas su vous convaincre, mais je quitte l'île sans amertume. Bonne chance aux autres.",
+    "en": "My journey ends here; the public has decided otherwise. I leave with my secrets, like the heavy gambling debt that haunted me and that I hoped to settle here. It's hard to say goodbye when I still had so much to observe. I failed to convince you, but I leave the island without bitterness. Good luck to the others."
+   }
+  },
+  "c082": {
+   "1": {
+    "fr": "Intégrer les Albatros avec Robin et Ayumi me donne de l'espoir. On a partagé une gourde ce soir sur le sable, c'était apaisant. Par contre, je suis furieuse car j'ai remarqué que certaines de mes rations ont disparu de mon sac. Je ne sais pas encore qui a fait le coup, mais je reste aux aguets. Je ne me laisserai pas faire.",
+    "en": "Joining the Albatrosses with Robin and Ayumi gives me hope. We shared a canteen tonight on the sand; it was soothing. However, I'm furious because I noticed some of my rations have disappeared from my bag. I don't know who did it yet, but I'm staying alert. I won't let this slide."
+   },
+   "2": {
+    "fr": "Quelle journée contrastée ! Liam m'a surprise ce matin, ce qui était embarrassant, mais j'ai gagné l'immunité au coffre immergé ! Je suis intouchable ce soir. Même si on m'a volé ma corde, la veillée avec Robin et Ayumi à la rivière m'a fait du bien. Je reste sur mes gardes malgré cette victoire.",
+    "en": "What a day of contrasts! Liam caught me this morning, which was embarrassing, but I won immunity at the submerged chest! I'm untouchable tonight. Even though someone stole my rope, the vigil with Robin and Ayumi at the river did me good. I'm staying on my guard despite this victory."
+   },
+   "3": {
+    "fr": "La chance tourne enfin ! Grâce à vous, j'ai reçu cette corde indispensable à midi, un vrai soulagement pour le camp des Albatros. J'ai aussi dû me montrer plus maligne ce soir pour assurer ma survie en récupérant quelques rations chez Mila. Ce n'est pas par méchanceté, mais par nécessité. Je reste concentrée sur mon objectif, coûte que coûte.",
+    "en": "Luck is finally turning! Thanks to you, I received that essential rope at noon, a real relief for the Albatross camp. I also had to be a bit craftier tonight to ensure my survival by taking some rations from Mila. It's not out of malice, but necessity. I’m staying focused on my goal, no matter what."
+   },
+   "4": {
+    "fr": "La journée a été intense. Recevoir cette corde grâce à vous a été un soulagement immense pour le camp. J'ai aussi dû assurer nos arrières en prenant quelques rations chez Iris. Ce n'est jamais facile de faire ces choix, mais je dois protéger mon équipe. Je reste calme et j'observe tout. Je souris, mais je note tout.",
+    "en": "The day was intense. Receiving this rope thanks to you was an immense relief for the camp. I also had to cover our backs by taking some rations from Iris. It is never easy to make these choices, but I must protect my team. I stay calm and observe everything. I smile, but I note everything."
+   }
+  },
+  "c075": {
+   "1": {
+    "fr": "Ce premier jour a été une véritable découverte. J'ai passé des heures à chercher de l'eau et des fruits, à essayer de comprendre comment cette île fonctionne. C'est épuisant mais tellement gratifiant. Je repense à ma victoire à la télé il y a dix ans, l'adrénaline revient enfin. Cette aventure va m'apporter beaucoup si je reste fidèle à mes valeurs.",
+    "en": "This first day has been a true discovery. I spent hours looking for water and fruit, trying to understand how this island works. It's exhausting but so rewarding. I'm thinking back to my TV win ten years ago; the adrenaline is finally returning. This adventure will bring me a lot if I stay true to my values."
+   },
+   "2": {
+    "fr": "La douleur de cette morsure de serpent aux sources chaudes est vive, mais je refuse de me plaindre. Je puise dans mes souvenirs pour rester debout. L'île me teste physiquement, mais ma volonté reste intacte. J'espère que demain sera plus calme, car la fatigue commence vraiment à peser.",
+    "en": "The pain from that snake bite at the hot springs is sharp, but I refuse to complain. I’m drawing on my memories to stay standing. The island is testing me physically, but my will remains intact. I hope tomorrow will be calmer, as the exhaustion is really starting to set in."
+   },
+   "3": {
+    "fr": "Quel soulagement d'avoir reçu cette trousse de secours à midi, vous êtes merveilleux ! Après avoir glissé sur ce rocher moussu cette nuit, j'en avais bien besoin. J'ai enfin trouvé une famille chez les Orques avec Dmitri. On a partagé tout ce qu'on avait ce soir sur la plage. L'ambiance est apaisante, je me sens moins seule. Moi, j'y crois.",
+    "en": "What a relief to receive that first aid kit at noon, you are wonderful! After slipping on that mossy rock last night, I really needed it. I’ve finally found a family with the Orcas alongside Dmitri. We shared everything we had on the beach tonight. The atmosphere is soothing; I feel less alone. I believe in us."
+   },
+   "4": {
+    "fr": "J'ai eu une journée éprouvante avec ces fourmis, mais le colis reçu à midi nous a sauvés. Dmitri est un allié précieux, nous avons tout mis en commun lors de la veillée, c'était un beau moment de partage. La peur de l'obscurité m'habite encore, mais avec lui, je me sens plus en sécurité. Moi, j'y crois.",
+    "en": "I had a trying day with those ants, but the parcel received at noon saved us. Dmitri is a precious ally, we pooled everything during the evening, it was a beautiful moment of sharing. The fear of darkness still haunts me, but with him, I feel safer. I believe in it."
+   }
+  },
+  "c006": {
+   "1": {
+    "fr": "C'est dur de partir si vite. J'ai tenu bon quand la liane a lâché aux falaises, mais ce courant traître m'a emporté. Je voulais venger l'honneur de mon quartier, mais le sort en a décidé autrement. Avant de partir, je dois vous avouer que je vois encore mon ex en cachette ; elle ignore tout de ma participation. Adieu l'île, on verra bien.",
+    "en": "It’s hard to leave so soon. I held on when the vine snapped at the cliffs, but that treacherous current swept me away. I wanted to avenge the honor of my neighborhood, but fate decided otherwise. Before I go, I must confess that I’m still seeing my ex; she has no idea I was even here. Goodbye island, we’ll see how it goes."
+   }
+  },
+  "c040": {
+   "1": {
+    "fr": "Merci infiniment aux treize spectateurs qui m'ont envoyé cette lampe torche, c'est un avantage précieux pour la suite. La jungle ne m'a pas fait de cadeau avec cette colonne de fourmis rouges à vingt-trois heures, mais j'ai tenu bon. Je suis ici pour effacer mes dettes et repartir à zéro. Si ça ne me rend pas célèbre, au moins je saurai que j'ai survécu.",
+    "en": "Thank you so much to the thirteen viewers who sent me this flashlight; it’s a precious advantage for the future. The jungle didn't go easy on me with that column of red ants at eleven PM, but I stood my ground. I'm here to clear my debts and start fresh. If this doesn't make me famous, at least I’ll know I survived."
+   },
+   "2": {
+    "fr": "Cette journée a été un ascenseur émotionnel. Grâce à vous, j'ai reçu cette lampe torche, un soulagement immense pour mes nuits. Mais le vrai tournant, c'est mon alliance avec Hana. Sans elle, ces fourmis rouges m'auraient dévorée vivante. On a scellé notre pacte des Iguanes sur la plage ce soir en mettant tout en commun. Je me rapproche enfin de mon but.",
+    "en": "Today has been an emotional rollercoaster. Thanks to you, I received the flashlight, which is a huge relief for my nights. But the real turning point was my alliance with Hana. Without her, those red ants would have eaten me alive. We sealed our Iguanas pact on the beach tonight by sharing everything. I'm finally getting closer to my goal."
+   },
+   "3": {
+    "fr": "Ma place ici a un goût de victoire personnelle, car j'ai été recalée trois fois au casting avant d'enfin fouler ce sable. Ce soir, avec Hana chez les Iguanes, la confiance est totale. On a fusionné nos ressources au lagon pour être imbattables. Je ne reculerai devant rien pour effacer mes dettes. Si ça ne me tue pas, ça me rend célèbre.",
+    "en": "Being here feels like a personal victory because I was rejected three times during casting before finally stepping onto this sand. Tonight, with Hana in the Iguanas, there’s total trust. We merged our resources at the lagoon to be unbeatable. I will stop at nothing to clear my debts. If it doesn't kill me, it makes me famous."
+   },
+   "4": {
+    "fr": "Ce tourbillon a été plus fort que moi. Je voulais tellement effacer mes dettes et réussir ce défi, mais le destin en a décidé autrement. Je pars avec beaucoup de regrets, mais aussi une immense fierté d'avoir tenté l'aventure. Prenez soin de vous, le jeu continue sans moi. Au revoir à toutes et à tous.",
+    "en": "This whirlpool was stronger than me. I wanted so much to clear my debts and succeed in this challenge, but fate decided otherwise. I leave with many regrets, but also immense pride for having tried the adventure. Take care of yourselves, the game continues without me. Goodbye to everyone."
+   }
+  },
+  "c019": {
+   "1": {
+    "fr": "Mon voyage s'arrête ici. J'ai traversé l'Atlantique en solitaire, mais je n'ai pas été sauvé par le public. C'est amer, surtout après avoir surpris Inès qui tentait de me voler à dix-neuf heures. Je pars avec mon secret : je fais des crises de panique chaque nuit. Je voulais lancer mon entreprise, mais tout le monde a un prix, et le mien était trop élevé ce soir.",
+    "en": "My journey ends here. I crossed the Atlantic alone, but I wasn't saved by the public. It's bitter, especially after catching Inès trying to rob me at seven PM. I leave with my secret: I have panic attacks every night. I wanted to start my business, but everyone has a price, and mine was too high tonight."
+   }
+  },
+  "c056": {
+   "1": {
+    "fr": "La journée a été productive. J'ai formé le clan des Mangoustes avec Victor et Omar. Ce soir, lors de notre veillée sur la plage, nous avons décidé de tout mettre en commun. C'est stratégique pour financer l'opération de ma mère. Je reste loyale envers eux tant que cela sert mes intérêts. Ici, c'est chacun pour soi, et moi pour moi.",
+    "en": "The day was productive. I formed the Mongoose clan with Victor and Omar. Tonight, during our gathering on the beach, we decided to pool all our resources. It's a strategic move to fund my mother's surgery. I’ll remain loyal to them as long as it serves my interests. Here, it’s every person for themselves, and me for me."
+   },
+   "2": {
+    "fr": "La loyauté est une valeur toute relative ici. J'ai tenté de fouiller le sac d'Oscar dans la mangrove, mais Kenji m'a surprise. C'était risqué, mais nécessaire. Heureusement, le clan des Mangoustes reste solide. Malgré ces moustiques insupportables sur la plage, nous avons confirmé notre alliance au lagon avec Omar et Victor. Tout mettre en commun nous rendra plus forts pour ma mère.",
+    "en": "Loyalty is a very relative value here. I tried searching Oscar's bag in the mangrove, but Kenji caught me. It was risky, but necessary. Fortunately, the Mangosteen clan remains solid. Despite those unbearable mosquitoes on the beach, we confirmed our alliance at the lagoon with Omar and Victor. Sharing everything will make us stronger for my mother."
+   },
+   "3": {
+    "fr": "Une vague a brisé mon rêve cet après-midi. Je dois quitter l'aventure pour me soigner, le cœur lourd. Je voulais gagner pour aider ma mère et effacer cette dette de jeu qui m'étouffe. J'ai au moins protégé Victor contre Vera aujourd'hui, restant fidèle aux Mangoustes jusqu'au bout. C'est dur de partir ainsi, mais la sécurité passe avant tout. Adieu.",
+    "en": "A wave shattered my dream this afternoon. I have to leave the adventure to recover, with a heavy heart. I wanted to win to help my mother and erase the gambling debt that’s suffocating me. At least I protected Victor from Vera today, staying loyal to the Mongooses until the end. It’s hard to leave like this, but safety comes first. Farewell."
+   }
+  },
+  "c050": {
+   "1": {
+    "fr": "Enfin un peu de stabilité. J'ai rejoint Louis au sein du clan des Tortues à vingt-et-une heures. Après avoir passé ma vie derrière un comptoir, l'isolement me rend nerveux·se, mais faire équipe me rassure pour l'opération de ma mère. Je dois rester concentré·e sur l'objectif et ignorer ma peur des hauteurs. Pour l'instant, je me dis que ça va bien se passer.",
+    "en": "Finally, some stability. I joined Louis in the Turtles clan at nine PM. After spending my life behind a counter, the isolation makes me nervous, but teaming up reassures me regarding my mother's surgery. I need to stay focused on the goal and ignore my fear of heights. For now, I'm telling myself that everything will be fine."
+   },
+   "2": {
+    "fr": "Je suis encore sous le choc. Ce courant traître à vingt-trois heures a failli m'emporter, et je remercie infiniment Noa d'être intervenu·e à temps pour me sauver. Le clan des Tortues est ma bouée de sauvetage. Partager cette gourde avec Rafael, Louis et Noa ce soir sur la plage m'a rappelé l'importance de l'entraide. Je dois rester fort·e pour ma famille.",
+    "en": "I'm still in shock. That treacherous current at 11 PM almost swept me away, and I am so grateful to Noa for stepping in just in time to save me. The Tortoise clan is my lifeline. Sharing that water bottle with Rafael, Louis, and Noa on the beach tonight reminded me how important mutual support is. I must stay strong for my family."
+   },
+   "3": {
+    "fr": "Quelle journée éprouvante. Après que Noa m'a sauvé·e du courant cette nuit, j'ai perdu les pédales en tentant de voler Morgan. Me faire prendre ainsi était humiliant. Heureusement, la trousse de secours reçue à midi et la veillée avec les Tortues m'ont redonné espoir. On a partagé la gourde de Louis, c'était un moment nécessaire. Ça va bien se passer.",
+    "en": "What a grueling day. After Noa saved me from the current last night, I lost my head and tried to steal from Morgan. Getting caught like that was humiliating. Fortunately, the first aid kit I received at noon and the evening with the Turtles gave me hope. We shared Louis's flask; it was a necessary moment. Everything will be fine."
+   },
+   "4": {
+    "fr": "Quelle frayeur avec ces fourmis rouges, Rafael a été un ange gardien pour moi. Être menacé au vote était terrifiant, merci infiniment de m'avoir sauvé. La veillée avec Louis, Rafael et Noa m'a permis de souffler. Malgré les difficultés, je sens que nous formons un groupe soudé. Ça va bien se passer.",
+    "en": "What a scare with those red ants, Rafael was a guardian angel for me. Being threatened at the vote was terrifying, thank you so much for saving me. The evening with Louis, Rafael, and Noa allowed me to breathe. Despite the difficulties, I feel that we are a solid group. It will go well."
+   }
+  },
+  "c092": {
+   "1": {
+    "fr": "Cette première journée a été éprouvante. Ce nuage de moustiques sur la plage ce matin était un véritable cauchemar, j'ai cru que j'allais perdre pied. Je repense souvent à mon frère disparu en mer ; la nature me terrifie autant qu'elle m'attire. Je suis ici pour éponger mes dettes et j'espère que ma loyauté envers les autres sera récompensée par la suite.",
+    "en": "This first day was exhausting. That cloud of mosquitoes on the beach this morning was a total nightmare; I thought I was going to lose it. I often think about my brother who was lost at sea; nature terrifies me as much as it draws me in. I'm here to clear my debts, and I hope my loyalty to others will be rewarded later on."
+   },
+   "2": {
+    "fr": "La jungle est une ennemie redoutable. Ce soir, j'ai senti la morsure d'un serpent me transpercer la jambe. J'ai eu si peur, mais j'ai tenu bon face à la douleur. Sans clan pour me protéger, je me sens vulnérable, comme mon pauvre frère autrefois. Je dois absolument rembourser mes dettes, et pour cela, je sais que tout le monde a un prix.",
+    "en": "The jungle is a formidable enemy. Tonight, I felt a snake bite pierce my leg. I was so scared, but I held on through the pain. Without a clan to protect me, I feel vulnerable, just like my poor brother once did. I absolutely must pay off my debts, and for that, I know that everyone has a price."
+   },
+   "3": {
+    "fr": "C'est un comble pour une apicultrice de succomber à des guêpes. Je suis évacuée et je quitte l'île avec mon plus grand secret : je ne sais pas nager. J'ai eu peur chaque seconde près de cette eau qui a pris mon frère. Je voulais tant réussir pour effacer mes dettes, mais le destin en a décidé autrement. Je vous souhaite bonne chance.",
+    "en": "It’s quite ironic for a beekeeper to succumb to wasps. I’m being evacuated and leaving the island with my biggest secret: I can't swim. I was terrified every second near the water that took my brother. I wanted so much to succeed to clear my debts, but fate decided otherwise. I wish you all good luck."
+   }
+  },
+  "c049": {
+   "1": {
+    "fr": "Une journée calme, consacrée à l'essentiel : trouver de l'eau et de quoi manger. L'ambiance est encore un peu tendue sur l'île, tout le monde s'observe. Je me sers de mon expérience de coach pour rester calme et ne pas gaspiller d'énergie. Je n'oublie pas mon rêve de racheter la maison familiale. On ne laisse personne derrière, mais pour l'instant, j'avance en solo.",
+    "en": "It was a quiet day, dedicated to the essentials: finding water and food. The atmosphere is still a bit tense on the island; everyone is watching each other. I'm using my coaching experience to stay calm and not waste energy. I haven't forgotten my dream of buying back the family home. We leave no one behind, but for now, I'm moving forward solo."
+   },
+   "2": {
+    "fr": "La survie demande de l'audace. Ce matin, j'ai dû subtiliser des rations à Leila sans qu'elle s'en aperçoive. C'est dur, mais je veux racheter la maison de ma famille. Entre la vague scélérate qui m'a surpris·e à l'aube et la faim, je n'ai pas d'autre choix que d'être opportuniste. Pour l'instant, je trace ma route seul·e et j'observe les autres.",
+    "en": "Survival requires boldness. This morning, I had to take some of Leila's rations without her noticing. It's tough, but I want to buy back my family home. Between the rogue wave that caught me by surprise at dawn and the hunger, I have no choice but to be opportunistic. For now, I'm forging my own path alone and watching the others."
+   },
+   "3": {
+    "fr": "Mes forces m'ont abandonné·e, le drone m'emmène loin de l'île. Je n'ai pas pu racheter la maison familiale, mais j'emporte avec moi de quoi finir mon livre secret sur les coulisses de cette aventure. Ce singe dans la jungle ce matin était mon dernier défi. On ne laisse personne derrière, même si je dois maintenant partir seul·e.",
+    "en": "My strength has failed me; the drone is taking me away from the island. I couldn't buy back the family house, but I’m taking with me enough material to finish my secret book about the behind-the-scenes of this adventure. That monkey in the jungle this morning was my final challenge. We leave no one behind, even if I must now go alone."
+   }
+  },
+  "c033": {
+   "1": {
+    "fr": "J'ai passé la journée à chercher des ressources dans la forêt. Sans internet et loin de tout, je me sens un peu comme dans la ferme de mon enfance, mais la nervosité ne me quitte pas. Je me méfie de tout le monde après ce que mon meilleur ami m'a fait. Je reste discret pour l'instant. Mon but est clair : devenir célèbre.",
+    "en": "I spent the day searching for resources in the forest. Without internet and far from everything, it feels a bit like the farm where I grew up, but the nervousness won't leave me. I'm wary of everyone after what my best friend did to me. I'm staying quiet for now. My goal is clear: to become famous."
+   },
+   "2": {
+    "fr": "Je commence à comprendre que la méfiance est ma meilleure alliée. Non seulement j'ai failli être malade à cause de ces baies douteuses dans la mangrove, mais en plus, Liam a réussi à me voler mes rations à quinze heures. Ça me rappelle cruellement la trahison de mon ancien ami. Je suis venu ici pour la célébrité, mais je n'accorderai plus ma confiance.",
+    "en": "I'm starting to realize that mistrust is my best ally. Not only did I almost get sick from those sketchy berries in the mangrove, but Liam also managed to steal my rations at 3 PM. It's a cruel reminder of my former friend's betrayal. I came here for fame, but I won't be giving out my trust anymore."
+   },
+   "3": {
+    "fr": "La journée a été calme, passée à chercher de l'eau et de quoi manger. Ça me laisse le temps de réfléchir à ce que je vous cache. Vous voyez le boulanger de Séoul, mais la vérité est tout autre. J'ai réussi dans les affaires, je suis millionnaire. Pourtant, ici, ma fortune ne sert à rien face à la faim. Tout le monde a un prix, mais ma survie n'est pas à vendre.",
+    "en": "Today was quiet, spent searching for water and food. It gives me time to think about what I'm hiding from you. You see a baker from Seoul, but the truth is quite different. I’ve been successful in business; I’m a millionaire. Yet, out here, my fortune is useless against hunger. Everyone has a price, but my survival isn't for sale."
+   },
+   "4": {
+    "fr": "Cette chute a été fatale, mon corps ne peut plus suivre. C'est ironique, toute ma fortune ne peut pas m'acheter un jour de plus sur cette île. J'espérais gagner pour changer mon image, mais c'est ici que mon aventure s'arrête. J'espère que vous vous souviendrez de moi. Merci pour votre soutien jusqu'au bout. Adieu.",
+    "en": "This fall was fatal, my body can no longer keep up. It is ironic, all my fortune cannot buy me one more day on this island. I hoped to win to change my image, but this is where my adventure ends. I hope you will remember me. Thank you for your support until the end. Farewell."
+   }
+  },
+  "c063": {
+   "1": {
+    "fr": "Je suis dégoûtée. Mon colis est tombé pile dans les mains d'Inès à midi. C'est dur à encaisser, surtout quand on sait à quel point chaque ressource compte pour la survie. J'ai l'habitude de me débrouiller seule avec mes outils, mais là, je me sens vulnérable. Je vais devoir redoubler d'efforts pour montrer que la gentillesse peut gagner, malgré les opportunistes.",
+    "en": "I'm so frustrated. My package fell right into Inès's hands at noon. It's hard to take, especially knowing how much every resource counts for survival. I'm used to managing on my own with my tools, but right now, I feel vulnerable. I'll have to work twice as hard to show that kindness can win, despite the opportunists."
+   },
+   "2": {
+    "fr": "La mangrove a été un véritable enfer aujourd'hui. Entre l'essaim de guêpes à midi et ce frelon géant quelques heures plus tard, j'ai passé ma journée à esquiver les piqûres. C'est épuisant de rester courageuse quand tout semble contre vous. J'espère toujours prouver que la gentillesse peut triompher ici, même si la solitude commence sérieusement à peser sur mon moral.",
+    "en": "The mangrove was a total nightmare today. Between the swarm of wasps at noon and that giant hornet a few hours later, I spent my day dodging stings. It's exhausting to stay brave when everything seems to be against you. I still hope to prove that kindness can triumph here, even though the loneliness is starting to seriously weigh on me."
+   },
+   "3": {
+    "fr": "Enfin une journée sans piqûres ! J'ai passé mon temps à chercher des racines comestibles et à sécuriser notre point d'eau. Le calme fait du bien, mais la solitude de l'île commence à m'oppresser. Je veux prouver que la gentillesse peut nous mener loin, même si je dois rester sur mes gardes. Mes mains de charpentière savent construire du solide, j'espère que mes alliances le seront aussi.",
+    "en": "Finally, a day without stings! I spent my time looking for edible roots and securing our water source. The calm is nice, but the island's solitude is starting to weigh on me. I want to prove that kindness can get us far, even if I have to stay on my guard. My carpenter hands know how to build solid things; I just hope my alliances will be just as strong."
+   },
+   "4": {
+    "fr": "Recevoir cette trousse de secours est une bénédiction, mes mains sont un peu abîmées par le travail. Je dois vous confier quelque chose : je traîne une dette de jeu très lourde, c'est pour ça que je suis ici. Je veux juste m'en sortir dignement. Je suis seule, mais je reste forte. Chacun pour soi, et moi pour moi.",
+    "en": "Receiving this first-aid kit is a blessing, my hands are a bit damaged from the work. I have to confess something to you: I have a very heavy gambling debt, that is why I am here. I just want to get out of it with dignity. I am alone, but I remain strong. Each for themselves, and me for myself."
+   }
+  }
+ }
+}
