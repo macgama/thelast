@@ -74,4 +74,39 @@ describe("récit", () => {
       expect(text).not.toMatch(/ à les | à le /);
     }
   });
+
+  it("forme des clans de 5 au plus, qui partagent et défendent les leurs", () => {
+    for (const seed of [1, 2, 3, 42]) {
+      const r = run(seed);
+      for (const snap of r.snapshots) {
+        const sizes = new Map<string, number>();
+        for (const p of Object.values(snap.people)) if (p[4]) sizes.set(p[4], (sizes.get(p[4]) ?? 0) + 1);
+        for (const n of sizes.values()) expect(n).toBeLessThanOrEqual(5);
+      }
+      expect(r.events.some((e) => e.type === "clan_meal")).toBe(true);
+      for (const e of r.events.filter((x) => x.type === "defend")) expect(new Set(e.actors).size).toBe(3);
+    }
+  });
+
+  it("annonce chaque trahison de clan par de la méfiance puis un complot", () => {
+    for (const seed of [1, 2, 3, 42]) {
+      const r = run(seed);
+      for (const b of r.events.filter((e) => e.type === "steal" && e.data?.betrayal && e.data?.clan)) {
+        const [a, target] = b.actors;
+        const sus = r.events.find((e) => e.type === "suspicion" && e.actors[0] === a && e.actors[1] === target && e.tick < b.tick);
+        const plot = r.events.find((e) => e.type === "conspire" && e.actors[0] === a && e.actors[2] === target && e.tick < b.tick);
+        expect(sus, `méfiance avant la trahison de ${a}`).toBeDefined();
+        expect(plot, `complot avant la trahison de ${a}`).toBeDefined();
+      }
+    }
+  });
+
+  it("fait plaider le clan pour un membre menacé", () => {
+    const r = run(42);
+    for (const c of r.events.filter((e) => e.type === "campaign")) {
+      const threat = r.events.find((e) => e.type === "vote_threat" && e.tick === c.tick)!;
+      expect(threat.actors).toContain(c.actors[1]);
+      expect(threat.actors).not.toContain(c.actors[0]);
+    }
+  });
 });

@@ -29,6 +29,11 @@ export const TRIAL_HOURS = [10, 13, 16];
 export const TRIALS = ["endurance", "orientation", "trust"] as const;
 export const FINALISTS = 3;
 
+/** Noms des clans, dans l'ordre de création. */
+export const CLAN_NAMES = ["Requins", "Lucioles", "Albatros", "Mangoustes", "Tortues", "Coraux", "Faucons", "Iguanes", "Orques", "Geckos", "Pélicans", "Murènes"];
+export const CLAN_MAX = 5;
+export const CLAN_MEAL_HOUR = 20;
+
 export type ShowrunnerKind = "wasp_swarm" | "storm" | "drought" | "supply_drop" | "heatwave";
 
 export class Season {
@@ -50,9 +55,13 @@ export class Season {
   winner: string | null = null;
   /** Candidat protégé par l'épreuve d'immunité du jour. */
   immune: string | null = null;
+  /** Dés séparés pour les clans et les complots. */
+  private social: Rng;
+  private clansMade = 0;
 
   constructor(pool: Character[], readonly arena: Arena, readonly config: SeasonConfig) {
     this.rng = new Rng(config.seed);
+    this.social = new Rng(config.seed * 7 + 13);
     this.cast = this.rng.sample(pool, Math.min(config.participants, pool.length));
     this.byId = new Map(this.cast.map((c) => [c.id, c]));
     this.zones = new Map(arena.zones.map((z) => [z.id, z]));
@@ -61,7 +70,7 @@ export class Season {
         c.id,
         {
           id: c.id, zone: arena.start, health: 100, energy: 90, hunger: 10, thirst: 10, morale: 60 + c.traits.composure / 5,
-          inventory: [], alive: true, allies: [], opinions: {}, spotlight: 0,
+          inventory: [], alive: true, allies: [], opinions: {}, spotlight: 0, clan: null, plot: null,
           popularity: 20 + (c.traits.empathy + c.traits.courage) / 10 + this.rng.int(0, 15),
         },
       ]),
@@ -116,7 +125,10 @@ export class Season {
     s.health = Math.max(0, s.health);
     s.eliminatedAt = this.tick;
     s.eliminationCause = cause;
-    for (const other of this.alive()) other.allies = other.allies.filter((a) => a !== s.id);
+    for (const other of this.alive()) {
+      other.allies = other.allies.filter((a) => a !== s.id);
+      if (other.plot?.target === s.id) other.plot = null;
+    }
     this.emit("evacuated", [s.id], 4, { cause, remaining: this.alive().length, ...data }, s.zone);
   }
 
@@ -152,7 +164,7 @@ export class Season {
 
   private snapshot() {
     const people: Snapshot["people"] = {};
-    for (const s of this.alive()) people[s.id] = [s.zone, Math.round(s.health), Math.round(s.thirst), Math.round(s.morale)];
+    for (const s of this.alive()) people[s.id] = [s.zone, Math.round(s.health), Math.round(s.thirst), Math.round(s.morale), s.clan ?? ""];
     this.snapshots.push({ tick: this.tick, people });
   }
 
@@ -162,9 +174,11 @@ export class Season {
     this.needs();
     for (const s of this.rng.shuffle(this.alive())) if (s.alive) this.act(s);
     this.encounters();
+    this.plots();
     this.hazards();
     this.showrunner();
     if (h === 12) this.gifts();
+    if (h === CLAN_MEAL_HOUR) this.clanMeals();
     if (h === 23) this.sabotage();
     if (h === CHALLENGE_HOUR && dayOf(this.tick) < this.config.days) this.challenge();
     const lastDay = dayOf(this.tick) === this.config.days;
@@ -229,6 +243,10 @@ export class Season {
       this.emit("found_item", [s.id], 1, { item }, s.zone);
       return;
     }
+    if (s.plot?.stage === 3) {
+      const t = this.state.get(s.plot.target);
+      if (t && t.zone !== s.zone && zone.neighbors.includes(t.zone)) { s.zone = t.zone; return; }
+    }
     if (this.rng.chance(0.25 + this.trait(s.id, "courage") / 400)) {
       // Les alliés se suivent
       const allyZone = s.allies.length ? this.state.get(this.rng.pick(s.allies))!.zone : null;
@@ -292,23 +310,26 @@ export class Season {
         this.shiftOpinion(b, a, 15);
         a.popularity += 3;
         this.emit("share", [a.id, b.id], 2, { what: needy }, a.zone);
-      } else if (this.rng.chance(0.03 * cunning * (1 - this.trait(a.id, "loyalty") / 100) * 3)) {
-        // Trahison : rupture d'alliance et vol
-        a.allies = a.allies.filter((x) => x !== b.id);
-        b.allies = b.allies.filter((x) => x !== a.id);
-        this.steal(a, b, true);
       }
       return;
     }
 
     const roll = this.rng.next();
-    if (roll < kindness * 0.35 && a.allies.length < 3 && b.allies.length < 3 && this.opinion(b, a) > -30) {
-      a.allies.push(b.id);
-      b.allies.push(a.id);
+    const room = (x: Contestant) => !x.clan || this.clanMembers(x.clan).length < CLAN_MAX;
+    if (roll < kindness * 0.35 && !(a.clan && b.clan) && room(a) && room(b) && this.opinion(b, a) > -30) {
+      this.ally(a, b);
       this.shiftOpinion(a, b, 25);
       this.shiftOpinion(b, a, 25);
       a.popularity += 1; b.popularity += 1;
-      this.emit("alliance", [a.id, b.id], 3, undefined, a.zone);
+      if (a.clan || b.clan) {
+        const [host, guest] = a.clan ? [a, b] : [b, a];
+        guest.clan = host.clan;
+        for (const m of this.clanMembers(host.clan!)) if (m !== guest) this.ally(m, guest);
+        this.emit("clan_join", [guest.id, host.id], 3, { clan: host.clan }, a.zone);
+      } else {
+        a.clan = b.clan = CLAN_NAMES[this.clansMade++ % CLAN_NAMES.length];
+        this.emit("alliance", [a.id, b.id], 3, { clan: a.clan }, a.zone);
+      }
     } else if (roll < kindness * 0.35 + cunning * 0.2) {
       this.steal(a, b, false);
     } else if (roll < kindness * 0.35 + cunning * 0.2 + aggression * 0.12) {
@@ -316,7 +337,98 @@ export class Season {
     }
   }
 
-  private steal(a: Contestant, b: Contestant, betrayal: boolean) {
+  // ---------- Clans : on partage, on se défend, on fait campagne ----------
+
+  private clanMembers(clan: string): Contestant[] {
+    return this.alive().filter((s) => s.clan === clan);
+  }
+
+  private ally(a: Contestant, b: Contestant) {
+    if (!a.allies.includes(b.id)) a.allies.push(b.id);
+    if (!b.allies.includes(a.id)) b.allies.push(a.id);
+  }
+
+  /** Au feu du soir, chaque clan se retrouve et met l'eau et la nourriture en commun. */
+  private clanMeals() {
+    const clans = new Set(this.alive().map((s) => s.clan).filter(Boolean) as string[]);
+    for (const clan of clans) {
+      const m = this.clanMembers(clan);
+      if (m.length < 2) continue;
+      // Le clan se rejoint dans la zone où il est le plus nombreux
+      const count = new Map<string, number>();
+      for (const s of m) count.set(s.zone, (count.get(s.zone) ?? 0) + 1);
+      const camp = [...count.entries()].sort((x, y) => y[1] - x[1])[0][0];
+      const here = m.filter((s) => s.zone === camp || this.zones.get(s.zone)!.neighbors.includes(camp));
+      if (here.length < 2) continue;
+      for (const s of here) s.zone = camp;
+      // Une gourde ou des rations du sac de l'un profitent à tous
+      const giver = here.find((s) => s.inventory.includes("flask") || s.inventory.includes("rations"));
+      let item: Item | null = null;
+      if (giver) { item = giver.inventory.includes("flask") ? "flask" : "rations"; this.useItem(giver, item); }
+      const thirst = here.reduce((a, s) => a + s.thirst, 0) / here.length - (item === "flask" ? 25 : 0);
+      const hunger = here.reduce((a, s) => a + s.hunger, 0) / here.length - (item === "rations" ? 25 : 0);
+      for (const s of here) {
+        s.thirst = clamp(thirst);
+        s.hunger = clamp(hunger);
+        s.morale = clamp(s.morale + 6);
+        for (const o of here) if (o !== s) this.shiftOpinion(s, o, 4);
+      }
+      this.emit("clan_meal", here.map((s) => s.id), here.length >= 3 || giver ? 3 : 2, { clan, item, giver: giver?.id }, camp);
+    }
+  }
+
+  /** Une trahison se prépare : méfiance, puis complot avec un tiers, puis passage à l'acte. Le public la voit venir. */
+  private plots() {
+    const h = hourOf(this.tick);
+    if (isNight(h)) return;
+    for (const s of this.alive()) {
+      const p = s.plot;
+      if (!p) {
+        if (h !== 9 || !s.allies.length) continue;
+        if (this.trait(s.id, "cunning") < 55 || this.trait(s.id, "loyalty") > 55) continue;
+        const target = s.allies.map((id) => this.state.get(id)!).filter((t) => t.alive).sort((x, y) => this.opinion(s, x) - this.opinion(s, y))[0];
+        if (!target) continue;
+        const odds = this.opinion(s, target) < 0 ? 0.6 : 0.22;
+        if (!this.social.chance(odds)) continue;
+        s.plot = { target: target.id, stage: 1, next: this.tick + this.social.int(6, 12) };
+        this.emit("suspicion", [s.id, target.id], 3, { clan: s.clan }, s.zone);
+        continue;
+      }
+      const t = this.state.get(p.target);
+      if (!t || !t.alive || !s.allies.includes(t.id)) { s.plot = null; continue; }
+      if (this.tick < p.next) continue;
+      if (p.stage === 1) {
+        const accomplice = this.social.shuffle(this.alive().filter((o) => o.zone === s.zone && o !== s && o !== t && !o.allies.includes(t.id)))[0];
+        if (!accomplice) { p.next = this.tick + 2; continue; }
+        this.shiftOpinion(accomplice, t, -15);
+        this.shiftOpinion(accomplice, s, 10);
+        p.stage = 2;
+        p.next = this.tick + this.social.int(5, 12);
+        this.emit("conspire", [s.id, accomplice.id, t.id], 3, { clan: s.clan }, s.zone);
+      } else if (p.stage === 2) {
+        p.stage = 3; // on passe à l'acte dès qu'on croise sa cible
+      } else if (t.zone === s.zone) {
+        this.betray(s, t);
+      }
+    }
+  }
+
+  private betray(a: Contestant, b: Contestant) {
+    const clan = a.clan;
+    a.plot = null;
+    const members = clan ? this.clanMembers(clan).filter((m) => m !== a) : [b];
+    for (const m of members) {
+      a.allies = a.allies.filter((x) => x !== m.id);
+      m.allies = m.allies.filter((x) => x !== a.id);
+      this.shiftOpinion(m, a, -40);
+    }
+    a.allies = a.allies.filter((x) => x !== b.id);
+    b.allies = b.allies.filter((x) => x !== a.id);
+    a.clan = null;
+    this.steal(a, b, true, clan);
+  }
+
+  private steal(a: Contestant, b: Contestant, betrayal: boolean, clan: string | null = null) {
     const stealth = this.has(a.id, "stealth") ? 0.25 : 0;
     if (!b.inventory.length && b.hunger < 60 && this.rng.chance(0.5 + stealth)) {
       // vol de nourriture dans la réserve de l'autre
@@ -325,24 +437,41 @@ export class Season {
       this.shiftOpinion(b, a, -35);
       a.popularity -= 1;
       b.popularity += 2;
-      this.emit("steal", [a.id, b.id], betrayal ? 4 : 3, { item: "rations", food: true, betrayal, caught: false }, a.zone);
+      this.emit("steal", [a.id, b.id], betrayal ? 4 : 3, { item: "rations", food: true, betrayal, caught: false, clan }, a.zone);
     } else if (b.inventory.length && this.rng.chance(0.45 + stealth)) {
       const item = b.inventory.splice(this.rng.int(0, b.inventory.length - 1), 1)[0];
       a.inventory.push(item);
       this.shiftOpinion(b, a, -40);
       a.popularity -= 1;
       b.popularity += 2;
-      this.emit("steal", [a.id, b.id], betrayal ? 4 : 3, { item, betrayal, caught: false }, a.zone);
+      this.emit("steal", [a.id, b.id], betrayal ? 4 : 3, { item, betrayal, caught: false, clan }, a.zone);
     } else {
       this.shiftOpinion(b, a, -25);
       a.popularity -= 2;
-      this.emit("steal", [a.id, b.id], betrayal ? 4 : 2, { betrayal, caught: true }, a.zone);
+      // Pris la main dans le sac sous les yeux du clan : un membre s'interpose (sans tirage, pour ne rien changer d'autre)
+      const guard = !betrayal && b.clan ? this.clanMembers(b.clan).find((m) => m !== b && m !== a && m.zone === b.zone && this.trait(m.id, "loyalty") + this.trait(m.id, "courage") >= 100) : null;
+      if (guard) this.emit("defend", [guard.id, a.id, b.id], 2, { clan: b.clan, theft: true }, b.zone);
+      else this.emit("steal", [a.id, b.id], betrayal ? 4 : 2, { betrayal, caught: true, clan }, a.zone);
     }
+  }
+
+  /** Un membre du clan de b, présent sur place, s'interpose face à a. */
+  private guard(a: Contestant, b: Contestant, odds: number) {
+    const guard = b.clan ? this.clanMembers(b.clan).find((m) => m !== b && m !== a && m.zone === b.zone) : null;
+    if (!guard || !this.social.chance((this.trait(guard.id, "loyalty") + this.trait(guard.id, "courage")) / odds)) return false;
+    this.shiftOpinion(a, guard, -20);
+    this.shiftOpinion(b, guard, 20);
+    b.morale = clamp(b.morale + 5);
+    guard.popularity += 3;
+    this.emit("defend", [guard.id, a.id, b.id], 3, { clan: b.clan }, b.zone);
+    return true;
   }
 
   /** Dispute (esprit Koh Lanta) : on se bouscule, on se crie dessus, on se dispute un objet. Personne n'est blessé :
    *  le perdant perd du moral, de l'énergie et parfois un objet. */
   private dispute(a: Contestant, b: Contestant) {
+    // Un membre du clan de b s'interpose : le clan fait bloc
+    if (this.guard(a, b, 260)) return;
     const power = (s: Contestant) =>
       this.trait(s.id, "courage") * 0.4 + this.trait(s.id, "composure") * 0.3 + s.health * 0.3 + s.energy * 0.2 + s.allies.length * 8 + this.rng.int(0, 50);
     const pa = power(a);
@@ -529,12 +658,34 @@ export class Season {
   private vote() {
     const alive = this.alive();
     if (alive.length <= this.config.threatened) return;
-    const threatened = [...alive].filter((s) => s.id !== this.immune).sort((a, b) => a.popularity + a.spotlight - (b.popularity + b.spotlight)).slice(0, this.config.threatened);
+    const pick = () => [...alive].filter((s) => s.id !== this.immune).sort((a, b) => a.popularity + a.spotlight - (b.popularity + b.spotlight)).slice(0, this.config.threatened);
+    let threatened = pick();
+    // Le gagnant de l'immunité peut offrir son collier à un membre de son clan en danger
+    const holder = this.immune ? this.state.get(this.immune) : null;
+    if (holder?.alive && holder.clan) {
+      const mate = threatened.find((s) => s.clan === holder.clan);
+      if (mate && this.social.chance(this.trait(holder.id, "loyalty") / 120)) {
+        this.immune = mate.id;
+        holder.popularity += 6;
+        this.shiftOpinion(mate, holder, 40);
+        this.emit("necklace_gift", [holder.id, mate.id], 5, { clan: holder.clan });
+        threatened = pick();
+      }
+    }
     this.emit("vote_threat", threatened.map((s) => s.id), 4);
+    // Le clan fait campagne pour ses membres menacés : leur nom compte plus dans le vote du public
+    const boost = new Map<string, number>();
+    for (const s of threatened) {
+      if (!s.clan) continue;
+      const voice = this.clanMembers(s.clan).filter((m) => !threatened.includes(m)).sort((x, y) => this.trait(y.id, "loyalty") - this.trait(x.id, "loyalty"))[0];
+      if (!voice) continue;
+      boost.set(s.id, 6 * this.clanMembers(s.clan).length);
+      this.emit("campaign", [voice.id, s.id], 4, { clan: s.clan });
+    }
     // Un vote gratuit par spectateur, même poids pour tous
     const votes = new Map(threatened.map((s) => [s.id, 0]));
     for (let v = 0; v < this.config.gifts.simulatedViewers; v++) {
-      const w = threatened.map((s) => Math.max(1, s.popularity + s.spotlight + this.rng.int(0, 20)));
+      const w = threatened.map((s) => Math.max(1, s.popularity + s.spotlight + (boost.get(s.id) ?? 0) + this.rng.int(0, 20)));
       let r = this.rng.next() * w.reduce((a, b) => a + b, 0);
       let i = 0;
       while (r > w[i]) r -= w[i++];

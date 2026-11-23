@@ -1,21 +1,5 @@
 {
   "_note": "Fiches enrichies et confessionnaux écrits pour la démo de la saison 42 (version Koh Lanta), à partir de ce qui s'est réellement passé dans la simulation. Plus tard, une IA les écrira en direct.",
-  "c049": {
-    "job": "coach de boxe",
-    "bio": "Coach de boxe à Lyon, Sacha apprend aux gamins du quartier à encaisser sans rendre les coups. Enfance en valises : un déménagement tous les deux ans, jamais le temps de se faire des amis. Sourire désarmant, regard qui calcule. Sacha dit « On ne laisse personne derrière » et le pense, à condition d'être devant.",
-    "motivation": "Racheter la maison familiale de Villeurbanne, vendue quand Sacha avait 12 ans.",
-    "secret": "Sacha a déjà gagné une télé-réalité il y a dix ans, sous un autre nom. Tout le monde l'a oublié·e. Sacha est revenu·e pour prouver que ce n'était pas de la chance.",
-    "secretDay": 7,
-    "confessions": {
-      "1": "Premier soir. J'ai fait alliance avec Selin, la développeuse de jeux vidéo. Elle a un cœur énorme. Moi aussi, j'en ai un. Je le range juste dans une boîte quand il faut gagner.",
-      "2": "Cette nuit, j'ai voulu me rafraîchir dans la mer et le courant m'a retourné·e comme une crêpe. Ce matin, j'ai serré la main d'Ayumi, puis celle d'Oscar. Trois alliés en deux jours. Un coach, ça sait recruter.",
-      "3": "Freya m'a cherché·e dans la jungle, je ne me suis pas laissé·e faire. Et ce soir, j'ai essayé de prendre quelque chose dans le sac de Hamza. Il m'a vu·e. J'ai souri, j'ai dit que je cherchais ma gourde. Il ne m'a pas cru·e.",
-      "4": "Je vais vous avouer un truc : cette nuit, j'ai démoli l'abri d'Omar. Il ne m'avait rien fait, il était juste trop fort. Deux heures plus tard, je me noyais à moitié et c'est Oscar qui m'a sorti·e de l'eau. Le karma a de l'humour. Aujourd'hui, Lucía m'a volé mes rations. Chacun son tour.",
-      "5": "Deuxième à l'épreuve de la noix de coco, derrière Selin. Trente et un d'entre vous m'ont envoyé une trousse. Et Kwame m'a piqué à manger. Je n'aime pas qu'on me prenne ce qui est à moi.",
-      "6": "Cette nuit, j'ai démoli l'abri de Kwame. Je ne suis pas fier·e. Aujourd'hui, les guêpes m'ont trouvé·e : j'en ai une peur bleue depuis toujours. Je ne tiens plus debout. Et pourtant, Selin avait faim, alors je lui ai donné mes rations. Allez comprendre.",
-      "7": "Kwame a été emporté par la mer ce matin. Je n'arrête pas de penser à son abri. J'ai gagné l'orientation, puis la finale. Mon secret : j'ai déjà gagné une émission, il y a dix ans, sous un autre nom. Je voulais savoir si c'était de la chance. Ce n'en était pas. Mais je ne suis pas sûr·e d'en être fier·e."
-    }
-  },
   "c085": {
     "job": "développeuse de jeux vidéo",
     "bio": "Fille d'épiciers de Mumbai, elle a grandi derrière le comptoir. À 30 ans, un grave accident de voiture la cloue au lit six mois : elle y apprend à coder. Son premier jeu s'est vendu à des millions d'exemplaires. Généreuse jusqu'à l'absurde, nerveuse, et terrifiée par l'eau.",
@@ -23,13 +7,13 @@
     "secret": "Elle est millionnaire grâce à son jeu. Ce qu'elle « prend » aux plus forts sur l'île, elle essaie de le redonner aux plus faibles.",
     "secretDay": 6,
     "confessions": {
-      "1": "J'ai peur de l'eau, et on m'a lâchée sur une île. Très drôle. Sacha est venu·e s'asseoir à côté de moi sur la plage. On a parlé de nos chiens jusqu'à la nuit. J'ai un·e allié·e.",
-      "2": "Quelqu'un a mangé mes rations pendant que je dormais près de la cascade. Ethan, je crois. Je ne lui en veux pas. Il avait l'air d'avoir plus faim que moi.",
-      "3": "De la fièvre toute la journée. Dix d'entre vous m'ont envoyé une gourde. Oscar m'a proposé de faire équipe. Je ne sais pas dire non aux gens, c'est mon problème depuis toujours.",
-      "4": "Un colis est tombé à midi, il était pour Tala. Je l'ai gardé. Et ce soir, j'ai fouillé le sac d'Oscar, mon propre allié. Il m'a vue. Je n'ai rien pu expliquer. Pas encore.",
-      "5": "J'ai gagné l'épreuve de la noix de coco ! Moi ! Mes bras tremblent encore. Ce soir, personne ne peut me menacer. Je vais dormir comme un bébé, pour une fois.",
-      "6": "Deuxième immunité, au relais. Je vous dois la vérité : je suis millionnaire. Mon jeu vidéo a vraiment marché. Ce que je prends aux forts, j'essaie de le redonner aux faibles. Ce soir, j'ai partagé mon eau avec Leila. Mais Matthias m'a vue fouiller son sac, et il ne va pas me le pardonner.",
-      "7": "Matthias a démoli mon abri cette nuit. Je l'avais cherché. J'ai gagné l'épreuve de confiance, et j'ai perdu la finale contre Sacha, mon allié·e du premier soir. Je pars sans rien, comme je suis venue. Enfin si : avec quarante amis de plus."
+      "1": "Une île. Entourée d'eau. Moi qui ne sais même pas nager. Je me suis répété toute la journée : tu as survécu à pire, Selin. Six mois dans un lit, tu te souviens ? Ce soir, je dors seule au pied d'un rocher.",
+      "2": "Les clans se forment partout. Les Requins, les Lucioles, les Faucons… Et moi, personne ne m'a encore tendu la main. Je souris beaucoup. Je crois que ça leur fait peur.",
+      "3": "Un serpent aux ruines ce matin, j'ai cru que j'allais m'évanouir. Et puis Ethan m'a proposé de rejoindre les Lucioles. Ce soir, autour du feu, Matthias m'a regardée longtemps. Comme s'il me connaissait.",
+      "4": "Tala fouillait le sac de Rafael. Je me suis plantée devant elle, moi qui tremble pour un rien. Le soir même, le courant m'a emportée et c'est Rafael qui m'a sortie de l'eau. Puis il a partagé ses rations avec moi. C'est ça, un clan.",
+      "5": "Matthias ne me lâche plus des yeux. Il parle à voix basse avec Inès et se tait quand j'arrive. J'ai fini troisième à l'épreuve de la noix de coco. Pas mal pour une fille qui avait peur de grimper sur un tabouret.",
+      "6": "Il m'a tendu sa gourde. Il m'a souri. Puis il a fouillé mon sac. Matthias a quitté les Lucioles en me tournant le dos. Je sais enfin pourquoi il me déteste, et il a raison sur un point : j'ai fermé sa start-up. Alors j'ai gagné l'immunité. Pour lui montrer que je ne suis pas que ça.",
+      "7": "Finale. Je n'ai pas gagné, mais j'ai traversé l'eau, j'ai été trahie et je suis restée debout. Le refuge pour animaux, je vais l'ouvrir quand même. Et j'appellerai le premier chien Rafael."
     }
   },
   "c053": {
@@ -39,28 +23,47 @@
     "secret": "Il connaît Selin. Il y a trois ans, la société de jeux vidéo de Selin a racheté la start-up qu'il avait fondée avec ses amis, puis l'a fermée. Il la tient pour responsable.",
     "secretDay": 6,
     "confessions": {
-      "1": "Règle numéro un : ne pas se faire remarquer le premier jour. Je suis resté à l'ombre dans la jungle, à observer. Il y a une femme ici que je connais. Elle ne se souvient pas de moi. Moi, si.",
-      "2": "Menacé dès le deuxième soir, et sauvé par le public. Je n'ai rien fait de la journée. C'est peut-être ça, le secret.",
-      "3": "Je n'ai ni faim ni soif, mais je n'ai plus le moral. Je regarde Selin distribuer sa nourriture à tout le monde sur la plage et je bouillonne. Personne ne sait qui elle est vraiment.",
-      "4": "J'ai gagné l'épreuve des poteaux. Immunisé ! Ce soir, j'ai emprunté la corde de Yusuf, sans lui demander. Puis la mer m'a avalé. J'ai su me sortir de l'eau tout seul. Je l'ai déjà fait pour un autre, il y a longtemps.",
-      "5": "J'ai pris une trousse dans le sac de Noa. Encore menacé, encore sauvé. Je crois que vous aimez les méchants. Ou alors vous attendez de voir comment je vais tomber.",
-      "6": "Je n'en peux plus. La mer m'a encore eu. Et Selin qui fouille mon sac et me prend ma carte. Alors je vais vous le dire : il y a trois ans, sa société a racheté ma start-up et l'a fermée. Mes amis, mon projet, tout. Elle ne s'en souvient même pas.",
-      "7": "Cette nuit, j'ai démoli son abri. Ce matin, elle m'a pris ma corde. Et j'ai lâché à l'épreuve d'endurance, moi, le spécialiste de l'endurance. Je pars avec ma rancune. Elle est lourde. Je vais peut-être la poser, maintenant."
+      "1": "Des guêpes dans la jungle. J'ai couru plus vite que tout le monde, et je n'en ai pas honte. Le courage, c'est pour ceux qui n'ont pas de plan.",
+      "2": "J'ai rejoint les Lucioles. Rafael est solide, Ethan est gentil. Un clan, c'est comme un contrat : tant que chacun y trouve son intérêt, tout le monde signe.",
+      "3": "Elle est là. Selin. Assise à côté de moi au feu de camp des Lucioles. Elle ne m'a pas reconnu. Moi, je n'ai jamais oublié son visage.",
+      "4": "Un serpent. Rafael m'a soigné. J'ai fini deuxième aux poteaux, juste derrière Omar. Je dois une fière chandelle aux Lucioles. C'est ce qui rend la suite difficile.",
+      "5": "J'ai parlé à Inès. Je lui ai dit de se méfier de Selin. Je n'ai pas menti, pas vraiment. J'ai juste choisi ce que je racontais.",
+      "6": "Je lui ai donné à boire. Puis j'ai essayé de prendre son sac, et elle m'a vu. Trois ans que j'attendais ça, et je ne ressens rien. Ce soir, le public m'a sauvé. Je ne comprends pas pourquoi.",
+      "7": "J'ai tenté une dernière fois chez Morgan, et j'ai raté. Robin m'a accueilli chez les Iguanes sans me poser de question. Puis l'épreuve de confiance m'a sorti. La confiance. Évidemment. Selin, si tu regardes : je suis désolé."
     }
   },
-  "c090": {
-    "job": "pompière volontaire",
-    "bio": "Pianiste prodige à 12 ans, elle a claqué la porte du conservatoire à 15 et n'a plus jamais touché un clavier. Elle a traversé l'Atlantique seule à la voile, puis s'est engagée chez les pompiers volontaires de Manchester. Calme absolu, regard qui note tout. Elle a le vertige, et ne l'avoue à personne.",
-    "motivation": "Lancer sa propre entreprise grâce à la notoriété.",
-    "secret": "Elle écrit en cachette un livre sur l'émission. Le « journal intime » qu'elle remplit chaque soir, c'est lui.",
-    "secretDay": 6,
+  "c009": {
+    "job": "cascadeuse",
+    "bio": "Irlandaise de Dublin, Tala a passé sa vie à déménager, puis à sauter de voitures en marche pour le cinéma. Rieuse, généreuse en paroles, elle se fait des amis en cinq minutes et les perd aussi vite. Elle a une peur panique de l'eau, ce qui, sur une île, pose problème.",
+    "motivation": "Payer l'opération du cœur de sa mère, à Dublin.",
+    "catchphrase": "Je tombe, je me relève, je souris.",
+    "secret": "Tala n'a jamais fait une seule cascade dans l'eau : une doublure la remplaçait à chaque fois. Noa, qui l'a sauvée deux fois du courant, était cette doublure.",
+    "secretDay": 4,
     "confessions": {
-      "1": "Cinquante inconnus sur une plage, et déjà des clans. Moi, je m'assois au bord de la rivière et je regarde. Vous savez ce qui sauve des vies dans un incendie ? Ce n'est pas le courage. C'est de savoir où sont les sorties.",
-      "2": "Moussa voulait ma place à l'ombre des ruines. Je ne l'ai pas laissé faire. Ce soir, il a abandonné. Et j'ai voulu fouiller le sac de Lucía : elle m'a prise la main dans le sac. Je note tout ça dans mon carnet. Pour plus tard.",
-      "3": "J'ai le vertige, et ce matin j'ai glissé près de la cascade. J'ai cru que c'était fini. Je me suis relevée. Une pompière se relève toujours, c'est le métier.",
-      "4": "La rivière m'a emportée. Je n'ai presque plus de forces. Ce soir, j'étais menacée, et vous m'avez sauvée. Je ne comprends pas pourquoi. Je n'ai été gentille avec personne.",
-      "5": "Vingt-quatre trousses de secours. Vingt-quatre. Je ne vais pas pleurer devant une caméra, je refuse. Bon. Un peu.",
-      "6": "Mon corps a dit stop. Je pars d'épuisement, sans drame. Et puisque c'est fini : le carnet, c'est un livre. Sur vous, sur eux, sur moi. Il y aura un chapitre pour celles et ceux qui m'ont envoyé des trousses. Il s'appellera « Merci »."
+      "1": "Noa et moi, on a créé le clan des Requins dès le premier matin. On s'entend trop bien. Peut-être trop.",
+      "2": "Le courant m'a eue. Noa m'a sortie de l'eau, encore. Tout le monde l'applaudit. Moi, je souris. J'ai glissé à Liam qu'il fallait se méfier de Noa. Je ne sais pas pourquoi j'ai dit ça.",
+      "3": "Je l'ai fait. J'ai pris les rations de Noa et j'ai quitté les Requins. Le soir même, j'ai fondé les Geckos avec Tariq. On ne se refait pas : je tombe, je me relève.",
+      "4": "J'ai voulu me servir dans le sac de Rafael. Selin, la petite développeuse, m'est tombée dessus comme une lionne. Le soir, Tariq était menacé : j'ai plaidé pour lui devant le public comme si c'était ma mère. Il est resté.",
+      "5": "Ayumi m'a surprise près du sac de Sven. Encore. Puis c'était mon tour d'être menacée. Tariq a pris la parole pour moi. Le public m'a sauvée. Je ne le mérite peut-être pas, mais je prends.",
+      "6": "Noa est partie. Tariq aussi. Tout le monde essaie de me voler et moi j'essaie de voler tout le monde. Encore sauvée ce soir. Maman, tiens bon.",
+      "7": "L'épreuve m'a sortie. Avant de monter dans le drone, j'ai pensé à Noa. Je lui dois deux vies, et je lui ai pris ses rations. Si je retourne un jour dans l'eau, ce sera pour elle."
+    }
+  },
+  "c071": {
+    "job": "archéologue",
+    "bio": "Né à Nouméa, Omar a élevé seul ses deux petites sœurs quand ses parents sont partis. Archéologue, il passe sa vie à fouiller la terre à la recherche de ce que les autres ont laissé. Sur l'île, il fouille surtout les sacs. Loyal à l'extrême avec les siens, il ne supporte pas d'être seul.",
+    "motivation": "Offrir à ses sœurs la maison qu'elles n'ont jamais eue.",
+    "catchphrase": "Tout ce qui est enterré finit par remonter.",
+    "secret": "Omar connaît Matthias. C'est l'avocat qui a fait fermer, il y a quatre ans, le chantier de fouilles de sa vie, pour le compte d'un promoteur.",
+    "secretDay": 4,
+    "confessions": {
+      "1": "Un colis de rations dès le premier jour, merci à vous. Puis la fièvre dans la mangrove. Tariq a essayé de me voler pendant que je tremblais. Je retiens les visages. C'est mon métier.",
+      "2": "J'ai attrapé un colis qui ne m'était pas destiné. Iris, pardon. Je suis seul depuis deux jours et je déteste ça. Le silence me rappelle la maison vide, quand j'avais huit ans.",
+      "3": "Menacé ce soir. Le public m'a gardé. Je ne vous décevrai pas.",
+      "4": "Sana et moi, on a fondé les Pélicans. J'ai gagné les poteaux devant Matthias. Je l'ai regardé dans les yeux. Il ne se souvient pas de moi. Moi, je me souviens de lui. Ce soir, Sana est partie. Seul, encore.",
+      "5": "Une gourde parachutée par dix-huit d'entre vous. J'ai pris des rations à Morgan. Je ne suis pas fier, mais un archéologue sait qu'on ne survit qu'avec des réserves.",
+      "6": "La corde de Robin, maintenant dans mon sac. Troisième au relais. Tala m'a pris la main dans son sac, elle aussi. On est pareils, elle et moi : on prend, on s'excuse, on recommence.",
+      "7": "J'ai gagné. Matthias est parti juste avant moi, sans savoir qui j'étais. Je n'ai rien eu besoin de lui dire. Mes sœurs, la maison, elle est pour vous. Et tout ce qui est enterré finit par remonter."
     }
   },
   "c032": {
@@ -70,11 +73,13 @@
     "secret": "Robin n'est pas venu·e pour gagner. Robin est venu·e retrouver Léa, la personne laissée seule devant la mairie il y a six ans.",
     "secretDay": 2,
     "confessions": {
-      "1": "J'ai gagné l'épreuve du radeau. J'ai toujours un plan, et celui-là a marché. Mais je ne suis pas là pour ça. J'ai vu quelqu'un sur le bateau ce matin. Quelqu'un que je n'ai pas vu depuis six ans. Elle ne m'a pas regardé·e.",
-      "2": "Je n'ai pas eu le temps de lui parler. Léa est partie ce soir, emportée par le courant. Il y a six ans, je l'ai laissée seule devant la mairie, le jour de notre mariage. J'étais venu·e lui demander pardon. Rémi m'a tenu compagnie à la rivière. Il n'a rien demandé.",
-      "3": "Je n'arrive plus à avancer. Alma m'a proposé de faire équipe au lagon, j'ai dit oui sans réfléchir. Je n'ai plus de plan. C'est la première fois de ma vie.",
-      "4": "La mer a failli me prendre aussi, ce matin. Treize d'entre vous m'ont envoyé une trousse. Merci, vraiment. Mais je crois que ma raison d'être ici est partie avec Léa.",
-      "5": "J'abandonne. Ce n'est pas une défaite. Je vais rentrer, prendre un avion, et aller frapper à la porte de Léa. Je lui dois des excuses qu'aucune caméra ne peut filmer."
+      "1": "J'ai pris des rations dans le sac de Tariq. Je ne suis pas fier·e. Mais j'ai gagné l'épreuve du radeau, et un radeau, c'est un pont qui flotte. Je sais faire.",
+      "2": "Léa a essayé de me voler ce matin. Je l'ai attrapée par le poignet. On s'est regardé·es six secondes. Six ans. Ce soir, le public ne l'a pas sauvée. Je suis venu·e pour elle, et elle est partie sans que j'aie pu lui parler.",
+      "3": "Alma et moi, on a fondé les Iguanes. Yusuf nous a rejoints. Un colis destiné à Selin m'est tombé dans les mains. Je le lui rendrai. Je crois.",
+      "4": "La cascade a failli m'emporter. Sana a voulu me voler, je l'ai vue venir. Ce soir, Alma est partie avec le drone. Les Iguanes ont perdu leur meilleure moitié.",
+      "5": "Deuxième à la noix de coco. Je suis encore là. Je ne sais toujours pas pourquoi je reste, maintenant que Léa est partie. Peut-être pour aller au bout d'une chose, une fois dans ma vie.",
+      "6": "Omar m'a pris ma corde, puis Tala a essayé. Sur cette île, tout le monde finit par fouiller dans le sac des autres. Moi, je construis. Ça finira par payer.",
+      "7": "J'ai gagné l'épreuve d'orientation et celle de confiance. J'ai même ouvert les Iguanes à Matthias, le traître. En finale, Omar a été meilleur. Léa, si tu regardes : cette fois, je suis resté·e jusqu'au bout."
     }
   }
 }

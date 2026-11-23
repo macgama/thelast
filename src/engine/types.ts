@@ -96,6 +96,10 @@ export interface Contestant {
   popularity: number;
   /** Nombre d'actions marquantes (sert au showrunner et à la popularité). */
   spotlight: number;
+  /** Clan (alliance de 2 à 5 personnes qui partagent l'eau et se défendent). */
+  clan?: string | null;
+  /** Trahison en préparation : méfiance, puis complot, puis passage à l'acte. */
+  plot?: { target: string; stage: number; next: number } | null;
 }
 
 export type EliminationCause =
@@ -128,6 +132,13 @@ export type EventType =
   | "alliance"
   | "share"
   | "steal"
+  | "clan_join"
+  | "clan_meal"
+  | "campaign"
+  | "necklace_gift"
+  | "defend"
+  | "suspicion"
+  | "conspire"
   | "dispute"
   | "sabotage"
   | "challenge"
@@ -176,6 +187,6 @@ export interface SeasonResult {
 
 export interface Snapshot {
   tick: number;
-  /** id -> [zone, santé, soif, moral] pour chaque candidat encore en jeu. */
-  people: Record<string, [ZoneId, number, number, number]>;
+  /** id -> [zone, santé, soif, moral, clan] pour chaque candidat encore en jeu. */
+  people: Record<string, [ZoneId, number, number, number, string]>;
 }

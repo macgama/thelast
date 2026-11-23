@@ -51,6 +51,15 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .mapbox { background: var(--deep); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; position: relative; }
 .mapbox canvas { display: block; width: 100%; aspect-ratio: 4 / 3.1; touch-action: none; cursor: grab; }
 @media (max-width: 600px) { .mapbox canvas { aspect-ratio: 1 / 1.12; } }
+.giftbtn { position: absolute; top: 54px; right: 10px; z-index: 3; display: flex; align-items: center; gap: 6px; border-radius: 999px; border: 1px solid var(--line); background: color-mix(in srgb, var(--ink) 80%, transparent); color: var(--sand); padding: 5px 12px 5px 9px; font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .06em; }
+.giftbtn[disabled] { opacity: .5; }
+.giftpop { position: absolute; top: 92px; right: 10px; z-index: 4; width: min(260px, calc(100% - 20px)); background: var(--ink); border: 1px solid var(--line); border-radius: 12px; padding: 12px; box-shadow: 0 10px 30px rgb(0 0 0 / .4); }
+.giftpop b { font-family: var(--display); font-size: 13px; letter-spacing: .04em; }
+.giftitems { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 10px 0 8px; }
+.giftitems button { display: grid; gap: 2px; justify-items: center; padding: 8px 4px; border-radius: 10px; border: 1px solid var(--line); background: var(--deep); font-size: 22px; }
+.giftitems button:hover, .giftitems button:focus-visible { border-color: var(--torch); }
+.giftitems small { font-size: 11px; color: var(--mist); }
+.giftpop p { margin: 0; font-size: 12px; color: var(--mist); }
 .views { position: absolute; top: 10px; right: 10px; display: flex; gap: 4px; background: color-mix(in srgb, var(--ink) 75%, transparent); padding: 4px; border-radius: 999px; border: 1px solid var(--line); }
 .views button { background: none; border: 0; border-radius: 999px; padding: 5px 11px; font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--mist); }
 .views button[aria-pressed="true"] { background: var(--torch); color: var(--ink); }
@@ -82,6 +91,15 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .onair[data-kind="ambient"] p { color: var(--mist); }
 .onair[data-kind="result"] p { font-weight: 600; }
 .onair[data-kind="out"] p { color: #ffb3bb; font-weight: 600; }
+.onair[data-kind="replay"] .tag { background: #7a5cff; }
+.onair[data-kind="replay"] p { color: #d9ccff; font-weight: 600; }
+.onair[data-kind="rival"] p { color: #d9b8ff; font-weight: 600; }
+.intrigues { margin-bottom: 16px; }
+.intrigues ol { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
+.intrigues li { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: center; font-size: 14px; }
+.intrigues .duo { font-weight: 700; }
+.intrigues .duo i { font-style: normal; color: #d9b8ff; margin: 0 4px; }
+.intrigues small { grid-column: 1 / -1; color: var(--mist); font-size: 12px; }
 .onair[data-kind="sr"] p { color: #ffd38a; font-weight: 600; }
 .onair p.fresh { animation: slide .35s ease-out; }
 @keyframes slide { from { transform: translateY(6px); opacity: 0; } }
@@ -92,6 +110,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .lock b { font-family: var(--display); font-size: 20px; display: block; }
 .lock p { color: var(--mist); max-width: 40ch; margin: 8px auto 14px; font-size: 14px; }
 .lock .btn { margin: 4px; }
+.mute { width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 999px; border: 1px solid var(--line); background: var(--deep); font-size: 14px; padding: 0; line-height: 1; }
+.mute[aria-pressed="true"] { opacity: .6; }
 .plan { display: inline-flex; background: var(--deep); border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
 .plan button { background: none; border: 0; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 600; color: var(--mist); }
 .plan button[aria-pressed="true"] { background: var(--sand); color: var(--ink); }
@@ -126,6 +146,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .hero h2 { margin: 0; font-family: var(--display); font-size: 28px; line-height: 1.05; letter-spacing: .02em; text-wrap: balance; }
 .meta { color: var(--mist); font-size: 13px; }
 .quote { font-style: italic; color: var(--sand); margin: 12px 0 0; font-size: 15px; }
+.person small.clan { display: block; font-size: 9px; letter-spacing: .06em; text-transform: uppercase; color: var(--torch); opacity: .85; margin-top: 1px; }
+.card.clan p b { color: var(--torch); }
 .status { display: inline-block; margin-top: 6px; font-family: var(--display); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: color-mix(in srgb, var(--safe) 18%, transparent); color: var(--safe); }
 .status.out { background: color-mix(in srgb, var(--danger) 18%, transparent); color: var(--danger); }
 .status.win { background: var(--torch); color: var(--ink); }
@@ -183,6 +205,23 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .intro h1 { font-family: var(--display); font-size: clamp(40px, 11vw, 84px); line-height: .9; margin: 0; letter-spacing: .04em; text-wrap: balance; }
 .intro h1 b { color: var(--torch); }
 .intro .lede { max-width: 60ch; color: var(--mist); font-size: 16px; margin: 14px 0 26px; }
+.resume { margin: 0 0 16px; }
+.resume .btn { width: 100%; max-width: 520px; text-align: left; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; align-items: center; padding: 12px 14px; }
+.resume .btn small { grid-column: 2; font-weight: 400; opacity: .8; }
+.recap > div { max-width: 520px; width: 100%; text-align: left; background: var(--deep); border: 1px solid var(--line); border-radius: 16px; padding: 20px; max-height: calc(100dvh - 48px); overflow-y: auto; }
+.finale.recap h2 { font-family: var(--display); margin: 4px 0 12px; font-size: 22px; line-height: 1.2; }
+.finale.recap .face { width: 56px; height: 56px; margin: 0; filter: none; }
+.finale.recap p { max-width: none; margin: 0; }
+.recap .who { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center; margin-bottom: 12px; }
+.recap .who p { margin: 0; font-size: 14px; }
+.recap .delta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.recap .delta span { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--ink); border: 1px solid var(--line); }
+.recap .delta .up { color: var(--safe); } .recap .delta .down { color: var(--danger); }
+.recap ul { list-style: none; padding: 0; margin: 8px 0 14px; display: grid; gap: 8px; font-size: 14px; }
+.recap li { display: grid; grid-template-columns: 58px 1fr; gap: 8px; }
+.recap li time { font-family: var(--display); color: var(--mist); font-size: 12px; padding-top: 2px; }
+.recap li.me { color: var(--torch); }
+.recap .row { display: flex; flex-wrap: wrap; gap: 8px; }
 .picks { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 .pick { text-align: left; background: var(--deep); border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: center; transition: border-color .2s, transform .2s; }
 .pick:hover { border-color: var(--torch); transform: translateY(-2px); }
@@ -205,7 +244,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   <div class="wrap">
     <div class="eyebrow">Saison 1 · L'Île aux Échos · 7 jours</div>
     <h1>THE <b>LAST</b></h1>
-    <p class="lede">50 candidats, une île, un seul vainqueur. Personne ne se bat : ici, on survit, on s'allie, on se vole et on se sabote. Chaque après-midi, une épreuve d'immunité. Chaque soir à 19h, le public sauve deux menacés sur trois. Choisis quelqu'un à suivre : la caméra ne le lâchera pas, et chaque soir il te parlera au confessionnal.</p>
+    <p class="lede">50 candidats, une île, un seul vainqueur. Personne ne se bat : ici, on survit, on forme des clans, on se trahit et on se sabote. Chaque après-midi, une épreuve d'immunité. Chaque soir à 19h, le public sauve deux menacés sur trois. Choisis quelqu'un à suivre : la caméra ne le lâchera pas, et chaque soir il te parlera au confessionnal.</p>
+    <div class="resume" id="resume" hidden></div>
     <div class="picks" id="picks"></div>
     <p class="note">Démo de prototype. La saison a été simulée par le moteur du jeu : chaque déplacement, accident, alliance, vol, sabotage, vote et colis vient de la simulation, et chaque événement devient une petite scène sur l'île. Les dialogues en bulles et les confessionnaux de ces cinq candidats ont été écrits par Claude ; en production, une IA les écrira en direct. Le direct démarre au jour 2, à 9h, l'heure la plus agitée.</p>
   </div>
@@ -216,6 +256,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     <div class="logo">THE <b>LAST</b></div>
     <span class="live">Direct</span>
     <div class="plan" role="group" aria-label="Formule de la démo"><button type="button" data-plan="sub" aria-pressed="true">Abonné·e</button><button type="button" data-plan="free" aria-pressed="false">Gratuit</button></div>
+    <button type="button" class="mute" id="mute" aria-pressed="false" title="Son">🔊</button>
     <div class="clock"><span class="day" id="clockDay">Jour 1 · 08h</span><span class="left" id="clockLeft">50 en jeu</span></div>
   </div>
 </header>
@@ -229,6 +270,16 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
         <button type="button" data-view="island" aria-pressed="false">Île</button>
         <button type="button" data-view="zone" aria-pressed="false">Zone</button>
         <button type="button" data-view="follow" aria-pressed="false">Suivre</button>
+      </div>
+      <button type="button" class="giftbtn" id="giftBtn" aria-expanded="false" aria-controls="giftPop">🎁 <span>Colis</span></button>
+      <div class="giftpop" id="giftPop" hidden>
+        <b id="giftTitle">Envoyer un colis</b>
+        <div class="giftitems">
+          <button type="button" data-item="flask" data-label="une gourde">💧<small>Gourde</small></button>
+          <button type="button" data-item="rations" data-label="des rations">🍌<small>Rations</small></button>
+          <button type="button" data-item="medkit" data-label="une trousse de secours">🩹<small>Trousse</small></button>
+        </div>
+        <p id="giftNote">Un colis par jour, gratuit. Il est parachuté sous tes yeux.</p>
       </div>
       <div class="hint">La caméra suit l'action · glisse pour reprendre la main</div>
       <div class="onair" id="onair" data-kind="ambient"><span class="tag">EN DIRECT</span><p id="onairText" aria-live="polite">Calme plat sur l'île.</p></div>
@@ -253,25 +304,28 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
       <button class="tab" role="tab" id="tab-cast" aria-selected="false" type="button">Casting</button>
     </nav>
     <div id="panel-me"></div>
-    <div id="panel-feed" hidden><ul class="feed" id="feed"></ul></div>
+    <div id="panel-feed" hidden><div class="card intrigues" id="intrigues" hidden></div><ul class="feed" id="feed"></ul></div>
     <div id="panel-daily" class="daily" hidden></div>
     <div id="panel-cast" hidden><div class="grid" id="castGrid"></div></div>
   </aside>
 </main>
 
 <div class="finale" id="finale" hidden></div>
+<div class="finale recap" id="recap" hidden role="dialog" aria-modal="true" aria-labelledby="recapTitle"></div>
 <div class="toasts" id="toasts" aria-live="polite"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="sound.js"></script>
 <script src="scenes.js"></script>
 <script src="world3d.js"></script>
 <script>
+  const SND = window.TheLastSound || null; // sound.js : ambiance et bruitages
 (async function () {
   const D = await (await fetch("data.json")).json();
   const C = Object.fromEntries(D.cast.map((c) => [c.id, c]));
   const FEATURED = D.cast.filter((c) => c.confessions);
-  const ORDER = ["c049", "c085", "c053", "c090", "c032"].filter((id) => C[id]);
+  const ORDER = ["c085", "c053", "c009", "c071", "c032"].filter((id) => C[id]);
   const START = 33; // jour 2, 9h : la matinée la plus agitée de la saison
   const snaps = D.snapshots; // [tick, people]
   const T0 = snaps[0][0], TN = snaps[snaps.length - 1][0];
@@ -320,7 +374,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   // ---------- île en 3D ----------
   let world = null, lastRendered = null;
   try {
-    world = World3D.init(document.getElementById("world"), D, { onPick: (id) => { follow(id); select("me"); }, onLive });
+    world = World3D.init(document.getElementById("world"), D, { onPick: (id) => { follow(id); select("me"); }, onLive, onSfx: (n) => SND?.sfx(n), onMusic: (m) => SND?.music(m) });
   } catch (err) {
     document.getElementById("world").replaceWith(Object.assign(document.createElement("p"), { className: "locked", textContent: "La 3D n'a pas pu démarrer sur cet appareil." }));
   }
@@ -333,11 +387,12 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 
   // Bandeau EN DIRECT
   let liveLast = "";
+  var replaying = false; // rediffusion des temps forts en cours
   function onLive(text, kind) {
     if (!text || text === liveLast) return;
     liveLast = text;
     const box = document.getElementById("onair"), p = document.getElementById("onairText");
-    box.dataset.kind = kind || "live";
+    box.dataset.kind = replaying && kind !== "ambient" ? "replay" : kind || "live";
     p.textContent = text;
     p.classList.remove("fresh"); void p.offsetWidth; p.classList.add("fresh");
   }
@@ -354,6 +409,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     forceAnim = false;
     if (live) alerts();
     lastRendered = tick;
+    SND?.setNight(tick % 24 >= 22 || tick % 24 < 6);
     if (!world) return (sceneMs = 0);
     world.setFollow(me);
     sceneMs = world.setTick(tick, live, speed) || 0;
@@ -369,6 +425,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 
   // ---------- alertes : ce qui fait revenir ----------
   function toast(ico, title, text, opt = {}) {
+    SND?.sfx("alert");
     const box = document.getElementById("toasts");
     while (box.children.length >= 3) box.firstElementChild.remove();
     const el = document.createElement("button");
@@ -402,7 +459,14 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
         steal: ev.a[0] === me ? ["🤫", "Ton candidat", ev.fr] : ["🎒", "On a volé ton candidat", ev.fr, true],
         dispute: ["💢", "Dispute", ev.fr, true],
         sabotage: ev.a[1] === me ? ["🌙", "Sabotage", `L'abri de ${n} vient d'être démoli !`, true] : ["🌙", "Ton candidat", ev.fr],
-        alliance: ["🤝", "Alliance", ev.fr],
+        alliance: ["🤝", "Nouveau clan", ev.fr],
+        clan_join: ev.a[0] === me ? ["🤝", "Clan", ev.fr] : ["🤝", "Ton clan s'agrandit", ev.fr],
+        clan_meal: ["🔥", "Veillée du clan", ev.fr.replace(/^🔥 /, "")],
+        defend: ev.a[0] === me ? ["🛡️", "Ton candidat protège un allié", ev.fr.replace(/^🛡️ /, "")] : ev.a[2] === me ? ["🛡️", "Son clan l'a défendu" + e(m), ev.fr.replace(/^🛡️ /, ""), true] : ["💢", "Dispute", ev.fr.replace(/^🛡️ /, ""), true],
+        suspicion: ev.a[1] === me ? ["👀", "Méfiance", `Quelqu'un de son clan ne quitte plus ${n} des yeux…`, true] : ["👀", "Ton candidat", ev.fr],
+        conspire: ev.a[2] === me ? ["🤫", "Complot", `On parle de ${n} dans son dos. Une trahison se prépare…`, true] : ["🤫", "Ton candidat", ev.fr, ev.a[0] === me],
+        necklace_gift: ["📿", "Coup de théâtre", ev.fr, true],
+        campaign: ev.a[1] === me ? ["📣", "Son clan fait campagne", ev.fr] : ["📣", "Ton candidat", ev.fr],
         vote_threat: ["🗳️", "Vote", `${n} est menacé${e(m)} ce soir. Ton vote peut tout changer !`, true],
         evacuated: ["🚁", "Évacuation", ev.fr, true],
         gift_delivered: ["🎁", "Colis", `${n} a reçu ton colis !`],
@@ -414,7 +478,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
       shown++;
     }
     if (shown) return;
-    const big = evs.find((ev) => ev.type === "sabotage") || evs.find((ev) => ev.type === "dispute") || evs.find((ev) => ev.type === "challenge") || evs.find((ev) => ev.type === "showrunner") || evs.find((ev) => ev.type === "vote_threat") || evs.find((ev) => ev.type === "steal" && ev.d?.betrayal);
+    const big = evs.find((ev) => ev.type === "sabotage") || evs.find((ev) => ev.type === "dispute") || evs.find((ev) => ev.type === "challenge") || evs.find((ev) => ev.type === "showrunner") || evs.find((ev) => ev.type === "vote_threat") || evs.find((ev) => ev.type === "steal" && ev.d?.betrayal) || evs.find((ev) => ev.type === "necklace_gift") || evs.find((ev) => ev.type === "conspire") || evs.find((ev) => ev.type === "defend");
     if (!big) return;
     const zn = (z) => { const n = D.arena.zones.find((x) => x.id === z)?.name || ""; return z === "beach" ? "au camp" : z === "jungle" || z === "mangrove" ? "dans " + n : n.startsWith("le ") ? "au " + n.slice(3) : n.startsWith("les ") ? "aux " + n.slice(4) : "à " + n; };
     const g = {
@@ -424,6 +488,9 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
       showrunner: ["📢", "Coup de théâtre", big.fr],
       vote_threat: ["🗳️", "19h", "Le vote commence au feu de camp."],
       steal: ["💔", "Trahison", big.fr],
+      necklace_gift: ["📿", "Coup de théâtre", big.fr],
+      conspire: ["🤫", "Un complot se prépare", big.fr],
+      defend: ["🛡️", "Le clan fait bloc", big.fr.replace(/^🛡️ /, "")],
     }[big.type];
     toast(g[0], g[1], g[2], { id: big.a[0] });
   }
@@ -470,6 +537,11 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
       : out ? `<span class="status out">Évacué${e(c)} · Jour ${out.day} · ${hh(out.t)}</span>`
       : `<span class="status">En jeu · ${esc(D.arena.zones.find((z) => z.id === p[0]).name)}</span>`;
     const gauge = (label, v, color) => `<div class="gauge"><span>${label}</span><b>${v}</b><div class="bar"><i style="width:${v}%;background:${color}"></i></div></div>`;
+    const clan = p && p[4] ? p[4] : "";
+    const mates = clan ? Object.keys(snapAt(tick)).filter((id) => id !== me && snapAt(tick)[id][4] === clan).map((id) => C[id].name) : [];
+    const lastClan = !clan && [...D.events].reverse().find((ev) => ev.t <= tick && ev.d?.clan && ev.a[0] === me && ["alliance", "clan_join", "steal"].includes(ev.type));
+    const clanCard = clan ? `<div class="card clan"><h4>Son clan</h4><p><b>Les ${esc(clan)}</b>${mates.length ? ` · avec ${esc(mates.join(", "))}` : " · dernier membre en jeu"}</p></div>`
+      : lastClan && lastClan.type === "steal" ? `<div class="card clan"><h4>Son clan</h4><p>A trahi les ${esc(lastClan.d.clan)}. Seul${e(c)} contre tous.</p></div>` : "";
     const gauges = p ? `<div class="gauges">${gauge("Santé", p[1], "var(--safe)")}${gauge("Hydratation", 100 - p[2], "#6fc6e0")}${gauge("Moral", p[3], "var(--torch)")}</div>` : "";
 
     let booth = "";
@@ -494,6 +566,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
         <div><h2>${esc(c.name)}</h2><div class="meta">${c.age} ans · ${esc(c.job)} · ${esc(c.origin)}</div>${status}</div></div>
       <p class="quote">« ${esc(c.catchphrase)} »</p>
       ${gauges}
+      ${clanCard}
       ${booth}
       <div class="card"><h4>Son histoire</h4><p>${esc(c.bio)}</p><div class="chips"><span class="chip">Rêve : ${esc(c.motivation)}</span></div></div>
       <div class="card secret"><h4>Son secret</h4>${secretOpen ? `<p>${esc(c.secret)}</p>` : `<p class="locked">🔒 Pas encore révélé. Reste avec ${esc(c.name)} pour le découvrir.</p>`}</div>
@@ -510,7 +583,13 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 
   // ---------- autres onglets ----------
   function panelFeed() {
-    if (plan === "free") { document.getElementById("feed").innerHTML = `<li><span></span><span class="locked">🔒 Le fil heure par heure est réservé aux abonnés. Sans abonnement, tu as la Quotidienne de 19h.</span></li>`; return; }
+    if (plan === "free") { document.getElementById("intrigues").hidden = true; document.getElementById("feed").innerHTML = `<li><span></span><span class="locked">🔒 Le fil heure par heure est réservé aux abonnés. Sans abonnement, tu as la Quotidienne de 19h.</span></li>`; return; }
+    // Les intrigues de la saison : les duos qui reviennent sans cesse à l'écran
+    const riv = (window.TheLastRivals ? window.TheLastRivals(D, tick) : []).filter((r) => r.heat >= 3).sort((x, y) => y.heat - x.heat || y.last - x.last).slice(0, 4);
+    const box = document.getElementById("intrigues");
+    box.hidden = !riv.length;
+    const alive = snapAt(tick);
+    box.innerHTML = `<h4>Les intrigues</h4><ol>${riv.map((r) => `<li><span class="duo">${esc(C[r.a].name)}<i>⚡</i>${esc(C[r.b].name)}</span><span class="chip">${r.n} épisode${r.n > 1 ? "s" : ""}</span><small>Dernier épisode : ${esc(r.lastWhat)}, jour ${dayOf(r.last)} à ${hh(r.last)}${!alive[r.a] || !alive[r.b] ? ". L'un des deux a quitté l'île." : ""}</small></li>`).join("")}</ol>`;
     const items = D.events.filter((ev) => ev.t <= tick && ev.w >= 2).slice(-60).reverse();
     document.getElementById("feed").innerHTML = items.map((ev) =>
       `<li class="${ev.type === "evacuated" ? "out" : ev.type === "showrunner" ? "sr" : me && ev.a.includes(me) ? "me" : ""}"><time>J${dayOf(ev.t)} ${hh(ev.t)}</time><span>${esc(ev.fr)}</span></li>`).join("");
@@ -544,7 +623,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     const ids = [...ORDER, ...D.cast.map((c) => c.id).filter((id) => !ORDER.includes(id))];
     document.getElementById("castGrid").innerHTML = ids.map((id) => {
       const c = C[id], p = people[id];
-      return `<button type="button" class="person ${p ? "" : "gone"} ${c.confessions ? "featured" : ""} ${id === me ? "me" : ""}" data-id="${id}">${face(c, p ? p[3] : 20)}<span>${esc(c.name)}</span></button>`;
+      return `<button type="button" class="person ${p ? "" : "gone"} ${c.confessions ? "featured" : ""} ${id === me ? "me" : ""}" data-id="${id}">${face(c, p ? p[3] : 20)}<span>${esc(c.name)}</span>${p && p[4] ? `<small class="clan">${esc(p[4])}</small>` : ""}</button>`;
     }).join("");
     document.querySelectorAll("#castGrid .person").forEach((b) => b.addEventListener("click", () => { follow(b.dataset.id); select("me"); }));
   }
@@ -571,6 +650,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     if (active === "cast") panelCast();
     badge();
     lockState();
+    paintGift();
+    if (started) try { localStorage.setItem("thelast-pos", JSON.stringify({ tick, at: Date.now(), me })); } catch {}
     clearTimeout(finaleTimer);
     if (tick >= TN) {
       // le Prime s'affiche quand la scène de la finale est terminée
@@ -595,7 +676,13 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   }
 
   // En lecture, chaque heure dure le temps de ses scènes (plus vite en ×3, sans scène en ×8)
-  function go(t) { tick = Math.max(T0, Math.min(TN, t)); render(); if (playing) schedule(); }
+  function go(t, opt = {}) {
+    const from = tick;
+    tick = Math.max(T0, Math.min(TN, t));
+    render();
+    if (playing) schedule();
+    if (opt.recap !== false && started && tick - from >= 3) recapOpen(from, tick);
+  }
   function schedule() {
     clearTimeout(timer);
     const base = speed === 1 ? 3200 : speed === 3 ? 1100 : 450;
@@ -604,7 +691,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
       // on attend la fin des scènes de l'heure (le téléphone peut être plus lent que prévu)
       if (world && world.busy && performance.now() - t0 < sceneMs * 2.5 + 4000) { timer = setTimeout(next, 250); return; }
       if (tick >= TN) return pause();
-      go(tick + 1);
+      go(tick + 1, { recap: false });
     };
     timer = setTimeout(next, Math.max(base, sceneMs + (speed === 1 ? 900 : 200)));
   }
@@ -626,7 +713,63 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     const night = (dayOf(tick) - 1) * 24 + 21;
     go(tick < night ? night : night + 24);
   });
-  scrub.addEventListener("input", () => go(T0 + Number(scrub.value)));
+  // Sur le curseur, le résumé attend qu'on lâche
+  let scrubFrom = null;
+  scrub.addEventListener("input", () => { if (scrubFrom === null) scrubFrom = tick; go(T0 + Number(scrub.value), { recap: false }); });
+  scrub.addEventListener("change", () => { const f = scrubFrom; scrubFrom = null; if (f !== null && started && tick - f >= 3) recapOpen(f, tick); });
+
+  // ---------- « Ce que tu as raté » ----------
+  const RECAP_W = { finale: 100, trial: 90, challenge: 70, vote_threat: 75, necklace_gift: 80, sabotage: 60, defend: 55, dispute: 55, conspire: 50, suspicion: 40, steal: 35, hazard: 35, clan_join: 30, alliance: 30, clan_meal: 20, gift_delivered: 15, evacuated: 25, gift_lost: 12 };
+  const recapScore = (ev) => (RECAP_W[ev.type] || 0) + (ev.type === "steal" && ev.d?.betrayal ? 40 : 0) + (ev.d?.rescuedBy ? 10 : 0) + (me && ev.a.includes(me) ? 100 : 0) + (ev.a.some((id) => C[id]?.confessions) ? 10 : 0);
+  let recapPicks = [];
+  function recapOpen(from, to) {
+    if (tick >= TN) return; // la finale a son propre écran
+    const box = document.getElementById("recap");
+    const evs = D.events.filter((ev) => ev.t > from && ev.t <= to);
+    const playable = ["finale", "trial", "challenge", "vote_threat", "necklace_gift", "sabotage", "defend", "dispute", "conspire", "suspicion", "steal", "hazard", "clan_join", "alliance", "clan_meal", "gift_delivered", "gift_lost"];
+    const ranked = evs.filter((ev) => playable.includes(ev.type) && recapScore(ev) > 0).sort((a, b) => recapScore(b) - recapScore(a) || a.t - b.t);
+    // 3 temps forts, à des heures différentes, rejoués dans l'ordre
+    recapPicks = [];
+    for (const ev of ranked) { if (recapPicks.length >= 3) break; if (!recapPicks.some((x) => x.t === ev.t)) recapPicks.push(ev); }
+    recapPicks.sort((a, b) => a.t - b.t);
+    const lines = ranked.slice(0, 6).sort((a, b) => a.t - b.t);
+    const outs = evs.filter((ev) => ev.type === "evacuated");
+    const m = me ? C[me] : null, p0 = me ? snapAt(from)[me] : null, p1 = me ? snapAt(to)[me] : null;
+    const d = (label, a, b, inv) => { const v = inv ? (100 - b) - (100 - a) : b - a; return `<span class="${v > 2 ? "up" : v < -2 ? "down" : ""}">${label} ${v > 0 ? "▲" : v < 0 ? "▼" : "="} ${inv ? 100 - b : b}</span>`; };
+    let who = "";
+    if (m) {
+      const out = elim[me] && elim[me].t > from && elim[me].t <= to;
+      const clanTxt = p1 && p1[4] !== p0?.[4] ? (p1[4] ? `A rejoint le clan des ${esc(p1[4])}.` : p0?.[4] ? `N'est plus dans le clan des ${esc(p0[4])}.` : "") : p1?.[4] ? `Toujours chez les ${esc(p1[4])}.` : "";
+      who = `<div class="who">${face(m, p1 ? p1[3] : 20, { gray: !p1 })}<div><p><b>${esc(m.name)}</b> · ${out ? `<span style="color:var(--danger)">évacué${e(m)} pendant ton absence</span>` : p1 ? `en jeu, ${esc(D.arena.zones.find((z) => z.id === p1[0]).name)}` : "déjà hors du jeu"}</p>${p0 && p1 ? `<div class="delta">${d("Santé", p0[1], p1[1])}${d("Hydratation", p0[2], p1[2], true)}${d("Moral", p0[3], p1[3])}</div>` : ""}${clanTxt ? `<p style="margin-top:6px;color:var(--mist)">${clanTxt}</p>` : ""}</div></div>`;
+    }
+    box.innerHTML = `<div>
+      <div class="eyebrow">Ce que tu as raté</div>
+      <h2 id="recapTitle">Jour ${dayOf(from)} · ${hh(from)} → Jour ${dayOf(to)} · ${hh(to)}</h2>
+      ${who}
+      <h4 style="margin:0">Les moments forts</h4>
+      <ul>${lines.map((ev) => `<li class="${me && ev.a.includes(me) ? "me" : ""}"><time>J${dayOf(ev.t)} ${hh(ev.t)}</time><span>${esc(ev.fr)}</span></li>`).join("") || "<li><time></time><span>Rien de marquant. L'île a retenu son souffle.</span></li>"}</ul>
+      ${outs.length ? `<p style="margin:0 0 14px;color:var(--mist);font-size:14px">🚁 ${outs.length} évacuation${outs.length > 1 ? "s" : ""} : ${esc(outs.slice(0, 6).map((ev) => C[ev.a[0]].name).join(", "))}${outs.length > 6 ? "…" : "."} Il reste ${Object.keys(snapAt(to)).length} candidats.</p>` : ""}
+      <div class="row">${recapPicks.length ? `<button class="btn main" type="button" id="recapPlay">▶ Revoir ${recapPicks.length > 1 ? `les ${recapPicks.length} temps forts` : "le temps fort"}</button>` : ""}<button class="btn" type="button" id="recapClose">Reprendre le direct</button></div>
+    </div>`;
+    box.hidden = false;
+    pause();
+    document.getElementById("recapClose").addEventListener("click", () => { box.hidden = true; play(); });
+    document.getElementById("recapPlay")?.addEventListener("click", () => { box.hidden = true; replay(recapPicks.slice()); });
+    (document.getElementById("recapPlay") || document.getElementById("recapClose")).focus();
+  }
+  // Rediffusion : chaque temps fort est rejoué à son heure, puis retour au direct
+  function replay(list) {
+    const tag = document.querySelector("#onair .tag");
+    if (!world || !list.length) { replaying = false; tag.textContent = "EN DIRECT"; world?.setTick(tick, false); lastRendered = tick; toast("📺", "Retour au direct", `Jour ${dayOf(tick)} · ${hh(tick)}`); return play(); }
+    replaying = true;
+    const ev = list.shift();
+    setView("director");
+    tag.textContent = `⏪ REDIFFUSION · J${dayOf(ev.t)} ${hh(ev.t)}`;
+    world.setTick(ev.t, true, 1, [ev]);
+    const t0 = performance.now();
+    const wait = () => { if (world.busy && performance.now() - t0 < 90000) setTimeout(wait, 300); else setTimeout(() => replay(list), 600); };
+    setTimeout(wait, 800);
+  }
 
   function follow(id) {
     const changed = me !== id;
@@ -642,8 +785,35 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     return `<button class="pick" type="button" data-id="${id}">${face(c, 70)}<div><strong>${esc(c.name)}, ${c.age} ans</strong><small>${esc(c.job)} · ${esc(c.origin)}</small><em>« ${esc(c.catchphrase)} »</em></div></button>`;
   }).join("");
   let started = false;
+  // Le colis du spectateur, depuis la carte (démo : ne change pas la simulation)
+  const giftBtn = document.getElementById("giftBtn"), giftPop = document.getElementById("giftPop");
+  function giftKey() { return `thelast-gift-${me}-${dayOf(tick)}`; }
+  function giftUsed() { try { return localStorage.getItem(giftKey()) === "1"; } catch { return false; } }
+  function paintGift() {
+    const giftBtn = document.getElementById("giftBtn");
+    const ok = me && snapAt(tick)[me] && !(elim[me] && elim[me].t <= tick) && document.getElementById("lock").hidden;
+    giftBtn.hidden = !ok;
+    giftBtn.disabled = giftUsed();
+    giftBtn.title = giftUsed() ? "Tu as déjà envoyé ton colis aujourd'hui. Reviens demain !" : `Envoyer un colis à ${me ? C[me].name : ""}`;
+    if (me) document.getElementById("giftTitle").textContent = `Envoyer un colis à ${C[me].name}`;
+  }
+  giftBtn.addEventListener("click", () => { const open = giftPop.hidden; giftPop.hidden = !open; giftBtn.setAttribute("aria-expanded", String(open)); });
+  giftPop.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
+    giftPop.hidden = true; giftBtn.setAttribute("aria-expanded", "false");
+    if (!world || giftUsed()) return;
+    if (!world.gift(me, b.dataset.item, b.dataset.label)) return toast("🎁", "Colis", `${C[me].name} est hors de portée du drone pour l'instant.`);
+    try { localStorage.setItem(giftKey(), "1"); } catch {}
+    paintGift();
+    toast("🎁", "Colis envoyé", `${b.dataset.label.charAt(0).toUpperCase() + b.dataset.label.slice(1)} pour ${C[me].name}. Dans la vraie émission, il s'ajoute aux colis des autres spectateurs.`, { id: me });
+  }));
+  const muteBtn = document.getElementById("mute");
+  const paintMute = () => { const m = !SND || SND.muted; muteBtn.textContent = m ? "🔇" : "🔊"; muteBtn.setAttribute("aria-pressed", String(m)); muteBtn.title = m ? "Activer le son" : "Couper le son"; };
+  if (!SND) muteBtn.hidden = true;
+  paintMute();
+  muteBtn.addEventListener("click", () => { SND.setMuted(!SND.muted); paintMute(); });
   document.querySelectorAll(".pick").forEach((b) => b.addEventListener("click", () => {
     document.getElementById("intro").hidden = true;
+    if (SND && !SND.muted) SND.start();
     me = b.dataset.id;
     try { localStorage.setItem("thelast-me", me); } catch {}
     started = true;
@@ -655,6 +825,27 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   let saved = null;
   try { saved = localStorage.getItem("thelast-me"); } catch {}
   me = saved && C[saved] ? saved : ORDER[0];
+  // Retour sur l'île : pendant l'absence, l'émission a continué (1 minute réelle = 1 heure sur l'île)
+  let pos = null;
+  try { pos = JSON.parse(localStorage.getItem("thelast-pos") || "null"); } catch {}
+  if (pos && C[pos.me] && pos.tick >= T0 && pos.tick < TN - 1) {
+    const away = Math.max(0, Math.floor((Date.now() - pos.at) / 60000));
+    const target = Math.min(TN - 1, pos.tick + away);
+    const box = document.getElementById("resume");
+    box.innerHTML = `<button class="btn main" type="button" id="resumeBtn"><span>▶</span><span>Reprendre avec ${esc(C[pos.me].name)}</span><small>Tu t'étais arrêté·e au jour ${dayOf(pos.tick)}, ${hh(pos.tick)}. ${target - pos.tick >= 3 ? `L'île a vécu ${target - pos.tick} heures sans toi : on te raconte.` : "Tu reprends là où tu étais."}</small></button>`;
+    box.hidden = false;
+    document.getElementById("resumeBtn").addEventListener("click", () => {
+      document.getElementById("intro").hidden = true;
+      if (SND && !SND.muted) SND.start();
+      me = pos.me;
+      started = true;
+      setView("director");
+      select("me");
+      tick = pos.tick;
+      if (target - pos.tick >= 3) { tick = target; render(); recapOpen(pos.tick, target); }
+      else { tick = target; forceAnim = true; render(); play(); }
+    });
+  }
   render();
 })();
 </script>

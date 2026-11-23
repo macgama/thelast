@@ -9,6 +9,11 @@ Télé-réalité 100% IA : 50 personnages IA vivent une aventure de 7 jours, sui
 - **Démo visuelle** : [`demo/index.html`](demo/index.html), avec l'île en 3D low poly (Three.js, rotation et zoom), les 50 candidats et 5 personnages à suivre avec leurs confessionnaux. Régénérer les données avec `npm run replay`.
   - [`demo/world3d.js`](demo/world3d.js) : l'île, les personnages, la météo, les animaux, les drones et la caméra « réalisateur ».
   - [`demo/scenes.js`](demo/scenes.js) : chaque événement devient une scène cartoon de 5 à 20 secondes (accidents, vols, disputes, sabotages, épreuves, vote, évacuations), avec bulles de dialogue et bandeau EN DIRECT. Entre deux scènes, les candidats pêchent, cherchent à manger, dorment et se méfient. Les répliques sont écrites à la main dans `SAY` ; plus tard, une IA les écrira.
+  - [`demo/sound.js`](demo/sound.js) : vagues, vent, oiseaux le jour, grillons la nuit, musique qui suit la scène (calme, tension, épreuve) et bruitages cartoon. Tout est généré dans le navigateur, sans fichier audio. Bouton 🔊 en haut pour couper le son.
+  - Clans : jusqu'à 5 membres, une veillée à 20h où l'on met l'eau et la nourriture en commun, un membre qui s'interpose quand on s'en prend à l'un des siens, un plaidoyer devant le public quand l'un d'eux est menacé, et le collier d'immunité que l'on peut offrir. Les trahisons s'annoncent : méfiance, puis complot à voix basse, puis passage à l'acte.
+  - Intrigues suivies : le Réal repère les duos qui s'affrontent (vols, disputes, complots…), annonce « Épisode N » avant chaque nouvel accrochage et repasse sur eux entre deux scènes. L'onglet Direct liste les intrigues en cours.
+  - Bouton 🎁 sur la carte : un colis par jour, parachuté sous tes yeux (dans la démo, il ne change pas la simulation).
+  - « Ce que tu as raté » : après un saut de 3 heures ou plus, ou quand tu reviens (1 minute d'absence = 1 heure sur l'île), un résumé de ton candidat et de l'île, avec la rediffusion des 3 temps forts.
   - Alertes façon notification, et bouton « Gratuit » pour voir ce qu'a un spectateur sans abonnement (la Quotidienne de 19h et le vote).
 - [Exemple de saison en français](exemples/saison-42.fr.md)
 - [Example season in English](exemples/saison-42.en.md)

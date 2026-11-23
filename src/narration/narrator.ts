@@ -32,10 +32,11 @@ export class Narrator {
 
   private raw(e: GameEvent): string | null {
     const L = this.lang;
-    const [a, b] = e.actors.map((id) => this.name(id));
+    const [a, b, c] = e.actors.map((id) => this.name(id));
     const d = e.data ?? {};
     const zone = this.zone(e.zone);
-    const base = { a, b, zone, at: at(zone, L), e: agree(this.chars.get(e.actors[0])?.gender, L) };
+    const clan = String(d.clan ?? "");
+    const base = { a, b, c: c ?? "", clan, zone, at: at(zone, L), e: agree(this.chars.get(e.actors[0])?.gender, L) };
     switch (e.type) {
       case "season_start":
         return fill(this.pick("season_start", e), { n: e.actors.length, arena: this.result.arena.name[L] });
@@ -43,7 +44,6 @@ export class Narrator {
         return null;
       case "found_water":
       case "found_food":
-      case "alliance":
       case "hazard":
         if (e.type === "hazard") {
           const hz = HAZARD[d.hazard as HazardId][L];
@@ -51,13 +51,29 @@ export class Narrator {
           return fill(this.pick("hazard", e), { ...base, hazard: hz });
         }
         return fill(this.pick(e.type, e), base);
+      case "alliance":
+        return fill(this.pick(d.clan ? "alliance_clan" : "alliance", e), base);
+      case "clan_join":
+      case "campaign":
+      case "necklace_gift":
+      case "suspicion":
+      case "conspire":
+        return fill(this.pick(e.type, e), base);
+      case "defend":
+        return "🛡️ " + fill(this.pick(d.theft ? "defend_theft" : "defend", e), base);
+      case "clan_meal": {
+        const g = d.giver as string | undefined;
+        const others = list(e.actors.filter((id) => id !== g).map((id) => this.name(id)), L);
+        if (g && d.item) return "🔥 " + fill(this.pick("clan_meal_gift", e), { ...base, g: this.name(g), item: ITEM[d.item as Item][L], list: others });
+        return "🔥 " + fill(this.pick("clan_meal", e), { ...base, list: others });
+      }
       case "found_item":
         return fill(this.pick("found_item", e), { ...base, item: ITEM[d.item as Item][L] });
       case "share":
         return fill(this.pick("share", e), { ...base, what: WHAT[d.what as string][L] });
       case "steal":
         if (d.betrayal) {
-          const first = fill(this.pick("betrayal", e), base);
+          const first = fill(this.pick(d.clan ? "betrayal_clan" : "betrayal", e), base);
           return d.caught ? first : `${first} ${fill(this.pick("steal_ok", e), { ...base, item: ITEM[d.item as Item][L] })}`;
         }
         return d.caught ? fill(this.pick("steal_caught", e), base) : fill(this.pick("steal_ok", e), { ...base, item: ITEM[d.item as Item][L] });
@@ -66,11 +82,14 @@ export class Narrator {
       case "sabotage":
         return "🌙 " + fill(this.pick("sabotage", e), base);
       case "challenge": {
-        const [, , c] = e.actors.map((id) => this.name(id));
         return "🏆 " + fill(this.pick("challenge", e), { ...base, c: c ?? "", kind: CHALLENGE_NAME[d.kind as string][L] });
       }
       case "evacuated":
-        return fill(this.pick("evacuated", e), { a, cause: this.cause(e.actors[0]), n: d.remaining as number });
+      {
+        const r = d.remaining as number;
+        const n = L === "fr" ? (r === 1 ? "Il reste 1 candidat" : `Il reste ${r} candidats`) : r === 1 ? "1 contestant remains" : `${r} contestants remain`;
+        return fill(this.pick("evacuated", e), { a, cause: this.cause(e.actors[0]), n });
+      }
       case "showrunner":
         return "📢 " + fill(SHOWRUNNER[d.kind as ShowrunnerKind][L], { zone: this.zone(e.zone) });
       case "gift_delivered":
@@ -166,7 +185,7 @@ export class Narrator {
     const count = (t: string) => r.events.filter((e) => e.type === t).length;
     // Un moment fort par jour : trahison, sauvetage ou affrontement plutôt que la météo
     const drama = (e: GameEvent) =>
-      e.weight * 10 + (e.data?.betrayal ? 15 : 0) + (e.data?.rescuedBy ? 12 : 0) + (e.type === "dispute" ? 6 : 0) + (e.type === "sabotage" ? 10 : 0) + (e.type === "alliance" ? 4 : 0) - (e.type === "showrunner" ? 5 : 0);
+      e.weight * 10 + (e.data?.betrayal ? 15 : 0) + (e.data?.rescuedBy ? 12 : 0) + (e.type === "dispute" ? 6 : 0) + (e.type === "sabotage" ? 10 : 0) + (e.type === "alliance" ? 4 : 0) + (e.type === "necklace_gift" ? 20 : 0) + (e.type === "defend" ? 8 : 0) - (e.type === "showrunner" ? 5 : 0);
     const used = new Set<string>();
     const kind = (e: GameEvent) => (e.data?.rescuedBy ? "rescue" : e.data?.betrayal ? "betrayal" : e.type);
     const best = Array.from({ length: r.config.days }, (_, i) => {
@@ -196,7 +215,9 @@ export class Narrator {
       "",
       `### ${UI.stats[L]}`,
       `| | |\n| --- | --- |`,
-      `| Alliances | ${count("alliance")} |`,
+      `| ${L === "fr" ? "Clans formés" : "Clans formed"} | ${count("alliance")} |`,
+      `| ${L === "fr" ? "Veillées de clan" : "Clan gatherings"} | ${count("clan_meal")} |`,
+      `| ${L === "fr" ? "Alliés défendus" : "Allies defended"} | ${count("defend")} |`,
       `| ${L === "fr" ? "Trahisons et vols" : "Betrayals and thefts"} | ${count("steal")} |`,
       `| ${L === "fr" ? "Disputes" : "Arguments"} | ${count("dispute")} |`,
       `| ${L === "fr" ? "Sabotages" : "Sabotages"} | ${count("sabotage")} |`,

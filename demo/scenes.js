@@ -59,6 +59,19 @@
     win: ["Ouiii !", "Immunité !", "Personne ne me touche ce soir !"],
     saved: ["Merci !!", "Encore une nuit !", "Je vous aime !"],
     outVote: ["C'était un honneur.", "Merci pour tout.", "Gagnez pour moi."],
+    clanHi: ["Bienvenue chez nous !", "Un de plus, on est plus forts.", "Ici, on partage tout."],
+    clanYes: ["Merci, je ne vous lâcherai pas.", "Comptez sur moi.", "Enfin une famille."],
+    meal: ["On met tout en commun.", "Ce soir, personne n'a soif.", "À nous !", "Un clan, ça partage."],
+    mealThanks: ["Merci, vraiment.", "Ça fait du bien…", "On tient ensemble."],
+    defend: ["Pas touche à mon clan !", "Recule. Maintenant.", "Il faudra passer par moi.", "Pas touche aux nôtres !"],
+    backOff: ["Ok, ok…", "Ça va, j'ai compris.", "Tu ne seras pas toujours là…"],
+    suspect: ["Je ne lui fais plus confiance…", "Il se passe quelque chose…", "Et si c'était le moment ?", "Je le sens mal…"],
+    plot1: ["Psst… on peut parler ?", "Viens, à l'écart."],
+    plot2: ["Tu as l'air surpris…", "Tu crois vraiment ?", "Tu es sûr de toi ?"],
+    plot3: ["Fais-moi confiance.", "Je te dis ce que je vois.", "Garde ça pour toi."],
+    neckGift: ["Prends-le. Tu en as plus besoin que moi.", "Pour toi. C'est ça, un clan.", "Tu restes. Je te le dois."],
+    giftRx: ["Tu… tu es sérieux ?", "Je ne sais pas quoi dire…", "Merci… merci !"],
+    plead: ["Sauvez {n}, s'il vous plaît !", "Votez pour {n} !", "Ne laissez pas partir {n} !", "Gardez {n}, c'est des nôtres !"],
     chat: [
       ["Tu as trouvé de l'eau ?", "Près de la cascade, peut-être."], ["Tu me surveilles ?", "Moi ? Jamais."],
       ["J'ai trop faim…", "Pareil. Je rêve de pâtes."], ["Tu dors où ce soir ?", "Loin de toi, sans vexer."],
@@ -66,6 +79,34 @@
       ["Tu crois au vote ?", "Je crois au public."], ["Ton abri tiendra ?", "Il a intérêt."],
     ],
   };
+
+  // Les intrigues : qui s'oppose à qui, épisode après épisode (partagé avec la page)
+  const CONFLICT = {
+    dispute: (e) => [[e.a[0], e.a[1], 2, "la dispute"]],
+    steal: (e) => [[e.a[0], e.a[1], e.d?.betrayal ? 4 : e.d?.caught ? 2 : 1.5, e.d?.betrayal ? "la trahison" : "le vol"]],
+    sabotage: (e) => [[e.a[0], e.a[1], 3, "l'abri démoli"]],
+    defend: (e) => [[e.a[1], e.a[2], 1.5, e.d?.theft ? "le sac fouillé" : "l'altercation"], [e.a[0], e.a[1], 1, "l'intervention"]],
+    conspire: (e) => [[e.a[0], e.a[2], 2, "le complot"]],
+    suspicion: (e) => [[e.a[0], e.a[1], 1, "la méfiance"]],
+    gift_lost: (e) => (e.d?.intercepted && e.a[1] ? [[e.a[1], e.a[0], 1, "le colis volé"]] : []),
+  };
+  function rivalries(D, t) {
+    const map = new Map();
+    for (const e of D.events) {
+      if (e.t > t) break;
+      const f = CONFLICT[e.type];
+      if (!f) continue;
+      for (const [a, b, w, what] of f(e)) {
+        if (!a || !b || a === b) continue;
+        const key = a < b ? a + "|" + b : b + "|" + a;
+        const r = map.get(key) || { key, a, b, heat: 0, n: 0, first: e.t, last: null, lastWhat: "", lastBy: a };
+        r.heat += w; r.n++; r.last = e.t; r.lastWhat = what; r.lastBy = a;
+        map.set(key, r);
+      }
+    }
+    return [...map.values()];
+  }
+  window.TheLastRivals = rivalries;
 
   function create(ctx) {
     const { scene, camera, canvas, host, D, people, ZONES, height, riverDist, mat, box, makeDrone } = ctx;
@@ -199,6 +240,7 @@
       el.textContent = text;
       host.appendChild(el);
       bubbles.push({ el, id, until: now + dur, icon: isIcon });
+      if (!isIcon && !kind.includes("small") && cur && cur.actors.includes(id)) ctx.sfx?.("blip");
     }
     const icon = (id, emo, dur = 1.8) => say(id, emo, dur, "icon");
     function iconAt(pos, emo, dur = 1.8) {
@@ -321,6 +363,16 @@
     function makeFinish() { const g = new T.Group(); const p = new T.Mesh(new T.CylinderGeometry(0.09, 0.09, 3, 5), mat(0xdddddd)); p.position.y = 1.5; g.add(p); const f = box(1.1, 0.6, 0.05, 0xff8a3d); f.position.set(0.55, 2.7, 0); g.add(f); return g; }
     function makeBuoy() { const m = new T.Mesh(new T.SphereGeometry(0.45, 8, 6), mat(0xff5b6b)); return m; }
     function makeRing(color = 0xffd23f) { const m = new T.Mesh(new T.TorusGeometry(0.75, 0.08, 4, 24), new T.MeshBasicMaterial({ color, transparent: true, opacity: 0.85 })); m.rotation.x = Math.PI / 2; return m; }
+    function makeCampfire() {
+      const g = new T.Group();
+      for (let i = 0; i < 4; i++) { const l = new T.Mesh(new T.CylinderGeometry(0.07, 0.07, 0.9, 5), mat(0x6b4a2e)); l.rotation.set(Math.PI / 2, (i / 4) * Math.PI, 0); l.position.y = 0.08; g.add(l); }
+      const fl = new T.Mesh(new T.ConeGeometry(0.28, 0.75, 6), new T.MeshBasicMaterial({ color: 0xff8a3d, transparent: true, opacity: 0.9 }));
+      fl.position.y = 0.45; g.add(fl);
+      const fl2 = new T.Mesh(new T.ConeGeometry(0.16, 0.5, 6), new T.MeshBasicMaterial({ color: 0xffe08a }));
+      fl2.position.y = 0.38; g.add(fl2);
+      g.userData.flick = (t) => { fl.scale.set(1 + Math.sin(t * 13) * 0.12, 1 + Math.sin(t * 9) * 0.25, 1); fl2.scale.y = 1 + Math.sin(t * 17) * 0.3; };
+      return g;
+    }
     function miniCrate() { const g = new T.Group(); g.add(box(0.6, 0.45, 0.45, 0xc8963c)); return g; }
 
     // Cabanes décoratives autour du camp
@@ -349,6 +401,7 @@
       }
       d.visible = false;
       d.userData.busy = true;
+      if (!cur || cur.actors.includes(id)) later.push({ at: now + delay, fn: () => ctx.sfx?.("drone") });
       p.userData.evac = { t0: now + delay, d, pose: carried, base: null };
     }
     function updateEvac(p, u, dt) {
@@ -528,8 +581,135 @@
         .at(0, () => { live(`${nm(a)} s'approche ${deN(b)}…`); go(a, off(st, -2.2), 3); go(b, off(st, 1), 3); face(b, a); })
         .at(1.8, () => { face(a, b); go(a, off(st, -0.15), 1.6); say(a, pick(r, SAY.allyAsk)); })
         .at(3.4, () => { face(b, a); say(b, pick(r, SAY.allyYes)); })
-        .at(4.6, () => { pose(a, "shake"); pose(b, "shake"); iconAt(off(st, 0.45).add(UP(3)), "🤝", 2); sparkle(off(st, 0.45).add(UP(2))); live(ev.fr, "result"); })
-        .at(6.2, () => { pose(a, "idle"); pose(b, "idle"); });
+        .at(4.6, () => { pose(a, "shake"); pose(b, "shake"); iconAt(off(st, 0.45).add(UP(3)), "🤝", 2); sparkle(off(st, 0.45).add(UP(2))); live(ev.fr, "result"); ctx.sfx?.("chime"); })
+        .at(6.2, () => { pose(a, "cheer", 1.2); pose(b, "cheer", 1.2); if (ev.d?.clan) say(a, `Les ${ev.d.clan} !`, 1.6, "shout"); });
+    };
+
+    // Les clans : on rejoint, on partage, on se défend
+    const clanOf = (t, id) => ctx.snapAt(t)[id]?.[4] || null;
+    const clanMates = (t, clan, not = []) => Object.keys(ctx.snapAt(t)).filter((id) => clanOf(t, id) === clan && vis(id) && !not.includes(id));
+
+    B.clan_join = (ev) => {
+      const [g, h] = ev.a, clan = ev.d?.clan;
+      if (!vis(g) || !vis(h)) return null;
+      const r = R(ev), st = stageOf(zoneOf(ev));
+      const others = clanMates(ev.t, clan, [g, h]).filter((id) => people[id].position.distanceTo(st) < 14).slice(0, 3);
+      const sc = new Sc(ev, 7.5, st.clone().add(UP(1.2)), 3.2).cast(g, h, ...others);
+      const ring = (i) => off(st, 0.9 + (i % 2 ? 1 : -1) * Math.ceil(i / 2) * 0.9, -0.6 - Math.ceil(i / 2) * 0.4);
+      sc.at(0, () => {
+        live(`${nm(g)} vient frapper à la porte du clan des ${clan}…`);
+        go(h, off(st, 0.9), 3); others.forEach((id, i) => { go(id, ring(i + 1), 3); face(id, off(st, -2)); });
+        go(g, off(st, -2.4), 3); face(h, g);
+      })
+        .at(1.6, () => { face(g, h); go(g, off(st, -0.3), 1.6); say(g, pick(r, SAY.allyAsk)); })
+        .at(3.2, () => { say(h, pick(r, SAY.clanHi)); pose(h, "wave", 1.2); })
+        .at(4.6, () => { pose(g, "shake"); pose(h, "shake"); sparkle(off(st, 0.3).add(UP(2))); others.forEach((id) => pose(id, "cheer", 1.6)); live(ev.fr, "result"); ctx.sfx?.("chime"); })
+        .at(6.0, () => { pose(g, "idle"); pose(h, "idle"); say(g, pick(r, SAY.clanYes), 1.8); });
+      return sc;
+    };
+
+    B.clan_meal = (ev) => {
+      const ids = ev.a.filter(vis).slice(0, 6), clan = ev.d?.clan, giver = ev.d?.giver;
+      if (ids.length < 2) return null;
+      const r = R(ev), st = stageOf(zoneOf(ev)), n = ids.length;
+      // Chaque clan a son coin de veillée, dans le couloir sans arbres qui mène à la caméra
+      const z = zoneOf(ev), [cx, cz] = ZONES[z] || ZONES.beach, sgn = hash(clan || "") % 2 ? 1 : -1;
+      let fire = st.clone();
+      search: for (const al of [5, 3.5, 6.5, 2]) for (const sd of [2.6 * sgn, -2.6 * sgn, 0]) {
+        const p = V(cx + DEPTH.x * al + SIDE.x * sd, cz + DEPTH.z * al + SIDE.z * sd);
+        if ([0, 1, 2, 3].every((k) => height(p.x + Math.cos(k * 1.57) * 1.7, p.z + Math.sin(k * 1.57) * 1.7) > 0.35)) { fire = p; break search; }
+      }
+      const seat = (i) => { const a = (i / n) * Math.PI * 2 + 0.4; return safe(fire.clone().add(new T.Vector3(Math.cos(a) * 1.5, 0, Math.sin(a) * 1.5)), z); };
+      const sc = new Sc(ev, 8.5, fire.clone().add(UP(1)), 3.5).cast(...ids);
+      sc.clear = 6;
+      const cf = sc.prop(makeCampfire());
+      cf.position.copy(fire);
+      cf.scale.setScalar(2);
+      sc.on((s) => { cf.userData.flick(now); if (Math.random() < 0.06) burst(fire.clone().add(UP(0.8)), { n: 1, colors: [0xffd23f, 0xff8a3d], speed: 0.3, up: 2, gravity: 0.5, life: 1.2, size: 0.25 }); });
+      sc.at(0, () => { live(`Le clan des ${clan} se rassemble pour la veillée…`); ids.forEach((id, i) => { go(id, seat(i), 3); face(id, fire); }); })
+        .at(2.0, () => ids.forEach((id) => { pose(id, "sit"); face(id, fire); }));
+      const g = giver && ids.includes(giver) ? giver : null;
+      if (g) {
+        const what = ICON[ev.d?.item] || "💧";
+        sc.at(2.6, () => { pose(g, "hold"); say(g, pick(r, SAY.meal), 2.2); icon(g, what, 1.6); });
+        ids.filter((id) => id !== g).forEach((id, k) => sc.at(3.8 + k * 0.5, () => icon(id, what, 1.4)));
+        sc.at(4.2, () => pose(g, "sit"));
+      } else sc.at(2.6, () => { say(ids[0], pick(r, SAY.meal), 2.2); ids.forEach((id) => icon(id, "🍌", 1.4)); });
+      sc.at(5.0, () => { live(ev.fr.replace(/^🔥 /, ""), "result"); say(ids[ids.length - 1], pick(r, SAY.mealThanks), 2.2); })
+        .at(6.4, () => ids.forEach((id) => pose(id, "cheer", 0.9)))
+        .at(7.4, () => ids.forEach((id) => pose(id, "sit")));
+      return sc;
+    };
+
+    B.defend = (ev) => {
+      const [g, a, v] = ev.a, clan = ev.d?.clan;
+      if (!vis(g) || !vis(a) || !vis(v)) return null;
+      const r = R(ev), st = stageOf(zoneOf(ev)), mid = off(st, 0);
+      const sc = new Sc(ev, 9, mid.clone().add(UP(1.2)), 3.2).cast(a, v, g);
+      sc.at(0, () => { live(ev.d?.theft ? `${nm(a)} rôde autour du sac ${deN(v)}…` : `${nm(a)} s'en prend à ${nm(v)}…`); go(a, off(st, -1.0), 3); go(v, off(st, 1.0), 3); face(a, v); face(v, a); const far = off(st, 1.5, -4.5); if (people[g].userData.pos.distanceTo(far) > 7) place(g, far); else go(g, far, 3); face(g, v); })
+      if (ev.d?.theft) {
+        const bag = sc.prop(makeBag()); bag.position.copy(off(st, 0.1, -0.5));
+        sc.at(0.1, () => { pose(v, "gather"); face(v, off(st, 6)); })
+          .at(1.2, () => { go(a, off(st, -0.5, -0.5), 1.1, "sneak"); say(a, pick(r, SAY.sneak), 2.0, "think"); })
+          .at(2.6, () => { face(a, bag.position); pose(a, "grab"); });
+      } else {
+        sc.at(1.2, () => { pose(a, "argue"); say(a, pick(r, SAY.disA), 2.0, "shout"); iconAt(mid.clone().add(UP(3.1)), "💢", 1.4); })
+          .at(2.5, () => { pose(v, "shiver"); icon(v, "😰", 1.6); go(a, off(st, 0.2), 1.2); });
+      }
+      sc
+        .at(3.2, () => { icon(g, "❗", 1.2); go(g, off(st, 0.15, 0.2), 7, "run"); live(`${nm(g)} accourt !`); })
+        .at(4.1, () => { face(g, a); pose(g, "push"); say(g, pick(r, SAY.defend), 2.4, "shout"); iconAt(off(st, 0.15).add(UP(3.2)), "🛡️", 2); dust(off(st, -0.3).add(UP(0.3)), 4); go(a, off(st, -2.0), 3); ctx.sfx?.("bonk"); })
+        .at(5.8, () => { pose(g, "idle"); pose(a, "idle"); say(a, pick(r, SAY.backOff), 2.0); pose(v, "idle"); face(v, g); })
+        .at(6.9, () => { live(ev.fr.replace(/^🛡️ /, ""), "result"); say(v, pick(r, SAY.thanks), 2); go(a, off(st, -5.5), 3); })
+        .at(7.8, () => { if (clan) say(g, `Les ${clan}, on se serre les coudes.`, 1.6, "small"); });
+      return sc;
+    };
+
+    // Une trahison qu'on voit venir : un regard, puis un complot à voix basse
+    B.suspicion = (ev) => {
+      const [a, b] = ev.a;
+      if (!vis(a) || !vis(b)) return null;
+      const r = R(ev), st = stageOf(zoneOf(ev));
+      const sc = new Sc(ev, 7, () => people[a].position.clone().lerp(people[b].position, 0.35).add(UP(1.2)), 2.9).cast(a, b);
+      sc.hidden.add(a);
+      sc.at(0, () => { live(`${nm(a)} s'éloigne un peu du clan…`); go(b, off(st, 2.2), 3); pose(b, "gather"); const p = off(st, -2.6, -1.0); if (people[a].userData.pos.distanceTo(p) > 7) place(a, p); else go(a, p, 2.5); })
+        .at(1.6, () => { face(a, b); pose(a, "idle"); icon(a, "👀", 2.4); ctx.sfx?.("tension"); })
+        .at(2.8, () => say(a, pick(r, SAY.suspect), 2.6, "think"))
+        .at(4.6, () => { tag(a); live(ev.fr, "result"); })
+        .at(5.4, () => { face(b, a); pose(b, "idle"); icon(b, "❓", 1.4); face(a, off(st, -6)); });
+      return sc;
+    };
+
+    B.conspire = (ev) => {
+      const [a, acc, t] = ev.a;
+      if (!vis(a) || !vis(acc)) return null;
+      const r = R(ev), st = stageOf(zoneOf(ev));
+      const pa = off(st, -0.4), pb = off(st, 0.4), tp = off(st, 3.6, -2.6);
+      const sc = new Sc(ev, 8.5, off(st, 0.4, -0.4).add(UP(1.2)), 2.9).cast(a, acc);
+      if (vis(t)) { sc.cast(t); sc.hidden.add(t); }
+      sc.at(0, () => { live(`${nm(a)} entraîne ${nm(acc)} à l'écart…`); go(a, pa, 2); go(acc, pb, 2); face(a, acc); face(acc, a); if (vis(t)) { const far = people[t].userData.pos.distanceTo(tp) > 7; if (far) place(t, tp); else go(t, tp, 2); pose(t, "gather"); } })
+        .at(1.4, () => { pose(a, "sneak"); say(a, pick(r, SAY.plot1), 2.0, "think"); icon(a, "🤫", 1.6); })
+        .at(3.0, () => { say(a, `${nm(t)}… il faut s'en méfier.`, 2.4, "think"); if (vis(t)) { pose(a, "point"); iconAt(people[t].position.clone().add(UP(3)), "🎯", 2.0); } ctx.sfx?.("tension"); })
+        .at(4.8, () => { pose(a, "idle"); say(acc, pick(r, SAY.plot2), 2.0, "think"); })
+        .at(6.2, () => { say(a, pick(r, SAY.plot3), 2.0, "think"); live(ev.fr, "result"); if (vis(t)) { face(t, a); icon(t, "❓", 1.4); } });
+      return sc;
+    };
+
+    // Coup de théâtre avant le vote : le collier passe d'un cou à l'autre
+    B.necklace_gift = (ev) => {
+      const [h, m] = ev.a;
+      if (!vis(h) || !vis(m)) return null;
+      const r = R(ev), c0 = FIRE.clone().addScaledVector(DEPTH, 2.2);
+      const sc = new Sc(ev, 8.5, c0.clone().add(UP(1.2)), 3.4).cast(h, m);
+      let pend = null, k0 = 0;
+      sc.at(0, () => { live(`Juste avant le vote, ${nm(h)} se lève…`); place(m, safe(off(c0, 1.0))); face(m, FIRE); place(h, safe(off(c0, -2.4))); face(h, m); people[h].userData.necklace.visible = true; people[m].userData.necklace.visible = false; })
+        .at(1.0, () => { go(h, safe(off(c0, -0.4)), 1.4); say(h, pick(r, SAY.neckGift), 2.6); })
+        .at(3.4, () => { pose(h, "hold"); people[h].userData.necklace.visible = false; pend = sc.prop(makeRing(0xe6b84a)); pend.scale.setScalar(0.45); k0 = sc.s; ctx.sfx?.("gasp"); })
+        .on((s) => { if (pend) { const k = clamp01((s - k0) / 1.2), a = people[h].position.clone().add(UP(2.6)), b = people[m].position.clone().add(UP(2.0)); pend.position.lerpVectors(a, b, k); pend.position.y += Math.sin(k * Math.PI) * 0.6; if (k >= 1 && pend.visible) { pend.visible = false; people[m].userData.necklace.visible = true; sparkle(b); } } })
+        .at(4.8, () => { face(m, h); icon(m, "😮", 1.6); live(ev.fr, "result"); })
+        .at(5.8, () => { say(m, pick(r, SAY.giftRx), 2.2); pose(h, "idle"); })
+        .at(7.2, () => { pose(m, "shake"); pose(h, "shake"); });
+      return sc;
     };
 
     B.dispute = (ev) => {
@@ -548,7 +728,7 @@
       }
       const T1 = item ? 6.8 : 5.2;
       let puff = 0;
-      sc.at(T1, () => { pose(a, "panic"); pose(b, "panic"); go(a, off(st, -0.25), 3); go(b, off(st, 0.25), 3); if (crate) crate.visible = false; })
+      sc.at(T1, () => { ctx.sfx?.("bonk"); later.push({ at: now + 0.6, fn: () => ctx.sfx?.("bonk") }); pose(a, "panic"); pose(b, "panic"); go(a, off(st, -0.25), 3); go(b, off(st, 0.25), 3); if (crate) crate.visible = false; })
         .on((s, dt) => {
           if (s > T1 && s < T1 + 1.9 && (puff -= dt) < 0) {
             puff = 0.12;
@@ -579,7 +759,7 @@
           if (people[a].userData.pos.distanceTo(start) > 7) place(a, start); else go(a, start, 3);
         })
         .at(1.2, () => { go(a, off(st, -0.5, -0.5), 1.05, "sneak"); say(a, pick(r, SAY.sneak), 2.4, "think"); })
-        .at(5.2, () => { face(a, bagP); pose(a, "grab"); shake = true; if (d.betrayal) { say(a, pick(r, SAY.betray), 2.2, "think"); live("Trahison en direct : c'est son allié qu'on vole…"); } });
+        .at(5.2, () => { face(a, bagP); pose(a, "grab"); shake = true; if (d.betrayal) { say(a, pick(r, SAY.betray), 2.2, "think"); live(d.clan ? `Trahison en direct : ${nm(a)} vole son propre clan, les ${d.clan}…` : "Trahison en direct : c'est son allié qu'on vole…"); ctx.sfx?.("tension"); } });
       if (d.caught) {
         sc.at(6.0, () => { shake = false; pose(b, "point"); face(b, a); say(b, pick(r, SAY.caughtB), 2.2, "shout"); icon(b, "❗"); })
           .at(7.4, () => { pose(a, "wave"); face(a, b); say(a, pick(r, SAY.caughtA), 2.2); live(ev.fr, "result"); })
@@ -606,7 +786,7 @@
         .at(0.6, () => go(a, sp.clone().addScaledVector(SIDE, -1.5), 1.15, "sneak"))
         .at(3.0, () => icon(b, "💤", 2))
         .at(4.7, () => { face(a, sp); pose(a, "push"); })
-        .at(5.2, () => { k0 = 5.2; dust(sp.clone().add(UP(0.8)), 10); iconAt(sp.clone().add(UP(2.6)), "💥", 1.2); })
+        .at(5.2, () => { k0 = 5.2; ctx.sfx?.("crash"); dust(sp.clone().add(UP(0.8)), 10); iconAt(sp.clone().add(UP(2.6)), "💥", 1.2); })
         .at(5.6, () => go(a, off(st, -7), 5, "run"))
         .at(6.4, () => { pose(b, "sit"); icon(b, "❗"); say(b, pick(r, SAY.sabWake), 2.4, "shout"); })
         .at(7.6, () => { tag(a); live(ev.fr, "result"); pose(b, "argue"); face(b, off(st, -7)); });
@@ -618,6 +798,7 @@
     HZ.wasps = (ev, a, Rs, r, st) => {
       const sc = new Sc(ev, 8.8, st.clone().add(UP(1.2)), 3.0).cast(a, Rs);
       const sw = sc.prop(makeSwarm());
+      sc.at(1.0, () => ctx.sfx?.("wasps"));
       const nest = off(st, 2.5, -1.5).add(UP(2.5));
       const c = nest.clone();
       let flee = false, away = false;
@@ -641,7 +822,7 @@
       let splashing = false;
       sc.on(() => { if (splashing && Math.random() < 0.25) splash(people[a].position.clone().setY(w.surf + 0.1), 3); })
         .at(0, () => { live(`${nm(a)} part se rafraîchir dans l'eau…`); go(a, w.edge, 3); })
-        .at(1.6, () => { swim(a, w.deep, 1.6); splash(w.deep.clone().setY(w.surf + 0.1)); })
+        .at(1.6, () => { swim(a, w.deep, 1.6); splash(w.deep.clone().setY(w.surf + 0.1)); ctx.sfx?.("splash"); })
         .at(3.4, () => { icon(a, "🌊"); live(`Le courant emporte ${nm(a)} !`); swim(a, w.far, 0.9, "flail"); pose(a, "flail"); say(a, pick(r, SAY.help), 2.6, "shout"); splashing = true; });
       if (Rs) {
         sc.at(5.4, () => { go(Rs, w.edge.clone().addScaledVector(SIDE, 0.8), 6, "run"); say(Rs, "J'arrive !", 1.6, "shout"); })
@@ -729,6 +910,20 @@
       return sc;
     };
 
+    // Le colis du spectateur, envoyé depuis la carte : il joue juste après la scène en cours
+    function viewerGift(id, item, label) {
+      if (!vis(id)) return false;
+      const ev = { t: ctx.tick(), type: "gift_delivered", a: [id], d: { item }, w: 2, fr: `Ton colis est arrivé : ${nm(id)} reçoit ${label} !`, viewer: true };
+      const sc = giftScene(ev, false, "ok");
+      if (!sc) return false;
+      sc.at(0, () => { live(`Ton colis survole l'île en direction ${deN(id)}…`, "result"); ctx.sfx?.("whoosh"); })
+        .at(4.4, () => { confetti(people[id].position.clone().add(UP(2.5))); ctx.sfx?.("chime"); })
+        .at(5.4, () => say(id, "Merci à toi, qui que tu sois !", 2.2));
+      sc.dur = 8;
+      queue.unshift(sc);
+      return true;
+    }
+
     function giftScene(ev, mini, mode) {
       const [a, b] = ev.a;
       if (!vis(a)) return null;
@@ -754,11 +949,11 @@
           .at(4.6, () => { if (!mini) pose(a, "sit"); });
       } else if (mode === "inter" && vis(b)) {
         sc.at(2.6, () => { if (!mini) go(b, off(land, 0.8), 4, "run"); })
-          .at(3.1, () => dust(land, 6))
+          .at(3.1, () => { dust(land, 6); ctx.sfx?.("thud"); })
           .at(4.2, () => { opened = sc.s; if (!mini) { pose(b, "hold"); face(b, a); say(b, pick(r, SAY.interB), 2.2); live(ev.fr, "result"); go(a, off(land, -1.6), 5, "run"); } icon(b, ICON[it] || "🎁", 2.2); })
           .at(5.8, () => { if (!mini) { pose(a, "argue"); face(a, b); say(a, pick(r, SAY.interA), 2, "shout"); } });
       } else {
-        sc.at(3.0, () => { dust(land, 6); if (!mini) go(a, off(land, -0.9), 4, "run"); })
+        sc.at(3.0, () => { dust(land, 6); if (!mini) ctx.sfx?.("thud"); if (!mini) go(a, off(land, -0.9), 4, "run"); })
           .at(4.3, () => { opened = sc.s; icon(a, ICON[it] || "🎁", mini ? 1.8 : 2.4); if (!mini) { pose(a, "hold"); face(a, off(land, 0, 4)); say(a, pick(r, SAY.gift), 2.2); live(ev.fr, "result"); } });
       }
       return sc;
@@ -862,6 +1057,7 @@
         if (m === "pole") pose(w, "cheer");
         if (o.necklace) people[w].userData.necklace.visible = true;
         confetti(people[w].position.clone().add(UP(2.5)));
+        ctx.sfx?.("fanfare");
         say(w, pick(R(ev), o.winLines || SAY.win), 2.4, "shout");
         live(o.result || ev.fr, "result");
         crowd.forEach((id) => pose(id, "cheer", 2));
@@ -902,7 +1098,7 @@
         racers: order, mode: "pole", dur: 18, zoom: 2.6,
         title: `Grande finale aux poteaux : ${list(fin)}. Un seul deviendra The Last.`,
         result: winEv ? winEv.fr.replace(/^🏆 /, "") : ev.fr, winLines: ["JE SUIS THE LAST !", "C'est pas de la chance !"],
-        extra: (sc, racers, tWin) => sc.on((s) => { if (s > tWin && Math.random() < 0.12) firework(BEACH_C.clone().add(new T.Vector3((Math.random() - 0.5) * 14, 9 + Math.random() * 4, (Math.random() - 0.5) * 10)), [0xff8a3d, 0x62d6a0, 0x7fb0ff, 0xffd23f, 0xff5b6b][Math.floor(Math.random() * 5)]); }),
+        extra: (sc, racers, tWin) => sc.on((s) => { if (s > tWin && Math.random() < 0.12) (Math.random() < 0.4 && ctx.sfx?.("pop"), firework(BEACH_C.clone().add(new T.Vector3((Math.random() - 0.5) * 14, 9 + Math.random() * 4, (Math.random() - 0.5) * 10)), [0xff8a3d, 0x62d6a0, 0x7fb0ff, 0xffd23f, 0xff5b6b][Math.floor(Math.random() * 5)])); }),
       });
     };
 
@@ -915,20 +1111,29 @@
       const outEv = D.events.find((e) => e.t === ev.t && e.type === "evacuated" && e.d?.cause === "vote");
       const out = outEv && vis(outEv.a[0]) ? outEv.a[0] : null;
       const spot = (i) => safe(FIRE.clone().addScaledVector(DEPTH, 2.4).addScaledVector(SIDE, (i - (thr.length - 1) / 2) * 1.8));
-      const sc = new Sc(ev, out ? 13 : 9.5, FIRE.clone().addScaledVector(DEPTH, 1.6).add(UP(1.2)), 3.0).cast(...thr);
+      // Les clans plaident pour leurs membres menacés avant le verdict
+      const camp = D.events.filter((e) => e.t === ev.t && e.type === "campaign" && vis(e.a[0]) && thr.includes(e.a[1]));
+      const K = camp.length * 2.6;
+      const sc = new Sc(ev, (out ? 13 : 9.5) + K, FIRE.clone().addScaledVector(DEPTH, 1.6).add(UP(1.2)), 3.0).cast(...thr, ...camp.map((e) => e.a[0]));
       const rings = thr.map((id, i) => { const g = sc.prop(makeRing()); g.position.copy(spot(i)).add(UP(0.08)); return g; });
-      sc.at(0, () => { live(`19h, le feu de camp. ${list(thr)} sont menacés…`); thr.forEach((id, i) => { place(id, spot(i)); face(id, spot(i).clone().addScaledVector(DEPTH, 6)); pose(id, "idle"); }); })
-        .at(1.6, () => live("Le public a voté. Le suspense est total…"))
-        .on((s) => { if (s > 1.6 && s < 5.4) rings.forEach((g, i) => { g.material.opacity = Math.floor(s * 3) % rings.length === i ? 1 : 0.25; }); });
-      saved.forEach((id, k) => sc.at(5.6 + k * 1.4, () => {
+      sc.at(0, () => { live(`19h, le feu de camp. ${list(thr)} sont menacés…`); thr.forEach((id, i) => { place(id, spot(i)); face(id, spot(i).clone().addScaledVector(DEPTH, 6)); pose(id, "idle"); }); camp.forEach((e) => { const i = thr.indexOf(e.a[1]); place(e.a[0], safe(spot(i).clone().addScaledVector(DEPTH, -1.6))); face(e.a[0], spot(i).clone().addScaledVector(DEPTH, 6)); }); });
+      camp.forEach((e, k) => {
+        const [v, who] = e.a, i = thr.indexOf(who);
+        sc.at(1.4 + k * 2.6, () => { go(v, safe(spot(i).clone().addScaledVector(DEPTH, 0.2).addScaledVector(SIDE, 0.9)), 2.5); live(`${nm(v)} prend la parole pour ${nm(who)}…`); })
+          .at(2.4 + k * 2.6, () => { pose(v, "wave", 1.4); say(v, pick(r, SAY.plead).replace("{n}", nm(who)), 2.2, "shout"); iconAt(spot(i).clone().add(UP(3.4)), "📣", 1.6); live(e.fr, "result"); });
+      });
+      sc.at(1.6 + K, () => { live("Le public a voté. Le suspense est total…"); ctx.sfx?.("drum"); })
+        .on((s) => { if (s > 1.6 + K && s < 5.4 + K) rings.forEach((g, i) => { g.material.opacity = Math.floor(s * 3) % rings.length === i ? 1 : 0.25; }); });
+      saved.forEach((id, k) => sc.at(5.6 + K + k * 1.4, () => {
         const i = thr.indexOf(id);
         rings[i].material.color.setHex(0x62d6a0); rings[i].material.opacity = 1;
         pose(id, "cheer"); say(id, pick(r, SAY.saved), 1.8); sparkle(people[id].position.clone().add(UP(2)));
         if (k === 0 && savedEv) live(savedEv.fr, "result");
+        ctx.sfx?.("cheer");
       }));
       if (out) {
-        sc.at(8.6, () => { const i = thr.indexOf(out); rings[i].material.color.setHex(0xff5b6b); rings[i].material.opacity = 1; pose(out, "wave"); face(out, FIRE); say(out, pick(r, SAY.outVote), 2.4); live(outEv.fr, "out"); })
-          .at(10.4, () => evacuate(out, 0, "idle"));
+        sc.at(8.6 + K, () => { const i = thr.indexOf(out); rings[i].material.color.setHex(0xff5b6b); rings[i].material.opacity = 1; pose(out, "wave"); face(out, FIRE); say(out, pick(r, SAY.outVote), 2.4); live(outEv.fr, "out"); ctx.sfx?.("sad"); })
+          .at(10.4 + K, () => evacuate(out, 0, "idle"));
       }
       return sc;
     };
@@ -947,7 +1152,7 @@
       if (kind === "supply_drop") {
         const cr = sc.prop(makeCrate()), land = off(st, 2, 2);
         sc.on((s) => { const k = clamp01(s / 2.6); cr.position.copy(land).add(UP(0.5 + (1 - k) * 16)); cr.userData.chute.visible = k < 1; });
-        sc.at(2.6, () => dust(land, 8));
+        sc.at(2.6, () => { dust(land, 8); ctx.sfx?.("thud"); });
         inZone.forEach((id, k) => { sc.actors.push(id); sc.at(1.2 + k * 0.1, () => go(id, off(land, Math.cos(k) * 1.2, Math.sin(k) * 1.2), 5, "run")).at(3.2, () => pose(id, k % 2 ? "tug" : "push")); });
         sc.on((s) => { if (s > 3.2 && s < 5.4 && Math.random() < 0.3) dust(land.clone().add(UP(1)), 1); });
       }
@@ -962,7 +1167,13 @@
       switch (ev.type) {
         case "hazard": sc.at(0, () => vis(a) && icon(a, { wasps: "🐝", drowning: "🌊", fall: "💥", snake: "🐍", rockslide: "🪨", fever: "🤒" }[ev.d?.hazard] || "❗", 2)); break;
         case "steal": sc.at(0, () => { if (ev.d?.caught) vis(b) && icon(b, "❗"); else vis(a) && icon(a, "🤫"); }); break;
-        case "alliance": sc.at(0, () => { vis(a) && icon(a, "🤝"); vis(b) && icon(b, "🤝"); }); break;
+        case "alliance": case "clan_join": sc.at(0, () => { vis(a) && icon(a, "🤝"); vis(b) && icon(b, "🤝"); }); break;
+        case "clan_meal": sc.at(0, () => ev.a.forEach((id, k) => vis(id) && later.push({ at: now + k * 0.2, fn: () => icon(id, "🔥", 1.8) }))); break;
+        case "defend": sc.at(0, () => vis(a) && icon(a, "🛡️", 2)); break;
+        case "suspicion": sc.at(0, () => vis(a) && icon(a, "👀", 2)); break;
+        case "conspire": sc.at(0, () => { vis(a) && icon(a, "🤫", 2); vis(b) && icon(b, "🤫", 2); }); break;
+        case "necklace_gift": sc.at(0, () => { if (vis(a)) people[a].userData.necklace.visible = false; if (vis(b)) { people[b].userData.necklace.visible = true; icon(b, "📿", 2); } }); break;
+        case "campaign": sc.at(0, () => vis(a) && icon(a, "📣", 2)); break;
         case "dispute": sc.at(0, () => { vis(a) && icon(a, "💢"); vis(b) && icon(b, "💢"); }); break;
         case "sabotage": sc.at(0, () => vis(b) && icon(b, "💥")); break;
         case "share": sc.at(0, () => vis(b) && icon(b, "💧")); break;
@@ -975,29 +1186,60 @@
       return sc;
     }
 
+    // ---------- Les intrigues suivies ----------
+    const pairKey = (a, b) => (a < b ? a + "|" + b : b + "|" + a);
+    function rivalOf(ev) {
+      const f = CONFLICT[ev.type];
+      if (!f) return null;
+      const pairs = f(ev);
+      if (!pairs.length) return null;
+      const [a, b] = pairs[0];
+      const before = rivalries(D, ev.t - 1).find((r) => r.key === pairKey(a, b));
+      return before && before.heat >= 1.5 ? { ...before, a, b } : null;
+    }
+    const deArt = (w) => (w.startsWith("le ") ? "du " + w.slice(3) : w.startsWith("les ") ? "des " + w.slice(4) : "de " + w);
+    const dayTxt = (t) => `jour ${Math.floor(t / 24) + 1}`;
+    function recap(ev, rv) {
+      const { a, b } = rv;
+      if (!vis(a) || !vis(b)) return null;
+      const mid = () => people[a].position.clone().lerp(people[b].position, 0.5).add(UP(1.2));
+      const sc = new Sc({ ...ev, type: "recap" }, 3.4, mid, 2.6).cast(a, b);
+      const ep = rv.n + 1;
+      const when = Math.floor(rv.last / 24) === Math.floor(ev.t / 24) ? "plus tôt aujourd'hui" : `au ${dayTxt(rv.last)}`;
+      sc.at(0, () => { live(`Épisode ${ep} entre ${nm(a)} et ${nm(b)}. Souvenez-vous ${deArt(rv.lastWhat)}, ${when}…`, "rival"); icon(a, "⚡", 2.6); icon(b, "⚡", 2.6); face(a, b); face(b, a); ctx.sfx?.("tension"); });
+      return sc;
+    }
+
     const me = () => ctx.me();
     const FEAT = new Set(D.cast.filter((c) => c.confessions).map((c) => c.id));
     function score(e) {
-      const base = { finale: 100, trial: 90, challenge: 80, vote_threat: 75, sabotage: 60, dispute: 55, steal: e.d?.caught || e.d?.betrayal ? 45 : 35, hazard: 35 + (e.d?.rescuedBy ? 8 : 0), evacuated: 30, showrunner: 32, alliance: 26, gift_delivered: 8, gift_lost: e.d?.intercepted ? 30 : 14, share: 22 }[e.type];
+      const base = { finale: 100, trial: 90, challenge: 80, vote_threat: 75, sabotage: 60, dispute: 55, steal: e.d?.betrayal ? 62 : e.d?.caught ? 45 : 35, necklace_gift: 78, defend: 58, conspire: 50, suspicion: 44, clan_meal: 40, clan_join: 24, hazard: 35 + (e.d?.rescuedBy ? 8 : 0), evacuated: 30, showrunner: 32, alliance: 26, gift_delivered: 8, gift_lost: e.d?.intercepted ? 30 : 14, share: 22 }[e.type];
       if (!base) return 0;
-      return base + (me() && e.a.includes(me()) ? 100 : 0) + (e.a.some((id) => FEAT.has(id)) ? 12 : 0);
+      const rv = rivalOf(e);
+      return base + (me() && e.a.includes(me()) ? 100 : 0) + (e.a.some((id) => FEAT.has(id)) ? 12 : 0) + (rv ? Math.min(30, 10 + rv.heat * 4) : 0);
     }
 
-    function onTick(t, animate, speed = 1) {
+    // only : rediffusion de quelques événements choisis (résumé « ce que tu as raté »)
+    function onTick(t, animate, speed = 1, only = null) {
       stageT = t;
       timeScale = speed >= 8 ? 3 : speed >= 3 ? 1.6 : 1;
       assignAmbient(t);
       vignUntil = 0;
       if (!animate) return 0;
-      const evs = D.events.filter((e) => e.t === t);
+      const all = D.events.filter((e) => e.t === t);
+      const has = (type) => only && only.some((o) => o.type === type);
+      const evs = !only ? all : all.filter((e) => only.includes(e)
+        || (has("vote_threat") && ["vote_saved", "campaign", "necklace_gift"].includes(e.type))
+        || (e.type === "evacuated" && (has("vote_threat") || has("trial") || has("finale") || only.some((o) => o.type === "hazard" && o.a[0] === e.a[0])))
+        || (e.type === "winner" && has("finale")));
       const consumed = new Set();
       for (const e of evs) {
-        if (e.type === "vote_threat") evs.forEach((x) => { if (x.type === "vote_saved" || (x.type === "evacuated" && x.d?.cause === "vote")) consumed.add(x); });
+        if (e.type === "vote_threat") evs.forEach((x) => { if (x.type === "vote_saved" || x.type === "campaign" || (x.type === "evacuated" && x.d?.cause === "vote")) consumed.add(x); });
         if (e.type === "trial") evs.forEach((x) => { if (x.type === "evacuated" && x.d?.cause === "trial") consumed.add(x); });
         if (e.type === "finale") evs.forEach((x) => { if (x.type === "winner" || (x.type === "evacuated" && x.d?.cause === "finale")) consumed.add(x); });
       }
-      const nMain = speed >= 8 ? 0 : speed >= 3 ? 1 : 3;
-      const cands = evs.filter((e) => !consumed.has(e) && B[e.type] && score(e) > 0);
+      const nMain = only ? 4 : speed >= 8 ? 0 : speed >= 3 ? 1 : 3;
+      const cands = evs.filter((e) => !consumed.has(e) && B[e.type] && score(e) > 0 && (!only || only.includes(e) || e.type === "necklace_gift"));
       const chosen = new Set([...cands].sort((x, y) => score(y) - score(x)).slice(0, nMain));
       // Un accident grave enchaîne sur l'évacuation de la même personne
       for (const e of [...chosen]) if (e.type === "hazard") { const out = evs.find((x) => x.type === "evacuated" && x.a[0] === e.a[0]); if (out) chosen.add(out); }
@@ -1005,7 +1247,11 @@
       for (const e of evs) {
         if (!chosen.has(e)) continue;
         const sc = B[e.type](e, false);
-        if (sc) built.push(sc); else chosen.delete(e);
+        if (!sc) { chosen.delete(e); continue; }
+        const rv = speed < 3 && rivalOf(e);
+        const rc = rv && recap(e, rv);
+        if (rc) built.push(rc);
+        built.push(sc);
       }
       queue = built;
       // Le reste se joue en petit, en même temps
@@ -1061,6 +1307,13 @@
         live(h >= 22 || h < 6 ? `La nuit est tombée sur l'île. ${ids.length} candidats encore en jeu.` : `Vue du ciel : ${ids.length} candidats encore en jeu.`, "ambient");
         return;
       }
+      const rv = shot % 4 === 2 ? rivalries(D, ctx.tick()).filter((r) => r.heat >= 3 && vis(r.a) && vis(r.b) && !people[r.a].userData.ctl).sort((x, y) => y.heat - x.heat || y.last - x.last)[0] : null;
+      if (rv) {
+        vign = rv.a;
+        if (people[rv.a].userData.amb && people[rv.a].userData.amb.kind !== "sleep") people[rv.a].userData.amb.faceId = rv.b;
+        live(`${nm(rv.a)} n'a pas oublié ${rv.lastWhat} avec ${nm(rv.b)}. ${rv.n} accrochage${rv.n > 1 ? "s" : ""} depuis le ${dayTxt(rv.first)}.`, "ambient");
+        return;
+      }
       if (m && vis(m) && shot % 2 === 1) vign = m;
       else {
         const busy = ids.filter((id) => ["fish", "gather", "wary", "fire", "lookout"].includes(people[id].userData.amb?.kind));
@@ -1078,6 +1331,14 @@
     }
     function peek(id) { peekId = id; peekUntil = now + 6; if (vis(id)) live(ambientText(id), "ambient"); }
 
+    // ---------- La musique suit la scène ----------
+    let moodNow = "calm";
+    function moodOf(ev) {
+      const m = ["challenge", "trial", "finale"].includes(ev.type) ? "challenge"
+        : ["vote_threat", "sabotage", "suspicion", "conspire", "necklace_gift", "dispute", "defend"].includes(ev.type) || (ev.type === "steal" && ev.d?.betrayal) || ev.type === "hazard" ? "tension" : "calm";
+      return (moodNow = m);
+    }
+
     // ---------- Boucle ----------
     const tmp = new T.Vector3();
     function runSc(sc, dt) {
@@ -1091,7 +1352,8 @@
       now = time;
       for (let i = later.length - 1; i >= 0; i--) if (now >= later[i].at) { const f = later[i].fn; later.splice(i, 1); f(); }
       if (cur && runSc(cur, dt)) { endScene(cur); cur = null; vignUntil = 0; }
-      if (!cur && queue.length) { cur = queue.shift(); cur.named.forEach((id) => { if (!cur.hidden.has(id)) tag(id); }); }
+      if (!cur && queue.length) { cur = queue.shift(); cur.named.forEach((id) => { if (!cur.hidden.has(id)) tag(id); }); ctx.music?.(moodOf(cur.ev)); }
+      else if (!cur && !queue.length && moodNow !== "calm") ctx.music?.((moodNow = "calm"));
       for (let i = minis.length - 1; i >= 0; i--) {
         const sc = minis[i];
         if (now < sc.start) continue;
@@ -1122,7 +1384,8 @@
           if (fp) {
             const dd = Math.hypot(u.pos.x - fp.x, u.pos.z - fp.z);
             if (dd < 9 && a.kind !== "sleep") { faceP = fp; if (restPose === "gather" || restPose === "fish") restPose = "idle"; }
-            if (dd < 3.8 && far < 5) { target = u.pos.clone().add(new T.Vector3(u.pos.x - fp.x || 0.1, 0, u.pos.z - fp.z).setLength(4 - dd)); speed = 3; }
+            const R0 = cur.clear || 3.8;
+            if (dd < R0 && far < R0 + 1.2) { target = u.pos.clone().add(new T.Vector3(u.pos.x - fp.x || 0.1, 0, u.pos.z - fp.z).setLength(R0 + 0.2 - dd)); speed = 3; }
           }
         }
         const d = tmp.subVectors(target, u.pos);
@@ -1140,7 +1403,7 @@
       }
     }
 
-    return { onTick, flush, update, drawOverlays, focus, peek, get busy() { return !!cur || queue.length > 0; } };
+    return { onTick, flush, update, drawOverlays, focus, peek, viewerGift, get busy() { return !!cur || queue.length > 0; } };
   }
 
   window.World3DScenes = { create };

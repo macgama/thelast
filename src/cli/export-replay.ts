@@ -20,7 +20,7 @@ const cast = r.cast.map((c) => {
   return {
     id: c.id, name: c.name, age: c.age, gender: c.gender,
     origin: c.origin.fr, job: f?.job ?? c.job.fr, bio: f?.bio ?? c.backstory.fr,
-    motivation: f?.motivation ?? c.motivation.fr, catchphrase: c.catchphrase.fr,
+    motivation: f?.motivation ?? c.motivation.fr, catchphrase: f?.catchphrase ?? c.catchphrase.fr,
     secret: f?.secret ?? c.secret.fr, secretDay: f?.secretDay ?? null,
     traits: c.traits, skills: c.skills, phobia: c.phobia,
     confessions: f?.confessions ?? null,

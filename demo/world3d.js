@@ -433,10 +433,10 @@
   };
   // Accessoires des 5 candidats suivis, pour les reconnaître de loin
   const SIGNATURE = {
-    c049: { gloves: 0xd62828, beanie: 0x222222 },               // Sacha, gants de boxe et bonnet
+    c009: { helmet: 0xd62828, visor: 0x222222, gloves: 0x222222 }, // Tala, casque et gants de cascadeuse
     c085: { phones: 0xc08bff, shirt: 0x7fb0ff },                 // Selin, casque audio de développeuse
     c053: { glasses: 0x111111, tie: 0x7a1f2b, shirt: 0xf2f2f2 }, // Matthias, chemise blanche et cravate
-    c090: { helmet: 0xc9302c, pack: 0xffd23f },                  // Margaux, casque de pompière
+    c071: { cap: 0xc8a165, pack: 0x7a5230 },                     // Omar, chapeau et sac d'archéologue
     c032: { helmet: 0xffd23f, visor: 0x1d5a66 },                 // Robin, casque de chantier
   };
 
@@ -706,13 +706,15 @@
       scene, camera, canvas, host, D, people, ZONES, height, riverDist, mat, box, makeDrone,
       snapAt, me: () => me, tick: () => tick, camTarget: () => controls.target,
       live: (text, kind) => opts.onLive?.(text, kind),
-      lightning: () => { flashUntil = clock.elapsedTime + 0.12; },
+      lightning: () => { flashUntil = clock.elapsedTime + 0.12; opts.onSfx?.("bonk"); },
+      sfx: (name) => opts.onSfx?.(name),
+      music: (mode) => opts.onMusic?.(mode),
     });
     // Le projecteur des drones, pour filmer la nuit
     const spot = new T.PointLight(0xfff2d8, 0, 26, 1.4);
     scene.add(spot);
 
-    function setTick(t, animate, speed = 1) {
+    function setTick(t, animate, speed = 1, only = null) {
       director.flush();
       const ppl = snapAt(t);
       const byZone = {};
@@ -747,7 +749,7 @@
       if (drop) { const z = drop.z; crate.userData.base = new T.Vector3(ZONES[z][0] + 2, height(ZONES[z][0] + 2, ZONES[z][1] + 2), ZONES[z][1] + 2); }
       heat = !!recent("showrunner", "heatwave", 6);
       tick = t;
-      return director.onTick(t, animate, speed);
+      return director.onTick(t, animate, speed, only);
     }
 
     function setFollow(id) {
@@ -912,6 +914,7 @@
       get mode() { return mode; },
       get busy() { return director.busy; },
       resetZoomLock() { camGoal.zoomLocked = false; },
+      gift: (id, item, label) => { if (mode !== "director") view("director"); holdUntil = 0; return director.viewerGift(id, item, label); },
     };
   }
 
