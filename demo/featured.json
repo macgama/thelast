@@ -9,7 +9,7 @@
     "confessions": {
       "1": "Une île. Entourée d'eau. Moi qui ne sais même pas nager. Je me suis répété toute la journée : tu as survécu à pire, Selin. Six mois dans un lit, tu te souviens ? Ce soir, je dors seule au pied d'un rocher.",
       "2": "Les clans se forment partout. Les Requins, les Lucioles, les Faucons… Et moi, personne ne m'a encore tendu la main. Je souris beaucoup. Je crois que ça leur fait peur.",
-      "3": "Un serpent aux ruines ce matin, j'ai cru que j'allais m'évanouir. Et puis Ethan m'a proposé de rejoindre les Lucioles. Ce soir, autour du feu, Matthias m'a regardée longtemps. Comme s'il me connaissait.",
+      "3": "Un mille-pattes géant aux ruines ce matin, j'ai cru que j'allais m'évanouir. Et puis Ethan m'a proposé de rejoindre les Lucioles. Ce soir, autour du feu, Matthias m'a regardée longtemps. Comme s'il me connaissait.",
       "4": "Tala fouillait le sac de Rafael. Je me suis plantée devant elle, moi qui tremble pour un rien. Le soir même, le courant m'a emportée et c'est Rafael qui m'a sortie de l'eau. Puis il a partagé ses rations avec moi. C'est ça, un clan.",
       "5": "Matthias ne me lâche plus des yeux. Il parle à voix basse avec Inès et se tait quand j'arrive. J'ai fini troisième à l'épreuve de la noix de coco. Pas mal pour une fille qui avait peur de grimper sur un tabouret.",
       "6": "Il m'a tendu sa gourde. Il m'a souri. Puis il a fouillé mon sac. Matthias a quitté les Lucioles en me tournant le dos. Je sais enfin pourquoi il me déteste, et il a raison sur un point : j'ai fermé sa start-up. Alors j'ai gagné l'immunité. Pour lui montrer que je ne suis pas que ça.",
@@ -23,7 +23,7 @@
     "secret": "Il connaît Selin. Il y a trois ans, la société de jeux vidéo de Selin a racheté la start-up qu'il avait fondée avec ses amis, puis l'a fermée. Il la tient pour responsable.",
     "secretDay": 6,
     "confessions": {
-      "1": "Des guêpes dans la jungle. J'ai couru plus vite que tout le monde, et je n'en ai pas honte. Le courage, c'est pour ceux qui n'ont pas de plan.",
+      "1": "Des abeilles sauvages dans la jungle. J'ai couru plus vite que tout le monde, et je n'en ai pas honte. Le courage, c'est pour ceux qui n'ont pas de plan.",
       "2": "J'ai rejoint les Lucioles. Rafael est solide, Ethan est gentil. Un clan, c'est comme un contrat : tant que chacun y trouve son intérêt, tout le monde signe.",
       "3": "Elle est là. Selin. Assise à côté de moi au feu de camp des Lucioles. Elle ne m'a pas reconnu. Moi, je n'ai jamais oublié son visage.",
       "4": "Un serpent. Rafael m'a soigné. J'ai fini deuxième aux poteaux, juste derrière Omar. Je dois une fière chandelle aux Lucioles. C'est ce qui rend la suite difficile.",
@@ -41,7 +41,7 @@
     "secretDay": 4,
     "confessions": {
       "1": "Noa et moi, on a créé le clan des Requins dès le premier matin. On s'entend trop bien. Peut-être trop.",
-      "2": "Le courant m'a eue. Noa m'a sortie de l'eau, encore. Tout le monde l'applaudit. Moi, je souris. J'ai glissé à Liam qu'il fallait se méfier de Noa. Je ne sais pas pourquoi j'ai dit ça.",
+      "2": "La marée m'a encerclée. Noa m'a sortie de l'eau, encore. Tout le monde l'applaudit. Moi, je souris. J'ai glissé à Liam qu'il fallait se méfier de Noa. Je ne sais pas pourquoi j'ai dit ça.",
       "3": "Je l'ai fait. J'ai pris les rations de Noa et j'ai quitté les Requins. Le soir même, j'ai fondé les Geckos avec Tariq. On ne se refait pas : je tombe, je me relève.",
       "4": "J'ai voulu me servir dans le sac de Rafael. Selin, la petite développeuse, m'est tombée dessus comme une lionne. Le soir, Tariq était menacé : j'ai plaidé pour lui devant le public comme si c'était ma mère. Il est resté.",
       "5": "Ayumi m'a surprise près du sac de Sven. Encore. Puis c'était mon tour d'être menacée. Tariq a pris la parole pour moi. Le public m'a sauvée. Je ne le mérite peut-être pas, mais je prends.",
@@ -57,7 +57,7 @@
     "secret": "Omar connaît Matthias. C'est l'avocat qui a fait fermer, il y a quatre ans, le chantier de fouilles de sa vie, pour le compte d'un promoteur.",
     "secretDay": 4,
     "confessions": {
-      "1": "Un colis de rations dès le premier jour, merci à vous. Puis la fièvre dans la mangrove. Tariq a essayé de me voler pendant que je tremblais. Je retiens les visages. C'est mon métier.",
+      "1": "Un colis de rations dès le premier jour, merci à vous. Puis des baies pas très fraîches dans la mangrove. Tariq a essayé de me voler pendant que je me tordais de douleur. Je retiens les visages. C'est mon métier.",
       "2": "J'ai attrapé un colis qui ne m'était pas destiné. Iris, pardon. Je suis seul depuis deux jours et je déteste ça. Le silence me rappelle la maison vide, quand j'avais huit ans.",
       "3": "Menacé ce soir. Le public m'a gardé. Je ne vous décevrai pas.",
       "4": "Sana et moi, on a fondé les Pélicans. J'ai gagné les poteaux devant Matthias. Je l'ai regardé dans les yeux. Il ne se souvient pas de moi. Moi, je me souviens de lui. Ce soir, Sana est partie. Seul, encore.",

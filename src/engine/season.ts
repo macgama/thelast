@@ -1,6 +1,7 @@
 // Moteur de saison : fait avancer l'arène heure par heure (1 tick = 1 heure).
 // Le moteur décide de tout ce qui compte (survie, éliminations) avec des règles et des dés pondérés :
 // c'est équitable, rejouable et vérifiable. L'IA sert seulement à raconter (voir src/narration).
+import { pickVariant } from "./catastrophes";
 import { Rng } from "./rng";
 import type {
   Arena, Character, Contestant, EliminationCause, EventType, GameEvent, Item, SeasonConfig, SeasonResult, Snapshot, Zone,
@@ -50,18 +51,21 @@ export class Season {
   danger = 1;
   private droughtUntil = -1;
   private heatUntil = -1;
-  private swarm: { zone: string; until: number } | null = null;
+  private swarm: { zone: string; until: number; variant?: string } | null = null;
   private showrunnerToday = 0;
   winner: string | null = null;
   /** Candidat protégé par l'épreuve d'immunité du jour. */
   immune: string | null = null;
   /** Dés séparés pour les clans et les complots. */
   private social: Rng;
+  /** Tirage des variantes de catastrophes, séparé pour ne pas changer le déroulé de la saison. */
+  private flavor: Rng;
   private clansMade = 0;
 
   constructor(pool: Character[], readonly arena: Arena, readonly config: SeasonConfig) {
     this.rng = new Rng(config.seed);
     this.social = new Rng(config.seed * 7 + 13);
+    this.flavor = new Rng(config.seed * 31 + 7);
     this.cast = this.rng.sample(pool, Math.min(config.participants, pool.length));
     this.byId = new Map(this.cast.map((c) => [c.id, c]));
     this.zones = new Map(arena.zones.map((z) => [z.id, z]));
@@ -545,10 +549,14 @@ export class Season {
         const medic = s.allies.some((id) => this.state.get(id)?.zone === s.zone && this.has(id, "firstAid"));
         if (medic) damage *= 0.6;
         if (s.inventory.includes(hid === "fall" ? "rope" : "torch")) damage *= 0.75;
-        const out = this.hurt(s, damage, "hazard", { hazard: hid });
+        // Pendant une invasion du showrunner, les piqûres viennent de l'essaim annoncé
+        const SWARM: Record<string, string> = { wasp_swarm: "wasps", army_ants: "fire_ants", giant_mosquitoes: "mosquitoes", hornets: "hornet" };
+        const swarming = hid === "wasps" && this.swarm && this.swarm.until > this.tick && this.swarm.zone === zone.id;
+        const variant = swarming ? SWARM[this.swarm!.variant ?? ""] ?? "wasps" : pickVariant(this.flavor, hid, s.zone, isNight(hourOf(this.tick)));
+        const out = this.hurt(s, damage, "hazard", { hazard: hid, variant });
         if (!out) {
           s.popularity += 2;
-          this.emit("hazard", [s.id], 3, { hazard: hid, damage: Math.round(damage), rescuedBy: medic ? s.allies.find((id) => this.state.get(id)?.zone === s.zone && this.has(id, "firstAid")) : undefined }, s.zone);
+          this.emit("hazard", [s.id], 3, { hazard: hid, variant, damage: Math.round(damage), rescuedBy: medic ? s.allies.find((id) => this.state.get(id)?.zone === s.zone && this.has(id, "firstAid")) : undefined }, s.zone);
         } else {
           // l'événement d'évacuation porte déjà la cause
         }
@@ -580,11 +588,12 @@ export class Season {
     const fresh = options.filter((k) => !today.has(k));
     if (!fresh.length) return;
     const kind = this.rng.pick(fresh);
+    const variant = kind === "supply_drop" ? undefined : pickVariant(this.flavor, kind, null, false, true);
     const crowded = [...this.zones.values()].map((z) => ({ z, n: this.alive().filter((s) => s.zone === z.id).length })).sort((a, b) => b.n - a.n)[0].z;
     switch (kind) {
       case "wasp_swarm":
-        this.swarm = { zone: crowded.id, until: this.tick + 4 };
-        this.emit("showrunner", [], 4, { kind }, crowded.id);
+        this.swarm = { zone: crowded.id, until: this.tick + 4, variant };
+        this.emit("showrunner", [], 4, { kind, variant }, crowded.id);
         break;
       case "storm":
         for (const s of this.alive()) {
@@ -593,20 +602,20 @@ export class Season {
           s.morale = clamp(s.morale - 10 * (1 - z.shelter));
           if (this.rng.chance(0.25 * (1 - z.shelter) * this.danger) && s.inventory.length) s.inventory.pop();
         }
-        this.emit("showrunner", [], 4, { kind });
+        this.emit("showrunner", [], 4, { kind, variant });
         break;
       case "drought":
         this.droughtUntil = this.tick + 10;
-        this.emit("showrunner", [], 4, { kind });
+        this.emit("showrunner", [], 4, { kind, variant });
         break;
       case "heatwave":
         this.heatUntil = this.tick + 8;
         for (const s of this.alive()) s.thirst = clamp(s.thirst + 20);
-        this.emit("showrunner", [], 4, { kind });
+        this.emit("showrunner", [], 4, { kind, variant });
         break;
       case "supply_drop": {
         const zone = this.rng.pick([...this.zones.values()]);
-        this.emit("showrunner", [], 4, { kind }, zone.id);
+        this.emit("showrunner", [], 4, { kind, variant }, zone.id);
         // Tout le monde à proximité y court : rencontres garanties
         for (const s of this.alive()) if (zone.neighbors.includes(s.zone) && this.rng.chance(0.5)) s.zone = zone.id;
         const there = this.rng.shuffle(this.alive().filter((s) => s.zone === zone.id));

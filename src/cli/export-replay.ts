@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { island } from "../engine/arenas/island";
 import { Season, dayOf } from "../engine/season";
 import type { Character, SeasonConfig } from "../engine/types";
+import { CATASTROPHES } from "../engine/catastrophes";
 import { Narrator } from "../narration/narrator";
 
 const pool: Character[] = JSON.parse(readFileSync("data/characters.json", "utf8"));
@@ -33,6 +34,7 @@ const events = r.events
   .filter((e) => e.fr);
 
 const out = {
+  catastrophes: Object.fromEntries(Object.values(CATASTROPHES).map((c) => [c.id, { family: c.family, icon: c.icon, color: c.color ?? null, size: c.size ?? 1, intro: c.intro ?? null, cry: c.cry ?? null }])),
   seed: config.seed,
   days: config.days,
   voteHour: config.voteHour,

@@ -4,6 +4,7 @@ import config from "../config/season.json";
 import { island } from "../src/engine/arenas/island";
 import { Season, applyCareer, dayOf } from "../src/engine/season";
 import type { Character, SeasonConfig } from "../src/engine/types";
+import { CATASTROPHES, INDIVIDUAL, ISLAND } from "../src/engine/catastrophes";
 import { Narrator } from "../src/narration/narrator";
 
 const chars = pool as Character[];
@@ -108,5 +109,20 @@ describe("récit", () => {
       expect(threat.actors).toContain(c.actors[1]);
       expect(threat.actors).not.toContain(c.actors[0]);
     }
+  });
+
+  it("tire des dizaines de catastrophes différentes, toujours possibles là où elles arrivent", () => {
+    expect(INDIVIDUAL.length + ISLAND.length).toBeGreaterThanOrEqual(40);
+    const seen = new Set<string>();
+    for (const seed of [1, 2, 3, 42]) {
+      const r = run(seed);
+      for (const e of r.events.filter((x) => x.type === "hazard")) {
+        const c = CATASTROPHES[e.data!.variant as string];
+        expect(c.family).toBe(e.data!.hazard);
+        if (c.zones && !(e.data!.variant === "fire_ants" || e.data!.variant === "mosquitoes" || e.data!.variant === "hornet" || e.data!.variant === "wasps")) expect(c.zones).toContain(e.zone);
+        seen.add(c.id);
+      }
+    }
+    expect(seen.size).toBeGreaterThanOrEqual(20);
   });
 });

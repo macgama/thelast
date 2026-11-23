@@ -1,3 +1,4 @@
+import { CATASTROPHES } from "../engine/catastrophes";
 // Transforme les événements du moteur en texte : fil horaire, quotidienne de 19h et prime du jour 7.
 import { dayOf, hourOf, type ShowrunnerKind } from "../engine/season";
 import type { Character, GameEvent, HazardId, Item, Lang, SeasonResult } from "../engine/types";
@@ -46,7 +47,7 @@ export class Narrator {
       case "found_food":
       case "hazard":
         if (e.type === "hazard") {
-          const hz = HAZARD[d.hazard as HazardId][L];
+          const hz = this.hazardName(d);
           if (d.rescuedBy) return fill(this.pick("hazard_rescued", e), { ...base, hazard: hz, r: this.name(d.rescuedBy as string) });
           return fill(this.pick("hazard", e), { ...base, hazard: hz });
         }
@@ -91,7 +92,7 @@ export class Narrator {
         return fill(this.pick("evacuated", e), { a, cause: this.cause(e.actors[0]), n });
       }
       case "showrunner":
-        return "📢 " + fill(SHOWRUNNER[d.kind as ShowrunnerKind][L], { zone: this.zone(e.zone) });
+        return "📢 " + fill(CATASTROPHES[d.variant as string]?.announce?.[L] ?? SHOWRUNNER[d.kind as ShowrunnerKind][L], { zone: this.zone(e.zone) });
       case "gift_delivered":
         return fill(this.pick("gift_delivered", e), { a, item: ITEM[d.item as Item][L], s: d.supporters as number });
       case "gift_lost":
@@ -113,11 +114,16 @@ export class Narrator {
     }
   }
 
+  /** Le nom de la catastrophe : la variante du catalogue si elle existe, sinon la famille. */
+  private hazardName(d: Record<string, unknown>) {
+    return CATASTROPHES[d.variant as string]?.name?.[this.lang] ?? HAZARD[d.hazard as HazardId][this.lang];
+  }
+
   private cause(id: string) {
     const e = this.result.events.find((x) => x.type === "evacuated" && x.actors[0] === id);
     const d = e?.data ?? {};
     return fill(CAUSE[d.cause as keyof typeof CAUSE][this.lang], {
-      hazard: d.hazard ? HAZARD[d.hazard as HazardId][this.lang] : "",
+      hazard: d.hazard ? this.hazardName(d) : "",
       by: d.by ? this.name(d.by as string) : "",
       e: agree(this.chars.get(id)?.gender, this.lang),
     });

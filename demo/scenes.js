@@ -318,10 +318,10 @@
       };
       return g;
     }
-    function makeSwarm(n = 36) {
+    function makeSwarm(n = 36, color = 0xffd23f) {
       const geo = new T.BufferGeometry();
       geo.setAttribute("position", new T.BufferAttribute(new Float32Array(n * 3), 3));
-      const pts = new T.Points(geo, new T.PointsMaterial({ color: 0xffd23f, size: 5 * Math.min(window.devicePixelRatio || 1, 2), sizeAttenuation: false }));
+      const pts = new T.Points(geo, new T.PointsMaterial({ color, size: 5 * Math.min(window.devicePixelRatio || 1, 2), sizeAttenuation: false }));
       pts.frustumCulled = false;
       pts.userData.seed = [...Array(n)].map(() => [Math.random() * 6.3, Math.random() * 6.3, 0.4 + Math.random() * 0.8]);
       return pts;
@@ -335,18 +335,26 @@
       });
       p.needsUpdate = true;
     }
-    function makeSnake() {
+    // Serpent par défaut ; avec une couleur et une taille, toute bestiole du catalogue (scorpion, sanglier, crabe…)
+    function makeSnake(color = null, size = 1) {
       const g = new T.Group();
       const segs = [];
-      for (let i = 0; i < 10; i++) { const m = new T.Mesh(new T.SphereGeometry(i === 0 ? 0.17 : 0.13 - i * 0.007, 6, 4), mat(i === 0 ? 0x2f6a2a : i % 2 ? 0x4a9a3a : 0x3a7a2e)); m.castShadow = true; g.add(m); segs.push(m); }
+      const n = size >= 1.5 ? 3 : 10;
+      const c = color ? new T.Color(color) : null;
+      for (let i = 0; i < n; i++) {
+        const col = c ? c.clone().multiplyScalar(i === 0 ? 0.8 : i % 2 ? 1 : 0.9).getHex() : i === 0 ? 0x2f6a2a : i % 2 ? 0x4a9a3a : 0x3a7a2e;
+        const m = new T.Mesh(new T.SphereGeometry((i === 0 ? 0.17 : 0.13 - i * 0.007) * size, 6, 4), mat(col)); m.castShadow = true; g.add(m); segs.push(m);
+      }
+      g.userData.size = size;
       g.userData.segs = segs;
       return g;
     }
     function slither(sn, head, dir) {
       const side = new T.Vector3(-dir.z, 0, dir.x);
       sn.userData.segs.forEach((m, i) => {
-        const b = head.clone().addScaledVector(dir, -i * 0.22).addScaledVector(side, Math.sin(now * 8 - i * 0.8) * 0.15);
-        b.y = ground(b.x, b.z) + 0.12;
+        const k = sn.userData.size || 1;
+        const b = head.clone().addScaledVector(dir, -i * 0.22 * k).addScaledVector(side, Math.sin(now * 8 - i * 0.8) * 0.15 / k);
+        b.y = ground(b.x, b.z) + 0.12 * k;
         m.position.copy(b);
       });
     }
@@ -794,23 +802,31 @@
     };
 
     // Les accidents de la nature
+    // Le catalogue des catastrophes (config/catastrophes.json) : icône, couleur, phrase d'intro, cris
+    const CAT = (ev) => D.catastrophes?.[ev.d?.variant] || {};
+    const hex = (c, dflt) => (c ? parseInt(c.slice(1), 16) : dflt);
+    const intro = (ev, a, dflt) => { const c = CAT(ev); return c.intro ? c.intro.replace("{a}", nm(a)) : dflt; };
+    const cry = (ev, r, dflt) => pick(r, CAT(ev).cry || dflt);
+    const ico = (ev, dflt) => CAT(ev).icon || dflt;
     const HZ = {};
     HZ.wasps = (ev, a, Rs, r, st) => {
       const sc = new Sc(ev, 8.8, st.clone().add(UP(1.2)), 3.0).cast(a, Rs);
-      const sw = sc.prop(makeSwarm());
+      const v = ev.d?.variant, low = v === "fire_ants";
+      const sw = sc.prop(makeSwarm(v === "hornet" ? 6 : 36, hex(CAT(ev).color, 0xffd23f)));
+      if (v === "hornet") sw.material.size *= 2.4;
       sc.at(1.0, () => ctx.sfx?.("wasps"));
-      const nest = off(st, 2.5, -1.5).add(UP(2.5));
+      const nest = low ? off(st, 1.6, -0.6).add(UP(0.2)) : off(st, 2.5, -1.5).add(UP(2.5));
       const c = nest.clone();
       let flee = false, away = false;
       sc.on((s, dt) => {
-        const goal = away ? nest.clone().add(UP(4)) : s > 1.4 ? people[a].position.clone().add(UP(2.3)) : nest;
+        const goal = away ? nest.clone().add(UP(low ? 0 : 4)) : s > 1.4 ? people[a].position.clone().add(UP(low ? 0.6 : 2.3)) : nest;
         c.lerp(goal, 1 - Math.exp(-dt * 4));
         moveSwarm(sw, c, s > 1.4 && !away ? 1.0 : 1.5);
         if (flee) { const ang = s * 2.2; go(a, st.clone().add(new T.Vector3(Math.cos(ang) * 2.2, 0, Math.sin(ang) * 2.2)), 5.5, "panic"); }
       })
-        .at(0, () => { live(`${nm(a)} s'approche d'un nid de guêpes… mauvaise idée.`); go(a, st, 3); pose(a, "gather"); })
+        .at(0, () => { live(intro(ev, a, `${nm(a)} s'approche d'un nid de guêpes… mauvaise idée.`)); go(a, st, 3); pose(a, low ? "sit" : "gather"); })
         .at(1.8, () => { icon(a, "❗"); pose(a, "idle"); })
-        .at(2.3, () => { say(a, pick(r, SAY.wasps), 2.4, "shout"); flee = true; icon(a, "🐝", 2); });
+        .at(2.3, () => { say(a, cry(ev, r, SAY.wasps), 2.4, "shout"); flee = true; icon(a, ico(ev, "🐝"), 2); });
       if (Rs) sc.at(4.6, () => { go(Rs, off(st, -1.2), 5, "run"); say(Rs, "Par ici, vite !", 1.8, "shout"); });
       sc.at(6.0, () => { flee = false; away = true; go(a, off(st, 0.3), 3); pose(a, "sit"); icon(a, "😵", 1.6); live(ev.fr, "result"); if (Rs) { face(Rs, a); pose(Rs, "gather"); say(Rs, pick(r, SAY.rescue)); } });
       return sc;
@@ -821,9 +837,16 @@
       const sc = new Sc(ev, Rs ? 12 : 11, focusOn(a, 0.6), 3.0).cast(a, Rs);
       let splashing = false;
       sc.on(() => { if (splashing && Math.random() < 0.25) splash(people[a].position.clone().setY(w.surf + 0.1), 3); })
-        .at(0, () => { live(`${nm(a)} part se rafraîchir dans l'eau…`); go(a, w.edge, 3); })
+        .at(0, () => { live(intro(ev, a, `${nm(a)} part se rafraîchir dans l'eau…`)); go(a, w.edge, 3); })
         .at(1.6, () => { swim(a, w.deep, 1.6); splash(w.deep.clone().setY(w.surf + 0.1)); ctx.sfx?.("splash"); })
-        .at(3.4, () => { icon(a, "🌊"); live(`Le courant emporte ${nm(a)} !`); swim(a, w.far, 0.9, "flail"); pose(a, "flail"); say(a, pick(r, SAY.help), 2.6, "shout"); splashing = true; });
+        .at(3.4, () => {
+          const v = ev.d?.variant;
+          icon(a, ico(ev, "🌊"));
+          live(v === "jellyfish" ? `Une méduse frôle ${nm(a)} !` : v === "rogue_wave" ? `Une vague énorme renverse ${nm(a)} !` : v === "rising_tide" ? `La marée encercle ${nm(a)} !` : v === "flash_flood" ? `L'eau monte d'un coup autour de ${nm(a)} !` : v === "whirlpool" ? `Un tourbillon aspire ${nm(a)} !` : `Le courant emporte ${nm(a)} !`);
+          if (v === "rogue_wave") { for (let i = 0; i < 4; i++) splash(people[a].position.clone().setY(w.surf + 0.2 + i * 0.3), 10); ctx.sfx?.("splash"); }
+          if (v === "jellyfish") { const j = sc.prop(new T.Mesh(new T.SphereGeometry(0.35, 8, 4, 0, Math.PI * 2, 0, Math.PI / 2), new T.MeshLambertMaterial({ color: hex(CAT(ev).color, 0xff9ad5), transparent: true, opacity: 0.8 }))); sc.on(() => j.position.copy(people[a].position).addScaledVector(SIDE, 0.8).setY(w.surf + 0.05 + Math.sin(now * 3) * 0.05)); }
+          swim(a, w.far, 0.9, "flail"); pose(a, "flail"); say(a, cry(ev, r, SAY.help), 2.6, "shout"); splashing = true;
+        });
       if (Rs) {
         sc.at(5.4, () => { go(Rs, w.edge.clone().addScaledVector(SIDE, 0.8), 6, "run"); say(Rs, "J'arrive !", 1.6, "shout"); })
           .at(6.4, () => { swim(Rs, w.far, 4); })
@@ -841,8 +864,8 @@
       const steep = top.y - bot.y > 1.2;
       const sc = new Sc(ev, Rs ? 9.6 : 8.8, focusOn(a, 1), 2.8).cast(a, Rs);
       let from = null;
-      sc.at(0, () => { live(`${nm(a)} s'aventure sur les rochers…`); if (steep) { place(a, new T.Vector3().lerpVectors(bot, top, 0.35)); go(a, top, 1.6, "climb"); } else go(a, off(st, 1.5), 2); say(a, pick(r, SAY.fall), 2.4, "think"); })
-        .at(3.4, () => { icon(a, "❗"); stop(a); pose(a, "panic"); })
+      sc.at(0, () => { live(intro(ev, a, `${nm(a)} s'aventure sur les rochers…`)); if (steep) { place(a, new T.Vector3().lerpVectors(bot, top, 0.35)); go(a, top, 1.6, "climb"); } else go(a, off(st, 1.5), 2); say(a, cry(ev, r, SAY.fall), 2.4, "think"); })
+        .at(3.4, () => { icon(a, ico(ev, "❗")); stop(a); pose(a, "panic"); })
         .at(4.0, () => { from = people[a].userData.pos.clone(); })
         .on((s) => { if (from && s < 5.2) { const k = clamp01((s - 4.0) / 1.2); const p = new T.Vector3().lerpVectors(from, bot, k); p.y = lerp(from.y, bot.y, k) + Math.sin(k * Math.PI) * 1.6; place(a, p, true); pose(a, "tumble"); } })
         .at(5.2, () => { from = null; place(a, bot); pose(a, "dizzy"); dust(bot.clone().add(UP(0.3)), 8); icon(a, "💫", 2.2); })
@@ -855,23 +878,24 @@
     };
     HZ.snake = (ev, a, Rs, r, st) => {
       const sc = new Sc(ev, Rs ? 8.6 : 7.6, st.clone().add(UP(1)), 3.4).cast(a, Rs);
-      const sn = sc.prop(makeSnake());
+      const sn = sc.prop(makeSnake(CAT(ev).color || null, CAT(ev).size || 1));
       const s0 = off(st, 3, 1.2), s1 = off(st, 0.5, 0.2), dir = new T.Vector3().subVectors(s1, s0).setY(0).normalize();
       sc.on((s) => { const k = s < 4.2 ? ease(s / 3.2) : 1 - ease((s - 4.2) / 2); slither(sn, new T.Vector3().lerpVectors(s0, s1, k), s < 4.2 ? dir : dir.clone().negate()); })
-        .at(0, () => { live(`Quelque chose bouge dans les herbes près de ${nm(a)}…`); go(a, st, 3); pose(a, "gather"); face(a, off(st, -3)); })
-        .at(3.2, () => { icon(a, "❗"); pose(a, "panic"); face(a, s1); say(a, pick(r, SAY.snake), 2.2, "shout"); })
-        .at(4.4, () => { pose(a, "sit"); icon(a, "🐍", 1.6); live(ev.fr, "result"); });
+        .at(0, () => { live(intro(ev, a, `Quelque chose bouge dans les herbes près de ${nm(a)}…`)); go(a, st, 3); pose(a, "gather"); face(a, off(st, -3)); })
+        .at(3.2, () => { icon(a, "❗"); pose(a, "panic"); face(a, s1); say(a, cry(ev, r, SAY.snake), 2.2, "shout"); if ((CAT(ev).size || 1) > 1.4) ctx.sfx?.("bonk"); })
+        .at(4.4, () => { pose(a, "sit"); icon(a, ico(ev, "🐍"), 1.6); live(ev.fr, "result"); });
       if (Rs) sc.at(5.0, () => go(Rs, off(st, -1.0), 5, "run")).at(6.3, () => { pose(Rs, "gather"); face(Rs, a); icon(Rs, "🩹"); say(Rs, pick(r, SAY.rescue)); });
       return sc;
     };
     HZ.rockslide = (ev, a, Rs, r, st) => {
       const top = uphill(st, 8);
       const sc = new Sc(ev, 8, st.clone().add(UP(1.5)), 2.6).cast(a, Rs);
-      const rocks = [...Array(5)].map((_, i) => { const m = sc.prop(new T.Mesh(new T.DodecahedronGeometry(0.35 + (i % 3) * 0.15, 0), mat(0x8f877d))); m.castShadow = true; m.userData.j = new T.Vector3((Math.random() - 0.5) * 2, 0, (Math.random() - 0.5) * 2); m.userData.d = i * 0.15; return m; });
+      const v = ev.d?.variant, nR = v === "statue" || v === "boulder" ? 1 : v === "coconuts" ? 7 : 5;
+      const rocks = [...Array(nR)].map((_, i) => { const m = sc.prop(new T.Mesh(v === "coconuts" ? new T.SphereGeometry(0.25, 7, 5) : new T.DodecahedronGeometry(nR === 1 ? 0.9 : 0.35 + (i % 3) * 0.15, 0), mat(hex(CAT(ev).color, 0x8f877d)))); m.castShadow = true; m.userData.j = new T.Vector3((Math.random() - 0.5) * 2, 0, (Math.random() - 0.5) * 2); m.userData.d = i * 0.15; return m; });
       const beyond = st.clone().add(new T.Vector3().subVectors(st, top).setY(0).normalize().multiplyScalar(3));
       sc.on((s) => { for (const m of rocks) { const k = clamp01((s - 0.8 - m.userData.d) / 2.2); const p = new T.Vector3().lerpVectors(top, beyond, k).add(m.userData.j); p.y = ground(p.x, p.z) + 0.3 + Math.abs(Math.sin(k * 10)) * 0.8; m.position.copy(p); m.rotation.x += 0.2; m.rotation.z += 0.15; if (Math.abs(Math.sin(k * 10)) < 0.08 && k > 0 && k < 1) dust(p, 1); } })
-        .at(0, () => { live(`Un grondement au-dessus de ${nm(a)}…`); go(a, st, 3); pose(a, "gather"); })
-        .at(1.5, () => { icon(a, "❗"); pose(a, "idle"); face(a, top); say(a, pick(r, SAY.rock), 1.6, "shout"); })
+        .at(0, () => { live(intro(ev, a, `Un grondement au-dessus de ${nm(a)}…`)); go(a, st, 3); pose(a, "gather"); })
+        .at(1.5, () => { icon(a, ico(ev, "❗")); pose(a, "idle"); face(a, top); say(a, cry(ev, r, SAY.rock), 1.6, "shout"); ctx.sfx?.("crash"); })
         .at(2.3, () => go(a, off(st, 2.6), 7, "run"))
         .at(3.0, () => { pose(a, "lie"); dust(off(st, 2.6).add(UP(0.3)), 6); })
         .at(4.2, () => { pose(a, "sit"); icon(a, "😵", 1.6); live(ev.fr, "result"); });
@@ -880,8 +904,8 @@
     };
     HZ.fever = (ev, a, Rs, r, st) => {
       const sc = new Sc(ev, Rs ? 7.6 : 6.4, st.clone().add(UP(1)), 3.4).cast(a, Rs);
-      sc.at(0, () => { live(`${nm(a)} ne se sent pas bien…`); go(a, st, 2); pose(a, "shiver"); icon(a, "🤒", 2); })
-        .at(1.6, () => say(a, pick(r, SAY.fever), 2.4, "think"))
+      sc.at(0, () => { live(intro(ev, a, `${nm(a)} ne se sent pas bien…`)); go(a, st, 2); pose(a, ev.d?.variant === "sunstroke" ? "fan" : "shiver"); icon(a, ico(ev, "🤒"), 2); })
+        .at(1.6, () => say(a, cry(ev, r, SAY.fever), 2.4, "think"))
         .at(3.2, () => { pose(a, "lie"); live(ev.fr, "result"); });
       if (Rs) sc.at(3.8, () => go(Rs, off(st, 1.1), 4)).at(5.2, () => { face(Rs, a); pose(Rs, "gather"); icon(Rs, "💧"); say(Rs, "Bois, doucement."); });
       return sc;
@@ -1144,7 +1168,12 @@
       const sc = new Sc(ev, 6.5, wide ? new T.Vector3(2, 2, 0) : st.clone().add(UP(1.2)), wide ? 1.25 : 2.3);
       sc.at(0, () => live(ev.fr, "sr"));
       const inZone = Object.keys(ctx.snapAt(ev.t)).filter((id) => vis(id) && ctx.snapAt(ev.t)[id][0] === z).slice(0, 10);
-      if (kind === "storm") sc.on(() => { if (Math.random() < 0.035) ctx.lightning(); });
+      const sv = ev.d?.variant;
+      sc.at(0.3, () => iconAt((wide ? new T.Vector3(2, 6, 0) : st.clone().add(UP(4))), ico(ev, "📢"), 3));
+      if (kind === "storm" && sv !== "hail" && sv !== "gale") sc.on(() => { if (Math.random() < (sv === "thunderstorm" ? 0.08 : 0.035)) ctx.lightning(); });
+      if (sv === "hail") sc.on(() => { if (Math.random() < 0.5) burst(new T.Vector3((Math.random() - 0.5) * 30, 12, (Math.random() - 0.5) * 24), { n: 3, colors: [0xffffff, 0xdff3ff], speed: 0.3, up: 0, gravity: -14, life: 1.2, size: 0.4 }); });
+      if (sv === "gale") sc.on(() => { if (Math.random() < 0.2) burst(new T.Vector3((Math.random() - 0.5) * 30, 7, (Math.random() - 0.5) * 24), { n: 1, colors: [0x6b4a2e], speed: 0.5, up: 0, gravity: -12, life: 1, size: 1.2 }); });
+      if (kind === "wasp_swarm" && D.catastrophes?.[sv]?.color) { const sw = sc.prop(makeSwarm(60, hex(D.catastrophes[sv].color))); sc.on(() => moveSwarm(sw, st.clone().add(UP(sv === "army_ants" ? 0.2 : 2)), 3.5)); }
       if (kind === "wasp_swarm") {
         inZone.forEach((id, k) => { sc.actors.push(id); sc.on((s) => { if (s > 1 && s < 5.5) { const ang = s * 2 + k; go(id, st.clone().add(new T.Vector3(Math.cos(ang) * (2 + k * 0.4), 0, Math.sin(ang) * (2 + k * 0.4))), 5, "panic"); } }); });
         sc.at(5.6, () => inZone.forEach((id) => { stop(id); pose(id, "sit"); }));
@@ -1165,7 +1194,7 @@
       const a = ev.a[0], b = ev.a[1];
       const sc = new Sc(ev, 3, null);
       switch (ev.type) {
-        case "hazard": sc.at(0, () => vis(a) && icon(a, { wasps: "🐝", drowning: "🌊", fall: "💥", snake: "🐍", rockslide: "🪨", fever: "🤒" }[ev.d?.hazard] || "❗", 2)); break;
+        case "hazard": sc.at(0, () => vis(a) && icon(a, ico(ev, { wasps: "🐝", drowning: "🌊", fall: "💥", snake: "🐍", rockslide: "🪨", fever: "🤒" }[ev.d?.hazard] || "❗"), 2)); break;
         case "steal": sc.at(0, () => { if (ev.d?.caught) vis(b) && icon(b, "❗"); else vis(a) && icon(a, "🤫"); }); break;
         case "alliance": case "clan_join": sc.at(0, () => { vis(a) && icon(a, "🤝"); vis(b) && icon(b, "🤝"); }); break;
         case "clan_meal": sc.at(0, () => ev.a.forEach((id, k) => vis(id) && later.push({ at: now + k * 0.2, fn: () => icon(id, "🔥", 1.8) }))); break;
