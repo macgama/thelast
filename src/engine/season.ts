@@ -13,6 +13,17 @@ export const hourOf = (tick: number) => tick % 24;
 const clamp = (v: number, lo = 0, hi = 100) => Math.max(lo, Math.min(hi, v));
 const isNight = (h: number) => h >= 22 || h < 6;
 
+/** Épreuves d'immunité des jours 1 à 6 (15h). */
+export const CHALLENGE_HOUR = 15;
+export const CHALLENGES = [
+  { id: "raft", trait: "composure", skill: "crafting" },
+  { id: "chest", trait: "courage", skill: "swimming" },
+  { id: "puzzle", trait: "cunning", skill: "orientation" },
+  { id: "pole", trait: "composure", skill: "endurance" },
+  { id: "coconut", trait: "courage", skill: "climbing" },
+  { id: "relay", trait: "loyalty", skill: "negotiation" },
+] as const;
+
 /** Le dernier jour, trois épreuves resserrent le groupe jusqu'aux 3 finalistes. */
 export const TRIAL_HOURS = [10, 13, 16];
 export const TRIALS = ["endurance", "orientation", "trust"] as const;
@@ -37,6 +48,8 @@ export class Season {
   private swarm: { zone: string; until: number } | null = null;
   private showrunnerToday = 0;
   winner: string | null = null;
+  /** Candidat protégé par l'épreuve d'immunité du jour. */
+  immune: string | null = null;
 
   constructor(pool: Character[], readonly arena: Arena, readonly config: SeasonConfig) {
     this.rng = new Rng(config.seed);
@@ -152,6 +165,8 @@ export class Season {
     this.hazards();
     this.showrunner();
     if (h === 12) this.gifts();
+    if (h === 23) this.sabotage();
+    if (h === CHALLENGE_HOUR && dayOf(this.tick) < this.config.days) this.challenge();
     const lastDay = dayOf(this.tick) === this.config.days;
     if (h === this.config.voteHour && !lastDay) this.vote();
     if (lastDay && TRIAL_HOURS.includes(h)) this.trial(TRIAL_HOURS.length - TRIAL_HOURS.indexOf(h));
@@ -246,7 +261,7 @@ export class Season {
       if (group.length < 2) continue;
       const meetings = Math.min(3, Math.floor(group.length / 3) + 1);
       for (let m = 0; m < meetings; m++) {
-        if (!this.rng.chance(0.18)) continue;
+        if (!this.rng.chance(0.26)) continue;
         const [a, b] = this.rng.sample(group, 2);
         if (a.alive && b.alive) this.interact(a, b);
       }
@@ -270,7 +285,7 @@ export class Season {
 
     if (allied) {
       // Partage entre alliés
-      const needy = b.thirst > a.thirst + 30 ? "water" : b.hunger > a.hunger + 30 ? "food" : null;
+      const needy = b.thirst > a.thirst + 20 ? "water" : b.hunger > a.hunger + 20 ? "food" : null;
       if (needy && this.rng.chance(kindness)) {
         if (needy === "water") { b.thirst = clamp(b.thirst - 30); a.thirst = clamp(a.thirst + 10); }
         else { b.hunger = clamp(b.hunger - 30); a.hunger = clamp(a.hunger + 10); }
@@ -294,16 +309,24 @@ export class Season {
       this.shiftOpinion(b, a, 25);
       a.popularity += 1; b.popularity += 1;
       this.emit("alliance", [a.id, b.id], 3, undefined, a.zone);
-    } else if (roll < kindness * 0.35 + cunning * 0.12 && b.inventory.length > 0) {
+    } else if (roll < kindness * 0.35 + cunning * 0.2) {
       this.steal(a, b, false);
-    } else if (roll < kindness * 0.35 + cunning * 0.12 + aggression * 0.12) {
-      this.duel(a, b);
+    } else if (roll < kindness * 0.35 + cunning * 0.2 + aggression * 0.12) {
+      this.dispute(a, b);
     }
   }
 
   private steal(a: Contestant, b: Contestant, betrayal: boolean) {
     const stealth = this.has(a.id, "stealth") ? 0.25 : 0;
-    if (b.inventory.length && this.rng.chance(0.45 + stealth)) {
+    if (!b.inventory.length && b.hunger < 60 && this.rng.chance(0.5 + stealth)) {
+      // vol de nourriture dans la réserve de l'autre
+      a.hunger = clamp(a.hunger - 25);
+      b.hunger = clamp(b.hunger + 25);
+      this.shiftOpinion(b, a, -35);
+      a.popularity -= 1;
+      b.popularity += 2;
+      this.emit("steal", [a.id, b.id], betrayal ? 4 : 3, { item: "rations", food: true, betrayal, caught: false }, a.zone);
+    } else if (b.inventory.length && this.rng.chance(0.45 + stealth)) {
       const item = b.inventory.splice(this.rng.int(0, b.inventory.length - 1), 1)[0];
       a.inventory.push(item);
       this.shiftOpinion(b, a, -40);
@@ -317,8 +340,9 @@ export class Season {
     }
   }
 
-  /** Affrontement : résolu hors champ, raconté sobrement. Le perdant est blessé, parfois évacué. */
-  private duel(a: Contestant, b: Contestant) {
+  /** Dispute (esprit Koh Lanta) : on se bouscule, on se crie dessus, on se dispute un objet. Personne n'est blessé :
+   *  le perdant perd du moral, de l'énergie et parfois un objet. */
+  private dispute(a: Contestant, b: Contestant) {
     const power = (s: Contestant) =>
       this.trait(s.id, "courage") * 0.4 + this.trait(s.id, "composure") * 0.3 + s.health * 0.3 + s.energy * 0.2 + s.allies.length * 8 + this.rng.int(0, 50);
     const pa = power(a);
@@ -327,16 +351,48 @@ export class Season {
     this.shiftOpinion(lose, win, -50);
     this.shiftOpinion(win, lose, -20);
     win.popularity += 2;
-    win.energy = clamp(win.energy - 15);
-    const damage = this.rng.int(15, 45) * this.danger;
-    if (lose.inventory.length) win.inventory.push(lose.inventory.pop()!);
-    this.emit("duel", [win.id, lose.id], 3, { damage: Math.round(damage) }, a.zone);
+    win.energy = clamp(win.energy - 10);
+    const sting = this.rng.int(15, 45);
+    lose.morale = clamp(lose.morale - sting / 2);
+    lose.energy = clamp(lose.energy - 10);
+    const item = lose.inventory.length ? lose.inventory.pop()! : null;
+    if (item) win.inventory.push(item);
+    this.emit("dispute", [win.id, lose.id], 3, { item }, a.zone);
     // Les alliés du perdant lui en veulent
     for (const allyId of lose.allies) {
       const ally = this.state.get(allyId);
       if (ally) this.shiftOpinion(ally, win, -30);
     }
-    this.hurt(lose, damage, "duel", { by: win.id });
+  }
+
+  /** La nuit, un candidat rusé et peu loyal peut saboter l'abri de quelqu'un qu'il déteste. */
+  private sabotage() {
+    for (const s of this.rng.shuffle(this.alive())) {
+      if (this.trait(s.id, "cunning") < 50 || this.trait(s.id, "loyalty") > 50) continue;
+      const target = this.alive().find((o) => o.id !== s.id && o.zone === s.zone && this.opinion(s, o) < -25);
+      if (!target || !this.rng.chance(0.45)) continue;
+      target.energy = clamp(target.energy - 30);
+      target.morale = clamp(target.morale - 20);
+      s.popularity -= 2;
+      target.popularity += 3;
+      this.emit("sabotage", [s.id, target.id], 4, undefined, s.zone);
+    }
+  }
+
+  /** Épreuve d'immunité de l'après-midi : tout le monde se retrouve sur la plage, le gagnant ne peut pas être menacé le soir. */
+  private challenge() {
+    const alive = this.alive();
+    const kind = CHALLENGES[(dayOf(this.tick) - 1) % CHALLENGES.length];
+    for (const s of alive) s.zone = "beach";
+    const score = (s: Contestant) =>
+      s.energy * 0.4 + s.health * 0.2 + this.trait(s.id, kind.trait) * 0.6 + (this.has(s.id, kind.skill) ? 25 : 0) + this.rng.int(0, 45);
+    const ranked = [...alive].sort((a, b) => score(b) - score(a));
+    const winner = ranked[0];
+    this.immune = winner.id;
+    winner.popularity += 4;
+    winner.morale = clamp(winner.morale + 20);
+    for (const s of alive) s.energy = clamp(s.energy - 10);
+    this.emit("challenge", ranked.slice(0, 3).map((s) => s.id), 4, { kind: kind.id, last: ranked[ranked.length - 1].id }, "beach");
   }
 
   // ---------- Dangers de l'arène ----------
@@ -473,7 +529,7 @@ export class Season {
   private vote() {
     const alive = this.alive();
     if (alive.length <= this.config.threatened) return;
-    const threatened = [...alive].sort((a, b) => a.popularity + a.spotlight - (b.popularity + b.spotlight)).slice(0, this.config.threatened);
+    const threatened = [...alive].filter((s) => s.id !== this.immune).sort((a, b) => a.popularity + a.spotlight - (b.popularity + b.spotlight)).slice(0, this.config.threatened);
     this.emit("vote_threat", threatened.map((s) => s.id), 4);
     // Un vote gratuit par spectateur, même poids pour tous
     const votes = new Map(threatened.map((s) => [s.id, 0]));

@@ -26,7 +26,6 @@ export const CAUSE: Record<EliminationCause, I18n> = {
   hazard: t("blessé{e} par {hazard}", "injured by {hazard}"),
   thirst: t("déshydraté{e}", "dehydrated"),
   hunger: t("affaibli{e} par la faim", "weakened by hunger"),
-  duel: t("vaincu{e} par {by}", "defeated by {by}"),
   exhaustion: t("à bout de forces", "completely exhausted"),
   withdrawal: t("a jeté l'éponge", "threw in the towel"),
   vote: t("n'a pas été sauvé{e} par le public", "was not saved by the audience"),
@@ -61,10 +60,12 @@ export const LINES: Record<string, I18n[]> = {
   steal_ok: [t("{a} subtilise {item} à {b} sans se faire voir.", "{a} quietly swipes {item} from {b}.")],
   steal_caught: [t("{a} tente de voler {b}… et se fait prendre la main dans le sac.", "{a} tries to rob {b}… and gets caught red-handed.")],
   betrayal: [t("Trahison ! {a} rompt son alliance avec {b}.", "Betrayal! {a} breaks the alliance with {b}.")],
-  duel: [
-    t("Face-à-face tendu entre {a} et {b} {at}. {a} prend le dessus.", "Tense standoff between {a} and {b} at {zone}. {a} comes out on top."),
-    t("{a} et {b} se disputent le même territoire. {b} doit reculer.", "{a} and {b} fight over the same ground. {b} has to back down."),
+  dispute: [
+    t("Ça chauffe {at} : {a} et {b} se disputent{item}. {b} finit par céder.", "Tempers flare {at}: {a} and {b} argue{item}. {b} backs down."),
+    t("Bousculade {at} entre {a} et {b}{item}. {a} garde le dernier mot.", "A scuffle {at} between {a} and {b}{item}. {a} gets the last word."),
   ],
+  sabotage: [t("En pleine nuit, {a} démolit l'abri de {b}. Au réveil, c'est la stupeur.", "In the dead of night, {a} wrecks {b}'s shelter. Morning brings shock.")],
+  challenge: [t("Épreuve d'immunité {kind} : {a} l'emporte devant {b} et {c}. {a} ne pourra pas être menacé{e} ce soir.", "Immunity challenge, {kind}: {a} wins ahead of {b} and {c}. {a} can't be threatened tonight.")],
   hazard: [t("{a} est surpris{e} par {hazard} {at}, mais tient bon.", "{a} is caught by {hazard} at {zone}, but holds on.")],
   hazard_rescued: [t("{a} est touché{e} par {hazard}. {r} lui porte secours à temps.", "{a} is hit by {hazard}. {r} comes to the rescue just in time.")],
   evacuated: [t("Le drone de secours évacue {a} ({cause}). Il reste {n} candidats.", "The rescue drone evacuates {a} ({cause}). {n} contestants remain.")],
@@ -73,9 +74,18 @@ export const LINES: Record<string, I18n[]> = {
   gift_intercepted: [t("Le colis destiné à {a} tombe… dans les mains de {b} !", "The crate meant for {a} lands… in {b}'s hands!")],
   vote_threat: [t("Ce soir, {list} sont menacés. Au public de décider qui sauver.", "Tonight, {list} are under threat. The audience decides who to save.")],
   vote_saved: [t("Le public a sauvé {list}.", "The audience saved {list}.")],
-  trial: [t("Épreuve {trial} ! {a} la remporte. {n} candidats devront quitter l'île.", "{trial} trial! {a} wins it. {n} contestants must leave the island.")],
+  trial: [t("Épreuve {trial} ! {a} la remporte. {n} quitter l'île.", "{trial} trial! {a} wins it. {n} leave the island.")],
   finale: [t("Grande finale : {list} s'affrontent dans l'épreuve ultime.", "Grand finale: {list} face the ultimate challenge.")],
   winner: [t("{a} remporte la saison et devient The Last !", "{a} wins the season and becomes The Last!")],
+};
+
+export const CHALLENGE_NAME: Record<string, I18n> = {
+  raft: t("du radeau", "the raft"),
+  chest: t("du coffre immergé", "the sunken chest"),
+  puzzle: t("du grand puzzle", "the giant puzzle"),
+  pole: t("des poteaux", "the poles"),
+  coconut: t("de la noix de coco", "the coconut climb"),
+  relay: t("du relais en binôme", "the pair relay"),
 };
 
 export const TRIAL_NAME: Record<string, I18n> = {
@@ -117,6 +127,7 @@ export function at(zoneName: string, lang: Lang): string {
   if (lang === "en") return `at ${zoneName}`;
   if (zoneName.startsWith("le ")) return `au ${zoneName.slice(3)}`;
   if (zoneName.startsWith("les ")) return `aux ${zoneName.slice(4)}`;
+  if (["la jungle", "la mangrove"].includes(zoneName)) return `dans ${zoneName}`;
   return `à ${zoneName}`;
 }
 

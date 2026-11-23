@@ -59,9 +59,53 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .w3-label, .w3-zone { position: absolute; left: 0; top: 0; pointer-events: none; white-space: nowrap; font-family: var(--display); font-weight: 700; }
 .w3-label { background: var(--torch); color: var(--ink); font-size: 12px; padding: 2px 8px; border-radius: 6px; }
 .w3-zone { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 3px #000c, 0 0 8px #0008; }
-.flash { margin: 10px; min-height: 40px; background: var(--deep); border: 1px solid var(--line); border-left: 3px solid var(--torch); border-radius: 8px; padding: 8px 12px; font-size: 13px; }
-.flash.out { border-left-color: var(--danger); }
-.flash:empty::before { content: "Calme plat sur l'île."; color: var(--mist); }
+.w3-label { transform-origin: 50% 0; }
+.w3-tag { position: absolute; left: 0; top: 0; pointer-events: none; white-space: nowrap; font-family: var(--display); font-weight: 600; font-size: 11px; color: var(--sand); background: color-mix(in srgb, var(--ink) 78%, transparent); padding: 1px 7px; border-radius: 5px; }
+.w3-bubble { position: absolute; left: 0; top: 0; pointer-events: none; max-width: 180px; width: max-content; text-align: center; background: #fff; color: #10262f; font: 600 13px/1.25 var(--body); padding: 5px 10px; border-radius: 12px; box-shadow: 0 2px 8px #0006; transition: opacity .3s; animation: pop .25s ease-out; }
+.w3-bubble::after { content: ""; position: absolute; left: 50%; bottom: -6px; margin-left: -6px; border: 6px solid transparent; border-bottom: 0; border-top-color: #fff; }
+.w3-bubble.shout { background: #ffe08a; font-weight: 700; }
+.w3-bubble.shout::after { border-top-color: #ffe08a; }
+.w3-bubble.think { background: #dfeef1; color: #3d5a63; font-style: italic; }
+.w3-bubble.think::after { border-top-color: #dfeef1; }
+.w3-bubble.small { font-size: 11px; padding: 3px 8px; opacity: .92; }
+.w3-bubble.icon { background: none; box-shadow: none; padding: 0; font-size: 24px; line-height: 1; filter: drop-shadow(0 1px 3px #0008); }
+.w3-bubble.icon::after { display: none; }
+.w3-bubble.gone { opacity: 0; }
+@keyframes pop { from { transform: scale(.6); opacity: 0; } }
+@media (max-width: 600px) { .w3-bubble { font-size: 12px; max-width: 140px; } .w3-bubble.small { display: none; } }
+
+/* Bandeau EN DIRECT, en bas de la carte */
+.onair { position: absolute; left: 10px; right: 10px; bottom: 10px; display: flex; align-items: center; gap: 10px; background: color-mix(in srgb, var(--ink) 86%, transparent); border: 1px solid var(--line); border-radius: 10px; padding: 7px 12px; pointer-events: none; }
+.onair .tag { flex: none; font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: .14em; color: #fff; background: var(--danger); border-radius: 4px; padding: 2px 7px; display: inline-flex; align-items: center; gap: 6px; }
+.onair .tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.4s infinite; }
+.onair p { margin: 0; font-size: 14px; line-height: 1.35; min-height: 1.35em; }
+.onair[data-kind="ambient"] p { color: var(--mist); }
+.onair[data-kind="result"] p { font-weight: 600; }
+.onair[data-kind="out"] p { color: #ffb3bb; font-weight: 600; }
+.onair[data-kind="sr"] p { color: #ffd38a; font-weight: 600; }
+.onair p.fresh { animation: slide .35s ease-out; }
+@keyframes slide { from { transform: translateY(6px); opacity: 0; } }
+@media (max-width: 600px) { .onair { left: 8px; right: 8px; bottom: 8px; padding: 6px 10px; } .onair p { font-size: 13px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; } }
+
+/* Version gratuite : le direct est fermé */
+.lock { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 20px; background: color-mix(in srgb, var(--ink) 90%, transparent); z-index: 2; }
+.lock b { font-family: var(--display); font-size: 20px; display: block; }
+.lock p { color: var(--mist); max-width: 40ch; margin: 8px auto 14px; font-size: 14px; }
+.lock .btn { margin: 4px; }
+.plan { display: inline-flex; background: var(--deep); border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+.plan button { background: none; border: 0; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 600; color: var(--mist); }
+.plan button[aria-pressed="true"] { background: var(--sand); color: var(--ink); }
+
+/* Alertes (comme des notifications sur le téléphone) */
+.toasts { position: fixed; z-index: 12; top: calc(env(safe-area-inset-top, 0px) + 64px); right: max(12px, env(safe-area-inset-right, 0px)); display: grid; gap: 8px; width: min(340px, calc(100vw - 24px)); pointer-events: none; }
+.toast { pointer-events: auto; text-align: left; display: grid; grid-template-columns: 30px 1fr; gap: 2px 10px; background: color-mix(in srgb, #1d3a46 96%, transparent); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; box-shadow: 0 8px 24px #0008; animation: drop .35s ease-out; }
+.toast .ico { grid-row: span 2; font-size: 22px; line-height: 30px; text-align: center; }
+.toast small { font-family: var(--display); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
+.toast span { font-size: 13px; line-height: 1.35; }
+.toast.hot { border-color: var(--danger); }
+.toast.bye { opacity: 0; transform: translateX(20px); transition: .3s; }
+@keyframes drop { from { transform: translateY(-12px); opacity: 0; } }
+@media (max-width: 600px) { .toasts { left: 12px; right: 12px; width: auto; } }
 
 /* Commandes du temps */
 .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
@@ -154,16 +198,16 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .finale h2 { font-family: var(--display); font-size: clamp(32px, 8vw, 56px); margin: 0; line-height: 1; }
 .finale p { color: var(--mist); max-width: 46ch; margin: 12px auto 18px; }
 .eyebrow { font-family: var(--display); letter-spacing: .2em; text-transform: uppercase; color: var(--torch); font-size: 13px; }
-@media (prefers-reduced-motion: reduce) { .gauge .bar i { transition: none; } .live::before { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .gauge .bar i { transition: none; } .live::before, .onair .tag::before, .w3-bubble, .toast, .onair p.fresh { animation: none; } }
 </style>
 
 <div class="intro" id="intro">
   <div class="wrap">
     <div class="eyebrow">Saison 1 · L'Île aux Échos · 7 jours</div>
     <h1>THE <b>LAST</b></h1>
-    <p class="lede">50 candidats, une île, un seul vainqueur. Chaque soir à 19h, le public en sauve deux sur trois. Pour vivre la saison, choisis quelqu'un à suivre. Chaque soir, cette personne te parlera au confessionnal.</p>
+    <p class="lede">50 candidats, une île, un seul vainqueur. Personne ne se bat : ici, on survit, on s'allie, on se vole et on se sabote. Chaque après-midi, une épreuve d'immunité. Chaque soir à 19h, le public sauve deux menacés sur trois. Choisis quelqu'un à suivre : la caméra ne le lâchera pas, et chaque soir il te parlera au confessionnal.</p>
     <div class="picks" id="picks"></div>
-    <p class="note">Démo de prototype. La saison a été simulée par le moteur du jeu : chaque déplacement, accident, alliance, vote et colis vient de la simulation. Les confessionnaux de ces cinq candidats ont été écrits par Claude à partir de ce qui leur est réellement arrivé. En production, une IA les écrira en direct. Les 45 autres candidats n'ont pas encore de confessionnal.</p>
+    <p class="note">Démo de prototype. La saison a été simulée par le moteur du jeu : chaque déplacement, accident, alliance, vol, sabotage, vote et colis vient de la simulation, et chaque événement devient une petite scène sur l'île. Les dialogues en bulles et les confessionnaux de ces cinq candidats ont été écrits par Claude ; en production, une IA les écrira en direct. Le direct démarre au jour 2, à 9h, l'heure la plus agitée.</p>
   </div>
 </div>
 
@@ -171,6 +215,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   <div class="wrap">
     <div class="logo">THE <b>LAST</b></div>
     <span class="live">Direct</span>
+    <div class="plan" role="group" aria-label="Formule de la démo"><button type="button" data-plan="sub" aria-pressed="true">Abonné·e</button><button type="button" data-plan="free" aria-pressed="false">Gratuit</button></div>
     <div class="clock"><span class="day" id="clockDay">Jour 1 · 08h</span><span class="left" id="clockLeft">50 en jeu</span></div>
   </div>
 </header>
@@ -180,12 +225,14 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     <div class="mapbox">
       <canvas id="world" aria-label="L'île en 3D avec la position des candidats. Glisse pour tourner, pince ou molette pour zoomer, touche un candidat pour le suivre."></canvas>
       <div class="views" role="group" aria-label="Vue">
-        <button type="button" data-view="island" aria-pressed="true">Île</button>
+        <button type="button" data-view="director" aria-pressed="true">Réal</button>
+        <button type="button" data-view="island" aria-pressed="false">Île</button>
         <button type="button" data-view="zone" aria-pressed="false">Zone</button>
         <button type="button" data-view="follow" aria-pressed="false">Suivre</button>
       </div>
-      <div class="hint">Glisse pour tourner · pince pour zoomer · touche un candidat</div>
-      <div class="flash" id="flash" aria-live="polite"></div>
+      <div class="hint">La caméra suit l'action · glisse pour reprendre la main</div>
+      <div class="onair" id="onair" data-kind="ambient"><span class="tag">EN DIRECT</span><p id="onairText" aria-live="polite">Calme plat sur l'île.</p></div>
+      <div class="lock" id="lock" hidden><div><b>🔒 Le direct est réservé aux abonnés</b><p id="lockText">Sans abonnement, tu vois la Quotidienne de 19h.</p><button class="btn main" type="button" id="lockDaily">Voir la Quotidienne</button><button class="btn" type="button" id="lockSub">Passer abonné·e (démo)</button></div></div>
     </div>
     <div class="controls">
       <button class="btn main" id="play" type="button">▶ Lecture</button>
@@ -213,16 +260,19 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 </main>
 
 <div class="finale" id="finale" hidden></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="scenes.js"></script>
 <script src="world3d.js"></script>
 <script>
 (async function () {
   const D = await (await fetch("data.json")).json();
   const C = Object.fromEntries(D.cast.map((c) => [c.id, c]));
   const FEATURED = D.cast.filter((c) => c.confessions);
-  const ORDER = ["c090", "c032", "c069", "c044", "c041"].filter((id) => C[id]);
+  const ORDER = ["c049", "c085", "c053", "c090", "c032"].filter((id) => C[id]);
+  const START = 33; // jour 2, 9h : la matinée la plus agitée de la saison
   const snaps = D.snapshots; // [tick, people]
   const T0 = snaps[0][0], TN = snaps[snaps.length - 1][0];
   const elim = Object.fromEntries(D.eliminations.map((e) => [e.id, e]));
@@ -270,7 +320,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   // ---------- île en 3D ----------
   let world = null, lastRendered = null;
   try {
-    world = World3D.init(document.getElementById("world"), D, { onPick: (id) => { follow(id); select("me"); } });
+    world = World3D.init(document.getElementById("world"), D, { onPick: (id) => { follow(id); select("me"); }, onLive });
   } catch (err) {
     document.getElementById("world").replaceWith(Object.assign(document.createElement("p"), { className: "locked", textContent: "La 3D n'a pas pu démarrer sur cet appareil." }));
   }
@@ -281,25 +331,119 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     document.querySelectorAll("[data-view]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.view === m));
   }
 
+  // Bandeau EN DIRECT
+  let liveLast = "";
+  function onLive(text, kind) {
+    if (!text || text === liveLast) return;
+    liveLast = text;
+    const box = document.getElementById("onair"), p = document.getElementById("onairText");
+    box.dataset.kind = kind || "live";
+    p.textContent = text;
+    p.classList.remove("fresh"); void p.offsetWidth; p.classList.add("fresh");
+  }
+
   // ---------- état ----------
-  let tick = T0, me = null, playing = false, speed = 1, timer = null, seenConf = {};
+  let tick = T0, me = null, playing = false, speed = 1, timer = null, seenConf = {}, sceneMs = 0, forceAnim = false, plan = "sub";
   const scrub = document.getElementById("scrub");
   scrub.max = TN - T0;
 
   function placeDots() {
-    if (!world) return;
-    world.setTick(tick, lastRendered !== null && tick === lastRendered + 1);
-    world.setFollow(me);
+    if (world) world.setFollow(me);
+    if (tick === lastRendered && !forceAnim) return; // changer d'onglet ne coupe pas la scène en cours
+    const live = forceAnim || (lastRendered !== null && tick === lastRendered + 1);
+    forceAnim = false;
+    if (live) alerts();
     lastRendered = tick;
+    if (!world) return (sceneMs = 0);
+    world.setFollow(me);
+    sceneMs = world.setTick(tick, live, speed) || 0;
   }
 
+  // Sans 3D, le bandeau donne quand même la nouvelle de l'heure
   function flash() {
-    const box = document.getElementById("flash");
+    if (world) return;
     const evs = D.events.filter((ev) => ev.t === tick && ev.w >= 3);
     const pick = evs.find((ev) => me && ev.a.includes(me)) || evs.find((ev) => ev.type === "evacuated") || evs.find((ev) => ev.type === "showrunner") || evs[0];
-    box.textContent = pick ? pick.fr : "";
-    box.classList.toggle("out", !!pick && pick.type === "evacuated");
+    onLive(pick ? pick.fr : "Calme plat sur l'île.", pick?.type === "evacuated" ? "out" : "live");
   }
+
+  // ---------- alertes : ce qui fait revenir ----------
+  function toast(ico, title, text, opt = {}) {
+    const box = document.getElementById("toasts");
+    while (box.children.length >= 3) box.firstElementChild.remove();
+    const el = document.createElement("button");
+    el.type = "button";
+    el.className = "toast" + (opt.hot ? " hot" : "");
+    el.innerHTML = `<span class="ico" aria-hidden="true">${ico}</span><small>The Last · ${esc(title)}</small><span>${esc(text)}</span>`;
+    el.addEventListener("click", () => { el.remove(); if (opt.daily) select("daily"); if (opt.id && world && plan === "sub") world.peek(opt.id); if (opt.me) select("me"); });
+    box.appendChild(el);
+    setTimeout(() => { el.classList.add("bye"); setTimeout(() => el.remove(), 320); }, opt.ms || 6500);
+  }
+  function alerts() {
+    const evs = D.events.filter((ev) => ev.t === tick);
+    const m = me && C[me] ? C[me] : null;
+    const mine = m ? evs.filter((ev) => ev.a.includes(me)) : [];
+    const h = tick % 24;
+    if (plan === "free") {
+      // Sans abonnement : un seul rendez-vous, la Quotidienne de 19h
+      if (h === D.voteHour) {
+        const thr = evs.find((ev) => ev.type === "vote_threat" && m && ev.a.includes(me));
+        toast("📺", "19h", `La Quotidienne du jour ${dayOf(tick)} est disponible.`, { daily: true });
+        if (thr) toast("🗳️", "Vote", `${m.name} est menacé${e(m)} ce soir. Ton vote compte !`, { hot: true, daily: true });
+      }
+      return;
+    }
+    let shown = 0;
+    for (const ev of mine) {
+      if (shown >= 2) break;
+      const n = m.name, other = ev.a.find((x) => x !== me);
+      const t = {
+        hazard: ["⚠️", "Ton candidat est en danger", ev.fr, true],
+        steal: ev.a[0] === me ? ["🤫", "Ton candidat", ev.fr] : ["🎒", "On a volé ton candidat", ev.fr, true],
+        dispute: ["💢", "Dispute", ev.fr, true],
+        sabotage: ev.a[1] === me ? ["🌙", "Sabotage", `L'abri de ${n} vient d'être démoli !`, true] : ["🌙", "Ton candidat", ev.fr],
+        alliance: ["🤝", "Alliance", ev.fr],
+        vote_threat: ["🗳️", "Vote", `${n} est menacé${e(m)} ce soir. Ton vote peut tout changer !`, true],
+        evacuated: ["🚁", "Évacuation", ev.fr, true],
+        gift_delivered: ["🎁", "Colis", `${n} a reçu ton colis !`],
+        challenge: ev.a[0] === me ? ["🏆", "Immunité", `${n} a gagné l'épreuve : immunisé${e(m)} ce soir !`] : null,
+        winner: ["🏆", "Victoire", ev.fr],
+      }[ev.type];
+      if (!t) continue;
+      toast(t[0], t[1], t[2], { hot: t[3], id: me, me: ev.type === "evacuated" });
+      shown++;
+    }
+    if (shown) return;
+    const big = evs.find((ev) => ev.type === "sabotage") || evs.find((ev) => ev.type === "dispute") || evs.find((ev) => ev.type === "challenge") || evs.find((ev) => ev.type === "showrunner") || evs.find((ev) => ev.type === "vote_threat") || evs.find((ev) => ev.type === "steal" && ev.d?.betrayal);
+    if (!big) return;
+    const zn = (z) => { const n = D.arena.zones.find((x) => x.id === z)?.name || ""; return z === "beach" ? "au camp" : z === "jungle" || z === "mangrove" ? "dans " + n : n.startsWith("le ") ? "au " + n.slice(3) : n.startsWith("les ") ? "aux " + n.slice(4) : "à " + n; };
+    const g = {
+      sabotage: ["🌙", "Cette nuit", `Sabotage ${zn(big.z)} : un abri s'effondre.`],
+      dispute: ["💢", "En direct", `Dispute ${zn(big.z)} !`],
+      challenge: ["🏆", "15h", "L'épreuve d'immunité commence sur la plage."],
+      showrunner: ["📢", "Coup de théâtre", big.fr],
+      vote_threat: ["🗳️", "19h", "Le vote commence au feu de camp."],
+      steal: ["💔", "Trahison", big.fr],
+    }[big.type];
+    toast(g[0], g[1], g[2], { id: big.a[0] });
+  }
+
+  // ---------- abonné ou gratuit ----------
+  function setPlan(p) {
+    plan = p;
+    document.querySelectorAll("[data-plan]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.plan === p));
+    lockState();
+    render();
+  }
+  function lockState() {
+    const lock = document.getElementById("lock");
+    lock.hidden = plan !== "free";
+    const next = tick % 24 < D.voteHour ? `aujourd'hui à ${D.voteHour}h` : `demain à ${D.voteHour}h`;
+    document.getElementById("lockText").textContent = `Sans abonnement, tu vois la Quotidienne de ${D.voteHour}h et tu votes chaque soir. Prochaine Quotidienne : ${next}. Les abonnés voient tout en direct : les épreuves, les vols, les sabotages.`;
+  }
+  document.querySelectorAll("[data-plan]").forEach((b) => b.addEventListener("click", () => setPlan(b.dataset.plan)));
+  document.getElementById("lockDaily").addEventListener("click", () => select("daily"));
+  document.getElementById("lockSub").addEventListener("click", () => setPlan("sub"));
 
   function header() {
     const left = Object.keys(snapAt(tick)).length;
@@ -353,7 +497,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
       ${booth}
       <div class="card"><h4>Son histoire</h4><p>${esc(c.bio)}</p><div class="chips"><span class="chip">Rêve : ${esc(c.motivation)}</span></div></div>
       <div class="card secret"><h4>Son secret</h4>${secretOpen ? `<p>${esc(c.secret)}</p>` : `<p class="locked">🔒 Pas encore révélé. Reste avec ${esc(c.name)} pour le découvrir.</p>`}</div>
-      <div class="card"><h4>Ses dernières heures</h4>${mine.length ? `<ul class="feed">${mine.map((ev) => `<li class="${ev.type === "evacuated" ? "out" : ""}"><time>J${dayOf(ev.t)} ${hh(ev.t)}</time><span>${esc(ev.fr)}</span></li>`).join("")}</ul>` : `<p class="locked">Rien à signaler pour l'instant.</p>`}</div>`;
+      <div class="card"><h4>Ses dernières heures</h4>${plan === "free" ? `<p class="locked">🔒 Réservé aux abonnés. Ce soir à 19h, la Quotidienne raconte sa journée.</p>` : mine.length ? `<ul class="feed">${mine.map((ev) => `<li class="${ev.type === "evacuated" ? "out" : ""}"><time>J${dayOf(ev.t)} ${hh(ev.t)}</time><span>${esc(ev.fr)}</span></li>`).join("")}</ul>` : `<p class="locked">Rien à signaler pour l'instant.</p>`}</div>`;
   }
 
   function badge() {
@@ -366,6 +510,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 
   // ---------- autres onglets ----------
   function panelFeed() {
+    if (plan === "free") { document.getElementById("feed").innerHTML = `<li><span></span><span class="locked">🔒 Le fil heure par heure est réservé aux abonnés. Sans abonnement, tu as la Quotidienne de 19h.</span></li>`; return; }
     const items = D.events.filter((ev) => ev.t <= tick && ev.w >= 2).slice(-60).reverse();
     document.getElementById("feed").innerHTML = items.map((ev) =>
       `<li class="${ev.type === "evacuated" ? "out" : ev.type === "showrunner" ? "sr" : me && ev.a.includes(me) ? "me" : ""}"><time>J${dayOf(ev.t)} ${hh(ev.t)}</time><span>${esc(ev.fr)}</span></li>`).join("");
@@ -425,8 +570,16 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     if (active === "daily") panelDaily();
     if (active === "cast") panelCast();
     badge();
-    finale();
+    lockState();
+    clearTimeout(finaleTimer);
+    if (tick >= TN) {
+      // le Prime s'affiche quand la scène de la finale est terminée
+      const t0 = performance.now();
+      const wait = () => { if (world && world.busy && performance.now() - t0 < 120000) finaleTimer = setTimeout(wait, 400); else finale(); };
+      finaleTimer = setTimeout(wait, Math.max(400, sceneMs));
+    }
   }
+  let finaleTimer = null;
 
   function finale() {
     const box = document.getElementById("finale");
@@ -441,13 +594,25 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     document.getElementById("closeFinale").addEventListener("click", () => { box.hidden = true; select("me"); });
   }
 
-  function go(t) { tick = Math.max(T0, Math.min(TN, t)); render(); }
-  function pause() { playing = false; clearInterval(timer); document.getElementById("play").textContent = "▶ Lecture"; }
+  // En lecture, chaque heure dure le temps de ses scènes (plus vite en ×3, sans scène en ×8)
+  function go(t) { tick = Math.max(T0, Math.min(TN, t)); render(); if (playing) schedule(); }
+  function schedule() {
+    clearTimeout(timer);
+    const base = speed === 1 ? 3200 : speed === 3 ? 1100 : 450;
+    const t0 = performance.now();
+    const next = () => {
+      // on attend la fin des scènes de l'heure (le téléphone peut être plus lent que prévu)
+      if (world && world.busy && performance.now() - t0 < sceneMs * 2.5 + 4000) { timer = setTimeout(next, 250); return; }
+      if (tick >= TN) return pause();
+      go(tick + 1);
+    };
+    timer = setTimeout(next, Math.max(base, sceneMs + (speed === 1 ? 900 : 200)));
+  }
+  function pause() { playing = false; clearTimeout(timer); document.getElementById("play").textContent = "▶ Lecture"; }
   function play() {
     if (tick >= TN) go(T0);
     playing = true; document.getElementById("play").textContent = "❚❚ Pause";
-    clearInterval(timer);
-    timer = setInterval(() => { if (tick >= TN) return pause(); go(tick + 1); }, 1400 / speed);
+    schedule();
   }
   document.getElementById("play").addEventListener("click", () => (playing ? pause() : play()));
   document.getElementById("speed").addEventListener("click", (ev) => {
@@ -467,8 +632,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     const changed = me !== id;
     me = id;
     try { localStorage.setItem("thelast-me", id); } catch {}
+    if (changed && world && started) { world.setFollow(me); world.peek(id); }
     render();
-    if (changed && world && started) setView("follow");
   }
 
   // ---------- écran d'accueil ----------
@@ -479,9 +644,13 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   let started = false;
   document.querySelectorAll(".pick").forEach((b) => b.addEventListener("click", () => {
     document.getElementById("intro").hidden = true;
+    me = b.dataset.id;
+    try { localStorage.setItem("thelast-me", me); } catch {}
     started = true;
-    follow(b.dataset.id);
+    setView("director");
+    tick = START; forceAnim = true;
     select("me");
+    play();
   }));
   let saved = null;
   try { saved = localStorage.getItem("thelast-me"); } catch {}

@@ -199,7 +199,11 @@
       if (h < 0.35 || islandMask(x, z) < 0.5) continue;
       if (riverDist(x, z) < 2.3 && z > -21) continue;
       const zone = zoneAt(x, z);
-      if (Math.hypot(x - ZONES[zone][0], z - ZONES[zone][1]) < 6.8) continue; // clairière pour les candidats
+      const ox = x - ZONES[zone][0], oz = z - ZONES[zone][1];
+      if (Math.hypot(ox, oz) < 6.8) continue; // clairière pour les candidats
+      // couloir dégagé vers la caméra, pour que les arbres ne cachent pas les scènes
+      const along = (ox + oz) * 0.7071, side = (ox - oz) * 0.7071;
+      if (along > -3 && along < 13 && Math.abs(side) < 6) continue;
       const roll = r();
       const slopeRock = h > 9;
       if (slopeRock) { if (roll < 0.18) spots.rock.push([x, h, z]); else if (roll < 0.24) spots.pine.push([x, h, z]); continue; }
@@ -415,30 +419,39 @@
     helmet: new T.SphereGeometry(0.34, 7, 4, 0, Math.PI * 2, 0, Math.PI / 2).translate(0, 1.84, 0),
     pack: new T.BoxGeometry(0.4, 0.5, 0.22).translate(0, 1.15, -0.3),
     visor: new T.BoxGeometry(0.4, 0.1, 0.12).translate(0, 1.8, 0.24),
+    glove: new T.IcosahedronGeometry(0.15, 0).translate(0, -0.64, 0),
+    phones: new T.TorusGeometry(0.33, 0.045, 4, 12, Math.PI).translate(0, 1.78, 0),
+    cup: new T.CylinderGeometry(0.11, 0.11, 0.08, 8).rotateZ(Math.PI / 2),
+    glasses: new T.BoxGeometry(0.4, 0.07, 0.05).translate(0, 1.79, 0.27),
+    tie: new T.BoxGeometry(0.09, 0.45, 0.04).translate(0, 1.2, 0.33),
+    rod: new T.CylinderGeometry(0.025, 0.035, 2.4, 4).translate(0, 1.2, 0),
+    necklace: new T.TorusGeometry(0.33, 0.05, 4, 14).rotateX(Math.PI / 2).translate(0, 1.47, 0.02),
+    pendant: new T.OctahedronGeometry(0.1, 0).translate(0, 1.34, 0.33),
     ring: new T.TorusGeometry(0.85, 0.07, 4, 24).rotateX(Math.PI / 2).translate(0, 0.06, 0),
     beam: new T.CylinderGeometry(0.05, 0.05, 6, 6, 1, true).translate(0, 4.6, 0),
     arrow: new T.ConeGeometry(0.28, 0.5, 4).rotateX(Math.PI).translate(0, 2.75, 0),
   };
   // Accessoires des 5 candidats suivis, pour les reconnaître de loin
   const SIGNATURE = {
-    c090: { helmet: 0xc9302c, pack: 0xffd23f },       // Margaux, casque de pompière
-    c032: { helmet: 0xffd23f, visor: 0x1d5a66 },      // Robin, casque de chantier
-    c069: { cap: 0x2a5aa8 },                          // Rémi, casquette de mécano
-    c044: { cap: 0xff5b6b, pack: 0x222222 },          // Hamza, casquette + sac caméra
-    c041: { beanie: 0x2e8a6a },                       // Liam, bonnet de marin
+    c049: { gloves: 0xd62828, beanie: 0x222222 },               // Sacha, gants de boxe et bonnet
+    c085: { phones: 0xc08bff, shirt: 0x7fb0ff },                 // Selin, casque audio de développeuse
+    c053: { glasses: 0x111111, tie: 0x7a1f2b, shirt: 0xf2f2f2 }, // Matthias, chemise blanche et cravate
+    c090: { helmet: 0xc9302c, pack: 0xffd23f },                  // Margaux, casque de pompière
+    c032: { helmet: 0xffd23f, visor: 0x1d5a66 },                 // Robin, casque de chantier
   };
 
   function makePerson(c) {
     const h = hash(c.id);
     const g = new T.Group();
-    const skin = SKIN[h % 6], hair = HAIR[(h >> 3) % 7], shirt = SHIRT[(h >> 9) % 7], pants = PANTS[(h >> 5) % 4];
+    const sig = SIGNATURE[c.id];
+    const skin = SKIN[h % 6], hair = HAIR[(h >> 3) % 7], shirt = sig?.shirt ?? SHIRT[(h >> 9) % 7], pants = PANTS[(h >> 5) % 4];
+    g.rotation.order = "YXZ";
     const add = (geo, hex, y = 0) => { const m = new T.Mesh(geo, mat(hex)); m.castShadow = true; m.position.y = y; g.add(m); return m; };
     add(GEO.legs, pants); add(GEO.body, shirt); add(GEO.head, skin);
     const armL = add(GEO.arm, shirt); armL.position.set(-0.38, 1.45, 0);
     const armR = add(GEO.arm, shirt); armR.position.set(0.38, 1.45, 0);
     const styles = c.gender === "f" ? [1, 2, 3, 1, 0] : c.gender === "m" ? [0, 4, 3, 0, 4] : [0, 1, 2, 3, 4];
     const style = styles[(h >> 12) % 5];
-    const sig = SIGNATURE[c.id];
     if (style === 3) add(GEO.afro, hair);
     else { add(GEO.hairCap, hair); if (style === 1) add(GEO.hairLong, hair); if (style === 2) add(GEO.bun, hair); }
     if (sig?.helmet) { add(GEO.helmet, sig.helmet); add(GEO.brim, sig.helmet); }
@@ -446,13 +459,21 @@
     if (sig?.beanie) add(GEO.helmet, sig.beanie).scale.set(1, 1.15, 1);
     if (sig?.visor) add(GEO.visor, sig.visor);
     if (sig?.pack) add(GEO.pack, sig.pack);
+    if (sig?.gloves) for (const arm of [armL, armR]) { const gl = new T.Mesh(GEO.glove, mat(sig.gloves)); arm.add(gl); }
+    if (sig?.phones) { add(GEO.phones, 0x222222); for (const s of [-1, 1]) add(GEO.cup, sig.phones).position.set(s * 0.32, 1.76, 0); }
+    if (sig?.glasses) add(GEO.glasses, sig.glasses);
+    if (sig?.tie) add(GEO.tie, sig.tie);
+    // canne à pêche (dans la main droite) et collier d'immunité, cachés par défaut
+    const rod = new T.Mesh(GEO.rod, mat(0x8a6a44)); rod.position.set(0, -0.6, 0); rod.rotation.x = 2.14; rod.visible = false; armR.add(rod);
+    const necklace = new T.Group(); necklace.add(new T.Mesh(GEO.necklace, mat(0xe6b84a, { emissive: 0x3a2800 })), new T.Mesh(GEO.pendant, mat(0xff8a3d, { emissive: 0x401800 })));
+    necklace.visible = false; g.add(necklace);
     if (!sig && (h >> 15) % 5 === 0) { add(GEO.brim, 0xd9c08a); add(GEO.hairCap, 0xd9c08a).scale.set(0.9, 0.6, 0.9); } // chapeau de paille
     // repère du candidat suivi
     const ring = new T.Mesh(GEO.ring, new T.MeshBasicMaterial({ color: 0xff8a3d })); ring.visible = false; g.add(ring);
     const arrow = new T.Mesh(GEO.arrow, new T.MeshBasicMaterial({ color: 0xff8a3d })); arrow.visible = false; g.add(arrow);
     const scale = 1.25;
     g.scale.setScalar(scale);
-    g.userData = { id: c.id, armL, armR, ring, arrow, pos: new T.Vector3(), target: new T.Vector3(), phase: (h % 100) / 16, alive: true, lift: 0 };
+    g.userData = { id: c.id, armL, armR, ring, arrow, rod, necklace, pos: new T.Vector3(), target: new T.Vector3(), phase: (h % 100) / 16 };
     return g;
   }
 
@@ -480,15 +501,15 @@
     const n = 1800, arr = new Float32Array(n * 3);
     for (let i = 0; i < n; i++) { arr[i * 3] = (Math.random() - 0.5) * 110; arr[i * 3 + 1] = Math.random() * 30; arr[i * 3 + 2] = (Math.random() - 0.5) * 90; }
     const geo = new T.BufferGeometry(); geo.setAttribute("position", new T.BufferAttribute(arr, 3));
-    const pts = new T.Points(geo, new T.PointsMaterial({ color: 0xbfe6f0, size: 0.18, transparent: true, opacity: 0.7 }));
-    pts.visible = false; scene.add(pts);
+    const pts = new T.Points(geo, new T.PointsMaterial({ color: 0xbfe6f0, size: 2 * Math.min(window.devicePixelRatio || 1, 2), sizeAttenuation: false, transparent: true, opacity: 0.7 }));
+    pts.visible = false; pts.frustumCulled = false; scene.add(pts);
     return pts;
   }
   function buildSwarm(scene) {
     const n = 90, arr = new Float32Array(n * 3);
     const geo = new T.BufferGeometry(); geo.setAttribute("position", new T.BufferAttribute(arr, 3));
-    const pts = new T.Points(geo, new T.PointsMaterial({ color: 0xffd23f, size: 0.28 }));
-    pts.visible = false; pts.userData.seed = [...Array(n)].map(() => [Math.random() * 6.3, Math.random() * 6.3, 0.5 + Math.random()]);
+    const pts = new T.Points(geo, new T.PointsMaterial({ color: 0xffd23f, size: 4 * Math.min(window.devicePixelRatio || 1, 2), sizeAttenuation: false }));
+    pts.visible = false; pts.frustumCulled = false; pts.userData.seed = [...Array(n)].map(() => [Math.random() * 6.3, Math.random() * 6.3, 0.5 + Math.random()]);
     scene.add(pts);
     return pts;
   }
@@ -501,6 +522,89 @@
     g.userData.chute = chute;
     g.visible = false; scene.add(g);
     return g;
+  }
+
+  // ---------- La vie de l'île : nuages, crabes, oiseaux, poissons, lucioles ----------
+  function buildLife(scene, r) {
+    const cloudMat = new T.MeshLambertMaterial({ color: 0xffffff, flatShading: true, transparent: true, opacity: 0.92 });
+    const clouds = [];
+    for (let i = 0; i < 9; i++) {
+      const c = new T.Group();
+      for (let j = 0; j < 4; j++) { const m = new T.Mesh(new T.IcosahedronGeometry(1.8 + r() * 1.6, 0), cloudMat); m.position.set(j * 2.1 - 3, r() * 0.8, (r() - 0.5) * 2); m.scale.y = 0.55; m.castShadow = true; c.add(m); }
+      c.position.set((r() - 0.5) * 180, 22 + r() * 6, (r() - 0.5) * 110);
+      c.userData.speed = 0.5 + r() * 0.8;
+      scene.add(c); clouds.push(c);
+    }
+    // crabes sur le sable
+    const crabs = [];
+    for (let k = 0; k < 400 && crabs.length < 9; k++) {
+      const x = (r() - 0.5) * 70, z = 18 + r() * 18, h = height(x, z);
+      if (h < 0.35 || h > 0.9) continue;
+      const g = new T.Group();
+      g.add(box(0.5, 0.18, 0.36, 0xe0582c));
+      for (const s of [-1, 1]) { const cl = box(0.16, 0.12, 0.14, 0xf06a3a); cl.position.set(s * 0.32, 0.05, 0.22); g.add(cl); }
+      for (const s of [-1, 1]) { const e = new T.Mesh(new T.SphereGeometry(0.05, 4, 3), mat(0x111111)); e.position.set(s * 0.1, 0.16, 0.15); g.add(e); }
+      g.position.set(x, h + 0.08, z);
+      g.userData = { home: new T.Vector3(x, h + 0.08, z), ph: r() * 6, sp: 0.6 + r() };
+      scene.add(g); crabs.push(g);
+    }
+    // oiseaux de mer
+    const birds = [];
+    const wingGeo = new T.BoxGeometry(0.9, 0.05, 0.3).translate(0.45, 0, 0);
+    for (let f = 0; f < 2; f++) for (let i = 0; i < 6; i++) {
+      const g = new T.Group();
+      g.add(box(0.2, 0.15, 0.5, 0xf2f2f2));
+      const wl = new T.Mesh(wingGeo, mat(0xe9eef0)), wr = new T.Mesh(wingGeo, mat(0xe9eef0));
+      wr.rotation.y = Math.PI;
+      g.add(wl, wr);
+      g.userData = { f, i, wl, wr };
+      scene.add(g); birds.push(g);
+    }
+    // poissons qui sautent
+    const fish = new T.Mesh(new T.ConeGeometry(0.18, 0.7, 5).rotateX(Math.PI / 2), mat(0xbfd8e0));
+    fish.visible = false; scene.add(fish);
+    const ripple = new T.Mesh(new T.RingGeometry(0.3, 0.42, 16), new T.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, side: T.DoubleSide }));
+    ripple.rotation.x = -Math.PI / 2; scene.add(ripple);
+    const seaSpots = [];
+    for (let k = 0; k < 600 && seaSpots.length < 30; k++) { const x = (r() - 0.5) * 110, z = (r() - 0.5) * 90, h = height(x, z); if (h < -1.5 && h > -3.6) seaSpots.push([x, z]); }
+    let jump = null;
+    // lucioles dans la jungle, la nuit
+    const nF = 70, fArr = new Float32Array(nF * 3), fSeed = [];
+    for (let i = 0; i < nF; i++) { let x, z, tries = 0; do { x = -14 + r() * 26; z = -8 + r() * 24; } while (height(x, z) < 0.6 && tries++ < 20); fSeed.push([x, height(x, z) + 1 + r() * 2.5, z, r() * 6]); }
+    const fGeo = new T.BufferGeometry(); fGeo.setAttribute("position", new T.BufferAttribute(fArr, 3));
+    const flies = new T.Points(fGeo, new T.PointsMaterial({ color: 0xfff08a, size: 3 * Math.min(window.devicePixelRatio || 1, 2), sizeAttenuation: false, transparent: true, opacity: 0.9 }));
+    flies.frustumCulled = false; scene.add(flies);
+
+    return function update(dt, time, light, storm) {
+      cloudMat.color.setHex(storm ? 0x7a8890 : light < 0.4 ? 0x3a4a5a : 0xffffff);
+      cloudMat.opacity = light < 0.4 ? 0.6 : 0.92;
+      for (const c of clouds) { c.position.x += dt * c.userData.speed * (storm ? 3 : 1); if (c.position.x > 95) c.position.x = -95; }
+      for (const c of crabs) { const u = c.userData, k = Math.sin(time * u.sp + u.ph); c.position.x = u.home.x + k * 1.2; c.position.z = u.home.z - k * 0.4; c.children[1].rotation.z = Math.sin(time * 9 + u.ph) * 0.4; c.children[2].rotation.z = -Math.sin(time * 9 + u.ph) * 0.4; c.position.y = height(c.position.x, c.position.z) + 0.08; }
+      for (const b of birds) {
+        const u = b.userData, a = time * (0.12 + u.f * 0.05) + u.f * 3, R0 = 26 + u.f * 12;
+        const cx = Math.cos(a) * R0, cz = Math.sin(a) * R0 * 0.8;
+        const side = (u.i % 2 ? 1 : -1) * Math.ceil(u.i / 2) * 1.4, back = Math.ceil(u.i / 2) * 1.2;
+        const dir = new T.Vector3(-Math.sin(a), 0, Math.cos(a) * 0.8).normalize();
+        b.position.set(cx - dir.x * back + dir.z * side, 17 + u.f * 3 + Math.sin(time + u.i) * 0.3, cz - dir.z * back - dir.x * side);
+        b.rotation.y = Math.atan2(dir.x, dir.z);
+        const flap = Math.sin(time * 6 + u.i) * 0.5; u.wl.rotation.z = flap; u.wr.rotation.z = -flap;
+        b.visible = light > 0.35;
+      }
+      if (!jump && seaSpots.length && Math.random() < dt * 0.4) { const [x, z] = seaSpots[Math.floor(Math.random() * seaSpots.length)]; jump = { x, z, t: 0, a: Math.random() * 6.28 }; }
+      if (jump) {
+        jump.t += dt;
+        const k = jump.t / 0.9;
+        fish.visible = k < 1;
+        fish.position.set(jump.x + Math.cos(jump.a) * (k - 0.5) * 2, Math.sin(Math.min(1, k) * Math.PI) * 1.4, jump.z + Math.sin(jump.a) * (k - 0.5) * 2);
+        fish.rotation.set(-Math.cos(Math.min(1, k) * Math.PI) * 0.9, -jump.a + Math.PI / 2, 0);
+        ripple.position.set(jump.x + Math.cos(jump.a), 0.12, jump.z + Math.sin(jump.a));
+        ripple.scale.setScalar(1 + Math.max(0, k - 0.9) * 4);
+        ripple.material.opacity = k > 0.9 ? Math.max(0, 0.7 - (k - 0.9) * 0.9) : 0;
+        if (k > 1.7) jump = null;
+      }
+      flies.visible = light < 0.4;
+      if (flies.visible) { fSeed.forEach(([x, y, z, ph], i) => { fArr[i * 3] = x + Math.sin(time * 0.7 + ph) * 0.8; fArr[i * 3 + 1] = y + Math.sin(time * 1.3 + ph) * 0.4; fArr[i * 3 + 2] = z + Math.cos(time * 0.6 + ph) * 0.8; }); fGeo.attributes.position.needsUpdate = true; flies.material.opacity = 0.6 + Math.sin(time * 5) * 0.3; }
+    };
   }
 
   // ---------- Ciel et lumière selon l'heure ----------
@@ -572,11 +676,11 @@
     const swarm = buildSwarm(scene);
     const crate = buildCrate(scene);
 
+    const life = buildLife(scene, r);
+
     // Candidats
     const people = {};
     for (const c of D.cast) { const p = makePerson(c); people[c.id] = p; p.visible = false; scene.add(p); }
-    const evacDrone = makeDrone(0xffffff); evacDrone.visible = false; scene.add(evacDrone);
-    let evac = null; // { id, t0 }
 
     // Étiquettes HTML (prénom du suivi, noms des zones)
     const host = canvas.parentElement;
@@ -592,11 +696,24 @@
     });
 
     // ---------- état piloté par l'interface ----------
-    let tick = 0, me = null, mode = "island", lastTick = null;
+    let tick = 0, me = null, mode = "director", holdUntil = 0, flashUntil = 0, heat = false;
     const camGoal = { target: new T.Vector3(0, 0, 0), zoom: 1, active: true };
     const snapAt = (t) => { const s = D.snapshots; return s[Math.max(0, Math.min(s.length - 1, t - s[0][0]))][1]; };
+    const clock = new T.Clock();
 
-    function setTick(t, animate) {
+    // La mise en scène (scenes.js)
+    const director = window.World3DScenes.create({
+      scene, camera, canvas, host, D, people, ZONES, height, riverDist, mat, box, makeDrone,
+      snapAt, me: () => me, tick: () => tick, camTarget: () => controls.target,
+      live: (text, kind) => opts.onLive?.(text, kind),
+      lightning: () => { flashUntil = clock.elapsedTime + 0.12; },
+    });
+    // Le projecteur des drones, pour filmer la nuit
+    const spot = new T.PointLight(0xfff2d8, 0, 26, 1.4);
+    scene.add(spot);
+
+    function setTick(t, animate, speed = 1) {
+      director.flush();
       const ppl = snapAt(t);
       const byZone = {};
       for (const id of Object.keys(ppl)) (byZone[ppl[id][0]] ??= []).push(id);
@@ -605,31 +722,33 @@
         const s = slots(zone, ids.length);
         ids.forEach((id, i) => people[id].userData.target.set(s[i][0], s[i][1], s[i][2]));
       }
+      const day = Math.floor(t / 24), hour = t % 24;
+      const immune = D.events.find((e) => e.type === "challenge" && Math.floor(e.t / 24) === day && e.t < t && hour <= D.voteHour);
       for (const c of D.cast) {
         const p = people[c.id], u = p.userData, here = !!ppl[c.id];
         if (here && !p.visible) { p.visible = true; u.pos.copy(u.target); p.position.copy(u.pos); }
         if (!animate) { u.pos.copy(u.target); p.position.copy(u.pos); }
-        if (!here && p.visible && !(evac && evac.id === c.id)) {
-          // évacuation par drone si on avance d'une heure, disparition directe sinon
-          const ev = D.events.find((e) => e.type === "evacuated" && e.a[0] === c.id && e.t === t);
-          if (animate && ev && !evac) evac = { id: c.id, t0: performance.now() };
-          else p.visible = false;
+        if (!here && p.visible) {
+          // l'évacuation se joue en scène si on avance d'une heure
+          const ev = animate && D.events.find((e) => e.type === "evacuated" && e.a[0] === c.id && e.t === t);
+          if (ev) u.keep = true; else p.visible = false;
         }
-        if (here) { u.alive = true; p.scale.setScalar(1.25); }
+        u.necklace.visible = !!immune && immune.a[0] === c.id;
+        p.rotation.x = 0;
       }
       // effets de l'heure
       const recent = (type, kind, hours) => D.events.find((e) => e.type === type && (!kind || e.d?.kind === kind) && e.t <= t && t - e.t < hours);
       rain.visible = !!recent("showrunner", "storm", 3);
-      const sw = recent("showrunner", "wasp_swarm", 4) || D.events.find((e) => e.type === "hazard" && e.d?.hazard === "wasps" && e.t === t);
+      const sw = recent("showrunner", "wasp_swarm", 4);
       swarm.visible = !!sw;
-      if (sw) { const z = sw.z || "jungle"; swarm.userData.center = new T.Vector3(ZONES[z][0], height(...ZONES[z]) + 2, ZONES[z][1]); }
+      if (sw) { const z = sw.z || "jungle"; swarm.userData.center = new T.Vector3(ZONES[z][0], height(...ZONES[z]) + 2.5, ZONES[z][1]); }
       const drop = recent("showrunner", "supply_drop", 5);
-      crate.visible = !!drop;
-      if (drop) { const z = drop.z; crate.userData.base = new T.Vector3(ZONES[z][0] + 2, height(ZONES[z][0] + 2, ZONES[z][1] + 2), ZONES[z][1] + 2); crate.userData.t = t - drop.t; }
+      crate.visible = !!drop && t > drop.t; // le largage lui-même est mis en scène
+      if (drop) { const z = drop.z; crate.userData.base = new T.Vector3(ZONES[z][0] + 2, height(ZONES[z][0] + 2, ZONES[z][1] + 2), ZONES[z][1] + 2); }
       heat = !!recent("showrunner", "heatwave", 6);
       tick = t;
+      return director.onTick(t, animate, speed);
     }
-    let heat = false;
 
     function setFollow(id) {
       for (const p of Object.values(people)) { p.userData.ring.visible = false; p.userData.arrow.visible = false; }
@@ -638,13 +757,18 @@
     }
     function view(m) {
       mode = m;
+      holdUntil = 0;
       camGoal.active = true;
       camGoal.zoomLocked = false;
       if (m === "island") { camGoal.target.set(0, 0, 2); camGoal.zoom = 1; }
       if (m === "zone" && me) { const z = snapAt(tick)[me]?.[0] || "beach"; camGoal.target.set(ZONES[z][0], height(...ZONES[z]), ZONES[z][1]); camGoal.zoom = 2.2; }
       if (m === "follow" && me) camGoal.zoom = 3.4;
     }
-    controls.addEventListener("start", () => { if (mode !== "follow") camGoal.active = false; else camGoal.zoomLocked = true; });
+    controls.addEventListener("start", () => {
+      if (mode === "director") holdUntil = performance.now() + 7000;
+      else if (mode !== "follow") camGoal.active = false;
+      else camGoal.zoomLocked = true;
+    });
 
     // Toucher un personnage pour le suivre
     const ray = new T.Raycaster(), ndc = new T.Vector2();
@@ -664,28 +788,31 @@
     });
 
     // ---------- boucle d'animation ----------
-    const clock = new T.Clock();
-    const v = new T.Vector3();
+    const v = new T.Vector3(), camDir = new T.Vector3(1, 0.886, 1).normalize();
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     function frame() {
-      const dt = Math.min(clock.getDelta(), 0.05), time = clock.elapsedTime;
+      const dt = Math.min(clock.getDelta(), 0.1), time = clock.elapsedTime;
       const hour = (tick % 24) + 0.5;
       const [sky, light] = skyAt(hour);
       if (heat && light > 0.6) sky.lerp(new T.Color(0xf0b070), 0.35);
       if (rain.visible) sky.lerp(new T.Color(0x3a4a55), 0.6);
+      if (rain.visible && Math.random() < dt * 0.25) flashUntil = time + 0.1;
+      const flashing = time < flashUntil;
+      if (flashing) sky.lerp(new T.Color(0xe8f4ff), 0.7);
       scene.background = sky;
       scene.fog.color.copy(sky);
       const night = light < 0.4;
-      hemi.intensity = 0.25 + light * 0.45;
+      hemi.intensity = 0.25 + light * 0.45 + (flashing ? 1.2 : 0);
       sun.intensity = rain.visible ? light * 0.35 : light * 0.85;
       const sa = ((hour - 6) / 12) * Math.PI;
       sun.position.set(Math.cos(sa) * 60, Math.max(12, Math.sin(sa) * 70), 30);
       sun.color.set(light < 0.75 ? 0xffb080 : 0xfff1d6);
-      marks.fire.light.intensity = night ? 2.2 + Math.sin(time * 13) * 0.4 : 0;
+      marks.fire.light.intensity = night || hour > 19 ? 2.2 + Math.sin(time * 13) * 0.4 : 0;
       marks.fire.flame.scale.y = 1 + Math.sin(time * 11) * 0.15;
       marks.fire.flame2.scale.y = 1 + Math.cos(time * 15) * 0.2;
       marks.lamp.material.color.setHex(Math.sin(time * 3) > 0 ? 0xff5b6b : 0x6a1f2a);
       marks.idol.rotation.y = time * 0.6;
+      life(dt, time, light, rain.visible);
 
       if (!reduced) {
         // vagues
@@ -704,7 +831,6 @@
         fp.needsUpdate = true;
         marks.boat.position.y = 0.35 + Math.sin(time * 1.2) * 0.12;
         marks.boat.rotation.z = Math.sin(time * 0.9) * 0.04;
-        for (const d of marks.cams) { const u = d.userData; d.position.set(Math.cos(time * u.s + u.p) * u.r, u.y + Math.sin(time * 2 + u.p) * 0.3, Math.sin(time * u.s + u.p) * u.r * 0.8); }
       }
       // pluie
       if (rain.visible) {
@@ -722,74 +848,69 @@
         });
         p.needsUpdate = true;
       }
-      // colis parachuté
-      if (crate.visible && crate.userData.base) {
-        const fallH = crate.userData.t === 0 ? Math.max(0, 14 - (time % 6) * 4) : 0;
-        crate.position.copy(crate.userData.base).add(v.set(0, fallH + 0.6, 0));
-        crate.userData.chute.visible = fallH > 0;
-      }
-      // personnages : marche vers leur cible, petit balancement
-      for (const p of Object.values(people)) {
-        if (!p.visible) continue;
-        const u = p.userData;
-        if (evac && evac.id === u.id) continue;
-        const d = v.subVectors(u.target, u.pos);
-        const dist = d.length();
-        if (dist > 0.05) {
-          const step = Math.min(dist, dt * (6 + dist * 1.5));
-          u.pos.addScaledVector(d.normalize(), step);
-          p.rotation.y = Math.atan2(d.x, d.z);
-          u.walk = 1;
-        } else u.walk = Math.max(0, (u.walk || 0) - dt * 3);
-        u.pos.y = Math.max(u.pos.y, height(u.pos.x, u.pos.z));
-        p.position.copy(u.pos);
-        const sw = Math.sin(time * 9 + u.phase) * 0.6 * u.walk;
-        u.armL.rotation.x = sw; u.armR.rotation.x = -sw;
-        p.position.y += Math.abs(Math.sin(time * 9 + u.phase)) * 0.08 * u.walk + (night ? 0 : Math.sin(time * 1.5 + u.phase) * 0.02);
-        if (u.ring.visible) { u.ring.scale.setScalar(1 + Math.sin(time * 4) * 0.12); u.arrow.position.y = Math.sin(time * 3) * 0.15; }
-      }
-      // évacuation : le drone descend, saisit le candidat et remonte
-      if (evac) {
-        const p = people[evac.id], k = (performance.now() - evac.t0) / 1000;
-        const base = p.userData.pos;
-        evacDrone.visible = true;
-        if (k < 1) evacDrone.position.set(base.x, base.y + 14 - k * 11, base.z);
-        else if (k < 1.5) evacDrone.position.set(base.x, base.y + 3, base.z);
-        else { const up = (k - 1.5) * 9; evacDrone.position.set(base.x, base.y + 3 + up, base.z); p.position.set(base.x, base.y + up + 0.3, base.z); p.rotation.y += dt * 3; }
-        evacDrone.children.forEach((ch, i) => { if (ch.geometry?.type === "CylinderGeometry") ch.rotation.y += 0.6 + i; });
-        if (k > 3.2) { evacDrone.visible = false; p.visible = false; evac = null; }
-      }
-      // caméra
-      const k = 1 - Math.exp(-dt * 4);
+      // colis posé au sol après un largage
+      if (crate.visible && crate.userData.base) { crate.position.copy(crate.userData.base).add(v.set(0, 0.6, 0)); crate.userData.chute.visible = false; }
+
+      // scènes, vie des candidats, drones de secours
+      director.update(dt, time, night);
+
+      // caméra « réalisateur » : elle va d'elle-même vers l'action la plus forte
+      const f = director.focus();
+      const k = 1 - Math.exp(-dt * 3);
+      if (mode === "director") {
+        const free = performance.now() > holdUntil;
+        controls.autoRotate = !reduced && free && f.drift;
+        controls.autoRotateSpeed = 0.35;
+        if (free) {
+          const portrait = canvas.clientWidth < canvas.clientHeight; // sur téléphone, on filme plus serré
+          camGoal.target.copy(f.target); camGoal.zoom = f.zoom * (portrait ? 1.3 : 1); camGoal.active = true; camGoal.zoomLocked = false;
+          if (f.scene) { // on revient à l'angle de la scène
+            const o = v.copy(camera.position).sub(controls.target), len = o.length();
+            o.lerp(camDir.clone().multiplyScalar(len), k * 0.8).setLength(len);
+            camera.position.copy(controls.target).add(o);
+          }
+        } else camGoal.active = false;
+      } else controls.autoRotate = false;
       if (mode === "follow" && me && people[me]?.visible) { camGoal.target.copy(people[me].position); camGoal.active = true; }
       if (camGoal.active) {
         controls.target.lerp(camGoal.target, k);
         if (!camGoal.zoomLocked) camera.zoom = lerp(camera.zoom, camGoal.zoom, k);
         camera.updateProjectionMatrix();
-        if (mode !== "follow" && controls.target.distanceTo(camGoal.target) < 0.05 && Math.abs(camera.zoom - camGoal.zoom) < 0.01) camGoal.active = false;
+        if (mode !== "follow" && mode !== "director" && controls.target.distanceTo(camGoal.target) < 0.05 && Math.abs(camera.zoom - camGoal.zoom) < 0.01) camGoal.active = false;
       }
       controls.update();
+      // les drones caméras : l'un d'eux suit l'action et l'éclaire la nuit
+      if (!reduced) marks.cams.forEach((d, i) => {
+        const u = d.userData;
+        if (i === 0) { v.copy(f.target).add(new T.Vector3(5, 6 + Math.sin(time * 2) * 0.3, 5)); d.position.lerp(v, k); d.lookAt(f.target.x, d.position.y, f.target.z); }
+        else d.position.set(Math.cos(time * u.s + u.p) * u.r, u.y + Math.sin(time * 2 + u.p) * 0.3, Math.sin(time * u.s + u.p) * u.r * 0.8);
+      });
+      spot.position.copy(f.target).add(v.set(2, 7, 2));
+      spot.intensity = night ? 1.5 : 0;
       renderer.render(scene, camera);
 
       // étiquettes
       const rect = canvas.getBoundingClientRect();
-      const project = (vec, el) => {
+      const project = (vec, el, below) => {
         v.copy(vec).project(camera);
         const off = v.z > 1 || Math.abs(v.x) > 1.05 || Math.abs(v.y) > 1.05;
         el.style.display = off ? "none" : "";
-        el.style.transform = `translate(${((v.x + 1) / 2) * rect.width}px, ${((1 - v.y) / 2) * rect.height}px) translate(-50%, -100%)`;
+        el.style.transform = `translate(${((v.x + 1) / 2) * rect.width}px, ${((1 - v.y) / 2) * rect.height}px) translate(-50%, ${below ? "6px" : "-100%"})`;
       };
-      if (me && people[me]?.visible) { label.textContent = D.cast.find((c) => c.id === me).name; project(v.copy(people[me].position).add(new T.Vector3(0, 4.6, 0)), label); }
+      if (me && people[me]?.visible) { label.textContent = D.cast.find((c) => c.id === me).name; project(people[me].position, label, true); }
       else label.style.display = "none";
-      const showZones = camera.zoom < 2.2;
+      const showZones = camera.zoom < 1.6;
       for (const z of zoneLabels) { if (showZones) project(z.v, z.el); else z.el.style.display = "none"; }
+      director.drawOverlays();
       requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
 
     return {
       setTick, setFollow, view,
+      peek: (id) => { if (mode !== "director") view("director"); holdUntil = 0; director.peek(id); },
       get mode() { return mode; },
+      get busy() { return director.busy; },
       resetZoomLock() { camGoal.zoomLocked = false; },
     };
   }

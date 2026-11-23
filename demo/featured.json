@@ -1,35 +1,66 @@
 {
-  "_note": "Fiches enrichies et confessionnaux écrits pour la démo de la saison 42, à partir de ce qui s'est réellement passé dans la simulation. Plus tard, une IA les écrira en direct.",
-  "c090": {
-    "job": "pompière volontaire",
-    "bio": "Pianiste prodige à 12 ans, elle a claqué la porte du conservatoire à 15 et n'a plus jamais touché un clavier. Elle a traversé l'Atlantique seule à la voile, puis s'est engagée chez les pompiers volontaires de Manchester. Calme absolu, regard qui note tout. Elle répète « On ne laisse personne derrière », mais personne ne l'a jamais vue revenir chercher quelqu'un.",
-    "motivation": "Lancer sa propre entreprise grâce à la notoriété.",
-    "secret": "Elle écrit en cachette un livre sur l'émission. Le « journal intime » qu'elle remplit chaque soir, c'est lui.",
+  "_note": "Fiches enrichies et confessionnaux écrits pour la démo de la saison 42 (version Koh Lanta), à partir de ce qui s'est réellement passé dans la simulation. Plus tard, une IA les écrira en direct.",
+  "c049": {
+    "job": "coach de boxe",
+    "bio": "Coach de boxe à Lyon, Sacha apprend aux gamins du quartier à encaisser sans rendre les coups. Enfance en valises : un déménagement tous les deux ans, jamais le temps de se faire des amis. Sourire désarmant, regard qui calcule. Sacha dit « On ne laisse personne derrière » et le pense, à condition d'être devant.",
+    "motivation": "Racheter la maison familiale de Villeurbanne, vendue quand Sacha avait 12 ans.",
+    "secret": "Sacha a déjà gagné une télé-réalité il y a dix ans, sous un autre nom. Tout le monde l'a oublié·e. Sacha est revenu·e pour prouver que ce n'était pas de la chance.",
     "secretDay": 7,
     "confessions": {
-      "1": "Cinquante inconnus sur une plage, et déjà des clans qui se forment. Moi, je m'assois et je regarde. Vous savez ce qui sauve des vies dans un incendie ? Ce n'est pas le courage. C'est de savoir où sont les sorties.",
-      "2": "J'ai trouvé une lampe torche dans la jungle. Je ne l'ai dit à personne. Selin m'a proposé de faire équipe dans la mangrove, j'ai dit oui. Elle est gentille. Les gens gentils, sur une île, il faut les garder près de soi.",
-      "3": "Une gourde, des rations, une deuxième lampe. Mon sac est plein, et j'ai un nouvel allié : Lucas. J'écris tout dans un petit carnet. Si on me demande, c'est un journal intime. Ce n'en est pas vraiment un.",
-      "4": "Ce matin, le courant m'a emportée. Lucas m'a sortie de l'eau. Cet après-midi, un serpent. Encore Lucas. Je lui dois deux fois la vie. Et à midi, un colis est tombé à mes pieds. Il était pour Robin. Je l'ai gardé. Ne me jugez pas trop vite.",
-      "5": "Vingt-sept d'entre vous m'ont envoyé une trousse de secours. Vingt-sept. Je ne pensais pas que quelqu'un m'aimait bien ici. Ça me fait quelque chose, je ne vais pas mentir. Bon. Je vais quand même le noter dans le carnet.",
-      "6": "Ce soir, j'étais menacée. Je me suis dit : c'est fini, vous avez vu le colis de Robin. Et vous m'avez sauvée. Robin aussi a été sauvé·e, on s'est regardé·es sans rien dire. Rémi m'a volé une lampe aujourd'hui. Je l'ai laissé faire. J'en ai trois.",
-      "7": "Je l'ai fait. Une pianiste qui ne joue plus, une pompière qui ne revient jamais chercher personne, et c'est moi, The Last. Je vous dois une vérité : le carnet, c'est un livre. Sur vous, sur eux, sur nous. Lucas, Selin : vous serez dedans. En premier."
+      "1": "Premier soir. J'ai fait alliance avec Selin, la développeuse de jeux vidéo. Elle a un cœur énorme. Moi aussi, j'en ai un. Je le range juste dans une boîte quand il faut gagner.",
+      "2": "Cette nuit, j'ai voulu me rafraîchir dans la mer et le courant m'a retourné·e comme une crêpe. Ce matin, j'ai serré la main d'Ayumi, puis celle d'Oscar. Trois alliés en deux jours. Un coach, ça sait recruter.",
+      "3": "Freya m'a cherché·e dans la jungle, je ne me suis pas laissé·e faire. Et ce soir, j'ai essayé de prendre quelque chose dans le sac de Hamza. Il m'a vu·e. J'ai souri, j'ai dit que je cherchais ma gourde. Il ne m'a pas cru·e.",
+      "4": "Je vais vous avouer un truc : cette nuit, j'ai démoli l'abri d'Omar. Il ne m'avait rien fait, il était juste trop fort. Deux heures plus tard, je me noyais à moitié et c'est Oscar qui m'a sorti·e de l'eau. Le karma a de l'humour. Aujourd'hui, Lucía m'a volé mes rations. Chacun son tour.",
+      "5": "Deuxième à l'épreuve de la noix de coco, derrière Selin. Trente et un d'entre vous m'ont envoyé une trousse. Et Kwame m'a piqué à manger. Je n'aime pas qu'on me prenne ce qui est à moi.",
+      "6": "Cette nuit, j'ai démoli l'abri de Kwame. Je ne suis pas fier·e. Aujourd'hui, les guêpes m'ont trouvé·e : j'en ai une peur bleue depuis toujours. Je ne tiens plus debout. Et pourtant, Selin avait faim, alors je lui ai donné mes rations. Allez comprendre.",
+      "7": "Kwame a été emporté par la mer ce matin. Je n'arrête pas de penser à son abri. J'ai gagné l'orientation, puis la finale. Mon secret : j'ai déjà gagné une émission, il y a dix ans, sous un autre nom. Je voulais savoir si c'était de la chance. Ce n'en était pas. Mais je ne suis pas sûr·e d'en être fier·e."
     }
   },
-  "c069": {
-    "job": "mécanicien",
-    "bio": "Élevé à Lisbonne par une grand-mère qui réparait elle-même sa mobylette, Rémi a ouvert un petit garage, puis un deuxième, puis vingt. Il porte toujours le même bleu de travail. Il dit que les machines sont plus honnêtes que les gens. Il démarre au quart de tour, et il le regrette souvent. Il a le vertige depuis l'enfance.",
-    "motivation": "Ouvrir un refuge pour animaux. « Les bêtes ne jugent pas. »",
-    "secret": "Il est millionnaire : il a vendu ses vingt garages il y a deux ans. Il est venu voir s'il était quelqu'un de bien sans son argent.",
-    "secretDay": 7,
+  "c085": {
+    "job": "développeuse de jeux vidéo",
+    "bio": "Fille d'épiciers de Mumbai, elle a grandi derrière le comptoir. À 30 ans, un grave accident de voiture la cloue au lit six mois : elle y apprend à coder. Son premier jeu s'est vendu à des millions d'exemplaires. Généreuse jusqu'à l'absurde, nerveuse, et terrifiée par l'eau.",
+    "motivation": "Ouvrir un refuge pour animaux dans la banlieue de Mumbai.",
+    "secret": "Elle est millionnaire grâce à son jeu. Ce qu'elle « prend » aux plus forts sur l'île, elle essaie de le redonner aux plus faibles.",
+    "secretDay": 6,
     "confessions": {
-      "1": "J'ai le vertige depuis toujours, et la première chose que je fais, c'est de glisser sur les falaises. Bravo Rémi. Après, Matthias a voulu ma place près de l'eau. Je me suis énervé, il a reculé. Il a été évacué cet après-midi, piqué par les guêpes. Ça n'a rien à voir avec moi. Mais j'y pense.",
-      "2": "Aaliyah m'a traîné jusqu'au sommet. Au sommet ! Moi ! J'ai fermé les yeux tout le long. Elle a ri. C'est la première fois que je ris depuis qu'on est arrivés.",
-      "3": "Ingrid voulait mes rations. On s'est accrochés, et le drone l'a emmenée. Je me répète que c'est le jeu. Ma grand-mère disait : « Rémi, tu frappes avant de réfléchir. » Elle avait raison. Tala, elle, m'a juste tendu la main ce matin. J'aimerais être quelqu'un comme Tala.",
-      "4": "Cette nuit, Tala m'a sorti de la rivière. Ce soir, elle est partie, épuisée. Et ce matin, Nils. Encore une dispute, encore un drone. Je ne sais plus qui je suis ici. Vous m'envoyez des trousses de secours, et je ne sais pas si je les mérite.",
-      "5": "Axel et Selin m'ont accepté dans leur groupe. Personne ne m'a parlé de Nils ni d'Ingrid. Je crois qu'ils me donnent une deuxième chance. Je ne vous ai jamais dit pourquoi je veux gagner : un refuge pour animaux. Les bêtes ne jugent pas.",
-      "6": "J'ai pris une lampe dans le sac de Margaux. Elle en avait trois, elle n'a rien dit. Elle me fait peur, cette femme : elle regarde tout le monde comme si elle prenait des notes. Ce soir, Axel est parti au vote. Mon allié. Demain, pour la première fois, j'ai envie de gagner proprement.",
-      "7": "J'ai gagné l'épreuve de confiance. Moi, l'homme qui se fâche avec tout le monde ! Et puis Margaux a été meilleure. Mon secret, puisque c'est fini : je n'ai pas besoin de l'argent. J'ai vendu mes garages il y a deux ans. Je suis venu voir si j'étais quelqu'un de bien sans lui. Je crois que je suis en chemin."
+      "1": "J'ai peur de l'eau, et on m'a lâchée sur une île. Très drôle. Sacha est venu·e s'asseoir à côté de moi sur la plage. On a parlé de nos chiens jusqu'à la nuit. J'ai un·e allié·e.",
+      "2": "Quelqu'un a mangé mes rations pendant que je dormais près de la cascade. Ethan, je crois. Je ne lui en veux pas. Il avait l'air d'avoir plus faim que moi.",
+      "3": "De la fièvre toute la journée. Dix d'entre vous m'ont envoyé une gourde. Oscar m'a proposé de faire équipe. Je ne sais pas dire non aux gens, c'est mon problème depuis toujours.",
+      "4": "Un colis est tombé à midi, il était pour Tala. Je l'ai gardé. Et ce soir, j'ai fouillé le sac d'Oscar, mon propre allié. Il m'a vue. Je n'ai rien pu expliquer. Pas encore.",
+      "5": "J'ai gagné l'épreuve de la noix de coco ! Moi ! Mes bras tremblent encore. Ce soir, personne ne peut me menacer. Je vais dormir comme un bébé, pour une fois.",
+      "6": "Deuxième immunité, au relais. Je vous dois la vérité : je suis millionnaire. Mon jeu vidéo a vraiment marché. Ce que je prends aux forts, j'essaie de le redonner aux faibles. Ce soir, j'ai partagé mon eau avec Leila. Mais Matthias m'a vue fouiller son sac, et il ne va pas me le pardonner.",
+      "7": "Matthias a démoli mon abri cette nuit. Je l'avais cherché. J'ai gagné l'épreuve de confiance, et j'ai perdu la finale contre Sacha, mon allié·e du premier soir. Je pars sans rien, comme je suis venue. Enfin si : avec quarante amis de plus."
+    }
+  },
+  "c053": {
+    "job": "avocat d'affaires",
+    "bio": "Placé en famille d'accueil à 8 ans, Matthias s'est construit seul : bourses, concours, et un poste d'avocat d'affaires à 26 ans. Il a un plan pour tout et une stratégie pour chacun. Peu courageux, très malin, il préfère la ruse à la confrontation. Un jour, il a sauvé un inconnu de la noyade. Il n'en parle jamais.",
+    "motivation": "Ouvrir son propre cabinet grâce à la notoriété.",
+    "secret": "Il connaît Selin. Il y a trois ans, la société de jeux vidéo de Selin a racheté la start-up qu'il avait fondée avec ses amis, puis l'a fermée. Il la tient pour responsable.",
+    "secretDay": 6,
+    "confessions": {
+      "1": "Règle numéro un : ne pas se faire remarquer le premier jour. Je suis resté à l'ombre dans la jungle, à observer. Il y a une femme ici que je connais. Elle ne se souvient pas de moi. Moi, si.",
+      "2": "Menacé dès le deuxième soir, et sauvé par le public. Je n'ai rien fait de la journée. C'est peut-être ça, le secret.",
+      "3": "Je n'ai ni faim ni soif, mais je n'ai plus le moral. Je regarde Selin distribuer sa nourriture à tout le monde sur la plage et je bouillonne. Personne ne sait qui elle est vraiment.",
+      "4": "J'ai gagné l'épreuve des poteaux. Immunisé ! Ce soir, j'ai emprunté la corde de Yusuf, sans lui demander. Puis la mer m'a avalé. J'ai su me sortir de l'eau tout seul. Je l'ai déjà fait pour un autre, il y a longtemps.",
+      "5": "J'ai pris une trousse dans le sac de Noa. Encore menacé, encore sauvé. Je crois que vous aimez les méchants. Ou alors vous attendez de voir comment je vais tomber.",
+      "6": "Je n'en peux plus. La mer m'a encore eu. Et Selin qui fouille mon sac et me prend ma carte. Alors je vais vous le dire : il y a trois ans, sa société a racheté ma start-up et l'a fermée. Mes amis, mon projet, tout. Elle ne s'en souvient même pas.",
+      "7": "Cette nuit, j'ai démoli son abri. Ce matin, elle m'a pris ma corde. Et j'ai lâché à l'épreuve d'endurance, moi, le spécialiste de l'endurance. Je pars avec ma rancune. Elle est lourde. Je vais peut-être la poser, maintenant."
+    }
+  },
+  "c090": {
+    "job": "pompière volontaire",
+    "bio": "Pianiste prodige à 12 ans, elle a claqué la porte du conservatoire à 15 et n'a plus jamais touché un clavier. Elle a traversé l'Atlantique seule à la voile, puis s'est engagée chez les pompiers volontaires de Manchester. Calme absolu, regard qui note tout. Elle a le vertige, et ne l'avoue à personne.",
+    "motivation": "Lancer sa propre entreprise grâce à la notoriété.",
+    "secret": "Elle écrit en cachette un livre sur l'émission. Le « journal intime » qu'elle remplit chaque soir, c'est lui.",
+    "secretDay": 6,
+    "confessions": {
+      "1": "Cinquante inconnus sur une plage, et déjà des clans. Moi, je m'assois au bord de la rivière et je regarde. Vous savez ce qui sauve des vies dans un incendie ? Ce n'est pas le courage. C'est de savoir où sont les sorties.",
+      "2": "Moussa voulait ma place à l'ombre des ruines. Je ne l'ai pas laissé faire. Ce soir, il a abandonné. Et j'ai voulu fouiller le sac de Lucía : elle m'a prise la main dans le sac. Je note tout ça dans mon carnet. Pour plus tard.",
+      "3": "J'ai le vertige, et ce matin j'ai glissé près de la cascade. J'ai cru que c'était fini. Je me suis relevée. Une pompière se relève toujours, c'est le métier.",
+      "4": "La rivière m'a emportée. Je n'ai presque plus de forces. Ce soir, j'étais menacée, et vous m'avez sauvée. Je ne comprends pas pourquoi. Je n'ai été gentille avec personne.",
+      "5": "Vingt-quatre trousses de secours. Vingt-quatre. Je ne vais pas pleurer devant une caméra, je refuse. Bon. Un peu.",
+      "6": "Mon corps a dit stop. Je pars d'épuisement, sans drame. Et puisque c'est fini : le carnet, c'est un livre. Sur vous, sur eux, sur moi. Il y aura un chapitre pour celles et ceux qui m'ont envoyé des trousses. Il s'appellera « Merci »."
     }
   },
   "c032": {
@@ -37,45 +68,13 @@
     "bio": "A grandi dans une cité de Lagos où il fallait toujours un plan B. Devenu·e ingénieur·e, Robin construit des ponts et n'en brûle jamais. Sauf une fois : il y a six ans, Robin a quitté la mairie le jour de son mariage, sans un mot. Sang-froid total en toutes circonstances, sauf quand il faut rester seul·e.",
     "motivation": "Se tester et voir jusqu'où aller.",
     "secret": "Robin n'est pas venu·e pour gagner. Robin est venu·e retrouver Léa, la personne laissée seule devant la mairie il y a six ans.",
-    "secretDay": 3,
+    "secretDay": 2,
     "confessions": {
-      "1": "Tout le monde court partout. Moi, j'ai trouvé une corde et j'ai fait un plan. J'ai toujours un plan. Le problème, c'est que j'ai vu quelqu'un sur le bateau en arrivant. Quelqu'un que je n'ai pas vu depuis six ans. Elle ne m'a pas reconnu·e. Ou elle a fait semblant.",
-      "2": "Ce matin, avant le lever du soleil, Vera m'a sauté dessus pour ma corde. Je me suis défendu·e. Le drone l'a emmenée. Je n'arrive pas à manger. Mei est venue s'asseoir à côté de moi ce soir sans rien dire. C'est tout ce dont j'avais besoin.",
-      "3": "Je lui ai parlé. Léa. Il y a six ans, je l'ai laissée seule devant la mairie, le jour de notre mariage. Aujourd'hui, au lagon, elle m'a tendu la main et on a fait alliance. Comme si de rien n'était. Ce soir, les guêpes m'ont eu·e. Je ne sais pas si je dois être heureux·se ou terrifié·e.",
-      "4": "Un colis est tombé pour moi à midi. Je l'ai vu atterrir. Et je l'ai vu repartir, dans le sac de Margaux. Je n'ai plus de forces. Si demain je ne me relève pas, dites à Léa que j'étais venu·e pour elle. Pas pour gagner.",
-      "5": "Vos trousses de secours m'ont remis·e debout. Dix-sept d'entre vous. Léa dit que je suis plus fort·e que je ne crois. Elle le disait déjà il y a six ans.",
-      "6": "Cette nuit, la rivière m'a emporté·e, et Mei m'a rattrapé·e. Ce midi, la rivière a emporté Léa, et personne n'était là. Ce soir, j'étais menacé·e, et vous m'avez sauvé·e. Je ne sais pas pourquoi. Demain, je vais essayer de mériter ça.",
-      "7": "Deux épreuves gagnées. Une finale. Et Margaux. Je n'ai pas de regrets. Je suis venu·e sur cette île pour demander pardon à quelqu'un. Elle m'a pardonné au troisième jour, devant le lagon. Le reste, c'était du bonus."
-    }
-  },
-  "c044": {
-    "job": "youtubeur bricolage",
-    "bio": "300 000 abonnés regardent ses étagères chaque mardi depuis Marseille. Grande gueule, gros cœur, caché très profond. Il a traversé l'Atlantique à la voile pour une vidéo qui n'a jamais dépassé 2 000 vues. Il dit « ça va bien se passer » à peu près toutes les dix minutes, surtout quand ça se passe mal.",
-    "motivation": "Prouver qu'il sait faire autre chose que des étagères.",
-    "secret": "Il n'a pas 42 ans, il en a 49. Il a menti au casting par peur d'être trouvé trop vieux.",
-    "secretDay": 6,
-    "confessions": {
-      "1": "Salut la team ! Ah non, pardon, réflexe. Ici, pas de caméra à moi, pas de montage. Rafael est cool, on a fait équipe sur la plage. Ça va bien se passer.",
-      "2": "Sacha nous a rejoints. Je leur ai montré comment faire un abri avec trois branches et une bâche. Personne n'a liké. Ça me manque un peu, les likes.",
-      "3": "Rafael m'a donné son eau. Comme ça, sans rien demander. Sur internet, personne ne donne rien sans rien demander. Je ne sais pas quoi faire de ça.",
-      "4": "J'ai fait un truc pas joli. Un colis est tombé à côté de moi, il était pour Iris. Je l'ai pris. Et ce soir j'étais menacé, et vous m'avez sauvé quand même. Je ne comprends pas le public. Je vous aime bien, mais je ne vous comprends pas.",
-      "5": "Cette nuit, je me suis à moitié noyé, et Rafael m'a sorti de l'eau. Ce matin, Rafael est tombé de la falaise. Évacué. Je n'ai même pas pu lui dire merci. Ce soir, Iris m'a proposé une alliance. Iris. Celle dont j'ai volé le colis. Elle le sait. Elle m'a pris la main quand même.",
-      "6": "Mon secret, parce que j'ai failli y rester aujourd'hui : je n'ai pas 42 ans. J'en ai 49. J'avais peur qu'on me trouve trop vieux. Je ne tiens plus debout, mais vingt-six d'entre vous m'ont envoyé une trousse. Ça va bien se passer. Je crois.",
-      "7": "Éliminé à l'épreuve d'orientation. Avec une carte dans la poche. Vous pouvez rire, j'ai ri aussi. Je rentre à Marseille tourner une vidéo. Pas sur des étagères. Sur Rafael, sur Iris, et sur ce qu'on fait quand personne ne nous regarde."
-    }
-  },
-  "c041": {
-    "job": "biologiste marin",
-    "bio": "A grandi sur un chalutier de la Baltique et lit un courant comme on lit un livre. Il y a deux ans, son meilleur ami est parti avec leurs économies. Depuis, il continue de faire confiance à tout le monde, par principe. Il déteste être seul. Il a raté trois fois le casting avant d'être pris.",
-    "motivation": "Se tester et voir jusqu'où aller.",
-    "secret": "Il a été recalé trois fois au casting. La production l'a pris la quatrième fois « parce qu'il ne lâchait rien ».",
-    "secretDay": 3,
-    "confessions": {
-      "1": "Un colis est tombé dans mes bras ce midi. Il était pour Mei. Je ne savais pas, je vous jure, je l'ai su après. Je vais le lui rendre. Ce soir, Iris et Yusuf m'ont proposé de rester avec eux près de la rivière. Je déteste être seul. Je crois qu'ils l'ont vu.",
-      "2": "Yusuf a été emporté par le courant ce matin. On dormait à dix mètres. Nils nous a rejoints. Je connais les rivières comme si j'avais grandi dedans : je vais apprendre aux autres à lire le courant. Plus personne ne part comme ça.",
-      "3": "J'ai de la fièvre. Iris dit que ce n'est rien. J'ai trouvé une trousse de secours, je la garde pour Nils, il tousse depuis hier. J'ai raté trois castings avant d'être pris, vous savez. Je ne vais pas abandonner pour un peu de fièvre.",
-      "4": "Nils est parti ce matin. Une dispute avec Rémi, dans la jungle. Je n'étais pas là. « On ne laisse personne derrière », c'est ma phrase. Et je l'ai laissé derrière. Mon colis à moi, quelqu'un d'autre l'a eu. C'est de bonne guerre.",
-      "5": "Iris m'a sorti de l'eau cette nuit. Ce matin, Léa m'a chassé de son coin de rivière. Je n'avais plus la force de discuter. Je pars avec la fièvre et sans regret. Iris, gagne. Pour Yusuf, pour Nils, pour moi."
+      "1": "J'ai gagné l'épreuve du radeau. J'ai toujours un plan, et celui-là a marché. Mais je ne suis pas là pour ça. J'ai vu quelqu'un sur le bateau ce matin. Quelqu'un que je n'ai pas vu depuis six ans. Elle ne m'a pas regardé·e.",
+      "2": "Je n'ai pas eu le temps de lui parler. Léa est partie ce soir, emportée par le courant. Il y a six ans, je l'ai laissée seule devant la mairie, le jour de notre mariage. J'étais venu·e lui demander pardon. Rémi m'a tenu compagnie à la rivière. Il n'a rien demandé.",
+      "3": "Je n'arrive plus à avancer. Alma m'a proposé de faire équipe au lagon, j'ai dit oui sans réfléchir. Je n'ai plus de plan. C'est la première fois de ma vie.",
+      "4": "La mer a failli me prendre aussi, ce matin. Treize d'entre vous m'ont envoyé une trousse. Merci, vraiment. Mais je crois que ma raison d'être ici est partie avec Léa.",
+      "5": "J'abandonne. Ce n'est pas une défaite. Je vais rentrer, prendre un avion, et aller frapper à la porte de Léa. Je lui dois des excuses qu'aucune caméra ne peut filmer."
     }
   }
 }

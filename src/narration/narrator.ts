@@ -1,7 +1,7 @@
 // Transforme les événements du moteur en texte : fil horaire, quotidienne de 19h et prime du jour 7.
 import { dayOf, hourOf, type ShowrunnerKind } from "../engine/season";
 import type { Character, GameEvent, HazardId, Item, Lang, SeasonResult } from "../engine/types";
-import { CAUSE, HAZARD, ITEM, LINES, SHOWRUNNER, TRIAL_NAME, UI, WHAT, agree, at, fill, list } from "./templates";
+import { CAUSE, CHALLENGE_NAME, HAZARD, ITEM, LINES, SHOWRUNNER, TRIAL_NAME, UI, WHAT, agree, at, fill, list } from "./templates";
 
 export class Narrator {
   private chars: Map<string, Character>;
@@ -25,6 +25,12 @@ export class Narrator {
 
   /** Une ligne de récit pour un événement (ou null si trop anodin pour être raconté). */
   line(e: GameEvent): string | null {
+    const out = this.raw(e);
+    // Élision devant un prénom : « l'abri de Omar » devient « l'abri d'Omar »
+    return out && this.lang === "fr" ? out.replace(/\b(d|D)e ([AEIOUYÉÈÂÎÔ])/g, "$1'$2") : out;
+  }
+
+  private raw(e: GameEvent): string | null {
     const L = this.lang;
     const [a, b] = e.actors.map((id) => this.name(id));
     const d = e.data ?? {};
@@ -55,8 +61,14 @@ export class Narrator {
           return d.caught ? first : `${first} ${fill(this.pick("steal_ok", e), { ...base, item: ITEM[d.item as Item][L] })}`;
         }
         return d.caught ? fill(this.pick("steal_caught", e), base) : fill(this.pick("steal_ok", e), { ...base, item: ITEM[d.item as Item][L] });
-      case "duel":
-        return fill(this.pick("duel", e), base);
+      case "dispute":
+        return fill(this.pick("dispute", e), { ...base, item: d.item ? (L === "fr" ? ` pour ${ITEM[d.item as Item].fr}` : ` over ${ITEM[d.item as Item].en}`) : "" });
+      case "sabotage":
+        return "🌙 " + fill(this.pick("sabotage", e), base);
+      case "challenge": {
+        const [, , c] = e.actors.map((id) => this.name(id));
+        return "🏆 " + fill(this.pick("challenge", e), { ...base, c: c ?? "", kind: CHALLENGE_NAME[d.kind as string][L] });
+      }
       case "evacuated":
         return fill(this.pick("evacuated", e), { a, cause: this.cause(e.actors[0]), n: d.remaining as number });
       case "showrunner":
@@ -70,7 +82,11 @@ export class Narrator {
       case "vote_saved":
         return fill(this.pick("vote_saved", e), { list: list(e.actors.map((id) => this.name(id)), L) });
       case "trial":
-        return "🏁 " + fill(this.pick("trial", e), { a, trial: TRIAL_NAME[d.kind as string][L], n: d.out as number });
+        {
+        const n = d.out as number;
+        const who = L === "fr" ? (n === 1 ? "1 candidat devra" : `${n} candidats devront`) : n === 1 ? "1 contestant must" : `${n} contestants must`;
+        return "🏁 " + fill(this.pick("trial", e), { a, trial: TRIAL_NAME[d.kind as string][L], n: who });
+      }
       case "finale":
         return fill(this.pick("finale", e), { list: list(e.actors.map((id) => this.name(id)), L) });
       case "winner":
@@ -150,12 +166,12 @@ export class Narrator {
     const count = (t: string) => r.events.filter((e) => e.type === t).length;
     // Un moment fort par jour : trahison, sauvetage ou affrontement plutôt que la météo
     const drama = (e: GameEvent) =>
-      e.weight * 10 + (e.data?.betrayal ? 15 : 0) + (e.data?.rescuedBy ? 12 : 0) + (e.type === "duel" ? 8 : 0) + (e.type === "alliance" ? 4 : 0) - (e.type === "showrunner" ? 5 : 0);
+      e.weight * 10 + (e.data?.betrayal ? 15 : 0) + (e.data?.rescuedBy ? 12 : 0) + (e.type === "dispute" ? 6 : 0) + (e.type === "sabotage" ? 10 : 0) + (e.type === "alliance" ? 4 : 0) - (e.type === "showrunner" ? 5 : 0);
     const used = new Set<string>();
     const kind = (e: GameEvent) => (e.data?.rescuedBy ? "rescue" : e.data?.betrayal ? "betrayal" : e.type);
     const best = Array.from({ length: r.config.days }, (_, i) => {
       const top = r.events
-        .filter((e) => dayOf(e.tick) === i + 1 && e.weight >= 3 && !["evacuated", "vote_threat", "vote_saved", "finale", "winner", "season_start"].includes(e.type))
+        .filter((e) => dayOf(e.tick) === i + 1 && e.weight >= 3 && !["evacuated", "vote_threat", "vote_saved", "finale", "winner", "season_start", "challenge"].includes(e.type))
         .sort((a, b) => drama(b) - (used.has(kind(b)) ? 30 : 0) - (drama(a) - (used.has(kind(a)) ? 30 : 0)))[0];
       if (top) used.add(kind(top));
       return top;
@@ -182,7 +198,8 @@ export class Narrator {
       `| | |\n| --- | --- |`,
       `| Alliances | ${count("alliance")} |`,
       `| ${L === "fr" ? "Trahisons et vols" : "Betrayals and thefts"} | ${count("steal")} |`,
-      `| ${L === "fr" ? "Affrontements" : "Standoffs"} | ${count("duel")} |`,
+      `| ${L === "fr" ? "Disputes" : "Arguments"} | ${count("dispute")} |`,
+      `| ${L === "fr" ? "Sabotages" : "Sabotages"} | ${count("sabotage")} |`,
       `| ${L === "fr" ? "Colis livrés" : "Crates delivered"} | ${count("gift_delivered")} |`,
       `| ${L === "fr" ? "Interventions du showrunner" : "Showrunner twists"} | ${count("showrunner")} |`,
       "",
