@@ -220,6 +220,7 @@ export async function startMini(port = 54321, database = "thelast", root = "demo
       if (url.pathname.startsWith("/auth/v1/")) return await authRoute(req, res, url);
       if (url.pathname.startsWith("/rest/v1/")) return await restRoute(req, res, url);
       if (url.pathname.startsWith("/storage/v1/")) return await storageRoute(req, res, url);
+      if (url.pathname === "/config.js") { res.writeHead(200, { "content-type": "text/javascript" }); return res.end(`window.THELAST_CONFIG = { supabaseUrl: ${JSON.stringify(`http://localhost:${port}`)}, supabaseKey: ${JSON.stringify(ANON_KEY)} };`); }
       let f = normalize(join(root, decodeURIComponent(url.pathname)));
       if (existsSync(f) && statSync(f).isDirectory()) f = join(f, "index.html");
       if (!f.startsWith(normalize(root)) || !existsSync(f)) { res.writeHead(404); return res.end("absent"); }

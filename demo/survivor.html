@@ -198,6 +198,9 @@ body.fs .fsbtn { bottom: 164px; }
 .btn:hover { border-color: var(--mist); }
 .btn.main { background: var(--torch); border-color: var(--torch); color: var(--ink); }
 .scrub { flex: 1 1 100%; accent-color: var(--torch); }
+.daymarks.rel { position: relative; height: 14px; display: block; }
+.daymarks.rel span { position: absolute; transform: translateX(-50%); }
+.daymarks.rel span:first-child { transform: none; }
 .daymarks { display: flex; justify-content: space-between; font-family: var(--display); font-size: 11px; color: var(--mist); letter-spacing: .08em; padding-inline: 4px; }
 
 /* Panneau latéral */
@@ -1109,8 +1112,22 @@ body.fs .fsbtn { bottom: 164px; }
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheetOpen && document.body.classList.contains("fs") && !document.fullscreenElement) setFs(false); });
 
   // ---------- rendu ----------
+  // Repères des jours sous le curseur (en direct, seulement les jours déjà joués)
+  let marksFor = null;
+  function daymarks() {
+    if (marksFor === `${T0}-${TN}`) return;
+    marksFor = `${T0}-${TN}`;
+    const box = document.getElementById("daymarks");
+    const days = LIVE ? dayOf(TN) : D.days;
+    box.classList.toggle("rel", LIVE);
+    box.innerHTML = Array.from({ length: days }, (_x, i) => {
+      const pos = LIVE ? Math.max(0, Math.min(100, ((i * 24 + 8 - T0) / Math.max(1, TN - T0)) * 100)) : null;
+      return `<span${pos !== null ? ` style="left:${pos.toFixed(1)}%"` : ""}>${esc(_("J{d}", { d: i + 1, h: "" }).trim())}</span>`;
+    }).join("");
+  }
   function render() {
     scrub.value = tick - T0;
+    daymarks();
     header(); placeDots(); flash();
     if (sheetOpen) panelMe();
     meChip();
@@ -1312,7 +1329,7 @@ body.fs .fsbtn { bottom: 164px; }
       : _("En direct : chaque heure sur l'île est diffusée à son heure, pendant 7 jours. La Quotidienne arrive chaque soir à {h}, et chaque soir le public sauve deux menacés sur trois. Les dialogues et les confessionnaux sont écrits par une IA à partir de ce qui se passe vraiment dans la simulation.", { h: hh(D.voteHour) });
     const info = document.getElementById("liveinfo");
     info.hidden = false;
-    info.innerHTML = `${PRE ? "" : `<span class="chip">🔴 ${_("Jour {d} · {h}", { d: dayOf(TN), h: hh(TN) })}</span><span class="chip">${_("{n} en jeu", { n: Object.keys(snapAt(TN)).length })}</span>`}${LV.user ? `<span class="chip">👤 ${esc(LV.profile?.pseudo || "")}</span>` : `<button class="btn main" type="button" id="introJoin">${_("Créer mon compte gratuit")}</button><button class="btn" type="button" id="introLogin">${_("J'ai déjà un compte")}</button>`}`;
+    info.innerHTML = `${PRE ? "" : `<span class="chip">🔴 ${NOFEED ? _("Jour {d}", { d: LV.dayNow() }) : _("Jour {d} · {h}", { d: dayOf(TN), h: hh(TN) })}</span>${NOFEED ? "" : `<span class="chip">${_("{n} en jeu", { n: Object.keys(snapAt(TN)).length })}</span>`}`}${LV.user ? `<span class="chip">👤 ${esc(LV.profile?.pseudo || "")}</span>` : `<button class="btn main" type="button" id="introJoin">${_("Créer mon compte gratuit")}</button><button class="btn" type="button" id="introLogin">${_("J'ai déjà un compte")}</button>`}`;
     document.getElementById("introJoin")?.addEventListener("click", () => LV.openAuth("signup"));
     document.getElementById("introLogin")?.addEventListener("click", () => LV.openAuth("login"));
     if (PRE) {
