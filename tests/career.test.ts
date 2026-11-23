@@ -20,6 +20,13 @@ describe("progression des personnages", () => {
     expect(k.cosmetics).toContain("aura_survivor");
     expect(k.level).toBeGreaterThan(1);
   });
+  it("deux victoires dans deux émissions différentes font une Légende", () => {
+    const one = careerOf(c, [{ show: "survivor", season: 1, rank: 1, of: 50 }]);
+    const two = careerOf(c, [{ show: "survivor", season: 1, rank: 1, of: 50 }, { show: "arena", season: 1, rank: 1, of: 50 }]);
+    expect(one.legend).toBe(false);
+    expect(two.legend).toBe(true);
+    expect(two.titles[0]).toBe("Légende de The Last");
+  });
   it("le niveau suit les paliers", () => {
     expect(levelOf(0)).toBe(1);
     expect(levelOf(40)).toBe(2);

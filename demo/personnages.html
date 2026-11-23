@@ -97,6 +97,20 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
 .palm li small, .muted { color: var(--mist); font-size: 13px; margin: 0; }
 .acts { display: flex; gap: 8px; flex-wrap: wrap; }
 .watch.alt { background: var(--raise); color: var(--sand); border: 1px solid var(--line); }
+.card .ph .fan { position: absolute; right: 8px; bottom: 8px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--danger); color: #fff; font-size: 14px; }
+.legendline { margin: 0; font-size: 13.5px; }
+.links h4 { margin: 4px 0 6px; font-family: var(--display); font-size: 14px; }
+.links a { display: flex; gap: 10px; align-items: center; text-decoration: none; padding: 4px 0; }
+.links img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: #d9d6d2; }
+.links b { display: block; font-family: var(--display); font-size: 14px; }
+.links small { color: var(--mist); font-size: 12px; }
+.links a:hover b { color: var(--torch); }
+.fanbox { display: grid; gap: 8px; justify-items: start; }
+.fanbtn { border: 1px solid var(--danger); background: none; color: var(--danger); border-radius: 999px; padding: 8px 16px; font-family: var(--display); font-weight: 700; }
+.fanbtn[aria-pressed="true"] { background: var(--danger); color: #fff; }
+.fbadges { display: flex; gap: 6px; flex-wrap: wrap; }
+.fbadges span { font-size: 12.5px; border: 1px dashed var(--line); border-radius: 999px; padding: 2px 10px; color: var(--mist); opacity: .7; }
+.fbadges span.got { border-style: solid; border-color: var(--torch); color: var(--sand); opacity: 1; }
 .close, .nav { position: absolute; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: color-mix(in srgb, var(--ink) 85%, transparent); font-size: 22px; line-height: 1; display: grid; place-items: center; }
 .close { top: 12px; right: 12px; }
 .nav.prev { top: 12px; left: 12px; }
@@ -109,6 +123,7 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
   .box { grid-template-columns: 1fr; max-height: 100dvh; border-radius: 0; border: 0; }
   .top nav a { padding: 6px 9px; }
 }
+@media (max-width: 460px) { .logo { font-size: 16px; letter-spacing: .12em; } .top nav a { padding: 6px 7px; font-size: 13px; } .top .wrap, .top { gap: 10px; } }
 </style>
 </head>
 <body>
@@ -133,6 +148,7 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
         <button type="button" data-f="season" aria-pressed="false">Sur l'île</button>
         <button type="button" data-f="featured" aria-pressed="false">À suivre</button>
         <button type="button" data-f="champ" aria-pressed="false">Palmarès</button>
+        <button type="button" data-f="fan" aria-pressed="false">Mon fan-club</button>
       </div>
       <input type="search" id="q" placeholder="Chercher un nom, un métier, une ville…" aria-label="Chercher un personnage">
       <span class="count" id="count"></span>
@@ -145,6 +161,7 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
   <div class="box" id="box"></div>
 </div>
 
+<script src="fanclub.js"></script>
 <script>
 (async function () {
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -152,9 +169,10 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
   const SKILL = { negotiation: "Négociation", firstAid: "Premiers secours", tracking: "Pistage", stealth: "Discrétion", orientation: "Orientation", crafting: "Bricolage", climbing: "Escalade", swimming: "Natation", endurance: "Endurance", foraging: "Cueillette" };
   const FEAR = { solitude: "la solitude", heights: "le vide", water: "l'eau profonde", darkness: "le noir", insects: "les insectes" };
   const TRAIT = [["courage", "Courage"], ["empathy", "Empathie"], ["cunning", "Ruse"], ["loyalty", "Loyauté"], ["composure", "Sang-froid"]];
-  const grid = document.getElementById("grid");
+  const grid = document.getElementById("grid"), FANS = window.TheLastFans;
+  const L = Object.fromEntries(list.map((c) => [c.id, c]));
   grid.innerHTML = list.map((c, i) => `<button type="button" class="card" data-i="${i}" data-q="${esc(`${c.name} ${c.job} ${c.origin}`.toLowerCase())}">
-    <div class="ph${c.career.cosmetics.some((x) => x.startsWith("aura")) ? " aura" : ""}"><img src="img/p/${c.id}.webp" alt="" loading="lazy" decoding="async"><span class="lvl" title="Niveau ${c.career.level}">Niv. ${c.career.level}</span>${c.featured ? `<span class="ribbon star">À suivre</span>` : c.season ? `<span class="ribbon">Sur l'île</span>` : ""}</div>
+    <div class="ph${c.career.cosmetics.some((x) => x.startsWith("aura")) ? " aura" : ""}"><img src="img/p/${c.id}.webp" alt="" loading="lazy" decoding="async"><span class="lvl" title="Niveau ${c.career.level}">${c.career.legend ? "👑 Légende" : `Niv. ${c.career.level}`}</span><span class="fan" ${FANS.isFan(c.id) ? "" : "hidden"} aria-label="Dans ton fan-club">❤</span>${c.featured ? `<span class="ribbon star">À suivre</span>` : c.season ? `<span class="ribbon">Sur l'île</span>` : ""}</div>
     <div class="t"><span class="n">${esc(c.name)}<small>${c.age} ans</small></span><span class="j">${esc(c.job)} · ${esc(c.origin)}</span><span class="q">« ${esc(c.catchphrase)} »</span></div></button>`).join("");
 
   let filter = "all";
@@ -163,7 +181,7 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
     let n = 0;
     for (const el of grid.children) {
       const c = list[el.dataset.i];
-      const ok = (filter === "all" || (filter === "champ" ? c.career.titles.length : c[filter])) && (!q || el.dataset.q.includes(q));
+      const ok = (filter === "all" || (filter === "champ" ? c.career.titles.length : filter === "fan" ? FANS.isFan(c.id) : c[filter])) && (!q || el.dataset.q.includes(q));
       el.hidden = !ok; n += ok;
     }
     document.getElementById("count").textContent = `${n} personnage${n > 1 ? "s" : ""}`;
@@ -184,8 +202,27 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
     const res = k.results.map((r) => `<li><span>${SEASON(r)}</span><b>${r.rank === 1 ? "🏆 Vainqueur" : r.rank <= 3 ? `🥈 ${r.rank}e place` : `${r.rank}e sur ${r.of}`}</b>${r.day ? `<small>évacué${c.gender === "f" ? "e" : c.gender === "x" ? "·e" : ""} le jour ${r.day}</small>` : ""}</li>`).join("");
     return `<div class="career"><h3>Carrière</h3>
       <div class="lv"><span class="big">Niveau ${k.level}</span><i><b style="width:${pct}%"></b></i><small>${k.xp} XP${k.next ? ` · niveau suivant à ${k.next}` : " · niveau maximum"}</small></div>
+      <p class="muted">${k.played.length ? `Saisons jouées : ${k.played.map((p) => SEASON(p) + (p.done ? "" : " (en cours)")).join(", ")}.` : "Pas encore de saison jouée."}</p>
       ${res ? `<ul class="palm">${res}</ul>` : `<p class="muted">Pas encore d'émission terminée. Sa carrière commence ${c.season ? "avec la saison 1 de Survivor" : "dès sa première sélection"}.</p>`}
+      <p class="legendline">${k.legend ? "👑 Légende de The Last : a gagné plusieurs émissions." : `👑 Légende : ${k.wins ? `${k.wins} victoire sur 2. Encore une victoire dans une autre émission pour devenir Légende.` : "gagner deux émissions différentes pour devenir Légende."}`}</p>
+      ${links(k.rivals, "Rivaux", "⚡")}${links(k.allies, "Alliés", "🤝")}
       ${k.cosmetics.length ? `<p class="muted">Récompense visuelle : ${k.cosmetics.map((x) => COSM[x] || x).join(", ")}.</p>` : ""}</div>`;
+  }
+
+  function links(arr, title, ico) {
+    if (!arr?.length) return "";
+    return `<div class="links"><h4>${ico} ${title}</h4>${arr.map((x) => `<a href="#${x.id}"><img src="img/p/${x.id}.webp" alt=""><span><b>${esc(L[x.id].name)}</b><small>${esc(x.why.join(", "))} · ${esc(x.where)}</small></span></a>`).join("")}</div>`;
+  }
+  const ELIG = await fetch("emissions.json").then((r) => r.json()).then((e) => e.eligible).catch(() => ({ retour: [], allstars: [] }));
+  function paintFan(c) {
+    const on = FANS.isFan(c.id), b = FANS.badges(c), m = FANS.members(c);
+    document.getElementById("fanBox").innerHTML = `<div class="fanbox"><button type="button" class="fanbtn" id="fanBtn" aria-pressed="${on}">${on ? "❤ Dans ton fan-club" : "♡ Rejoindre son fan-club"}</button>
+      <span class="muted">${m.toLocaleString("fr-FR")} fans · badges gratuits, gagnés en revenant</span>
+      ${on ? `<div class="fbadges">${FANS.BADGES.map((x) => `<span class="${b.got.some((g) => g.id === x.id) ? "got" : ""}" title="${esc(x.text)}">${x.icon} ${x.name}</span>`).join("")}</div>${b.next ? `<span class="muted">Prochain badge : ${b.next.icon} ${b.next.name}, encore ${b.next.left} jour${b.next.left > 1 ? "s" : ""} de visite.</span>` : ""}` : ""}</div>`;
+    document.getElementById("fanBtn").addEventListener("click", () => {
+      FANS.toggle(c.id); paintFan(c);
+      grid.querySelector(`[data-i="${list.indexOf(c)}"] .fan`).hidden = !FANS.isFan(c.id);
+    });
   }
 
   // fiche
@@ -200,16 +237,18 @@ input[type=search] { flex: 1 1 220px; max-width: 380px; background: var(--deep);
         <div class="seg" role="group" aria-label="Tenue"><button type="button" data-o="s" aria-pressed="${outfit === "s"}">Naufragé${c.gender === "f" ? "e" : c.gender === "x" ? "·e" : ""}</button><button type="button" data-o="b" aria-pressed="${outfit === "b"}">Tenue de départ</button></div></div>
       <div class="info">
         <div><h2 id="sName">${esc(c.name)}</h2><div class="meta">${c.age} ans · ${esc(c.job)} · ${esc(c.origin)}</div></div>
-        <div class="badges">${c.featured ? `<span class="star">★ À suivre cette saison</span>` : ""}${c.season ? `<span>Sur l'île · Saison 1</span>` : `<span>En réserve cette semaine</span>`}${c.career.titles.map((t) => `<span class="star">${t.startsWith("Vainqueur") ? "🏆" : "🥈"} ${esc(t)}</span>`).join("")}</div>
+        <div class="badges">${c.featured ? `<span class="star">★ À suivre cette saison</span>` : ""}${c.season ? `<span>Sur l'île · Saison 1</span>` : `<span>En réserve cette semaine</span>`}${c.career.titles.map((t) => `<span class="star">${t.startsWith("Légende") ? "👑" : t.startsWith("Vainqueur") ? "🏆" : "🥈"} ${esc(t)}</span>`).join("")}</div>
         <p class="quote">« ${esc(c.catchphrase)} »</p>
+        <div id="fanBox"></div>
         <div><h3>Son histoire</h3><p>${esc(c.bio)}</p></div>
         <div><h3>Sa motivation</h3><p>${esc(c.motivation)}</p></div>
         <div><h3>Caractère</h3><div class="bars">${TRAIT.map(([k, t]) => { const b = c.career.bonus[k] || 0; return `<div class="bar"><span>${t}</span><i><b style="width:${c.traits[k]}%"></b>${b ? `<b class="up" style="width:${b}%"></b>` : ""}</i><span>${c.traits[k] + b}${b ? `<em>+${b}</em>` : ""}</span></div>`; }).join("")}</div></div>
         <div><h3>Atouts</h3><div class="badges">${c.skills.map((s) => `<span>${SKILL[s] || s}</span>`).join("")}${c.career.learned.map((s) => `<span class="new">✨ ${SKILL[s] || s}, appris</span>`).join("")}</div></div>
         ${career(c)}
         <div><h3>Sa grande peur</h3><p>${FEAR[c.phobia] ? FEAR[c.phobia][0].toUpperCase() + FEAR[c.phobia].slice(1) : esc(c.phobia)}. Son secret, lui, se dévoile pendant la saison.</p></div>
-        <div class="acts">${c.season ? `<a class="watch" href="survivor.html">▶ Suivre ${esc(c.name)} dans Survivor</a>` : ""}<a class="watch alt" href="selection.html#${c.id}">⚔️ Voter pour l'envoyer dans Arena Battle</a></div>
+        <div class="acts">${c.season ? `<a class="watch" href="survivor.html">▶ Suivre ${esc(c.name)} dans Survivor</a>` : ""}<a class="watch alt" href="selection.html#arena:${c.id}">⚔️ L'envoyer dans Arena Battle</a>${ELIG.allstars.includes(c.id) ? `<a class="watch alt" href="selection.html#allstars:${c.id}">⭐ Voter pour l'All-Stars</a>` : ""}${ELIG.retour.includes(c.id) ? `<a class="watch alt" href="selection.html#retour:${c.id}">🔁 Le repêcher</a>` : ""}</div>
       </div>`;
+    paintFan(c);
     box.querySelectorAll(".art .seg button").forEach((b) => b.addEventListener("click", () => {
       outfit = b.dataset.o; document.getElementById("sImg").src = `img/${outfit}/${c.id}.webp`;
       box.querySelectorAll(".art .seg button").forEach((x) => x.setAttribute("aria-pressed", x === b));
