@@ -45,7 +45,26 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 
 /* Mise en page */
 .stage { display: grid; gap: 16px; padding-block: 16px 40px; grid-template-columns: 1fr; }
-@media (min-width: 900px) { .stage { grid-template-columns: minmax(0, 1fr) clamp(340px, 30vw, 520px); align-items: start; } .mapbox canvas { aspect-ratio: auto; height: clamp(420px, calc(100dvh - 200px), 76vw); } .side { position: sticky; top: 70px; max-height: calc(100vh - 86px); overflow-y: auto; } }
+@media (min-width: 900px) { .stage { grid-template-columns: minmax(0, 1fr) clamp(340px, 30vw, 520px); align-items: start; } .mapbox canvas { aspect-ratio: auto; height: clamp(420px, calc(100dvh - 200px), 76vw); } .side { position: sticky; top: 70px; } }
+/* rubriques : barre du bas, façon appli */
+.side { display: flex; flex-direction: column; }
+.sidebody { flex: 1; min-height: 0; }
+.dock { display: grid; grid-template-columns: repeat(4, 1fr); background: color-mix(in srgb, var(--ink) 94%, transparent); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+.tab { background: none; border: 0; padding: 7px 2px 8px; display: grid; justify-items: center; gap: 1px; font-family: var(--display); font-weight: 600; font-size: 11.5px; letter-spacing: .03em; color: var(--mist); white-space: nowrap; position: relative; }
+.tab .ico { font-size: 20px; line-height: 1.15; filter: grayscale(.6); opacity: .8; }
+.tab:hover { color: var(--sand); }
+.tab[aria-selected="true"] { color: var(--torch); }
+.tab[aria-selected="true"] .ico { filter: none; opacity: 1; }
+.tab[aria-selected="true"]::before { content: ""; position: absolute; top: -1px; left: 28%; right: 28%; height: 3px; border-radius: 0 0 3px 3px; background: var(--torch); }
+.tab .badge { position: absolute; top: 3px; left: calc(50% + 7px); min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; background: var(--danger); color: #fff; font: 700 10.5px/17px var(--body); text-align: center; box-shadow: 0 0 0 2px var(--ink); }
+@media (min-width: 900px) {
+  .side { height: calc(100dvh - 86px); max-height: none ; overflow: hidden ; border: 1px solid var(--line); border-radius: 14px; background: var(--deep); }
+  .sidebody { overflow-y: auto; padding: 14px; }
+}
+@media (max-width: 899px) {
+  body:not(.fs) { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
+  .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; padding-bottom: env(safe-area-inset-bottom, 0px); }
+}
 /* fiche du candidat : bouton sur la carte et fenêtre par-dessus */
 .mechip { position: absolute; top: 10px; left: 10px; z-index: 3; display: flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid var(--torch); background: color-mix(in srgb, var(--ink) 82%, transparent); color: var(--sand); padding: 3px 12px 3px 3px; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .04em; max-width: 50%; }
 .mechip .mf { width: 30px; height: 30px; flex: none; }
@@ -174,10 +193,6 @@ body.fs .fsbtn { bottom: 164px; }
 .daymarks { display: flex; justify-content: space-between; font-family: var(--display); font-size: 11px; color: var(--mist); letter-spacing: .08em; padding-inline: 4px; }
 
 /* Panneau latéral */
-.tabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
-.tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 2px; font-family: var(--display); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: clamp(11px, 0.9vw, 13px); text-align: center; color: var(--mist); white-space: nowrap; position: relative; }
-.tab[aria-selected="true"] { color: var(--sand); border-bottom-color: var(--torch); }
-.tab .badge { position: absolute; top: 4px; right: 2px; width: 7px; height: 7px; border-radius: 50%; background: var(--torch); }
 
 .hero { display: flex; gap: 14px; align-items: center; }
 .hero .face { width: 88px; height: 88px; flex: none; }
@@ -376,17 +391,19 @@ body.fs .fsbtn { bottom: 164px; }
   </section>
 
   <aside class="side">
+   <div class="sidebody" id="sidebody">
     <div class="card prono" id="prono" hidden></div>
-    <nav class="tabs" role="tablist">
-      <button class="tab" role="tab" id="tab-feed" aria-selected="true" type="button">Direct</button>
-      <button class="tab" role="tab" id="tab-daily" aria-selected="false" type="button">Quotidienne</button>
-      <button class="tab" role="tab" id="tab-rel" aria-selected="false" type="button">Relations</button>
-      <button class="tab" role="tab" id="tab-cast" aria-selected="false" type="button">Casting</button>
-    </nav>
     <div id="panel-feed"><div class="card intrigues" id="intrigues" hidden></div><ul class="feed" id="feed"></ul></div>
     <div id="panel-daily" class="daily" hidden></div>
     <div id="panel-rel" hidden></div>
     <div id="panel-cast" hidden><div class="grid" id="castGrid"></div></div>
+   </div>
+    <nav class="dock" role="tablist" aria-label="Rubriques">
+      <button class="tab" role="tab" id="tab-feed" aria-selected="true" type="button"><span class="ico" aria-hidden="true">📡</span>Direct<span class="badge" hidden></span></button>
+      <button class="tab" role="tab" id="tab-daily" aria-selected="false" type="button"><span class="ico" aria-hidden="true">🌅</span>Quotidienne<span class="badge" hidden></span></button>
+      <button class="tab" role="tab" id="tab-rel" aria-selected="false" type="button"><span class="ico" aria-hidden="true">🤝</span>Relations<span class="badge" hidden></span></button>
+      <button class="tab" role="tab" id="tab-cast" aria-selected="false" type="button"><span class="ico" aria-hidden="true">👥</span>Casting<span class="badge" hidden></span></button>
+    </nav>
   </aside>
 </main>
 
@@ -896,9 +913,29 @@ body.fs .fsbtn { bottom: 164px; }
       document.getElementById("tab-" + n).setAttribute("aria-selected", n === name);
       document.getElementById("panel-" + n).hidden = n !== name;
     }
+    seen[name] = tabNews(name).mark;
+    document.getElementById("sidebody").scrollTop = 0;
     render();
   }
   for (const n of ["feed", "daily", "rel", "cast"]) document.getElementById("tab-" + n).addEventListener("click", () => select(n));
+
+  // pastilles de nouveautés sur les rubriques qu'on ne regarde pas
+  var seen = {};
+  var REL_NEWS = new Set(["alliance", "clan_join", "steal", "sabotage", "dispute", "suspicion"]);
+  function tabNews(n) {
+    if (n === "feed") { const l = plan === "free" ? [] : D.events.filter((ev) => ev.t <= tick && ev.w >= 2); return { mark: l.length, count: l.length - (seen.feed ?? l.length) }; }
+    if (n === "daily") { const d = [...Array(D.days)].filter((_, i) => tick >= i * 24 + D.voteHour).length; return { mark: d, count: d - (seen.daily ?? d) }; }
+    if (n === "rel") { const l = D.events.filter((ev) => ev.t <= tick && REL_NEWS.has(ev.type)); return { mark: l.length, count: l.length - (seen.rel ?? l.length) }; }
+    const l = D.events.filter((ev) => ev.t <= tick && ev.type === "evacuated"); return { mark: l.length, count: l.length - (seen.cast ?? l.length) };
+  }
+  function tabBadges() {
+    for (const n of ["feed", "daily", "rel", "cast"]) {
+      const b = document.querySelector(`#tab-${n} .badge`), x = tabNews(n);
+      if (n === active || seen[n] === undefined || x.count < 0) seen[n] = x.mark;
+      const c = n === active ? 0 : Math.max(0, x.mark - seen[n]);
+      b.hidden = !c; b.textContent = c > 9 ? "9+" : c;
+    }
+  }
 
   // ---------- plein écran ----------
   const fsBtn = document.getElementById("fsBtn");
@@ -931,6 +968,7 @@ body.fs .fsbtn { bottom: 164px; }
     if (active === "cast") panelCast();
     if (active === "rel") panelRel();
     badge();
+    tabBadges();
     lockState();
     paintGift();
     prono();
