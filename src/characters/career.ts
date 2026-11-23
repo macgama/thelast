@@ -16,7 +16,13 @@ export interface Career {
   learned: string[];
   cosmetics: string[];
   titles: string[];
+  wins: number;
+  shows: string[]; // émissions gagnées, sans doublon
+  legend: boolean;
 }
+
+/** Une Légende a gagné au moins deux émissions différentes (ou trois saisons, toutes émissions confondues). */
+export const LEGEND = { shows: 2, wins: 3 };
 
 export const SHOW_NAMES: Record<string, string> = { survivor: "Survivor", arena: "Arena Battle", treasure: "Chasse au trésor" };
 const nameOf = (r: ShowResult) => `${SHOW_NAMES[r.show] ?? r.show} ${r.season === 0 ? "pilote" : `S${r.season}`}`;
@@ -43,7 +49,7 @@ export function levelOf(xp: number): number {
 
 /** Calcule la carrière à partir des résultats, dans l'ordre chronologique. */
 export function careerOf(c: { skills: string[]; traits: Record<Trait, number> }, results: ShowResult[]): Career {
-  const k: Career = { results, xp: 0, level: 1, next: LEVELS[1], bonus: {}, learned: [], cosmetics: [], titles: [] };
+  const k: Career = { results, xp: 0, level: 1, next: LEVELS[1], bonus: {}, learned: [], cosmetics: [], titles: [], wins: 0, shows: [], legend: false };
   const add = (t: Trait, n: number) => (k.bonus[t] = Math.min((k.bonus[t] ?? 0) + n, 100 - c.traits[t]));
   for (const r of results) {
     k.xp += xpFor(r);
@@ -52,6 +58,8 @@ export function careerOf(c: { skills: string[]; traits: Record<Trait, number> },
       const skill = (SHOW_SKILLS[r.show] ?? []).find((s) => !c.skills.includes(s) && !k.learned.includes(s));
       if (skill) k.learned.push(skill);
       k.cosmetics.push(`aura_${r.show}`);
+      k.wins++;
+      if (!k.shows.includes(r.show)) k.shows.push(r.show);
       k.titles.push(`Vainqueur · ${nameOf(r)}`);
     } else if (r.rank <= 3) {
       add("courage", 2); add("composure", 2);
@@ -61,6 +69,8 @@ export function careerOf(c: { skills: string[]; traits: Record<Trait, number> },
       add("composure", 1);
     }
   }
+  k.legend = k.shows.length >= LEGEND.shows || k.wins >= LEGEND.wins;
+  if (k.legend) { k.titles.unshift("Légende de The Last"); k.cosmetics.push("legend"); }
   k.level = levelOf(k.xp);
   k.next = k.level < LEVELS.length ? LEVELS[k.level] : null;
   return k;

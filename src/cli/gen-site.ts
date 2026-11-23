@@ -56,6 +56,24 @@ const results: Record<string, ShowResult[]> = {};
 for (const x of pilotRank) (results[x.id] ??= []).push({ show: "survivor", season: 0, rank: x.rank, of: pilot.cast.length, day: x.day, cause: x.cause });
 const inS1 = new Set(s1.cast.map((c) => c.id));
 
+// Rivalités et alliances nées pendant les saisons terminées (la saison 1 est en cours : on n'en dévoile rien)
+const RIVAL: Record<string, string> = { steal: "vol", sabotage: "sabotage", suspicion: "soupçons", dispute: "dispute", conspire: "complot" };
+const ALLY: Record<string, string> = { alliance: "alliance", clan_join: "même clan", share: "partage", defend: "défense" };
+const links: Record<string, Record<string, { rival: number; ally: number; why: string[] }>> = {};
+for (const e of pilot.events) {
+  const [a, b] = e.actors;
+  if (!a || !b || a === b || !(RIVAL[e.type] || ALLY[e.type])) continue;
+  if (e.type === "steal" && !e.data?.caught && !e.data?.betrayal) continue; // un vol passé inaperçu ne crée pas de rivalité
+  for (const [x, y] of [[a, b], [b, a]]) {
+    const l = ((links[x] ??= {})[y] ??= { rival: 0, ally: 0, why: [] });
+    if (RIVAL[e.type]) l.rival++; else l.ally++;
+    const w = e.type === "steal" && e.data?.betrayal ? "trahison" : RIVAL[e.type] ?? ALLY[e.type];
+    if (!l.why.includes(w)) l.why.push(w);
+  }
+}
+const top = (id: string, k: "rival" | "ally") => Object.entries(links[id] ?? {}).filter(([, l]) => l[k] > 0 && (k === "ally" ? l.ally > l.rival : l.rival >= l.ally))
+  .sort((x, y) => y[1][k] - x[1][k]).slice(0, 3).map(([o, l]) => ({ id: o, n: l[k], why: l.why.filter((w) => (k === "rival" ? Object.values(RIVAL).includes(w) || w === "trahison" : Object.values(ALLY).includes(w))), where: "Survivor · saison pilote" }));
+
 const people = pool.map((c) => {
   const k = careerOf(c, results[c.id] ?? []);
   return {
@@ -63,7 +81,9 @@ const people = pool.map((c) => {
     bio: c.backstory.fr, motivation: c.motivation.fr, catchphrase: c.catchphrase.fr,
     traits: c.traits, skills: c.skills, phobia: c.phobia, signature: looks[c.id]?.signature ?? "",
     season: inS1.has(c.id), featured: !!featured[c.id],
-    career: { xp: k.xp, level: k.level, next: k.next, bonus: k.bonus, learned: k.learned, cosmetics: k.cosmetics, titles: k.titles, results: k.results },
+    career: { xp: k.xp, level: k.level, next: k.next, bonus: k.bonus, learned: k.learned, cosmetics: k.cosmetics, titles: k.titles, results: k.results, wins: k.wins, legend: k.legend,
+      played: [...k.results.map((r) => ({ show: r.show, season: r.season, done: true })), ...(inS1.has(c.id) ? [{ show: "survivor", season: 1, done: false }] : [])],
+      rivals: top(c.id, "rival"), allies: top(c.id, "ally") },
   };
 });
 writeFileSync("demo/personnages.json", JSON.stringify(people));
@@ -80,16 +100,41 @@ const shows = [
     ],
   },
   {
-    id: "arena", name: "The Last - Arena Battle", tagline: "Une arène, des duels, un seul debout.",
+    id: "arena", name: "The Last - Arena Battle", tagline: "Une arène, des duels, un seul debout.", icon: "⚔️",
     text: "La deuxième émission de The Last, en préparation. Des duels chaque jour et une mêlée finale, avec des armes cartoon. Les candidats viennent du même vivier de 100 personnages.",
     genres: ["Combat", "Duels", "Trahisons"], status: "casting",
     seasons: [{ n: 1, label: "Saison 1", status: "casting", cast: 50, voted: 30, episodes: [] }],
   },
   {
-    id: "treasure", name: "The Last - Chasse au trésor", tagline: "Des indices, une carte immense, un seul trésor.",
-    text: "Des indices cachés sur une carte immense. Les candidats fouillent, se méfient et se volent les pistes. Le premier au trésor gagne. Nom provisoire.",
+    id: "retour", name: "The Last - Le Retour", tagline: "Une seconde chance, votée par le public.", special: true, icon: "🔁",
+    text: "Émission spéciale de 24 heures. Les spectateurs repêchent 10 anciens candidats évacués. Ils s'affrontent sur l'île, et le vainqueur gagne sa place dans la prochaine saison de Survivor.",
+    genres: ["Spécial", "Repêchage"], status: "casting",
+    seasons: [{ n: 1, label: "Spécial 1", status: "casting", cast: 10, voted: 10, episodes: [] }],
+  },
+  {
+    id: "allstars", name: "The Last - All-Stars", tagline: "Les meilleurs de Survivor et d'Arena, réunis.", special: true, icon: "⭐",
+    text: "Le crossover des champions : 20 personnages parmi les plus expérimentés, choisis par le public. Trois jours sur l'île, puis quatre jours dans l'arène. Le vainqueur devient une Légende s'il a déjà gagné une autre émission.",
+    genres: ["Crossover", "Champions", "Survie", "Combat"], status: "casting",
+    seasons: [{ n: 1, label: "Saison 1", status: "casting", cast: 20, voted: 20, episodes: [] }],
+  },
+  {
+    id: "treasure", name: "The Last - Chasse au trésor", tagline: "Des indices, une carte immense, un seul trésor.", icon: "🗺️",
+    text: "Des indices cachés sur une carte immense. Les candidats fouillent, déchiffrent, se méfient et se volent les pistes. Le premier au trésor gagne.",
     genres: ["Énigmes", "Exploration"], status: "soon", seasons: [],
   },
+  {
+    id: "course", name: "The Last - Course autour du monde", tagline: "Sept jours, sept pays, une seule ligne d'arrivée.", icon: "🌍",
+    text: "Des binômes traversent le monde avec un petit budget : une étape par jour, des épreuves locales et des raccourcis risqués. Les derniers arrivés sont éliminés. Le public choisit chaque soir le pays suivant.",
+    genres: ["Aventure", "Voyage", "Binômes"], status: "soon", seasons: [],
+  },
+  {
+    id: "manoir", name: "The Last - Huis clos", tagline: "Un manoir, des secrets, un traître parmi eux.", icon: "🕯️",
+    text: "Enfermés dans un manoir, les candidats mènent l'enquête : chaque nuit, un mystère frappe. Alliances, faux indices et trahisons. Les spectateurs voient tout et votent pour démasquer le coupable avant les candidats.",
+    genres: ["Enquête", "Mystère", "Trahisons"], status: "soon", seasons: [],
+  },
 ];
-writeFileSync("demo/emissions.json", JSON.stringify({ shows, top: [...people].sort((a, b) => b.career.xp - a.career.xp).slice(0, 10).map((p) => p.id) }));
+// Éligibles des votes spéciaux : les évacués de la saison terminée (repêchage), les plus expérimentés (All-Stars)
+const retour = pilotRank.filter((x) => x.rank > 1).map((x) => x.id);
+const allstars = [...people].sort((a, b) => b.career.xp - a.career.xp).slice(0, 30).map((p) => p.id);
+writeFileSync("demo/emissions.json", JSON.stringify({ shows, eligible: { retour, allstars }, top: [...people].sort((a, b) => b.career.xp - a.career.xp).slice(0, 10).map((p) => p.id) }));
 console.log(`demo/emissions.json : ${shows.length} émissions · demo/personnages.json : ${people.length} fiches · pilote gagné par ${C[pilot.winner!]?.name}`);
