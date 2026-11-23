@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Last · Back-office</title>
+<meta name="robots" content="noindex">
+<style>
+:root { --ink: #0a0f16; --deep: #0f1722; --line: #2a3442; --sand: #f3e6cf; --mist: #9aa7b5; --torch: #ff8a3d; --safe: #62d6a0; --danger: #ff5b6b; --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--sand); font: 15px/1.45 var(--body); }
+a { color: var(--torch); }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+header { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--ink) 94%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+header .wrap { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; padding-block: 10px; }
+.logo { font-weight: 800; letter-spacing: .16em; text-decoration: none; color: var(--sand); }
+.logo b { color: var(--torch); }
+nav { display: flex; gap: 6px; flex-wrap: wrap; }
+nav button { font: inherit; font-size: 14px; background: none; border: 1px solid var(--line); color: var(--mist); border-radius: 999px; padding: 6px 12px; cursor: pointer; min-height: 36px; }
+nav button[aria-pressed="true"] { background: var(--sand); color: var(--ink); border-color: var(--sand); font-weight: 700; }
+.me { margin-left: auto; color: var(--mist); font-size: 13px; }
+main { padding-block: 20px 60px; }
+h1 { font-size: 24px; margin: 0 0 6px; }
+h2 { font-size: 18px; margin: 0 0 10px; }
+.lede { color: var(--mist); margin: 0 0 18px; max-width: 75ch; }
+.card { background: var(--deep); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+.grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.btn { font: inherit; font-size: 14px; font-weight: 600; border: 1px solid var(--line); background: var(--ink); color: var(--sand); border-radius: 10px; padding: 8px 14px; cursor: pointer; min-height: 40px; }
+.btn.main { background: var(--torch); border-color: var(--torch); color: #1a0f05; }
+.btn.danger { border-color: var(--danger); color: var(--danger); }
+.btn:disabled { opacity: .5; cursor: default; }
+label { display: grid; gap: 4px; font-size: 13px; color: var(--mist); }
+input, select, textarea { font: inherit; color: var(--sand); background: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; min-height: 40px; width: 100%; }
+textarea { min-height: 70px; resize: vertical; }
+input[type=checkbox] { width: auto; min-height: 0; }
+input[type=range] { padding: 0; accent-color: var(--torch); }
+fieldset { border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin: 0 0 12px; display: grid; gap: 10px; }
+legend { color: var(--torch); font-weight: 700; padding: 0 6px; }
+.two { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 640px) { .two { grid-template-columns: 1fr; } }
+.pill { display: inline-block; font-size: 12px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--mist); }
+.pill.live { border-color: var(--danger); color: var(--danger); }
+.pill.scheduled { border-color: var(--torch); color: var(--torch); }
+.pill.done { border-color: var(--safe); color: var(--safe); }
+.muted { color: var(--mist); font-size: 13px; }
+.err { color: var(--danger); }
+.ok { color: var(--safe); }
+.item { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: center; text-align: left; background: var(--deep); border: 1px solid var(--line); border-radius: 12px; padding: 8px; color: inherit; font: inherit; cursor: pointer; }
+.item:hover { border-color: var(--torch); }
+.item img, .item .ico { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; background: var(--ink); display: grid; place-items: center; font-size: 28px; }
+.item small { color: var(--mist); display: block; }
+.item.off { opacity: .45; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { color: var(--mist); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+.tablewrap { overflow-x: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips label { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; color: var(--sand); }
+.trait { display: grid; grid-template-columns: 120px 1fr 40px; gap: 8px; align-items: center; }
+.sheet { position: fixed; inset: 0; z-index: 20; background: #000a; display: grid; place-items: center; padding: 12px; }
+.sheet > form { width: 100%; max-width: 760px; max-height: calc(100dvh - 24px); overflow-y: auto; background: var(--ink); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+.sheet .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; position: sticky; top: -16px; background: var(--ink); padding: 6px 0; z-index: 1; }
+.toast { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); background: var(--deep); border: 1px solid var(--torch); border-radius: 12px; padding: 10px 16px; z-index: 30; max-width: calc(100vw - 32px); }
+.gate { max-width: 520px; margin: 60px auto; text-align: center; }
+.kpi { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin: 10px 0; }
+.kpi div { background: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+.kpi b { display: block; font-size: 20px; }
+.help { border-left: 3px solid var(--torch); padding: 4px 0 4px 10px; color: var(--mist); font-size: 13px; margin: 0 0 12px; }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="survivor.html">THE <b>LAST</b> · back-office</a>
+  <nav id="nav" hidden>
+    <button type="button" data-tab="seasons" aria-pressed="true">📅 Saisons</button>
+    <button type="button" data-tab="chars" aria-pressed="false">👥 Personnages</button>
+    <button type="button" data-tab="cats" aria-pressed="false">🌪️ Catastrophes</button>
+    <button type="button" data-tab="users" aria-pressed="false">🙋 Spectateurs</button>
+    <button type="button" data-tab="settings" aria-pressed="false">⚙️ Réglages</button>
+  </nav>
+  <span class="me" id="me"></span>
+</div></header>
+<main class="wrap" id="main"><p class="muted">Chargement…</p></main>
+
+<script src="config.js"></script>
+<script src="vendor/supabase.js"></script>
+<script src="i18n.js"></script>
+<script src="live.js"></script>
+<script>
+(async function () {
+  "use strict";
+  const LV = window.TheLastLive;
+  const main = document.getElementById("main");
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[m]);
+  const toast = (msg, ok = true) => { const d = document.createElement("div"); d.className = "toast"; d.innerHTML = `<span class="${ok ? "ok" : "err"}">${esc(msg)}</span>`; document.body.appendChild(d); setTimeout(() => d.remove(), 4000); };
+  const fail = (e) => toast(LV?.errText ? LV.errText(e) : String(e?.message || e), false);
+
+  if (!LV?.enabled) {
+    main.innerHTML = `<div class="gate card"><h1>Back-office pas encore branché</h1><p class="lede">Le site n'est pas relié à la base de données (fichier config.js vide). Suis le guide de mise en ligne, étape « Relier le site à Supabase ».</p></div>`;
+    return;
+  }
+  await LV.init();
+  LV.onChange(() => location.reload());
+  const sb = LV.sb;
+  if (!LV.user) {
+    main.innerHTML = `<div class="gate card"><h1>Back-office</h1><p class="lede">Connecte-toi avec ton compte de concepteur.</p><button class="btn main" id="login">Se connecter</button></div>`;
+    document.getElementById("login").addEventListener("click", () => LV.openAuth("login"));
+    return;
+  }
+  if (!LV.isAdmin()) {
+    main.innerHTML = `<div class="gate card"><h1>Accès réservé</h1><p class="lede">Ton compte (${esc(LV.profile?.pseudo)}) n'est pas administrateur. Demande à un concepteur de te nommer depuis l'onglet « Spectateurs ».</p><a class="btn" href="survivor.html">Retour à l'émission</a></div>`;
+    return;
+  }
+  document.getElementById("me").innerHTML = `👤 ${esc(LV.profile.pseudo)} · <a href="#" id="out">se déconnecter</a>`;
+  document.getElementById("out").addEventListener("click", (e) => { e.preventDefault(); LV.signOut(); });
+  const nav = document.getElementById("nav");
+  nav.hidden = false;
+  const tabs = { seasons, chars, cats, users, settings };
+  let current = (location.hash.slice(1) in tabs) ? location.hash.slice(1) : "seasons";
+  nav.querySelectorAll("[data-tab]").forEach((b) => b.addEventListener("click", () => show(b.dataset.tab)));
+  function show(name) {
+    current = name; location.hash = name;
+    nav.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tab === name)));
+    main.innerHTML = `<p class="muted">Chargement…</p>`;
+    tabs[name]().catch((e) => { main.innerHTML = `<div class="card err">Erreur : ${esc(e.message || e)}</div>`; });
+  }
+
+  // Petit utilitaire : une fenêtre d'édition
+  function sheet(title, inner, onSave, extra = "") {
+    const box = document.createElement("div");
+    box.className = "sheet";
+    box.innerHTML = `<form novalidate><div class="top"><h2>${esc(title)}</h2><div class="row">${extra}<button type="button" class="btn" data-x>Annuler</button><button type="submit" class="btn main">Enregistrer</button></div></div>${inner}<p class="err" data-err></p></form>`;
+    document.body.appendChild(box);
+    const f = box.querySelector("form");
+    const close = () => box.remove();
+    box.querySelector("[data-x]").addEventListener("click", close);
+    box.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    f.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = f.querySelector("[type=submit]"); btn.disabled = true;
+      try { await onSave(f); close(); toast("Enregistré ✓"); show(current); }
+      catch (err) { f.querySelector("[data-err]").textContent = err.message || String(err); btn.disabled = false; }
+    });
+    return { box, form: f, close };
+  }
+  const val = (f, n) => f.elements[n]?.value?.trim() ?? "";
+  const num = (f, n) => Number(f.elements[n]?.value);
+
+  // ================= Saisons =================
+  const localInput = (iso) => { const d = new Date(iso); const p = (n) => String(n).padStart(2, "0"); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; };
+  const fmt = (iso) => iso ? new Date(iso).toLocaleString("fr-FR", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "—";
+  const STATUS = { draft: "Brouillon", scheduled: "Programmée", live: "En cours", done: "Terminée" };
+  async function defaultsCfg() {
+    const { data } = await sb.from("settings").select("value").eq("key", "season_defaults").maybeSingle();
+    return data?.value || { participants: 50, days: 7, voteHour: 19, voteOpenHour: 16, threatened: 3, showrunner: { intensity: 1, maxEventsPerDay: 3 } };
+  }
+  async function seasons() {
+    const { data, error } = await sb.from("seasons").select("*").order("start_at", { ascending: false });
+    if (error) throw error;
+    main.innerHTML = `<h1>Saisons</h1>
+      <p class="lede">Une saison dure 7 jours en temps réel : elle commence le jour 1 à 8h et se termine le jour 7 vers 19h avec le Prime. Le moteur fait avancer l'île toutes les 10 minutes environ. Une saison « Programmée » démarre toute seule à son heure.</p>
+      <div class="row" style="margin-bottom:14px"><button class="btn main" id="new">＋ Nouvelle saison</button></div>
+      <div id="list">${data.length ? "" : `<div class="card muted">Aucune saison pour l'instant. Crée la première !</div>`}</div>`;
+    document.getElementById("new").addEventListener("click", () => seasonForm(null));
+    const list = document.getElementById("list");
+    for (const s of data) {
+      const eng = s.engine || {};
+      const card = document.createElement("div");
+      card.className = "card";
+      const stats = s.status === "draft" ? null : await sb.rpc("admin_stats", { p_season: s.id }).then((r) => r.data).catch(() => null);
+      const winner = s.winner && s.public ? s.public.cast.find((c) => c.id === s.winner)?.name : null;
+      card.innerHTML = `<div class="row" style="justify-content:space-between"><h2 style="margin:0">${esc(s.name)} <span class="pill ${s.status}">${STATUS[s.status]}</span></h2><span class="muted">n° ${s.id} · graine ${s.seed}</span></div>
+        <p class="muted" style="margin:6px 0 10px">Début : <b style="color:var(--sand)">${fmt(s.start_at)}</b> · vote de ${s.config?.voteOpenHour ?? 16}h à ${s.config?.voteHour ?? 19}h · ${s.config?.participants ?? 50} candidats${winner ? ` · 🏆 ${esc(winner)}` : ""}</p>
+        ${stats ? `<div class="kpi"><div><b>${stats.viewers}</b>spectateurs inscrits</div><div><b>${stats.shown}/${stats.published}</b>heures diffusées / prêtes</div><div><b>${(stats.votes || []).reduce((a, x) => a + x.n, 0)}</b>votes (${(stats.votes || []).map((x) => `J${x.day} : ${x.n}`).join(", ") || "aucun"})</div><div><b>${stats.gifts}</b>colis envoyés</div></div>` : ""}
+        ${s.status !== "draft" ? `<p class="muted" style="margin:0 0 10px">Moteur : ${eng.at ? `dernier passage ${fmt(eng.at)}, publié jusqu'au ${fmt(eng.untilAt)}` : "pas encore passé (il passe toutes les 10 minutes, dans les 48 h avant le début)"}${eng.ai ? ` · IA : ${eng.ai.lines ?? 0} scènes et ${eng.ai.confessions ?? 0} confessionnaux écrits${eng.ai.error ? ` <span class="err">(${esc(eng.ai.error === "quota" ? "quota Gemini du jour atteint" : eng.ai.error)})</span>` : ""}` : ""}${eng.error ? `<br><span class="err">Erreur au dernier passage : ${esc(eng.error)}</span>` : ""}</p>` : ""}
+        <div class="row">
+          ${s.status === "draft" ? `<button class="btn main" data-a="go">Programmer</button><button class="btn" data-a="edit">Modifier</button><button class="btn danger" data-a="del">Supprimer</button>` : ""}
+          ${s.status === "scheduled" ? `<button class="btn" data-a="edit">Modifier</button><button class="btn" data-a="draft">Repasser en brouillon</button>` : ""}
+          ${s.status !== "draft" ? `<a class="btn" href="survivor.html?saison=${s.id}">Voir l'émission</a><button class="btn danger" data-a="reset">Recommencer à zéro</button>` : ""}
+        </div>`;
+      card.querySelectorAll("[data-a]").forEach((b) => b.addEventListener("click", async () => {
+        try {
+          const a = b.dataset.a;
+          if (a === "edit") return seasonForm(s);
+          if (a === "go") {
+            const { data: others } = await sb.from("seasons").select("id,name").in("status", ["scheduled", "live"]);
+            if (others.length && !confirm(`Attention : « ${others[0].name} » est déjà programmée ou en cours. Le moteur ne fait tourner qu'une saison à la fois (celle en cours, sinon la prochaine). Programmer quand même ?`)) return;
+            if (new Date(s.start_at) < new Date() && !confirm("La date de début est déjà passée : la saison démarrera en retard (les premières heures seront diffusées d'un coup). Continuer ?")) return;
+            await upd(s.id, { status: "scheduled" });
+          }
+          if (a === "draft") await upd(s.id, { status: "draft" });
+          if (a === "del") { if (!confirm(`Supprimer « ${s.name} » ?`)) return; const r = await sb.from("seasons").delete().eq("id", s.id); if (r.error) throw r.error; }
+          if (a === "reset") {
+            const typed = prompt(`Recommencer « ${s.name} » à zéro efface tout ce qui a été diffusé, les votes et les colis de cette saison. C'est définitif.\n\nPour confirmer, tape : RECOMMENCER`);
+            if (typed !== "RECOMMENCER") return;
+            const r = await sb.rpc("admin_reset_season", { p_season: s.id }); if (r.error) throw r.error;
+          }
+          toast("C'est fait ✓"); show("seasons");
+        } catch (e) { fail(e); }
+      }));
+      list.appendChild(card);
+    }
+  }
+  async function upd(id, patch) { const r = await sb.from("seasons").update({ ...patch, updated_at: new Date().toISOString() }).eq("id", id); if (r.error) throw r.error; }
+  async function seasonForm(s) {
+    const d = s ? { ...(await defaultsCfg()), ...s.config } : await defaultsCfg();
+    const next = new Date(); next.setDate(next.getDate() + ((8 - next.getDay()) % 7 || 7)); next.setHours(8, 0, 0, 0); // lundi prochain, 8h
+    const { form } = sheet(s ? `Modifier « ${s.name} »` : "Nouvelle saison", `
+      <p class="help">La saison commence au jour 1 à 8h. Choisis l'heure de début dans ton fuseau horaire (celui de ton ordinateur).</p>
+      <div class="two"><label>Nom<input name="name" required value="${esc(s?.name || "Saison " + new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long" }))}"></label>
+      <label>Début (jour 1, 8h)<input name="start" type="datetime-local" required value="${localInput(s?.start_at || next)}"></label></div>
+      <div class="two"><label>Nombre de candidats (tirés au sort parmi les personnages actifs)<input name="participants" type="number" min="10" max="100" value="${d.participants ?? 50}"></label>
+      <label>Graine (le numéro qui fixe le tirage au sort ; laisse vide pour un nombre au hasard)<input name="seed" type="number" min="1" value="${s?.seed ?? ""}"></label></div>
+      <div class="two"><label>Ouverture du vote (heure)<input name="voteOpenHour" type="number" min="13" max="18" value="${d.voteOpenHour ?? 16}"></label>
+      <label>Fin du vote et Quotidienne (heure)<input name="voteHour" type="number" min="17" max="22" value="${d.voteHour ?? 19}"></label></div>
+      <div class="two"><label>Menacés chaque soir (le public en sauve tous sauf un)<input name="threatened" type="number" min="2" max="5" value="${d.threatened ?? 3}"></label>
+      <label>Rebondissements du showrunner (0 = calme, 1 = normal, 2 = beaucoup)<input name="intensity" type="number" min="0" max="2" step="0.5" value="${d.showrunner?.intensity ?? 1}"></label></div>`,
+      async (f) => {
+        const start = new Date(val(f, "start"));
+        if (isNaN(start)) throw new Error("Date de début invalide.");
+        if (num(f, "voteOpenHour") >= num(f, "voteHour")) throw new Error("Le vote doit ouvrir avant de fermer.");
+        const config = { ...(s?.config || {}), participants: num(f, "participants"), voteOpenHour: num(f, "voteOpenHour"), voteHour: num(f, "voteHour"), threatened: num(f, "threatened"), showrunner: { ...(d.showrunner || {}), intensity: num(f, "intensity") } };
+        const row = { name: val(f, "name"), start_at: start.toISOString(), config };
+        if (val(f, "seed")) row.seed = num(f, "seed");
+        const r = s ? await sb.from("seasons").update({ ...row, updated_at: new Date().toISOString() }).eq("id", s.id) : await sb.from("seasons").insert({ ...row, status: "draft" });
+        if (r.error) throw r.error;
+      });
+    form.elements.name.focus();
+  }
+
+  // ================= Personnages =================
+  const TRAITS = { courage: "Courage", empathy: "Empathie", cunning: "Ruse", loyalty: "Loyauté", composure: "Sang-froid" };
+  const SKILLS = { firstAid: "Premiers secours", tracking: "Pistage", climbing: "Escalade", swimming: "Natation", foraging: "Cueillette", negotiation: "Négociation", stealth: "Discrétion", endurance: "Endurance", crafting: "Bricolage", orientation: "Orientation" };
+  const PHOBIA = { insects: "Insectes", heights: "Vide", water: "Eau profonde", darkness: "Noir", solitude: "Solitude" };
+  const LOOK = {
+    build: ["slim", "average", "broad", "round"], skin: ["porcelain", "light beige", "warm tan", "golden brown", "deep brown", "dark ebony"],
+    "hair.style": ["short", "long", "buzz", "bald", "bun", "ponytail", "bob", "braids", "afro", "curly", "mohawk"], facial: ["none", "stubble", "beard", "mustache"], glasses: ["none", "round", "square", "sun"],
+    "hat.type": ["none", "cap", "beanie", "headband", "toque", "straw", "bucket", "fedora", "visor", "flatcap", "beret", "bandana", "hardhat", "helmet", "beekeeper"],
+    "top.type": ["tshirt", "tank", "shirt", "hoodie", "jacket", "coat", "overalls", "raincoat", "apron", "vest", "uniform", "polo", "sweater", "dress"], "bottom.type": ["shorts", "pants", "skirt"],
+  };
+  const get = (o, p) => p.split(".").reduce((x, k) => x?.[k], o);
+  const set = (o, p, v) => { const ks = p.split("."); let x = o; ks.slice(0, -1).forEach((k) => (x = x[k] ??= {})); x[ks.at(-1)] = v; };
+  const photoOf = (c) => c.photo || `img/p/${c.id}.webp`;
+  let charFilter = "";
+  async function chars() {
+    const { data, error } = await sb.from("characters").select("id,data,look,photo,active,updated_at").order("id");
+    if (error) throw error;
+    const on = data.filter((c) => c.active).length;
+    main.innerHTML = `<h1>Personnages</h1>
+      <p class="lede">${data.length} personnages, dont ${on} actifs. À chaque nouvelle saison, les candidats sont tirés au sort parmi les personnages actifs. Une saison déjà lancée garde ses candidats tels qu'ils étaient : tes changements valent pour les saisons suivantes.</p>
+      <div class="row" style="margin-bottom:14px"><input id="q" placeholder="Rechercher un prénom, un métier…" style="max-width:320px" value="${esc(charFilter)}"><button class="btn main" id="new">＋ Nouveau personnage</button></div>
+      <div class="grid" id="list"></div>`;
+    const paint = () => {
+      const q = charFilter.toLowerCase();
+      document.getElementById("list").innerHTML = data.filter((c) => !q || `${c.data.name} ${c.data.job?.fr} ${c.data.origin?.fr} ${c.id}`.toLowerCase().includes(q)).map((c) =>
+        `<button type="button" class="item ${c.active ? "" : "off"}" data-id="${c.id}"><img src="${esc(photoOf(c))}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><span><b>${esc(c.data.name)}</b>, ${c.data.age} ans${c.data.career?.wins ? ` · 🏆×${c.data.career.wins}` : ""}<small>${esc(c.data.job?.fr)} · ${c.active ? "actif" : "en réserve"}</small></span></button>`).join("");
+      document.querySelectorAll("#list [data-id]").forEach((b) => b.addEventListener("click", () => charForm(data.find((c) => c.id === b.dataset.id), data)));
+    };
+    document.getElementById("q").addEventListener("input", (e) => { charFilter = e.target.value; paint(); });
+    document.getElementById("new").addEventListener("click", () => {
+      const n = Math.max(0, ...data.map((c) => Number(c.id.slice(1)) || 0)) + 1;
+      const id = "c" + String(n).padStart(3, "0");
+      const blank = { id, name: "", age: 30, gender: "f", origin: { fr: "", en: "" }, job: { fr: "", en: "" }, backstory: { fr: "", en: "" }, secret: { fr: "", en: "" }, motivation: { fr: "", en: "" }, catchphrase: { fr: "", en: "" }, traits: { courage: 50, empathy: 50, cunning: 50, loyalty: 50, composure: 50 }, skills: [], phobia: "insects", career: { seasons: 0, wins: 0, bonus: {}, cosmetics: [] } };
+      charForm({ id, data: blank, look: { ...data[0]?.look, id, signature: "" }, photo: null, active: true, isNew: true }, data);
+    });
+    paint();
+  }
+  function charForm(c, all) {
+    const d = c.data, L = c.look || {};
+    const bi = (key, label, area) => `<div class="two"><label>${label} (français)${area ? `<textarea name="${key}.fr">${esc(d[key]?.fr)}</textarea>` : `<input name="${key}.fr" value="${esc(d[key]?.fr)}">`}</label><label>${label} (anglais)${area ? `<textarea name="${key}.en">${esc(d[key]?.en)}</textarea>` : `<input name="${key}.en" value="${esc(d[key]?.en)}">`}</label></div>`;
+    const opts = (list, cur) => [...new Set([...(cur ? [cur] : []), ...list])].map((v) => `<option ${v === cur ? "selected" : ""}>${esc(v)}</option>`).join("");
+    const { form } = sheet(c.isNew ? "Nouveau personnage" : `${d.name} (${c.id})`, `
+      <div class="row" style="margin-bottom:12px"><img src="${esc(photoOf(c))}" alt="" style="width:96px;height:96px;border-radius:12px;object-fit:cover;background:var(--deep)" id="ph" onerror="this.style.visibility='hidden'">
+        <label style="flex:1;min-width:200px">Photo (image carrée, JPG, PNG ou WebP, moins de 2 Mo)<input type="file" name="photo" accept="image/*"></label></div>
+      <fieldset><legend>Identité</legend>
+        <div class="two"><label>Prénom<input name="name" required value="${esc(d.name)}"></label>
+        <div class="two"><label>Âge<input name="age" type="number" min="18" max="90" value="${d.age}"></label><label>Genre<select name="gender"><option value="f" ${d.gender === "f" ? "selected" : ""}>Femme</option><option value="m" ${d.gender === "m" ? "selected" : ""}>Homme</option><option value="x" ${d.gender === "x" ? "selected" : ""}>Non binaire</option></select></label></div></div>
+        ${bi("origin", "Ville, pays")}${bi("job", "Métier")}${bi("catchphrase", "Phrase fétiche")}${bi("motivation", "Rêve / motivation")}${bi("backstory", "Son histoire", true)}${bi("secret", "Son secret (révélé pendant la saison)", true)}
+        <label class="chips" style="display:flex"><input type="checkbox" name="active" ${c.active ? "checked" : ""}> Actif (peut être tiré au sort pour les prochaines saisons)</label>
+      </fieldset>
+      <fieldset><legend>Caractère (de 0 à 100)</legend>
+        ${Object.entries(TRAITS).map(([k, l]) => `<div class="trait"><span>${l}</span><input type="range" name="t.${k}" min="0" max="100" value="${d.traits[k]}" oninput="this.nextElementSibling.textContent=this.value"><b>${d.traits[k]}</b></div>`).join("")}
+      </fieldset>
+      <fieldset><legend>Compétences (3 conseillées) et phobie</legend>
+        <div class="chips">${Object.entries(SKILLS).map(([k, l]) => `<label><input type="checkbox" name="s.${k}" ${d.skills.includes(k) ? "checked" : ""}> ${l}</label>`).join("")}</div>
+        <label>Phobie<select name="phobia">${Object.entries(PHOBIA).map(([k, l]) => `<option value="${k}" ${d.phobia === k ? "selected" : ""}>${l}</option>`).join("")}</select></label>
+      </fieldset>
+      <fieldset><legend>Apparence dans l'île en 3D</legend>
+        <div class="two">${Object.keys(LOOK).map((p) => `<label>${{ build: "Silhouette", skin: "Peau", "hair.style": "Coiffure", facial: "Barbe", glasses: "Lunettes", "hat.type": "Chapeau", "top.type": "Haut", "bottom.type": "Bas" }[p]}<select name="l.${p}">${opts(LOOK[p], get(L, p))}</select></label>`).join("")}
+        ${["hair.color", "hat.color", "top.color", "bottom.color"].map((p) => `<label>Couleur (${{ "hair.color": "cheveux", "hat.color": "chapeau", "top.color": "haut", "bottom.color": "bas" }[p]}, en anglais : red, navy blue…)<input name="l.${p}" value="${esc(get(L, p))}"></label>`).join("")}</div>
+        <label>Signe distinctif (texte libre)<input name="l.signature" value="${esc(L.signature)}"></label>
+      </fieldset>
+      ${d.career?.seasons ? `<p class="muted">Carrière : ${d.career.seasons} saison(s), ${d.career.wins} victoire(s)${d.career.cosmetics?.length ? `, effets : ${esc(d.career.cosmetics.join(", "))}` : ""}.</p>` : ""}`,
+      async (f) => {
+        const nd = JSON.parse(JSON.stringify(d));
+        nd.name = val(f, "name"); nd.age = num(f, "age"); nd.gender = f.elements.gender.value;
+        if (nd.name.length < 2) throw new Error("Il faut un prénom.");
+        if (all.some((x) => x.id !== c.id && x.data.name.toLowerCase() === nd.name.toLowerCase()) && !confirm(`Un autre personnage s'appelle déjà ${nd.name}. Garder quand même ?`)) throw new Error("Choisis un autre prénom.");
+        for (const k of ["origin", "job", "catchphrase", "motivation", "backstory", "secret"]) nd[k] = { fr: val(f, k + ".fr"), en: val(f, k + ".en") || val(f, k + ".fr") };
+        if (!nd.job.fr || !nd.backstory.fr) throw new Error("Remplis au moins le métier et l'histoire en français.");
+        for (const k of Object.keys(TRAITS)) nd.traits[k] = num(f, "t." + k);
+        nd.skills = Object.keys(SKILLS).filter((k) => f.elements["s." + k].checked);
+        if (!nd.skills.length) throw new Error("Choisis au moins une compétence.");
+        nd.phobia = f.elements.phobia.value;
+        const nl = JSON.parse(JSON.stringify(L)); nl.id = c.id;
+        for (const p of [...Object.keys(LOOK), "hair.color", "hat.color", "top.color", "bottom.color", "signature"]) set(nl, p, val(f, "l." + p));
+        let photo = c.photo;
+        const file = f.elements.photo.files[0];
+        if (file) {
+          if (file.size > 2_000_000) throw new Error("La photo dépasse 2 Mo : réduis-la avant de l'envoyer.");
+          const path = `${c.id}-${Date.now()}.${(file.name.split(".").pop() || "jpg").toLowerCase()}`;
+          const up = await sb.storage.from("portraits").upload(path, file, { upsert: true, contentType: file.type });
+          if (up.error) throw up.error;
+          photo = sb.storage.from("portraits").getPublicUrl(path).data.publicUrl;
+        }
+        const r = await sb.from("characters").upsert({ id: c.id, data: nd, look: nl, photo, active: f.elements.active.checked, updated_at: new Date().toISOString() }, { onConflict: "id" });
+        if (r.error) throw r.error;
+      });
+    form.elements.photo.addEventListener("change", () => { const fl = form.elements.photo.files[0]; if (fl) { const img = form.querySelector("#ph"); img.src = URL.createObjectURL(fl); img.style.visibility = "visible"; } });
+  }
+
+  // ================= Catastrophes =================
+  const FAM = {
+    wasps: "Piqûres (guêpes, fourmis…)", fall: "Chute", drowning: "Noyade, courant", snake: "Morsure (serpent…)", rockslide: "Éboulement", fever: "Fièvre, malaise",
+    wasp_swarm: "Essaim sur toute une zone", storm: "Tempête sur l'île", drought: "Sécheresse", heatwave: "Canicule",
+  };
+  const ISLAND_FAM = ["wasp_swarm", "storm", "drought", "heatwave"];
+  const ZONES = { beach: "plage", lagoon: "lagon", jungle: "jungle", river: "rivière", waterfall: "cascade", ruins: "ruines", cliffs: "falaises", mangrove: "mangrove", summit: "sommet", cove: "crique", cave: "grotte", springs: "sources chaudes" };
+  async function cats() {
+    const { data, error } = await sb.from("catastrophes").select("*").order("sort").order("id");
+    if (error) throw error;
+    main.innerHTML = `<h1>Catastrophes</h1>
+      <p class="lede">Chaque catastrophe appartient à une famille, qui décide de ses effets dans le jeu (blessure, soif…). Toi, tu choisis où et quand elle arrive, sa fréquence et sa mise en scène. Style cartoon : on voit la panique, jamais de sang. Une saison déjà lancée garde son catalogue.</p>
+      <div class="row" style="margin-bottom:14px"><button class="btn main" id="new">＋ Nouvelle catastrophe</button></div>
+      ${Object.entries(FAM).map(([f, l]) => `<h2 style="margin-top:18px">${l}</h2><div class="grid">${data.filter((c) => c.data.family === f).map((c) => `<button type="button" class="item ${c.active ? "" : "off"}" data-id="${esc(c.id)}"><span class="ico">${esc(c.data.icon)}</span><span><b>${esc(c.data.name?.fr || c.data.announce?.fr || c.id)}</b><small>${c.data.zones ? esc(c.data.zones.map((z) => ZONES[z] || z).join(", ")) : "partout"} · fréquence ${c.data.weight ?? 1}${c.data.when ? ` · ${c.data.when === "night" ? "la nuit" : "le jour"}` : ""}${c.active ? "" : " · désactivée"}</small></span></button>`).join("") || `<p class="muted">Aucune.</p>`}</div>`).join("")}`;
+    document.querySelectorAll("[data-id]").forEach((b) => b.addEventListener("click", () => catForm(data.find((c) => c.id === b.dataset.id), data)));
+    document.getElementById("new").addEventListener("click", () => catForm(null, data));
+  }
+  function catForm(c, all) {
+    const d = c?.data || { family: "wasps", icon: "⚠️", weight: 1, name: { fr: "", en: "" } };
+    const island = ISLAND_FAM.includes(d.family);
+    const { form } = sheet(c ? `${d.icon} ${d.name?.fr || c.id}` : "Nouvelle catastrophe", `
+      <div class="two"><label>Famille (effets dans le jeu)<select name="family" ${c ? "disabled" : ""}>${Object.entries(FAM).map(([k, l]) => `<option value="${k}" ${d.family === k ? "selected" : ""}>${l}</option>`).join("")}</select></label>
+      <label>Identifiant (lettres sans accent, sans espace)<input name="id" value="${esc(c?.id || "")}" ${c ? "disabled" : ""} pattern="[a-z0-9_]+" placeholder="ex. crabes_geants"></label></div>
+      <div class="two"><label>Icône (un émoji)<input name="icon" value="${esc(d.icon)}" maxlength="4"></label><label>Couleur de l'essaim ou de la bestiole<input name="color" type="color" value="${esc(d.color || "#ffd23f")}"></label></div>
+      <div class="two"><label>Fréquence (1 = normale, 3 = souvent, 0,5 = rare)<input name="weight" type="number" min="0.1" max="10" step="0.1" value="${d.weight ?? 1}"></label>
+      <label>Moment<select name="when"><option value="">Jour et nuit</option><option value="day" ${d.when === "day" ? "selected" : ""}>Le jour</option><option value="night" ${d.when === "night" ? "selected" : ""}>La nuit</option></select></label></div>
+      <div class="two"><label>Nom, utilisé dans les phrases (français, ex. « un essaim de guêpes »)<input name="name.fr" value="${esc(d.name?.fr)}"></label><label>Nom (anglais, ex. « a swarm of wasps »)<input name="name.en" value="${esc(d.name?.en)}"></label></div>
+      ${island ? `<div class="two"><label>Annonce à l'antenne (français, {zone} = la zone)<input name="announce.fr" value="${esc(d.announce?.fr)}"></label><label>Annonce (anglais)<input name="announce.en" value="${esc(d.announce?.en)}"></label></div>` : `
+      <label>Phrase d'introduction de la scène ({a} = le candidat)<input name="intro" value="${esc(d.intro)}" placeholder="{a} s'approche d'un nid de guêpes… mauvaise idée."></label>
+      <label>Ce que crie le candidat (une réplique par ligne)<textarea name="cry">${esc((d.cry || []).join("\n"))}</textarea></label>`}
+      <label>Zones où elle peut arriver (rien de coché = partout où la famille existe)</label><div class="chips">${Object.entries(ZONES).map(([k, l]) => `<label><input type="checkbox" name="z.${k}" ${d.zones?.includes(k) ? "checked" : ""}> ${l}</label>`).join("")}</div>
+      <label class="chips" style="display:flex;margin-top:10px"><input type="checkbox" name="active" ${c?.active !== false ? "checked" : ""}> Active</label>`,
+      async (f) => {
+        const fam = c ? d.family : f.elements.family.value;
+        const id = c ? c.id : val(f, "id");
+        if (!/^[a-z0-9_]{2,40}$/.test(id)) throw new Error("Identifiant : lettres minuscules sans accent, chiffres et _ seulement.");
+        if (!c && all.some((x) => x.id === id)) throw new Error("Cet identifiant existe déjà.");
+        const nd = { ...d, id, family: fam, icon: val(f, "icon") || "⚠️", color: f.elements.color.value, weight: num(f, "weight") || 1, name: { fr: val(f, "name.fr"), en: val(f, "name.en") || val(f, "name.fr") } };
+        if (!nd.name.fr) throw new Error("Donne-lui un nom.");
+        const w = f.elements.when.value; if (w) nd.when = w; else delete nd.when;
+        const zones = Object.keys(ZONES).filter((k) => f.elements["z." + k].checked); if (zones.length) nd.zones = zones; else delete nd.zones;
+        if (ISLAND_FAM.includes(fam)) { nd.announce = { fr: val(f, "announce.fr"), en: val(f, "announce.en") || val(f, "announce.fr") }; }
+        else { nd.intro = val(f, "intro") || undefined; const cry = f.elements.cry.value.split("\n").map((x) => x.trim()).filter(Boolean); if (cry.length) nd.cry = cry; else delete nd.cry; }
+        const r = await sb.from("catastrophes").upsert({ id, kind: ISLAND_FAM.includes(fam) ? "island" : "individual", data: nd, active: f.elements.active.checked, sort: c?.sort ?? all.length, updated_at: new Date().toISOString() }, { onConflict: "id" });
+        if (r.error) throw r.error;
+      });
+    form.elements.family.addEventListener("change", () => { if (!c) { form.closest(".sheet").remove(); catForm(null, all); } });
+  }
+
+  // ================= Spectateurs =================
+  async function users() {
+    const { data, error } = await sb.rpc("admin_users");
+    if (error) throw error;
+    main.innerHTML = `<h1>Spectateurs</h1>
+      <p class="lede">${data.length} compte${data.length > 1 ? "s" : ""}. « Admin » donne accès à ce back-office (pour l'autre concepteur). « Gratuit » montre ce que voit un spectateur sans abonnement : la Quotidienne et le vote, pas le direct heure par heure. Pendant le test, tout le monde est « Accès complet ».</p>
+      <div class="card tablewrap"><table><thead><tr><th>Pseudo</th><th>E-mail</th><th>Inscrit le</th><th>Votes</th><th>Rôle</th><th>Formule</th></tr></thead><tbody>
+      ${data.map((u) => `<tr data-id="${u.id}"><td><b>${esc(u.pseudo)}</b></td><td class="muted">${esc(u.email)}</td><td class="muted">${new Date(u.created_at).toLocaleDateString("fr-FR")}</td><td>${u.votes}</td>
+        <td><select data-k="role" ${u.id === LV.user.id ? "disabled" : ""}><option value="viewer" ${u.role === "viewer" ? "selected" : ""}>Spectateur</option><option value="admin" ${u.role === "admin" ? "selected" : ""}>Admin</option></select></td>
+        <td><select data-k="plan"><option value="sub" ${u.plan === "sub" ? "selected" : ""}>Accès complet</option><option value="free" ${u.plan === "free" ? "selected" : ""}>Gratuit</option></select></td></tr>`).join("")}
+      </tbody></table></div>`;
+    main.querySelectorAll("tr[data-id] select").forEach((s) => s.addEventListener("change", async () => {
+      const tr = s.closest("tr");
+      const role = tr.querySelector('[data-k="role"]').value, plan = tr.querySelector('[data-k="plan"]').value;
+      if (role === "admin" && s.dataset.k === "role" && !confirm("Donner l'accès au back-office à ce compte ?")) { s.value = "viewer"; return; }
+      const r = await sb.rpc("admin_set_profile", { p_user: tr.dataset.id, p_role: role, p_plan: plan });
+      if (r.error) fail(r.error); else toast("Enregistré ✓");
+    }));
+  }
+
+  // ================= Réglages =================
+  async function settings() {
+    const d = await defaultsCfg();
+    main.innerHTML = `<h1>Réglages par défaut</h1>
+      <p class="lede">Ces valeurs servent de point de départ à chaque nouvelle saison. Les besoins vitaux règlent la difficulté de survie : plus les chiffres sont hauts, plus les candidats ont vite soif, faim ou sommeil.</p>
+      <form class="card" id="f" novalidate>
+        <div class="two"><label>Nombre de candidats<input name="participants" type="number" min="10" max="100" value="${d.participants ?? 50}"></label><label>Menacés chaque soir<input name="threatened" type="number" min="2" max="5" value="${d.threatened ?? 3}"></label></div>
+        <div class="two"><label>Ouverture du vote (heure)<input name="voteOpenHour" type="number" min="13" max="18" value="${d.voteOpenHour ?? 16}"></label><label>Fin du vote et Quotidienne (heure)<input name="voteHour" type="number" min="17" max="22" value="${d.voteHour ?? 19}"></label></div>
+        <div class="two"><label>Rebondissements du showrunner (0 à 2)<input name="intensity" type="number" min="0" max="2" step="0.5" value="${d.showrunner?.intensity ?? 1}"></label><label>Rebondissements maximum par jour<input name="maxEvents" type="number" min="0" max="6" value="${d.showrunner?.maxEventsPerDay ?? 3}"></label></div>
+        <div class="two"><label>Soif par heure<input name="thirst" type="number" step="0.1" min="0.5" max="6" value="${d.needs?.thirstPerHour ?? 2.2}"></label><label>Faim par heure<input name="hunger" type="number" step="0.1" min="0.2" max="4" value="${d.needs?.hungerPerHour ?? 1.1}"></label></div>
+        <div class="two"><label>Fatigue par heure<input name="energy" type="number" step="0.1" min="0.5" max="6" value="${d.needs?.energyPerHour ?? 2.5}"></label><label>Colis qui arrivent (de 0 à 1 ; 0,75 = 3 sur 4)<input name="delivery" type="number" step="0.05" min="0" max="1" value="${d.gifts?.deliveryRate ?? 0.75}"></label></div>
+        <label>Éliminations visées à la fin de chaque jour, hors vote (7 nombres croissants, séparés par des virgules)<input name="curve" value="${esc((d.eliminationCurve || []).join(", "))}"></label>
+        <p class="err" id="err"></p><button class="btn main" type="submit">Enregistrer</button>
+      </form>`;
+    document.getElementById("f").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const f = e.target, err = document.getElementById("err");
+      const curve = val(f, "curve").split(/[,; ]+/).filter(Boolean).map(Number);
+      if (curve.length !== 7 || curve.some((x, i) => isNaN(x) || (i && x < curve[i - 1]))) return (err.textContent = "La courbe doit contenir 7 nombres croissants.");
+      if (num(f, "voteOpenHour") >= num(f, "voteHour")) return (err.textContent = "Le vote doit ouvrir avant de fermer.");
+      const v = { ...d, participants: num(f, "participants"), threatened: num(f, "threatened"), voteOpenHour: num(f, "voteOpenHour"), voteHour: num(f, "voteHour"),
+        showrunner: { intensity: num(f, "intensity"), maxEventsPerDay: num(f, "maxEvents") }, needs: { thirstPerHour: num(f, "thirst"), hungerPerHour: num(f, "hunger"), energyPerHour: num(f, "energy") },
+        gifts: { ...(d.gifts || {}), deliveryRate: num(f, "delivery") }, eliminationCurve: curve };
+      const r = await sb.from("settings").upsert({ key: "season_defaults", value: v, updated_at: new Date().toISOString() }, { onConflict: "key" });
+      if (r.error) return fail(r.error);
+      err.textContent = ""; toast("Réglages enregistrés ✓");
+    });
+  }
+
+  show(current);
+})();
+</script>
+</body>
+</html>
