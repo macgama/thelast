@@ -331,7 +331,7 @@ export class Season {
         for (const m of this.clanMembers(host.clan!)) if (m !== guest) this.ally(m, guest);
         this.emit("clan_join", [guest.id, host.id], 3, { clan: host.clan }, a.zone);
       } else {
-        a.clan = b.clan = CLAN_NAMES[this.clansMade++ % CLAN_NAMES.length];
+        a.clan = b.clan = this.newClanName();
         this.emit("alliance", [a.id, b.id], 3, { clan: a.clan }, a.zone);
       }
     } else if (roll < kindness * 0.35 + cunning * 0.2) {
@@ -342,6 +342,16 @@ export class Season {
   }
 
   // ---------- Clans : on partage, on se défend, on fait campagne ----------
+
+  /** Un nom de clan libre : jamais deux clans vivants avec le même nom. */
+  private newClanName(): string {
+    const used = new Set(this.alive().map((s) => s.clan).filter(Boolean));
+    for (let k = 0; ; k++) {
+      const base = CLAN_NAMES[(this.clansMade + k) % CLAN_NAMES.length];
+      const name = k < CLAN_NAMES.length ? base : `${base} ${Math.floor(k / CLAN_NAMES.length) + 1}`;
+      if (!used.has(name)) { this.clansMade += k + 1; return name; }
+    }
+  }
 
   private clanMembers(clan: string): Contestant[] {
     return this.alive().filter((s) => s.clan === clan);

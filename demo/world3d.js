@@ -20,10 +20,14 @@
   const smooth = (e0, e1, x) => { const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
 
   // ---------- Géographie (coordonnées monde : x vers l'est, z vers le sud) ----------
-  const ZONES = {
+  // Le relief est dessiné sur un plan de base, puis agrandi de S : l'île est 1,5 fois plus grande que les personnages
+  const S = 1.5;
+  const BASE_ZONES = {
     beach: [0, 25], lagoon: [-27, 17], cliffs: [30, 15], jungle: [-1, 5], mangrove: [-27, -2],
     river: [-12, -14], ruins: [22, -3], waterfall: [4, -20], summit: [29, -22],
+    cove: [37, -8], cave: [-17, -25], springs: [12, -11],
   };
+  const ZONES = Object.fromEntries(Object.entries(BASE_ZONES).map(([k, [x, z]]) => [k, [x * S, z * S]]));
   const RIVER = [[4, -22], [0, -18], [-6, -15], [-12, -14], [-18, -10], [-24, -5], [-30, -1], [-38, 1], [-48, 2]];
   const gauss = (x, z, cx, cz, s) => Math.exp(-((x - cx) ** 2 + (z - cz) ** 2) / (2 * s * s));
   function distSeg(px, pz, ax, az, bx, bz) {
@@ -31,19 +35,22 @@
     const t = Math.max(0, Math.min(1, ((px - ax) * dx + (pz - az) * dz) / (dx * dx + dz * dz)));
     return Math.hypot(px - ax - t * dx, pz - az - t * dz);
   }
-  function riverDist(x, z) {
+  function riverDist(x, z) { return baseRiverDist(x / S, z / S) * S; }
+  function islandMask(x, z) { return baseMask(x / S, z / S); }
+  function height(x, z) { return baseHeight(x / S, z / S); }
+  function baseRiverDist(x, z) {
     let d = 1e9;
     for (let i = 0; i < RIVER.length - 1; i++) d = Math.min(d, distSeg(x, z, RIVER[i][0], RIVER[i][1], RIVER[i + 1][0], RIVER[i + 1][1]));
     return d;
   }
-  function islandMask(x, z) {
+  function baseMask(x, z) {
     const a = Math.atan2(z, x);
     const wobble = 1 + 0.08 * Math.sin(a * 3 + 1.3) + 0.05 * Math.sin(a * 7 + 0.4) + 0.03 * Math.sin(a * 13);
     const r = Math.hypot(x / 46, (z - 1) / 36) / wobble;
     return smooth(1.02, 0.82, r);
   }
-  function height(x, z) {
-    const m = islandMask(x, z);
+  function baseHeight(x, z) {
+    const m = baseMask(x, z);
     let h = lerp(-4, 0.5, m);
     h += m * (13 * gauss(x, z, 31, -23, 6.5) + 8 * gauss(x, z, 6, -27, 6) + 6.5 * gauss(x, z, 33, 16, 4.5) +
       3 * gauss(x, z, 22, -3, 7) + 1.6 * gauss(x, z, -1, 4, 11) + 3 * gauss(x, z, 18, -17, 6));
@@ -54,10 +61,16 @@
     // bassin au pied de la cascade
     h -= m * 2.6 * gauss(x, z, 3, -19, 2.6);
     // la rivière
-    const rd = riverDist(x, z);
+    const rd = baseRiverDist(x, z);
     if (z > -21) h -= m * 2.2 * smooth(2.6, 0.6, rd);
     // la mangrove : plate et humide
     h = lerp(h, Math.min(h, 0.25), m * gauss(x, z, -29, -2, 7));
+    // la crique : une petite baie de sable sur la côte est
+    h -= m * 2.6 * gauss(x, z, 43, -9, 4.2);
+    // la colline de la grotte, au nord
+    h += m * 4.5 * gauss(x, z, -19, -29, 4.5);
+    // les sources chaudes : un replat
+    h = lerp(h, 1.1, m * gauss(x, z, 12, -11, 3.5));
     return h;
   }
   function zoneAt(x, z) {
@@ -72,6 +85,7 @@
   const GROUND = {
     beach: 0xe3c98f, lagoon: 0xd9c08a, jungle: 0x2f7a3c, mangrove: 0x56703f, river: 0x4f8f4a,
     ruins: 0x8e9a5c, cliffs: 0x7d8a52, waterfall: 0x4c8a55, summit: 0x6d8a4f,
+    cove: 0xe3c98f, cave: 0x5f6b4a, springs: 0x7aa07a,
   };
   function groundColor(x, z, h, slope, r) {
     const c = new T.Color();
@@ -79,7 +93,7 @@
     if (h < 0.55) return c.setHex(h < 0.15 ? 0xc9ad76 : 0xe6cd93).offsetHSL(0, 0, (r() - 0.5) * 0.04);
     const zone = zoneAt(x, z);
     c.setHex(GROUND[zone]);
-    if (zone === "beach" || (zone === "lagoon" && h < 1.2)) c.setHex(0xe3c98f);
+    if (zone === "beach" || ((zone === "lagoon" || zone === "cove") && h < 1.2)) c.setHex(0xe3c98f);
     if (slope > 0.9 || h > 9.5) c.setHex(h > 11 ? 0xb3aba0 : 0x8d8173);
     else if (slope > 0.6) c.lerp(new T.Color(0x8d8173), 0.55);
     return c.offsetHSL((r() - 0.5) * 0.02, 0, (r() - 0.5) * 0.06);
@@ -93,7 +107,7 @@
   };
 
   function buildTerrain(scene, r) {
-    const geo = new T.PlaneGeometry(130, 104, 104, 84).toNonIndexed();
+    const geo = new T.PlaneGeometry(130 * S, 104 * S, 140, 112).toNonIndexed();
     geo.rotateX(-Math.PI / 2);
     const pos = geo.attributes.position;
     for (let i = 0; i < pos.count; i++) {
@@ -128,16 +142,16 @@
     // écume le long du rivage
     const foam = new T.Mesh(new T.RingGeometry(1, 1.02, 90, 1), new T.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.35 }));
     foam.rotation.x = -Math.PI / 2;
-    foam.scale.set(46.5, 37, 1);
-    foam.position.set(0, 0.08, 1);
+    foam.scale.set(46.5 * S, 37 * S, 1);
+    foam.position.set(0, 0.08, 1 * S);
     scene.add(foam);
     return { mesh, foam, base: Float32Array.from(geo.attributes.position.array) };
   }
 
   function buildRiver(scene) {
-    const pts = RIVER.slice(0, 8).map(([x, z]) => new T.Vector3(x, 0, z));
+    const pts = RIVER.slice(0, 8).map(([x, z]) => new T.Vector3(x * S, 0, z * S));
     const curve = new T.CatmullRomCurve3(pts);
-    const n = 80, w = 1.7;
+    const n = 110, w = 1.7 * S;
     const verts = [];
     for (let i = 0; i < n; i++) {
       const p0 = curve.getPoint(i / n), p1 = curve.getPoint((i + 1) / n);
@@ -164,16 +178,16 @@
     const tex = new T.CanvasTexture(cv);
     tex.wrapS = tex.wrapT = T.RepeatWrapping;
     tex.repeat.set(2, 1);
-    const top = height(4, -23.5);
-    const fall = new T.Mesh(new T.PlaneGeometry(3.2, top + 0.5, 1, 4), new T.MeshBasicMaterial({ map: tex, transparent: true, opacity: 0.9, side: T.DoubleSide }));
-    fall.position.set(4, (top + 0.5) / 2 - 0.2, -21.6);
+    const top = height(4 * S, -23.5 * S);
+    const fall = new T.Mesh(new T.PlaneGeometry(3.2 * 1.3, top + 0.5, 1, 4), new T.MeshBasicMaterial({ map: tex, transparent: true, opacity: 0.9, side: T.DoubleSide }));
+    fall.position.set(4 * S, (top + 0.5) / 2 - 0.2, -21.6 * S);
     fall.rotation.x = -0.25;
     scene.add(fall);
     // brume au pied
     const mist = new T.Group();
     for (let i = 0; i < 14; i++) {
       const m = new T.Mesh(new T.IcosahedronGeometry(0.35 + Math.random() * 0.35, 0), new T.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: 0.6, flatShading: true }));
-      m.position.set(4 + (Math.random() - 0.5) * 3.5, 0.4, -20 + (Math.random() - 0.5) * 2);
+      m.position.set(4 * S + (Math.random() - 0.5) * 3.5, 0.4, -20 * S + (Math.random() - 0.5) * 2);
       m.userData.phase = Math.random() * 6;
       mist.add(m);
     }
@@ -194,16 +208,16 @@
     const dummy = new T.Object3D();
     const spots = { palm: [], tree: [], pine: [], bush: [], rock: [], mangrove: [], fern: [] };
     for (let i = 0; i < 5200; i++) {
-      const x = (r() - 0.5) * 100, z = (r() - 0.5) * 82;
+      const x = (r() - 0.5) * 100 * S, z = (r() - 0.5) * 82 * S;
       const h = height(x, z);
       if (h < 0.35 || islandMask(x, z) < 0.5) continue;
-      if (riverDist(x, z) < 2.3 && z > -21) continue;
+      if (riverDist(x, z) < 2.3 * S && z > -21 * S) continue;
       const zone = zoneAt(x, z);
       const ox = x - ZONES[zone][0], oz = z - ZONES[zone][1];
-      if (Math.hypot(ox, oz) < 6.8) continue; // clairière pour les candidats
+      if (Math.hypot(ox, oz) < 6.8 * S) continue; // clairière pour les candidats
       // couloir dégagé vers la caméra, pour que les arbres ne cachent pas les scènes
       const along = (ox + oz) * 0.7071, side = (ox - oz) * 0.7071;
-      if (along > -3 && along < 13 && Math.abs(side) < 6) continue;
+      if (along > -3 && along < 13 * S && Math.abs(side) < 6 * S) continue;
       const roll = r();
       const slopeRock = h > 9;
       if (slopeRock) { if (roll < 0.18) spots.rock.push([x, h, z]); else if (roll < 0.24) spots.pine.push([x, h, z]); continue; }
@@ -241,6 +255,7 @@
       tint(palmLeaf, i, 0x3f9a45, 0.08);
     });
     [palmTrunk, palmLeaf].forEach((m) => { m.instanceMatrix.needsUpdate = true; scene.add(m); });
+    tall.push({ meshes: [palmTrunk, palmLeaf], pts: spots.palm, top: 3 });
 
     // Arbres de jungle : tronc + houppier en icosaèdre
     const tTrunkGeo = new T.CylinderGeometry(0.18, 0.28, 1.6, 5); tTrunkGeo.translate(0, 0.8, 0);
@@ -254,10 +269,12 @@
       tint(treeTop, i, r() < 0.15 ? 0x6aa83a : 0x2c7a36, 0.1);
     });
     [treeTrunk, treeTop].forEach((m) => { m.instanceMatrix.needsUpdate = true; scene.add(m); });
+    tall.push({ meshes: [treeTrunk, treeTop], pts: spots.tree, top: 2.3 });
 
     // Conifères d'altitude
     const pineGeo = new T.ConeGeometry(0.9, 2.6, 6); pineGeo.translate(0, 1.6, 0);
     const pine = instanced(pineGeo, new T.MeshLambertMaterial({ color: 0xffffff, flatShading: true }), spots.pine.length);
+    tall.push({ meshes: [pine], pts: spots.pine, top: 1.8 });
     put(pine, spots.pine, ([x, h, z], i) => { const s = 0.7 + r() * 0.6; dummy.position.set(x, h - 0.1, z); dummy.rotation.set(0, r() * 6, 0); dummy.scale.set(s, s, s); tint(pine, i, 0x2f5f3a, 0.08); });
 
     // Buissons et fougères
@@ -286,6 +303,31 @@
       tint(crown, i, 0x4f7a3a, 0.08);
     });
     [roots, crown].forEach((m) => { m.instanceMatrix.needsUpdate = true; scene.add(m); });
+    for (const g of tall) { g.orig = g.meshes.map((m) => m.instanceMatrix.array.slice()); g.hidden = new Uint8Array(g.pts.length); }
+  }
+
+  // ---------- Arbres qui masquent l'action ----------
+  // Quand la caméra est proche, on escamote les arbres situés entre elle et la scène filmée.
+  const tall = [];
+  const occ = new T.Vector3(), occDir = new T.Vector3();
+  function clearView(target, camPos, radius) {
+    if (radius) occDir.subVectors(camPos, target).normalize();
+    for (const g of tall) {
+      let dirty = false;
+      for (let i = 0; i < g.pts.length; i++) {
+        let hide = 0;
+        if (radius) {
+          const [x, h, z] = g.pts[i];
+          occ.set(x - target.x, h + g.top - target.y, z - target.z);
+          const t = occ.dot(occDir);
+          if (t > 0.5) { occ.addScaledVector(occDir, -t); hide = occ.length() < radius ? 1 : 0; }
+        }
+        if (hide === g.hidden[i]) continue;
+        g.hidden[i] = hide; dirty = true;
+        g.meshes.forEach((m, k) => { const a = m.instanceMatrix.array, o = i * 16; if (hide) a.fill(0, o, o + 16); else a.set(g.orig[k].subarray(o, o + 16), o); });
+      }
+      if (dirty) g.meshes.forEach((m) => (m.instanceMatrix.needsUpdate = true));
+    }
   }
 
   // ---------- Lieux remarquables ----------
@@ -296,15 +338,15 @@
     const out = {};
     // Ponton d'arrivée et bateau de la production, sur la plage
     const pier = new T.Group();
-    for (let i = 0; i < 9; i++) { const p = box(2.2, 0.15, 0.7, i % 2 ? 0x9a7650 : 0x8a6a44); p.position.set(0, 0.55, 30 + i * 0.75); pier.add(p); }
-    for (let i = 0; i < 5; i++) for (const s of [-1, 1]) { const post = box(0.2, 2, 0.2, 0x5a4632); post.position.set(s * 1.05, -0.3, 30 + i * 1.6); pier.add(post); }
+    for (let i = 0; i < 9; i++) { const p = box(2.2, 0.15, 0.7, i % 2 ? 0x9a7650 : 0x8a6a44); p.position.set(0, 0.55, 30 * S + i * 0.75); pier.add(p); }
+    for (let i = 0; i < 5; i++) for (const s of [-1, 1]) { const post = box(0.2, 2, 0.2, 0x5a4632); post.position.set(s * 1.05, -0.3, 30 * S + i * 1.6); pier.add(post); }
     scene.add(pier);
     const boat = new T.Group();
     const hull = new T.Mesh(new T.CylinderGeometry(1.2, 0.6, 5.5, 6, 1), mat(0xf2f2f2)); hull.rotation.x = Math.PI / 2; hull.scale.set(1, 1, 0.5); hull.castShadow = true;
     const cabin = box(1.4, 0.9, 1.8, 0x1d5a66); cabin.position.set(0, 0.7, -0.4);
     const stripe = box(2.25, 0.18, 4.6, 0xff8a3d); stripe.position.y = 0.15;
     boat.add(hull, stripe, cabin);
-    boat.position.set(3.4, 0.35, 36.5);
+    boat.position.set(3.4, 0.35, 30 * S + 6.5);
     scene.add(boat);
     out.boat = boat;
 
@@ -318,10 +360,10 @@
     flame2.position.y = 0.35;
     camp.add(stones, flame, flame2);
     for (const a of [0.4, 2.1, 3.9]) { const log = new T.Mesh(new T.CylinderGeometry(0.2, 0.2, 1.8, 6), mat(0x7a5634)); log.rotation.z = Math.PI / 2; log.rotation.y = a; log.position.set(Math.cos(a) * 1.7, 0.2, Math.sin(a) * 1.7); log.castShadow = true; camp.add(log); }
-    at(camp, 4.5, 21, 0);
+    at(camp, 4.5 * S, 21 * S, 0);
     scene.add(camp);
     const fireLight = new T.PointLight(0xff9a40, 0, 16, 2);
-    fireLight.position.set(4.5, height(4.5, 21) + 1.5, 21);
+    fireLight.position.set(4.5 * S, height(4.5 * S, 21 * S) + 1.5, 21 * S);
     scene.add(fireLight);
     out.fire = { flame, flame2, light: fireLight };
 
@@ -331,7 +373,7 @@
     const door = box(0.8, 1.3, 0.05, 0x1b0f12); door.position.set(0, 0.65, 1.01);
     const lamp = new T.Mesh(new T.SphereGeometry(0.15, 6, 4), new T.MeshBasicMaterial({ color: 0xff5b6b })); lamp.position.set(0, 1.6, 1.05);
     booth.add(walls, roof, door, lamp);
-    at(booth, -6, 22.5); booth.rotation.y = 0.5;
+    at(booth, -6 * S, 22.5 * S); booth.rotation.y = 0.5;
     scene.add(booth);
     out.lamp = lamp;
 
@@ -347,7 +389,7 @@
     const lintel = box(4.2, 0.5, 0.6, 0xb0a688); lintel.position.set(0, 3.2, -5.2); ruins.add(lintel);
     const fallen = new T.Mesh(new T.CylinderGeometry(0.32, 0.36, 3, 6), mat(0xa9a087)); fallen.rotation.z = Math.PI / 2; fallen.rotation.y = 0.7; fallen.position.set(4, 0.35, 3); ruins.add(fallen);
     const idol = new T.Mesh(new T.OctahedronGeometry(0.5, 0), new T.MeshLambertMaterial({ color: 0xe6b84a, emissive: 0x4a3000, flatShading: true })); idol.position.y = 2.4; ruins.add(idol);
-    at(ruins, 25, -6, -0.3);
+    at(ruins, 25 * S, -6 * S, -0.3);
     scene.add(ruins);
     out.idol = idol;
 
@@ -358,13 +400,13 @@
     const flagGeo = new T.PlaneGeometry(1.8, 1.1, 8, 1);
     const flag = new T.Mesh(flagGeo, new T.MeshLambertMaterial({ color: 0xff8a3d, side: T.DoubleSide, flatShading: true }));
     flag.position.set(1.8, 3.9, 0); summit.add(flag);
-    at(summit, 31, -23, -0.2);
+    at(summit, 31 * S, -23 * S, -0.2);
     scene.add(summit);
     out.flag = { mesh: flag, base: Float32Array.from(flagGeo.attributes.position.array) };
 
     // Les falaises : aiguilles de roche
     for (let i = 0; i < 7; i++) {
-      const x = 36 + r() * 6, z = 9 + r() * 14;
+      const x = (36 + r() * 6) * S, z = (9 + r() * 14) * S;
       const sp = new T.Mesh(new T.CylinderGeometry(0.2 + r() * 0.4, 1 + r() * 0.8, 3 + r() * 5, 5), mat(0x8d8173));
       sp.castShadow = true;
       at(sp, x, z, 1.2);
@@ -375,16 +417,42 @@
     const wh = new T.Mesh(new T.CylinderGeometry(1, 0.5, 4, 5, 1, true, 0, Math.PI), new T.MeshLambertMaterial({ color: 0x6b4a2e, side: T.DoubleSide, flatShading: true }));
     wh.rotation.set(Math.PI / 2, 0, 0.4); wreck.add(wh);
     const mast = new T.Mesh(new T.CylinderGeometry(0.08, 0.08, 3.5, 5), mat(0x5a4632)); mast.rotation.z = 0.9; mast.position.set(0.5, 1, 0); wreck.add(mast);
-    at(wreck, -14, 28, 0.2); wreck.rotation.y = 1.2;
+    at(wreck, -14 * S, 28 * S, 0.2); wreck.rotation.y = 1.2;
     scene.add(wreck);
     // Pont de lianes au-dessus de la rivière
     const bridge = new T.Group();
-    for (let i = 0; i < 8; i++) { const pl = box(0.5, 0.08, 1.6, 0x9a7650); pl.position.set(i * 0.55 - 1.9, 0.0 - Math.sin((i / 7) * Math.PI) * 0.25, 0); bridge.add(pl); }
-    at(bridge, -9, -14.5, 1.4); bridge.rotation.y = 0.6;
+    for (let i = 0; i < 12; i++) { const pl = box(0.5, 0.08, 1.6, 0x9a7650); pl.position.set(i * 0.55 - 3.0, 0.0 - Math.sin((i / 11) * Math.PI) * 0.35, 0); bridge.add(pl); }
+    at(bridge, -9 * S, -14.5 * S, 1.4); bridge.rotation.y = 0.6;
     scene.add(bridge);
+    // La grotte : une entrée sombre dans la colline
+    const cave = new T.Group();
+    const arch = new T.Mesh(new T.CylinderGeometry(2.4, 2.8, 1.6, 7, 1, false, 0, Math.PI), mat(0x6f675d)); arch.rotation.set(Math.PI / 2, 0, Math.PI / 2); arch.scale.set(1, 1.2, 1.3); arch.position.y = 0.6; cave.add(arch);
+    const hole = new T.Mesh(new T.CircleGeometry(1.7, 10, 0, Math.PI), new T.MeshBasicMaterial({ color: 0x0b0d10 })); hole.position.set(0, 0.05, 0.85); cave.add(hole);
+    for (let i = 0; i < 5; i++) { const st = new T.Mesh(new T.ConeGeometry(0.18, 0.7, 5), mat(0x8d8173)); st.rotation.x = Math.PI; st.position.set(-1.2 + i * 0.6, 2.0 - (i % 2) * 0.2, 0.9); cave.add(st); }
+    const [gx, gz] = ZONES.cave;
+    at(cave, gx - 1.5, gz - 4.5, 0); cave.rotation.y = 0.2;
+    scene.add(cave);
+    // Les sources chaudes : bassins turquoise et vapeur
+    const springs = new T.Group();
+    const steam = [];
+    for (const [dx, dz, rr] of [[0, 0, 1.6], [2.6, 1.2, 1.1], [-2.2, 1.6, 0.9]]) {
+      const rim = new T.Mesh(new T.TorusGeometry(rr, 0.18, 4, 14), mat(0xb3aba0)); rim.rotation.x = Math.PI / 2; rim.position.set(dx, 0.12, dz); springs.add(rim);
+      const pool = new T.Mesh(new T.CircleGeometry(rr, 14), new T.MeshLambertMaterial({ color: 0x5fd3c8, emissive: 0x0a3a36 })); pool.rotation.x = -Math.PI / 2; pool.position.set(dx, 0.1, dz); springs.add(pool);
+      for (let k = 0; k < 3; k++) { const m = new T.Mesh(new T.IcosahedronGeometry(0.4, 0), new T.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: 0.5, flatShading: true })); m.position.set(dx + (r() - 0.5) * rr, 0.6, dz + (r() - 0.5) * rr); m.userData = { y0: 0.4, ph: r() * 6 }; springs.add(m); steam.push(m); }
+    }
+    const [sx, sz] = ZONES.springs;
+    at(springs, sx + 3.5, sz + 3, 0);
+    scene.add(springs);
+    out.steam = steam;
+    // La crique : une barque échouée et des filets
+    const dinghy = new T.Group();
+    const dh = new T.Mesh(new T.CylinderGeometry(0.7, 0.35, 2.6, 6, 1, true, 0, Math.PI), new T.MeshLambertMaterial({ color: 0x3d7ea6, side: T.DoubleSide, flatShading: true })); dh.rotation.set(Math.PI / 2, 0, Math.PI); dinghy.add(dh);
+    const [cx0, cz0] = ZONES.cove;
+    at(dinghy, cx0 + 3, cz0 - 2, 0.4); dinghy.rotation.y = 0.8;
+    scene.add(dinghy);
     // Drones caméras de la production
     const cams = [];
-    for (let i = 0; i < 3; i++) { const d = makeDrone(0x2a2a30); d.scale.setScalar(0.6); d.userData = { r: 16 + i * 10, s: 0.08 + i * 0.03, p: i * 2, y: 9 + i * 2 }; scene.add(d); cams.push(d); }
+    for (let i = 0; i < 3; i++) { const d = makeDrone(0x2a2a30); d.scale.setScalar(0.6); d.userData = { r: (16 + i * 10) * S, s: 0.08 + i * 0.03, p: i * 2, y: 9 + i * 2 }; scene.add(d); cams.push(d); }
     out.cams = cams;
     return out;
   }
@@ -433,11 +501,11 @@
   };
   // Accessoires des 5 candidats suivis, pour les reconnaître de loin
   const SIGNATURE = {
-    c009: { helmet: 0xd62828, visor: 0x222222, gloves: 0x222222 }, // Tala, casque et gants de cascadeuse
+    c046: { beanie: 0x1d3557, shirt: 0xffc43d },                // Noa, bonnet et ciré de navigateur·ice
     c085: { phones: 0xc08bff, shirt: 0x7fb0ff },                 // Selin, casque audio de développeuse
     c053: { glasses: 0x111111, tie: 0x7a1f2b, shirt: 0xf2f2f2 }, // Matthias, chemise blanche et cravate
     c071: { cap: 0xc8a165, pack: 0x7a5230 },                     // Omar, chapeau et sac d'archéologue
-    c032: { helmet: 0xffd23f, visor: 0x1d5a66 },                 // Robin, casque de chantier
+    c086: { glasses: 0x3a2a1a, tie: 0x1f4e8c, shirt: 0xd9c7a3 }, // Louis, costume beige d'agent immobilier
   };
 
   function makePerson(c) {
@@ -531,14 +599,14 @@
     for (let i = 0; i < 9; i++) {
       const c = new T.Group();
       for (let j = 0; j < 4; j++) { const m = new T.Mesh(new T.IcosahedronGeometry(1.8 + r() * 1.6, 0), cloudMat); m.position.set(j * 2.1 - 3, r() * 0.8, (r() - 0.5) * 2); m.scale.y = 0.55; m.castShadow = true; c.add(m); }
-      c.position.set((r() - 0.5) * 180, 22 + r() * 6, (r() - 0.5) * 110);
+      c.position.set((r() - 0.5) * 180 * S, 22 + r() * 6, (r() - 0.5) * 110 * S);
       c.userData.speed = 0.5 + r() * 0.8;
       scene.add(c); clouds.push(c);
     }
     // crabes sur le sable
     const crabs = [];
     for (let k = 0; k < 400 && crabs.length < 9; k++) {
-      const x = (r() - 0.5) * 70, z = 18 + r() * 18, h = height(x, z);
+      const x = (r() - 0.5) * 70 * S, z = (18 + r() * 18) * S, h = height(x, z);
       if (h < 0.35 || h > 0.9) continue;
       const g = new T.Group();
       g.add(box(0.5, 0.18, 0.36, 0xe0582c));
@@ -566,11 +634,11 @@
     const ripple = new T.Mesh(new T.RingGeometry(0.3, 0.42, 16), new T.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, side: T.DoubleSide }));
     ripple.rotation.x = -Math.PI / 2; scene.add(ripple);
     const seaSpots = [];
-    for (let k = 0; k < 600 && seaSpots.length < 30; k++) { const x = (r() - 0.5) * 110, z = (r() - 0.5) * 90, h = height(x, z); if (h < -1.5 && h > -3.6) seaSpots.push([x, z]); }
+    for (let k = 0; k < 600 && seaSpots.length < 30; k++) { const x = (r() - 0.5) * 110 * S, z = (r() - 0.5) * 90 * S, h = height(x, z); if (h < -1.5 && h > -3.6) seaSpots.push([x, z]); }
     let jump = null;
     // lucioles dans la jungle, la nuit
     const nF = 70, fArr = new Float32Array(nF * 3), fSeed = [];
-    for (let i = 0; i < nF; i++) { let x, z, tries = 0; do { x = -14 + r() * 26; z = -8 + r() * 24; } while (height(x, z) < 0.6 && tries++ < 20); fSeed.push([x, height(x, z) + 1 + r() * 2.5, z, r() * 6]); }
+    for (let i = 0; i < nF; i++) { let x, z, tries = 0; do { x = (-14 + r() * 26) * S; z = (-8 + r() * 24) * S; } while (height(x, z) < 0.6 && tries++ < 20); fSeed.push([x, height(x, z) + 1 + r() * 2.5, z, r() * 6]); }
     const fGeo = new T.BufferGeometry(); fGeo.setAttribute("position", new T.BufferAttribute(fArr, 3));
     const flies = new T.Points(fGeo, new T.PointsMaterial({ color: 0xfff08a, size: 3 * Math.min(window.devicePixelRatio || 1, 2), sizeAttenuation: false, transparent: true, opacity: 0.9 }));
     flies.frustumCulled = false; scene.add(flies);
@@ -578,10 +646,10 @@
     return function update(dt, time, light, storm) {
       cloudMat.color.setHex(storm ? 0x7a8890 : light < 0.4 ? 0x3a4a5a : 0xffffff);
       cloudMat.opacity = light < 0.4 ? 0.6 : 0.92;
-      for (const c of clouds) { c.position.x += dt * c.userData.speed * (storm ? 3 : 1); if (c.position.x > 95) c.position.x = -95; }
+      for (const c of clouds) { c.position.x += dt * c.userData.speed * (storm ? 3 : 1); if (c.position.x > 95 * S) c.position.x = -95 * S; }
       for (const c of crabs) { const u = c.userData, k = Math.sin(time * u.sp + u.ph); c.position.x = u.home.x + k * 1.2; c.position.z = u.home.z - k * 0.4; c.children[1].rotation.z = Math.sin(time * 9 + u.ph) * 0.4; c.children[2].rotation.z = -Math.sin(time * 9 + u.ph) * 0.4; c.position.y = height(c.position.x, c.position.z) + 0.08; }
       for (const b of birds) {
-        const u = b.userData, a = time * (0.12 + u.f * 0.05) + u.f * 3, R0 = 26 + u.f * 12;
+        const u = b.userData, a = time * (0.12 + u.f * 0.05) + u.f * 3, R0 = (26 + u.f * 12) * S;
         const cx = Math.cos(a) * R0, cz = Math.sin(a) * R0 * 0.8;
         const side = (u.i % 2 ? 1 : -1) * Math.ceil(u.i / 2) * 1.4, back = Math.ceil(u.i / 2) * 1.2;
         const dir = new T.Vector3(-Math.sin(a), 0, Math.cos(a) * 0.8).normalize();
@@ -628,7 +696,7 @@
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = T.PCFSoftShadowMap;
     const scene = new T.Scene();
-    scene.fog = new T.Fog(0x0b1820, 120, 260);
+    scene.fog = new T.Fog(0x0b1820, 120 * S, 260 * S);
     const r = rng(2026);
 
     // Caméra isométrique orthographique
@@ -638,12 +706,12 @@
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
     controls.minZoom = 0.8;
-    controls.maxZoom = 9;
+    controls.maxZoom = 9 * S;
     controls.maxPolarAngle = 1.25;
     controls.minPolarAngle = 0.35;
     controls.screenSpacePanning = true;
     controls.target.set(0, 0, 0);
-    const VIEW = 64;
+    const VIEW = 64 * S;
     function resize() {
       const w = canvas.clientWidth, h = canvas.clientHeight;
       renderer.setSize(w, h, false);
@@ -662,7 +730,7 @@
     const sun = new T.DirectionalLight(0xfff1d6, 0.9);
     sun.castShadow = true;
     sun.shadow.mapSize.set(isSmall ? 1024 : 2048, isSmall ? 1024 : 2048);
-    Object.assign(sun.shadow.camera, { left: -60, right: 60, top: 60, bottom: -60, near: 1, far: 200 });
+    Object.assign(sun.shadow.camera, { left: -60 * S, right: 60 * S, top: 60 * S, bottom: -60 * S, near: 1, far: 300 });
     sun.shadow.bias = -0.0008;
     scene.add(sun, sun.target);
 
@@ -704,7 +772,7 @@
     // La mise en scène (scenes.js)
     const director = window.World3DScenes.create({
       scene, camera, canvas, host, D, people, ZONES, height, riverDist, mat, box, makeDrone,
-      snapAt, me: () => me, tick: () => tick, camTarget: () => controls.target,
+      snapAt, S, me: () => me, tick: () => tick, camTarget: () => controls.target,
       live: (text, kind) => opts.onLive?.(text, kind),
       lightning: () => { flashUntil = clock.elapsedTime + 0.12; opts.onSfx?.("bonk"); },
       sfx: (name) => opts.onSfx?.(name),
@@ -763,8 +831,8 @@
       camGoal.active = true;
       camGoal.zoomLocked = false;
       if (m === "island") { camGoal.target.set(0, 0, 2); camGoal.zoom = 1; }
-      if (m === "zone" && me) { const z = snapAt(tick)[me]?.[0] || "beach"; camGoal.target.set(ZONES[z][0], height(...ZONES[z]), ZONES[z][1]); camGoal.zoom = 2.2; }
-      if (m === "follow" && me) camGoal.zoom = 3.4;
+      if (m === "zone" && me) { const z = snapAt(tick)[me]?.[0] || "beach"; camGoal.target.set(ZONES[z][0], height(...ZONES[z]), ZONES[z][1]); camGoal.zoom = 2.2 * S; }
+      if (m === "follow" && me) camGoal.zoom = 3.4 * S;
     }
     controls.addEventListener("start", () => {
       if (mode === "director") holdUntil = performance.now() + 7000;
@@ -807,13 +875,14 @@
       hemi.intensity = 0.25 + light * 0.45 + (flashing ? 1.2 : 0);
       sun.intensity = rain.visible ? light * 0.35 : light * 0.85;
       const sa = ((hour - 6) / 12) * Math.PI;
-      sun.position.set(Math.cos(sa) * 60, Math.max(12, Math.sin(sa) * 70), 30);
+      sun.position.set(Math.cos(sa) * 60 * S, Math.max(12, Math.sin(sa) * 70 * S), 30 * S);
       sun.color.set(light < 0.75 ? 0xffb080 : 0xfff1d6);
       marks.fire.light.intensity = night || hour > 19 ? 2.2 + Math.sin(time * 13) * 0.4 : 0;
       marks.fire.flame.scale.y = 1 + Math.sin(time * 11) * 0.15;
       marks.fire.flame2.scale.y = 1 + Math.cos(time * 15) * 0.2;
       marks.lamp.material.color.setHex(Math.sin(time * 3) > 0 ? 0xff5b6b : 0x6a1f2a);
       marks.idol.rotation.y = time * 0.6;
+      for (const m of marks.steam) { const u = m.userData, k = ((time * 0.4 + u.ph) % 1); m.position.y = u.y0 + k * 2.2; m.material.opacity = 0.5 * (1 - k); m.scale.setScalar(0.6 + k); }
       life(dt, time, light, rain.visible);
 
       if (!reduced) {
@@ -865,7 +934,7 @@
         controls.autoRotateSpeed = 0.35;
         if (free) {
           const portrait = canvas.clientWidth < canvas.clientHeight; // sur téléphone, on filme plus serré
-          camGoal.target.copy(f.target); camGoal.zoom = f.zoom * (portrait ? 1.3 : 1); camGoal.active = true; camGoal.zoomLocked = false;
+          camGoal.target.copy(f.target); camGoal.zoom = f.zoom * S * (portrait ? 1.3 : 1); camGoal.active = true; camGoal.zoomLocked = false;
           if (f.scene) { // on revient à l'angle de la scène
             const o = v.copy(camera.position).sub(controls.target), len = o.length();
             o.lerp(camDir.clone().multiplyScalar(len), k * 0.8).setLength(len);
@@ -901,11 +970,13 @@
       };
       if (me && people[me]?.visible) { label.textContent = D.cast.find((c) => c.id === me).name; project(people[me].position, label, true); }
       else label.style.display = "none";
-      const showZones = camera.zoom < 1.6;
+      const showZones = camera.zoom < 1.6 * S;
+      if (++occFrame % 8 === 0) clearView(controls.target, camera.position, showZones ? 0 : mode === "follow" ? 3.2 : 4.5);
       for (const z of zoneLabels) { if (showZones) project(z.v, z.el); else z.el.style.display = "none"; }
       director.drawOverlays();
       requestAnimationFrame(frame);
     }
+    let occFrame = 0;
     requestAnimationFrame(frame);
 
     return {

@@ -325,7 +325,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   const D = await (await fetch("data.json")).json();
   const C = Object.fromEntries(D.cast.map((c) => [c.id, c]));
   const FEATURED = D.cast.filter((c) => c.confessions);
-  const ORDER = ["c085", "c053", "c009", "c071", "c032"].filter((id) => C[id]);
+  const ORDER = ["c086", "c053", "c046", "c071", "c085"].filter((id) => C[id]);
   const START = 33; // jour 2, 9h : la matinée la plus agitée de la saison
   const snaps = D.snapshots; // [tick, people]
   const T0 = snaps[0][0], TN = snaps[snaps.length - 1][0];

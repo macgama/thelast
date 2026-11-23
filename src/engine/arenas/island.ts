@@ -1,4 +1,4 @@
-// Gabarit d'aventure « Survie » : une île tropicale de 8 zones.
+// Gabarit d'aventure « Survie » : une île tropicale de 12 zones.
 // Une nouvelle aventure = un nouveau fichier de ce type (plus tard : éditable dans le back-office).
 import type { Arena } from "../types";
 
@@ -9,13 +9,16 @@ export const island: Arena = {
   zones: [
     { id: "beach", name: { fr: "la plage", en: "the beach" }, water: 0.05, food: 0.35, shelter: 0.1, neighbors: ["jungle", "lagoon", "cliffs"], hazards: ["drowning"] },
     { id: "lagoon", name: { fr: "le lagon", en: "the lagoon" }, water: 0.15, food: 0.5, shelter: 0.1, neighbors: ["beach", "mangrove"], hazards: ["drowning"] },
-    { id: "jungle", name: { fr: "la jungle", en: "the jungle" }, water: 0.25, food: 0.45, shelter: 0.5, neighbors: ["beach", "river", "ruins", "mangrove"], hazards: ["wasps", "snake"] },
-    { id: "river", name: { fr: "la rivière", en: "the river" }, water: 0.85, food: 0.3, shelter: 0.2, neighbors: ["jungle", "waterfall", "mangrove"], hazards: ["drowning", "fever"] },
-    { id: "waterfall", name: { fr: "la cascade", en: "the waterfall" }, water: 0.9, food: 0.15, shelter: 0.4, neighbors: ["river", "summit"], hazards: ["fall", "drowning"] },
-    { id: "ruins", name: { fr: "les ruines", en: "the ruins" }, water: 0.1, food: 0.1, shelter: 0.8, neighbors: ["jungle", "summit", "cliffs"], hazards: ["rockslide", "snake"] },
-    { id: "cliffs", name: { fr: "les falaises", en: "the cliffs" }, water: 0.05, food: 0.25, shelter: 0.3, neighbors: ["beach", "ruins"], hazards: ["fall", "rockslide"] },
+    { id: "jungle", name: { fr: "la jungle", en: "the jungle" }, water: 0.25, food: 0.45, shelter: 0.5, neighbors: ["beach", "river", "ruins", "mangrove", "springs"], hazards: ["wasps", "snake"] },
+    { id: "river", name: { fr: "la rivière", en: "the river" }, water: 0.85, food: 0.3, shelter: 0.2, neighbors: ["jungle", "waterfall", "mangrove", "cave"], hazards: ["drowning", "fever"] },
+    { id: "waterfall", name: { fr: "la cascade", en: "the waterfall" }, water: 0.9, food: 0.15, shelter: 0.4, neighbors: ["river", "summit", "cave", "springs"], hazards: ["fall", "drowning"] },
+    { id: "ruins", name: { fr: "les ruines", en: "the ruins" }, water: 0.1, food: 0.1, shelter: 0.8, neighbors: ["jungle", "summit", "cliffs", "springs", "cove"], hazards: ["rockslide", "snake"] },
+    { id: "cliffs", name: { fr: "les falaises", en: "the cliffs" }, water: 0.05, food: 0.25, shelter: 0.3, neighbors: ["beach", "ruins", "cove"], hazards: ["fall", "rockslide"] },
     { id: "mangrove", name: { fr: "la mangrove", en: "the mangrove" }, water: 0.4, food: 0.4, shelter: 0.3, neighbors: ["lagoon", "jungle", "river"], hazards: ["wasps", "fever", "snake"] },
-    { id: "summit", name: { fr: "le sommet", en: "the summit" }, water: 0.1, food: 0.05, shelter: 0.2, neighbors: ["waterfall", "ruins"], hazards: ["fall"] },
+    { id: "summit", name: { fr: "le sommet", en: "the summit" }, water: 0.1, food: 0.05, shelter: 0.2, neighbors: ["waterfall", "ruins", "cove"], hazards: ["fall"] },
+    { id: "cove", name: { fr: "la crique", en: "the cove" }, water: 0.05, food: 0.55, shelter: 0.35, neighbors: ["cliffs", "ruins", "summit"], hazards: ["drowning"] },
+    { id: "cave", name: { fr: "la grotte", en: "the cave" }, water: 0.35, food: 0.1, shelter: 0.95, neighbors: ["river", "waterfall"], hazards: ["fall", "wasps"] },
+    { id: "springs", name: { fr: "les sources chaudes", en: "the hot springs" }, water: 0.6, food: 0.2, shelter: 0.3, neighbors: ["jungle", "ruins", "waterfall"], hazards: ["fever", "snake"] },
   ],
   hazards: {
     wasps: { id: "wasps", base: 0.0096, damage: [25, 60], counter: "stealth", phobia: "insects" },

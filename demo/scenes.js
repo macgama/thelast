@@ -126,7 +126,8 @@
     const V = (x, z) => new T.Vector3(x, ground(x, z), z);
     const off = (base, s, d = 0) => { const v = base.clone().addScaledVector(SIDE, s).addScaledVector(DEPTH, d); v.y = ground(v.x, v.z); return v; };
     const vis = (id) => !!id && !!people[id] && people[id].visible && !people[id].userData.evac;
-    const FIRE = V(4.5, 21);
+    const S = ctx.S || 1; // agrandissement de l'île
+    const FIRE = V(4.5 * S, 21 * S);
     const BEACH_C = V(ZONES.beach[0] + DEPTH.x * 2.5, ZONES.beach[1] + DEPTH.z * 2.5); // l'aire des épreuves
 
     function safe(v, zone = "beach") {
@@ -490,7 +491,7 @@
     }
 
     // ---------- La vie entre deux scènes ----------
-    const WATERY = new Set(["beach", "lagoon", "river", "mangrove"]);
+    const WATERY = new Set(["beach", "lagoon", "river", "mangrove", "cove"]);
     const FORAGE = new Set(["jungle", "mangrove", "waterfall", "river", "ruins"]);
     function assignAmbient(t) {
       const hour = t % 24, night = isNight(t), eve = hour >= 20 && hour < 22;
@@ -1165,14 +1166,14 @@
     B.showrunner = (ev) => {
       const kind = ev.d?.kind, z = ev.z || (kind === "drought" ? "waterfall" : "beach"), st = stageOf(z);
       const wide = kind === "storm" || kind === "heatwave";
-      const sc = new Sc(ev, 6.5, wide ? new T.Vector3(2, 2, 0) : st.clone().add(UP(1.2)), wide ? 1.25 : 2.3);
+      const sc = new Sc(ev, 6.5, wide ? new T.Vector3(2, 2, 0) : st.clone().add(UP(1.2)), wide ? 1.25 / S : 2.3);
       sc.at(0, () => live(ev.fr, "sr"));
       const inZone = Object.keys(ctx.snapAt(ev.t)).filter((id) => vis(id) && ctx.snapAt(ev.t)[id][0] === z).slice(0, 10);
       const sv = ev.d?.variant;
       sc.at(0.3, () => iconAt((wide ? new T.Vector3(2, 6, 0) : st.clone().add(UP(4))), ico(ev, "📢"), 3));
       if (kind === "storm" && sv !== "hail" && sv !== "gale") sc.on(() => { if (Math.random() < (sv === "thunderstorm" ? 0.08 : 0.035)) ctx.lightning(); });
-      if (sv === "hail") sc.on(() => { if (Math.random() < 0.5) burst(new T.Vector3((Math.random() - 0.5) * 30, 12, (Math.random() - 0.5) * 24), { n: 3, colors: [0xffffff, 0xdff3ff], speed: 0.3, up: 0, gravity: -14, life: 1.2, size: 0.4 }); });
-      if (sv === "gale") sc.on(() => { if (Math.random() < 0.2) burst(new T.Vector3((Math.random() - 0.5) * 30, 7, (Math.random() - 0.5) * 24), { n: 1, colors: [0x6b4a2e], speed: 0.5, up: 0, gravity: -12, life: 1, size: 1.2 }); });
+      if (sv === "hail") sc.on(() => { if (Math.random() < 0.5) burst(new T.Vector3((Math.random() - 0.5) * 30 * S, 12, (Math.random() - 0.5) * 24 * S), { n: 3, colors: [0xffffff, 0xdff3ff], speed: 0.3, up: 0, gravity: -14, life: 1.2, size: 0.4 }); });
+      if (sv === "gale") sc.on(() => { if (Math.random() < 0.2) burst(new T.Vector3((Math.random() - 0.5) * 30 * S, 7, (Math.random() - 0.5) * 24 * S), { n: 1, colors: [0x6b4a2e], speed: 0.5, up: 0, gravity: -12, life: 1, size: 1.2 }); });
       if (kind === "wasp_swarm" && D.catastrophes?.[sv]?.color) { const sw = sc.prop(makeSwarm(60, hex(D.catastrophes[sv].color))); sc.on(() => moveSwarm(sw, st.clone().add(UP(sv === "army_ants" ? 0.2 : 2)), 3.5)); }
       if (kind === "wasp_swarm") {
         inZone.forEach((id, k) => { sc.actors.push(id); sc.on((s) => { if (s > 1 && s < 5.5) { const ang = s * 2 + k; go(id, st.clone().add(new T.Vector3(Math.cos(ang) * (2 + k * 0.4), 0, Math.sin(ang) * (2 + k * 0.4))), 5, "panic"); } }); });
@@ -1355,7 +1356,7 @@
       if (cur) { const f = typeof cur.focus === "function" ? cur.focus() : cur.focus; return { target: f, zoom: cur.zoom * ZK, drift: false, scene: true }; }
       if (peekId && now < peekUntil && vis(peekId)) return { target: people[peekId].position.clone().add(UP(1.2)), zoom: 3.4, drift: true };
       if (now > vignUntil || (vign && !vis(vign))) pickVignette();
-      if (!vign) return { target: new T.Vector3(0, 0, 2), zoom: 1.05, drift: true };
+      if (!vign) return { target: new T.Vector3(0, 0, 2), zoom: 1.05 / S, drift: true };
       return { target: people[vign].position.clone().add(UP(1.2)), zoom: 3.0, drift: true };
     }
     function peek(id) { peekId = id; peekUntil = now + 6; if (vis(id)) live(ambientText(id), "ambient"); }

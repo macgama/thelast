@@ -8,6 +8,7 @@ Télé-réalité 100% IA : 50 personnages IA vivent une aventure de 7 jours, sui
 
 - **Démo visuelle** : [`demo/index.html`](demo/index.html), avec l'île en 3D low poly (Three.js, rotation et zoom), les 50 candidats et 5 personnages à suivre avec leurs confessionnaux. Régénérer les données avec `npm run replay`.
   - [`demo/world3d.js`](demo/world3d.js) : l'île, les personnages, la météo, les animaux, les drones et la caméra « réalisateur ».
+  - Île agrandie (constante `S` dans `world3d.js`) : quand la caméra filme de près, les arbres placés entre elle et l'action s'effacent.
   - [`demo/scenes.js`](demo/scenes.js) : chaque événement devient une scène cartoon de 5 à 20 secondes (accidents, vols, disputes, sabotages, épreuves, vote, évacuations), avec bulles de dialogue et bandeau EN DIRECT. Entre deux scènes, les candidats pêchent, cherchent à manger, dorment et se méfient. Les répliques sont écrites à la main dans `SAY` ; plus tard, une IA les écrira.
   - [`demo/sound.js`](demo/sound.js) : vagues, vent, oiseaux le jour, grillons la nuit, musique qui suit la scène (calme, tension, épreuve) et bruitages cartoon. Tout est généré dans le navigateur, sans fichier audio. Bouton 🔊 en haut pour couper le son.
   - Catastrophes : une cinquantaine, décrites dans [`config/catastrophes.json`](config/catastrophes.json) (zones, heure, fréquence, textes, icône, couleur). On peut en ajouter ou en modifier sans toucher au code ; plus tard, ce fichier sera édité depuis le back-office.
@@ -24,7 +25,7 @@ Télé-réalité 100% IA : 50 personnages IA vivent une aventure de 7 jours, sui
 | Élément | Fonctionnement |
 | --- | --- |
 | Personnages | Un pool de 100 fiches bilingues ([`data/characters.json`](data/characters.json)). 50 sont tirées au hasard à chaque saison. |
-| Aventure | « Survie » sur l'Île aux Échos : 9 zones avec eau, nourriture, abris et dangers ([`src/engine/arenas/island.ts`](src/engine/arenas/island.ts)). |
+| Aventure | « Survie » sur l'Île aux Échos : 12 zones (dont la crique, la grotte et les sources chaudes) avec eau, nourriture, abris et dangers ([`src/engine/arenas/island.ts`](src/engine/arenas/island.ts)). |
 | Temps | 1 tick = 1 heure. Début le jour 1 à 8h, finale le jour 7 à 19h. Le jour 7, trois épreuves (endurance à 10h, orientation à 13h, confiance à 16h) laissent 3 finalistes. |
 | Éliminations | Dangers (guêpes, chutes, courants, serpents, fièvre…), soif, faim, épuisement, abandon, affrontements. À l'écran, un candidat éliminé est **évacué par un drone de secours**, jamais montré mort. |
 | Showrunner | Surveille le rythme. Si la saison s'endort, il déclenche un rebondissement : essaim de guêpes, tempête, sécheresse, canicule, ravitaillement. |
