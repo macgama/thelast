@@ -3,7 +3,7 @@
 // c'est équitable, rejouable et vérifiable. L'IA sert seulement à raconter (voir src/narration).
 import { Rng } from "./rng";
 import type {
-  Arena, Character, Contestant, EliminationCause, EventType, GameEvent, Item, SeasonConfig, SeasonResult, Zone,
+  Arena, Character, Contestant, EliminationCause, EventType, GameEvent, Item, SeasonConfig, SeasonResult, Snapshot, Zone,
 } from "./types";
 
 export const START_HOUR = 8;
@@ -13,6 +13,11 @@ export const hourOf = (tick: number) => tick % 24;
 const clamp = (v: number, lo = 0, hi = 100) => Math.max(lo, Math.min(hi, v));
 const isNight = (h: number) => h >= 22 || h < 6;
 
+/** Le dernier jour, trois épreuves resserrent le groupe jusqu'aux 3 finalistes. */
+export const TRIAL_HOURS = [10, 13, 16];
+export const TRIALS = ["endurance", "orientation", "trust"] as const;
+export const FINALISTS = 3;
+
 export type ShowrunnerKind = "wasp_swarm" | "storm" | "drought" | "supply_drop" | "heatwave";
 
 export class Season {
@@ -21,6 +26,7 @@ export class Season {
   readonly byId: Map<string, Character>;
   readonly state: Map<string, Contestant>;
   readonly events: GameEvent[] = [];
+  readonly snapshots: Snapshot[] = [];
   readonly zones: Map<string, Zone>;
   tick = 0;
   votesDone = 0;
@@ -121,11 +127,20 @@ export class Season {
     const end = (this.config.days - 1) * 24 + 21;
     this.tick = START_HOUR;
     this.emit("season_start", this.cast.map((c) => c.id), 5, { arena: this.arena.id, participants: this.cast.length });
-    for (this.tick = START_HOUR; this.tick <= end && !this.winner; this.tick++) this.step();
+    for (this.tick = START_HOUR; this.tick <= end && !this.winner; this.tick++) {
+      this.step();
+      this.snapshot();
+    }
     return {
       config: this.config, arena: this.arena, cast: this.cast,
-      final: [...this.state.values()], events: this.events, winner: this.winner,
+      final: [...this.state.values()], events: this.events, winner: this.winner, snapshots: this.snapshots,
     };
+  }
+
+  private snapshot() {
+    const people: Snapshot["people"] = {};
+    for (const s of this.alive()) people[s.id] = [s.zone, Math.round(s.health), Math.round(s.thirst), Math.round(s.morale)];
+    this.snapshots.push({ tick: this.tick, people });
   }
 
   step() {
@@ -139,6 +154,7 @@ export class Season {
     if (h === 12) this.gifts();
     const lastDay = dayOf(this.tick) === this.config.days;
     if (h === this.config.voteHour && !lastDay) this.vote();
+    if (lastDay && TRIAL_HOURS.includes(h)) this.trial(TRIAL_HOURS.length - TRIAL_HOURS.indexOf(h));
     if (h === this.config.voteHour && lastDay) this.finale();
   }
 
@@ -479,6 +495,23 @@ export class Season {
   }
 
   // ---------- Finale du jour 7 ----------
+
+  private trialScore(s: Contestant, kind: (typeof TRIALS)[number]) {
+    const skill = kind === "endurance" ? "endurance" : kind === "orientation" ? "orientation" : "negotiation";
+    const trait = kind === "endurance" ? "courage" : kind === "orientation" ? "composure" : "loyalty";
+    return s.health * 0.4 + s.energy * 0.3 + this.trait(s.id, trait) * 0.5 + (this.has(s.id, skill) ? 20 : 0) + s.allies.length * (kind === "trust" ? 10 : 0) + this.rng.int(0, 40);
+  }
+
+  /** Épreuve du dernier jour : les moins bons sont évacués, il en reste toujours au moins 3. */
+  private trial(left: number) {
+    const alive = this.alive();
+    const kind = TRIALS[TRIAL_HOURS.length - left];
+    const out = Math.ceil(Math.max(0, alive.length - FINALISTS) / left);
+    if (out <= 0) return;
+    const ranked = [...alive].sort((a, b) => this.trialScore(b, kind) - this.trialScore(a, kind));
+    this.emit("trial", ranked.slice(0, 1).map((s) => s.id), 5, { kind, out: out });
+    for (const s of ranked.slice(-out).reverse()) this.eliminate(s, "trial", { trial: kind });
+  }
 
   private finale() {
     const alive = this.alive();

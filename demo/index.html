@@ -1,0 +1,501 @@
+<meta charset="utf-8">
+<title>The Last · Saison 1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Concept : une émission de télé-réalité de nuit sur une île. Un seul thème sombre, assumé, comme un plateau télé.
+   Carte de l'île en haut, panneau du candidat suivi en dessous (une colonne sur mobile, deux sur grand écran). */
+:root {
+  --ink: #0b1820;        /* nuit sur le lagon */
+  --deep: #10262f;       /* surfaces */
+  --raise: #173440;      /* cartes */
+  --line: #24505e;       /* traits fins */
+  --sea: #1d5a66;
+  --sand: #e9cf98;       /* texte principal, couleur sable */
+  --mist: #9fb9bd;       /* texte secondaire */
+  --torch: #ff8a3d;      /* accent : la torche */
+  --danger: #ff5b6b;
+  --safe: #62d6a0;
+  --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { background: var(--ink); color: var(--sand); }
+body { font-family: var(--body); font-size: 15px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ink); }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); outline-offset: 2px; }
+.wrap { max-width: 1100px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* En-tête */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--ink) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 12px; padding-block: 10px; flex-wrap: wrap; }
+.logo { font-family: var(--display); font-weight: 700; letter-spacing: .18em; font-size: 18px; }
+.logo b { color: var(--torch); }
+.clock { margin-left: auto; display: flex; gap: 10px; align-items: baseline; font-family: var(--display); font-variant-numeric: tabular-nums; }
+.clock .day { font-size: 18px; font-weight: 700; }
+.clock .left { color: var(--mist); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.live { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--danger); font-family: var(--display); font-weight: 600; }
+.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--danger); animation: blink 1.4s infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+
+/* Mise en page */
+.stage { display: grid; gap: 16px; padding-block: 16px 40px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .stage { grid-template-columns: 1.25fr 1fr; align-items: start; } .side { position: sticky; top: 70px; } }
+.stage > * { min-width: 0; }
+
+/* Carte */
+.mapbox { background: radial-gradient(ellipse at 50% 55%, #14424d 0%, var(--ink) 75%); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; position: relative; }
+.mapbox svg { display: block; width: 100%; height: auto; }
+.zone-label { font-family: var(--display); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; fill: var(--mist); }
+.dot { transition: transform .9s cubic-bezier(.4,.1,.2,1), opacity .6s; cursor: pointer; }
+.dot circle.p { fill: var(--sand); stroke: var(--ink); stroke-width: 1; }
+.dot.feat circle.p { fill: var(--sea); stroke: var(--sand); }
+.dot.me circle.p { fill: var(--torch); stroke: #fff; stroke-width: 1.5; }
+.dot.gone { opacity: 0; pointer-events: none; }
+.dot text { font-family: var(--display); font-size: 8px; fill: var(--sand); paint-order: stroke; stroke: var(--ink); stroke-width: 3px; font-weight: 600; }
+.ping { fill: none; stroke: var(--torch); stroke-width: 1.5; animation: ping 1.8s infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes ping { from { opacity: .9; transform: scale(.6); } to { opacity: 0; transform: scale(2.2); } }
+.flash { margin: 0 10px 10px; min-height: 40px; background: var(--deep); border: 1px solid var(--line); border-left: 3px solid var(--torch); border-radius: 8px; padding: 8px 12px; font-size: 13px; }
+.flash.out { border-left-color: var(--danger); }
+.flash:empty::before { content: "Calme plat sur l'île."; color: var(--mist); }
+
+/* Commandes du temps */
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+.btn { background: var(--raise); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 600; }
+.btn:hover { border-color: var(--mist); }
+.btn.main { background: var(--torch); border-color: var(--torch); color: var(--ink); }
+.scrub { flex: 1 1 100%; accent-color: var(--torch); }
+.daymarks { display: flex; justify-content: space-between; font-family: var(--display); font-size: 11px; color: var(--mist); letter-spacing: .08em; padding-inline: 4px; }
+
+/* Panneau latéral */
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 14px; overflow-x: auto; }
+.tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; font-family: var(--display); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; color: var(--mist); white-space: nowrap; position: relative; }
+.tab[aria-selected="true"] { color: var(--sand); border-bottom-color: var(--torch); }
+.tab .badge { position: absolute; top: 4px; right: 2px; width: 7px; height: 7px; border-radius: 50%; background: var(--torch); }
+
+.hero { display: flex; gap: 14px; align-items: center; }
+.hero .face { width: 88px; height: 88px; flex: none; }
+.hero h2 { margin: 0; font-family: var(--display); font-size: 28px; line-height: 1.05; letter-spacing: .02em; text-wrap: balance; }
+.meta { color: var(--mist); font-size: 13px; }
+.quote { font-style: italic; color: var(--sand); margin: 12px 0 0; font-size: 15px; }
+.status { display: inline-block; margin-top: 6px; font-family: var(--display); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: color-mix(in srgb, var(--safe) 18%, transparent); color: var(--safe); }
+.status.out { background: color-mix(in srgb, var(--danger) 18%, transparent); color: var(--danger); }
+.status.win { background: var(--torch); color: var(--ink); }
+
+.gauges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+.gauge span { display: block; font-family: var(--display); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--mist); }
+.gauge .bar { height: 6px; border-radius: 3px; background: var(--deep); overflow: hidden; margin-top: 4px; }
+.gauge .bar i { display: block; height: 100%; border-radius: 3px; transition: width .8s; }
+.gauge b { font-family: var(--display); font-variant-numeric: tabular-nums; font-size: 15px; }
+
+.booth { margin-top: 18px; background: linear-gradient(160deg, #23161a, var(--deep) 60%); border: 1px solid #4a2a2f; border-radius: 12px; padding: 14px 16px; }
+.booth h3 { margin: 0 0 6px; font-family: var(--display); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--danger); display: flex; align-items: center; gap: 8px; }
+.booth h3::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--danger); }
+.booth p { margin: 0; font-size: 16px; line-height: 1.55; }
+.booth .wait { color: var(--mist); font-size: 14px; font-style: italic; }
+.older summary { cursor: pointer; color: var(--mist); font-size: 13px; margin-top: 10px; }
+.older p { font-size: 14px; color: var(--mist); margin: 8px 0 0; }
+.older b { color: var(--sand); font-family: var(--display); font-weight: 600; letter-spacing: .06em; }
+
+.card { background: var(--deep); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-top: 14px; }
+.card h4 { margin: 0 0 6px; font-family: var(--display); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
+.card p { margin: 0; }
+.secret { border-style: dashed; }
+.locked { color: var(--mist); font-style: italic; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip { font-size: 12px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--mist); }
+
+.feed { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.feed li { display: grid; grid-template-columns: 52px 1fr; gap: 8px; font-size: 14px; }
+.feed time { font-family: var(--display); color: var(--mist); font-variant-numeric: tabular-nums; font-size: 12px; padding-top: 2px; }
+.feed li.out { color: var(--danger); }
+.feed li.me { color: var(--torch); }
+.feed li.sr { color: #ffd38a; }
+
+.daily h3 { font-family: var(--display); margin: 0 0 4px; font-size: 20px; }
+.daily h4 { font-family: var(--display); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); margin: 16px 0 6px; }
+.daily ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.daypick { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.daypick button { width: 36px; height: 36px; border-radius: 8px; background: var(--raise); border: 1px solid var(--line); font-family: var(--display); font-weight: 600; }
+.daypick button[aria-pressed="true"] { background: var(--torch); color: var(--ink); border-color: var(--torch); }
+.daypick button:disabled { opacity: .3; cursor: not-allowed; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 10px; }
+.person { background: none; border: 1px solid transparent; border-radius: 10px; padding: 6px 4px; text-align: center; font-size: 12px; }
+.person:hover { border-color: var(--line); }
+.person .face { width: 56px; height: 56px; margin: 0 auto 4px; }
+.person.gone .face { filter: grayscale(1) brightness(.6); }
+.person.gone { color: var(--mist); }
+.person.featured span::after { content: " ★"; color: var(--torch); }
+.person.me { border-color: var(--torch); }
+
+/* Écran d'accueil */
+.intro { position: fixed; inset: 0; z-index: 20; background: var(--ink); overflow-y: auto; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.intro .wrap { padding-block: 28px 40px; }
+.intro h1 { font-family: var(--display); font-size: clamp(40px, 11vw, 84px); line-height: .9; margin: 0; letter-spacing: .04em; text-wrap: balance; }
+.intro h1 b { color: var(--torch); }
+.intro .lede { max-width: 60ch; color: var(--mist); font-size: 16px; margin: 14px 0 26px; }
+.picks { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.pick { text-align: left; background: var(--deep); border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: center; transition: border-color .2s, transform .2s; }
+.pick:hover { border-color: var(--torch); transform: translateY(-2px); }
+.pick .face { width: 72px; height: 72px; }
+.pick strong { font-family: var(--display); font-size: 20px; display: block; }
+.pick em { display: block; font-size: 13px; color: var(--sand); margin-top: 4px; }
+.pick small { color: var(--mist); font-size: 12px; }
+.note { color: var(--mist); font-size: 12px; margin-top: 22px; max-width: 70ch; }
+
+/* Fin de saison */
+.finale { position: fixed; inset: 0; z-index: 15; background: color-mix(in srgb, var(--ink) 92%, transparent); display: grid; place-items: center; padding: 24px max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px)); text-align: center; }
+.finale .face { width: 140px; height: 140px; margin: 0 auto 12px; filter: drop-shadow(0 0 28px color-mix(in srgb, var(--torch) 60%, transparent)); }
+.finale h2 { font-family: var(--display); font-size: clamp(32px, 8vw, 56px); margin: 0; line-height: 1; }
+.finale p { color: var(--mist); max-width: 46ch; margin: 12px auto 18px; }
+.eyebrow { font-family: var(--display); letter-spacing: .2em; text-transform: uppercase; color: var(--torch); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .dot, .gauge .bar i { transition: none; } .live::before, .ping { animation: none; } }
+</style>
+
+<div class="intro" id="intro">
+  <div class="wrap">
+    <div class="eyebrow">Saison 1 · L'Île aux Échos · 7 jours</div>
+    <h1>THE <b>LAST</b></h1>
+    <p class="lede">50 candidats, une île, un seul vainqueur. Chaque soir à 19h, le public en sauve deux sur trois. Pour vivre la saison, choisis quelqu'un à suivre. Chaque soir, cette personne te parlera au confessionnal.</p>
+    <div class="picks" id="picks"></div>
+    <p class="note">Démo de prototype. La saison a été simulée par le moteur du jeu : chaque déplacement, accident, alliance, vote et colis vient de la simulation. Les confessionnaux de ces cinq candidats ont été écrits par Claude à partir de ce qui leur est réellement arrivé. En production, une IA les écrira en direct. Les 45 autres candidats n'ont pas encore de confessionnal.</p>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo">THE <b>LAST</b></div>
+    <span class="live">Direct</span>
+    <div class="clock"><span class="day" id="clockDay">Jour 1 · 08h</span><span class="left" id="clockLeft">50 en jeu</span></div>
+  </div>
+</header>
+
+<main class="wrap stage">
+  <section>
+    <div class="mapbox">
+      <svg id="map" viewBox="0 0 400 300" role="img" aria-label="Carte de l'île avec la position des candidats"></svg>
+      <div class="flash" id="flash" aria-live="polite"></div>
+    </div>
+    <div class="controls">
+      <button class="btn main" id="play" type="button">▶ Lecture</button>
+      <button class="btn" id="speed" type="button">Vitesse ×1</button>
+      <button class="btn" id="prev" type="button">− 1 h</button>
+      <button class="btn" id="next" type="button">+ 1 h</button>
+      <button class="btn" id="toNight" type="button">Aller à 21h</button>
+      <input class="scrub" id="scrub" type="range" min="0" value="0" aria-label="Moment de la saison">
+    </div>
+    <div class="daymarks" aria-hidden="true"><span>J1</span><span>J2</span><span>J3</span><span>J4</span><span>J5</span><span>J6</span><span>J7</span></div>
+  </section>
+
+  <aside class="side">
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-me" aria-selected="true" type="button">Mon candidat<span class="badge" id="badge" hidden></span></button>
+      <button class="tab" role="tab" id="tab-feed" aria-selected="false" type="button">Direct</button>
+      <button class="tab" role="tab" id="tab-daily" aria-selected="false" type="button">Quotidienne</button>
+      <button class="tab" role="tab" id="tab-cast" aria-selected="false" type="button">Casting</button>
+    </nav>
+    <div id="panel-me"></div>
+    <div id="panel-feed" hidden><ul class="feed" id="feed"></ul></div>
+    <div id="panel-daily" class="daily" hidden></div>
+    <div id="panel-cast" hidden><div class="grid" id="castGrid"></div></div>
+  </aside>
+</main>
+
+<div class="finale" id="finale" hidden></div>
+
+<script>
+(async function () {
+  const D = await (await fetch("data.json")).json();
+  const C = Object.fromEntries(D.cast.map((c) => [c.id, c]));
+  const FEATURED = D.cast.filter((c) => c.confessions);
+  const ORDER = ["c090", "c032", "c069", "c044", "c041"].filter((id) => C[id]);
+  const snaps = D.snapshots; // [tick, people]
+  const T0 = snaps[0][0], TN = snaps[snaps.length - 1][0];
+  const elim = Object.fromEntries(D.eliminations.map((e) => [e.id, e]));
+  const evOut = Object.fromEntries(D.events.filter((e) => e.type === "evacuated").map((e) => [e.a[0], e]));
+
+  // ---------- utilitaires ----------
+  const dayOf = (t) => Math.floor(t / 24) + 1;
+  const hh = (t) => String(t % 24).padStart(2, "0") + "h";
+  const e = (c) => (c.gender === "f" ? "e" : c.gender === "x" ? "·e" : "");
+  const esc = (s) => String(s).replace(/[&<>"]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[m]);
+  const hash = (s) => [...s].reduce((h, ch) => (Math.imul(h, 31) + ch.charCodeAt(0)) >>> 0, 7);
+  const snapAt = (t) => snaps[Math.max(0, Math.min(snaps.length - 1, t - T0))][1];
+
+  // ---------- portraits générés (style jeu, pas réaliste) ----------
+  const SKIN = ["#f6d3b3", "#e9b48f", "#c98e62", "#a86b45", "#7b4a2d", "#563220"];
+  const HAIR = ["#1d1512", "#3b2418", "#6b3e1f", "#b4772f", "#d9b36c", "#8a8f99", "#a33b2b"];
+  const BG = ["#1d5a66", "#3b3f7a", "#6a2f4f", "#2f5a3a", "#6b4a1f", "#284a6e", "#5a2f2f"];
+  const SHIRT = ["#ff8a3d", "#62d6a0", "#e9cf98", "#7fb0ff", "#ff5b6b", "#c08bff", "#f2f2f2"];
+  let faceN = 0;
+  function face(c, mood = 60, opts = {}) {
+    const h = hash(c.id);
+    const cid = "cl" + c.id + "-" + (faceN++);
+    const skin = SKIN[h % 6], hair = HAIR[(h >> 3) % 7], bg = BG[(h >> 6) % 7], shirt = SHIRT[(h >> 9) % 7];
+    const styles = c.gender === "f" ? [1, 2, 3, 1, 0] : c.gender === "m" ? [0, 4, 3, 0, 4] : [0, 1, 2, 3, 4];
+    const style = styles[(h >> 12) % 5];
+    const back = style === 1 ? `<path d="M17 30 Q16 52 22 56 L42 56 Q48 52 47 30 Z" fill="${hair}"/>` : style === 3 ? `<circle cx="32" cy="27" r="19" fill="${hair}"/>` : "";
+    const top = style === 0 ? `<path d="M19 28 Q19 12 32 12 Q45 12 45 28 Q40 20 32 21 Q24 20 19 28 Z" fill="${hair}"/>`
+      : style === 1 ? `<path d="M18 30 Q18 11 32 11 Q46 11 46 30 Q42 18 32 19 Q22 18 18 30 Z" fill="${hair}"/>`
+      : style === 2 ? `<circle cx="32" cy="9" r="6" fill="${hair}"/><path d="M19 27 Q19 13 32 13 Q45 13 45 27 Q38 19 32 20 Q26 19 19 27 Z" fill="${hair}"/>`
+      : style === 3 ? `<path d="M18 26 Q20 12 32 12 Q44 12 46 26 Q40 18 32 19 Q24 18 18 26 Z" fill="${hair}"/>`
+      : `<path d="M20 25 Q21 14 32 14 Q43 14 44 25 Q38 20 32 20 Q26 20 20 25 Z" fill="${hair}" opacity=".85"/>`;
+    const m = mood > 60 ? "M26 41 Q32 46 38 41" : mood > 30 ? "M27 42 L37 42" : "M26 44 Q32 39 38 44";
+    const brow = mood > 30 ? "" : `<path d="M23 28 L28 30 M41 28 L36 30" stroke="${hair}" stroke-width="1.6" stroke-linecap="round"/>`;
+    const age = c.age > 50 ? `<path d="M24 37 Q26 38 27 37 M37 37 Q38 38 40 37" stroke="#00000033" stroke-width="1" fill="none"/>` : "";
+    const ring = opts.ring ? `<circle cx="32" cy="32" r="30.5" fill="none" stroke="var(--torch)" stroke-width="2.5"/>` : "";
+    return `<svg class="face" viewBox="0 0 64 64" aria-hidden="true" style="${opts.gray ? "filter:grayscale(1) brightness(.65)" : ""}">
+      <defs><clipPath id="${cid}"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+      <g clip-path="url(#${cid})"><rect width="64" height="64" fill="${bg}"/>${back}
+      <path d="M8 66 Q10 50 32 49 Q54 50 56 66 Z" fill="${shirt}"/><rect x="28" y="40" width="8" height="10" fill="${skin}"/>
+      <ellipse cx="32" cy="31" rx="13" ry="15" fill="${skin}"/>${top}
+      <ellipse cx="27" cy="32" rx="1.8" ry="2.2" fill="#1b1b1b"/><ellipse cx="37" cy="32" rx="1.8" ry="2.2" fill="#1b1b1b"/>${brow}${age}
+      <path d="${m}" stroke="#3a1c14" stroke-width="1.8" fill="none" stroke-linecap="round"/></g>${ring}</svg>`;
+  }
+
+  // ---------- carte ----------
+  const POS = { beach: [200, 250], lagoon: [88, 222], cliffs: [318, 214], jungle: [195, 168], mangrove: [88, 140], river: [148, 92], ruins: [292, 140], waterfall: [212, 56], summit: [322, 58] };
+  const ZTINT = { beach: "#e9cf9833", lagoon: "#3fb6c933", cliffs: "#9a8a7a40", jungle: "#2f8a5a44", mangrove: "#3f6a4a44", river: "#3f8ec944", ruins: "#8a7a6a40", waterfall: "#6fc6e044", summit: "#c9c3b840" };
+  const svg = document.getElementById("map");
+  const island = `<path d="M60 230 C30 190 40 120 70 95 C100 60 150 30 210 25 C270 20 345 25 360 70 C375 115 360 170 350 215 C340 260 270 285 200 282 C130 280 85 265 60 230 Z" fill="#1f4a3a" stroke="#e9cf9855" stroke-width="3"/>`;
+  const edges = D.arena.zones.flatMap((z) => z.neighbors.filter((n) => n > z.id).map((n) => `<line x1="${POS[z.id][0]}" y1="${POS[z.id][1]}" x2="${POS[n][0]}" y2="${POS[n][1]}" stroke="#e9cf9840" stroke-dasharray="3 4"/>`)).join("");
+  const zones = D.arena.zones.map((z) => `<circle cx="${POS[z.id][0]}" cy="${POS[z.id][1]}" r="30" fill="${ZTINT[z.id]}"/><text class="zone-label" x="${POS[z.id][0]}" y="${POS[z.id][1] + (z.id === "beach" ? 40 : -34)}" text-anchor="middle">${esc(z.name.replace(/^(la |le |les |l')/, ""))}</text>`).join("");
+  svg.innerHTML = island + edges + zones + `<g id="dots"></g>`;
+  const dotsG = svg.querySelector("#dots");
+  const dotEl = {};
+  for (const c of D.cast) {
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.setAttribute("class", "dot" + (c.confessions ? " feat" : ""));
+    g.innerHTML = `<title>${esc(c.name)}</title><circle class="p" r="${c.confessions ? 5 : 3.6}"/>`;
+    g.addEventListener("click", () => follow(c.id));
+    dotsG.appendChild(g);
+    dotEl[c.id] = g;
+  }
+
+  // ---------- état ----------
+  let tick = T0, me = null, playing = false, speed = 1, timer = null, seenConf = {};
+  const scrub = document.getElementById("scrub");
+  scrub.max = TN - T0;
+
+  function placeDots() {
+    const people = snapAt(tick);
+    const byZone = {};
+    for (const id of Object.keys(people)) (byZone[people[id][0]] ??= []).push(id);
+    for (const c of D.cast) {
+      const g = dotEl[c.id];
+      const p = people[c.id];
+      g.classList.toggle("gone", !p);
+      g.classList.toggle("me", c.id === me);
+      if (!p) continue;
+      const list = byZone[p[0]].sort();
+      const i = list.indexOf(c.id);
+      const ang = i * 2.4, rad = 6 + 3.3 * Math.sqrt(i) * 2;
+      const [x, y] = POS[p[0]];
+      g.style.transform = `translate(${(x + Math.cos(ang) * rad).toFixed(1)}px, ${(y + Math.sin(ang) * rad * 0.8).toFixed(1)}px)`;
+    }
+    // le candidat suivi passe au premier plan, avec son prénom
+    dotsG.querySelectorAll(".lbl,.ping").forEach((n) => n.remove());
+    if (me && people[me]) {
+      const g = dotEl[me];
+      dotsG.appendChild(g);
+      g.insertAdjacentHTML("beforeend", `<circle class="ping" r="6"/><text class="lbl" y="-9" text-anchor="middle">${esc(C[me].name)}</text>`);
+    }
+  }
+
+  function flash() {
+    const box = document.getElementById("flash");
+    const evs = D.events.filter((ev) => ev.t === tick && ev.w >= 3);
+    const pick = evs.find((ev) => me && ev.a.includes(me)) || evs.find((ev) => ev.type === "evacuated") || evs.find((ev) => ev.type === "showrunner") || evs[0];
+    box.textContent = pick ? pick.fr : "";
+    box.classList.toggle("out", !!pick && pick.type === "evacuated");
+  }
+
+  function header() {
+    const left = Object.keys(snapAt(tick)).length;
+    document.getElementById("clockDay").textContent = `Jour ${dayOf(tick)} · ${hh(tick)}`;
+    document.getElementById("clockLeft").textContent = `${left} en jeu`;
+  }
+
+  // ---------- confessionnal ----------
+  function confUnlock(c, d) {
+    const out = elim[c.id];
+    if (out && out.day === d) return out.t;
+    return Math.min((d - 1) * 24 + 21, TN);
+  }
+
+  function panelMe() {
+    const el = document.getElementById("panel-me");
+    if (!me) { el.innerHTML = `<p class="locked">Choisis un candidat dans le casting.</p>`; return; }
+    const c = C[me];
+    const p = snapAt(tick)[me];
+    const out = elim[me] && elim[me].t <= tick ? elim[me] : null;
+    const won = D.winner === me && tick >= TN;
+    const mood = p ? p[3] : 20;
+    const status = won ? `<span class="status win">Vainqueur${c.gender === "f" ? "e" : ""} de la saison</span>`
+      : out ? `<span class="status out">Évacué${e(c)} · Jour ${out.day} · ${hh(out.t)}</span>`
+      : `<span class="status">En jeu · ${esc(D.arena.zones.find((z) => z.id === p[0]).name)}</span>`;
+    const gauge = (label, v, color) => `<div class="gauge"><span>${label}</span><b>${v}</b><div class="bar"><i style="width:${v}%;background:${color}"></i></div></div>`;
+    const gauges = p ? `<div class="gauges">${gauge("Santé", p[1], "var(--safe)")}${gauge("Hydratation", 100 - p[2], "#6fc6e0")}${gauge("Moral", p[3], "var(--torch)")}</div>` : "";
+
+    let booth = "";
+    if (c.confessions) {
+      const days = Object.keys(c.confessions).map(Number).sort((a, b) => a - b);
+      const open = days.filter((d) => confUnlock(c, d) <= tick);
+      const last = open[open.length - 1];
+      const nextD = days.find((d) => confUnlock(c, d) > tick);
+      const current = last ? `<h3>Confessionnal · Jour ${last}</h3><p>« ${esc(c.confessions[last])} »</p>`
+        : `<h3>Confessionnal</h3><p class="wait">${esc(c.name)} te parlera ce soir à 21h.</p>`;
+      const waitNext = nextD && last ? `<p class="wait" style="margin-top:10px">Prochain confessionnal : jour ${nextD} à ${hh(confUnlock(c, nextD))}.</p>` : "";
+      const older = open.length > 1 ? `<details class="older"><summary>Revoir les jours précédents</summary>${open.slice(0, -1).reverse().map((d) => `<p><b>Jour ${d}</b> · ${esc(c.confessions[d])}</p>`).join("")}</details>` : "";
+      booth = `<div class="booth">${current}${waitNext}${older}</div>`;
+      if (last) seenConf[me] = Math.max(seenConf[me] || 0, last);
+    } else {
+      booth = `<div class="card"><h4>Confessionnal</h4><p class="locked">Pas de confessionnal pour ${esc(c.name)} dans cette démo. Seuls les 5 candidats de l'écran d'accueil en ont un.</p></div>`;
+    }
+    const secretOpen = c.secretDay ? dayOf(tick) >= c.secretDay && tick >= confUnlock(c, c.secretDay) : out || tick >= TN;
+    const mine = D.events.filter((ev) => ev.t <= tick && ev.a.includes(me) && ev.type !== "season_start").slice(-6).reverse();
+    el.innerHTML = `
+      <div class="hero">${face(c, mood, { gray: !!out && !won, ring: !out })}
+        <div><h2>${esc(c.name)}</h2><div class="meta">${c.age} ans · ${esc(c.job)} · ${esc(c.origin)}</div>${status}</div></div>
+      <p class="quote">« ${esc(c.catchphrase)} »</p>
+      ${gauges}
+      ${booth}
+      <div class="card"><h4>Son histoire</h4><p>${esc(c.bio)}</p><div class="chips"><span class="chip">Rêve : ${esc(c.motivation)}</span></div></div>
+      <div class="card secret"><h4>Son secret</h4>${secretOpen ? `<p>${esc(c.secret)}</p>` : `<p class="locked">🔒 Pas encore révélé. Reste avec ${esc(c.name)} pour le découvrir.</p>`}</div>
+      <div class="card"><h4>Ses dernières heures</h4>${mine.length ? `<ul class="feed">${mine.map((ev) => `<li class="${ev.type === "evacuated" ? "out" : ""}"><time>J${dayOf(ev.t)} ${hh(ev.t)}</time><span>${esc(ev.fr)}</span></li>`).join("")}</ul>` : `<p class="locked">Rien à signaler pour l'instant.</p>`}</div>`;
+  }
+
+  function badge() {
+    if (!me || !C[me].confessions) return (document.getElementById("badge").hidden = true);
+    const c = C[me];
+    const open = Object.keys(c.confessions).map(Number).filter((d) => confUnlock(c, d) <= tick);
+    const last = open[open.length - 1] || 0;
+    document.getElementById("badge").hidden = !(last > (seenConf[me] || 0)) || active === "me";
+  }
+
+  // ---------- autres onglets ----------
+  function panelFeed() {
+    const items = D.events.filter((ev) => ev.t <= tick && ev.w >= 2).slice(-60).reverse();
+    document.getElementById("feed").innerHTML = items.map((ev) =>
+      `<li class="${ev.type === "evacuated" ? "out" : ev.type === "showrunner" ? "sr" : me && ev.a.includes(me) ? "me" : ""}"><time>J${dayOf(ev.t)} ${hh(ev.t)}</time><span>${esc(ev.fr)}</span></li>`).join("");
+  }
+
+  let dailyDay = null;
+  function panelDaily() {
+    const el = document.getElementById("panel-daily");
+    const ready = (d) => tick >= (d - 1) * 24 + D.voteHour;
+    const maxReady = [...Array(D.days)].map((_, i) => i + 1).filter(ready).pop();
+    if (!maxReady) { el.innerHTML = `<p class="locked">La première Quotidienne sera diffusée ce soir à 19h.</p>`; return; }
+    const d = dailyDay && ready(dailyDay) ? dailyDay : maxReady;
+    const from = (d - 2) * 24 + D.voteHour, to = (d - 1) * 24 + D.voteHour;
+    const win = D.events.filter((ev) => ev.t > from && ev.t <= to);
+    const hl = win.filter((ev) => ev.w >= 3 && !["evacuated", "vote_threat", "vote_saved", "season_start", "trial", "finale", "winner"].includes(ev.type))
+      .filter((ev, i, a) => ev.type !== "showrunner" || a.findIndex((x) => x.type === "showrunner" && x.d?.kind === ev.d?.kind) === i)
+      .sort((a, b) => b.w - a.w || a.t - b.t).slice(0, 6).sort((a, b) => a.t - b.t);
+    const outs = win.filter((ev) => ev.type === "evacuated");
+    const vote = win.filter((ev) => ev.type === "vote_threat" || ev.type === "vote_saved" || ev.type === "trial" || ev.type === "finale" || ev.type === "winner");
+    const left = Object.keys(snapAt(Math.min(to, TN))).length;
+    el.innerHTML = `<div class="daypick">${[...Array(D.days)].map((_, i) => `<button type="button" data-d="${i + 1}" aria-pressed="${i + 1 === d}" ${ready(i + 1) ? "" : "disabled"}>${i + 1}</button>`).join("")}</div>
+      <h3>La Quotidienne · Jour ${d}</h3><div class="meta">${left} candidats en jeu après ce soir</div>
+      <h4>Les moments forts</h4><ul>${hl.map((ev) => `<li>${esc(ev.fr)}</li>`).join("") || "<li>Une journée calme.</li>"}</ul>
+      <h4>Évacués depuis hier soir (${outs.length})</h4><ul>${outs.map((ev) => `<li>${esc(ev.fr)}</li>`).join("") || "<li>Personne.</li>"}</ul>
+      <h4>${d === D.days ? "La finale" : "Le vote du soir"}</h4><ul>${vote.map((ev) => `<li>${esc(ev.fr)}</li>`).join("")}</ul>`;
+    el.querySelectorAll("[data-d]").forEach((b) => b.addEventListener("click", () => { dailyDay = +b.dataset.d; panelDaily(); }));
+  }
+
+  function panelCast() {
+    const people = snapAt(tick);
+    const ids = [...ORDER, ...D.cast.map((c) => c.id).filter((id) => !ORDER.includes(id))];
+    document.getElementById("castGrid").innerHTML = ids.map((id) => {
+      const c = C[id], p = people[id];
+      return `<button type="button" class="person ${p ? "" : "gone"} ${c.confessions ? "featured" : ""} ${id === me ? "me" : ""}" data-id="${id}">${face(c, p ? p[3] : 20)}<span>${esc(c.name)}</span></button>`;
+    }).join("");
+    document.querySelectorAll("#castGrid .person").forEach((b) => b.addEventListener("click", () => { follow(b.dataset.id); select("me"); }));
+  }
+
+  // ---------- onglets ----------
+  let active = "me";
+  function select(name) {
+    active = name;
+    for (const n of ["me", "feed", "daily", "cast"]) {
+      document.getElementById("tab-" + n).setAttribute("aria-selected", n === name);
+      document.getElementById("panel-" + n).hidden = n !== name;
+    }
+    render();
+  }
+  for (const n of ["me", "feed", "daily", "cast"]) document.getElementById("tab-" + n).addEventListener("click", () => select(n));
+
+  // ---------- rendu ----------
+  function render() {
+    scrub.value = tick - T0;
+    header(); placeDots(); flash();
+    if (active === "me") panelMe();
+    if (active === "feed") panelFeed();
+    if (active === "daily") panelDaily();
+    if (active === "cast") panelCast();
+    badge();
+    finale();
+  }
+
+  function finale() {
+    const box = document.getElementById("finale");
+    if (tick < TN || box.dataset.shown) { box.hidden = true; return; }
+    box.dataset.shown = "1";
+    const w = C[D.winner];
+    box.innerHTML = `<div>${face(w, 95)}<div class="eyebrow">Le Prime · Jour 7</div><h2>${esc(w.name)} est The Last</h2>
+      <p>${esc(w.age)} ans, ${esc(w.job)}, ${esc(w.origin)}. Après 7 jours sur l'Île aux Échos, ${esc(w.name)} est la dernière personne debout. ${me && me !== D.winner ? `Ton candidat, ${esc(C[me].name)}, a été évacué${e(C[me])}. Son dernier confessionnal t'attend.` : me === D.winner ? "Et c'est ton candidat !" : ""}</p>
+      <button class="btn main" type="button" id="closeFinale">Voir le confessionnal</button></div>`;
+    box.hidden = false;
+    pause();
+    document.getElementById("closeFinale").addEventListener("click", () => { box.hidden = true; select("me"); });
+  }
+
+  function go(t) { tick = Math.max(T0, Math.min(TN, t)); render(); }
+  function pause() { playing = false; clearInterval(timer); document.getElementById("play").textContent = "▶ Lecture"; }
+  function play() {
+    if (tick >= TN) go(T0);
+    playing = true; document.getElementById("play").textContent = "❚❚ Pause";
+    clearInterval(timer);
+    timer = setInterval(() => { if (tick >= TN) return pause(); go(tick + 1); }, 1400 / speed);
+  }
+  document.getElementById("play").addEventListener("click", () => (playing ? pause() : play()));
+  document.getElementById("speed").addEventListener("click", (ev) => {
+    speed = speed === 1 ? 3 : speed === 3 ? 8 : 1;
+    ev.target.textContent = `Vitesse ×${speed}`;
+    if (playing) play();
+  });
+  document.getElementById("prev").addEventListener("click", () => go(tick - 1));
+  document.getElementById("next").addEventListener("click", () => go(tick + 1));
+  document.getElementById("toNight").addEventListener("click", () => {
+    const night = (dayOf(tick) - 1) * 24 + 21;
+    go(tick < night ? night : night + 24);
+  });
+  scrub.addEventListener("input", () => go(T0 + Number(scrub.value)));
+
+  function follow(id) {
+    me = id;
+    try { localStorage.setItem("thelast-me", id); } catch {}
+    render();
+  }
+
+  // ---------- écran d'accueil ----------
+  document.getElementById("picks").innerHTML = ORDER.map((id) => {
+    const c = C[id];
+    return `<button class="pick" type="button" data-id="${id}">${face(c, 70)}<div><strong>${esc(c.name)}, ${c.age} ans</strong><small>${esc(c.job)} · ${esc(c.origin)}</small><em>« ${esc(c.catchphrase)} »</em></div></button>`;
+  }).join("");
+  document.querySelectorAll(".pick").forEach((b) => b.addEventListener("click", () => {
+    document.getElementById("intro").hidden = true;
+    follow(b.dataset.id);
+    select("me");
+  }));
+  let saved = null;
+  try { saved = localStorage.getItem("thelast-me"); } catch {}
+  me = saved && C[saved] ? saved : ORDER[0];
+  render();
+})();
+</script>

@@ -106,6 +106,7 @@ export type EliminationCause =
   | "exhaustion"
   | "withdrawal"
   | "vote"
+  | "trial"
   | "finale";
 
 /** Tout ce qui arrive dans l'arène devient un événement. Le récit est généré à partir de ces événements. */
@@ -136,6 +137,7 @@ export type EventType =
   | "gift_lost"
   | "vote_threat"
   | "vote_saved"
+  | "trial"
   | "finale"
   | "winner";
 
@@ -167,4 +169,12 @@ export interface SeasonResult {
   final: Contestant[];
   events: GameEvent[];
   winner: string | null;
+  /** Photo de l'arène à chaque heure : sert au replay visuel et au suivi d'un personnage. */
+  snapshots: Snapshot[];
+}
+
+export interface Snapshot {
+  tick: number;
+  /** id -> [zone, santé, soif, moral] pour chaque candidat encore en jeu. */
+  people: Record<string, [ZoneId, number, number, number]>;
 }

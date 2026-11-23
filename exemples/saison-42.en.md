@@ -83,8 +83,8 @@ Tonight, Tariq, Raphaël and Léa are under threat. The audience decides who to 
 - Yusuf is caught by a swarm of wasps at the mangrove, but holds on.
 - Zara is caught by a swarm of wasps at the mangrove, but holds on.
 - Liam asks Yusuf to team up. Accepted.
-- 📢 A tropical storm sweeps the island. Those without shelter will suffer.
-- 📢 The springs are drying up: water will be scarce for the next few hours.
+- Kenji is caught by a treacherous current at the beach, but holds on.
+- 📢 A crushing heatwave settles over the island.
 
 #### Evacuated today
 - The rescue drone evacuates Zara (injured by a swarm of wasps). 45 contestants remain.
@@ -92,12 +92,12 @@ Tonight, Tariq, Raphaël and Léa are under threat. The audience decides who to 
 - The rescue drone evacuates Dmitri (injured by a snake bite). 43 contestants remain.
 - The rescue drone evacuates Yusuf (injured by a treacherous current). 42 contestants remain.
 - The rescue drone evacuates Youssef (injured by a swarm of wasps). 41 contestants remain.
-- The rescue drone evacuates Tariq (defeated by Hana). 40 contestants remain.
-- The rescue drone evacuates Kenji (injured by a bad fall). 39 contestants remain.
-- The rescue drone evacuates Rafael (completely exhausted). 38 contestants remain.
+- The rescue drone evacuates Freya (injured by a treacherous current). 40 contestants remain.
+- The rescue drone evacuates Kwame (injured by a treacherous current). 39 contestants remain.
+- The rescue drone evacuates Morgan (injured by a snake bite). 38 contestants remain.
 - The rescue drone evacuates Mila (was not saved by the audience). 37 contestants remain.
 
-Tonight, Inès, Mila and Tala are under threat. The audience decides who to save. The audience saved Tala and Inès.
+Tonight, Sana, Mila and Omar are under threat. The audience decides who to save. The audience saved Omar and Sana.
 
 <details><summary>Live feed (subscribers)</summary>
 
@@ -123,35 +123,32 @@ Tonight, Inès, Mila and Tala are under threat. The audience decides who to save
 - **09h** Iris asks Kenji to team up. Accepted.
 - **09h** Rafael and Sana fight over the same ground. Sana has to back down.
 - **09h** Freya is caught by a high fever at the river, but holds on.
-- **10h** 📢 A tropical storm sweeps the island. Those without shelter will suffer.
-- **11h** Mei and Omar fight over the same ground. Omar has to back down.
-- **11h** Hana and Tariq fight over the same ground. Tariq has to back down.
-- **11h** The rescue drone evacuates Tariq (defeated by Hana). 40 contestants remain.
-- **12h** Lucas tries to rob Mei… and gets caught red-handed.
-- **12h** Alma and Victor shake hands: an alliance is born.
-- **12h** The crate meant for Hana lands… in Freya's hands!
-- **12h** Thanks to 11 viewers, a parachuted crate brings a rope to Rémi.
-- **12h** The crate meant for Noa lands… in Victor's hands!
-- **12h** Thanks to 12 viewers, a parachuted crate brings a first-aid kit to Kwame.
-- **14h** 📢 The springs are drying up: water will be scarce for the next few hours.
-- **15h** Pablo asks Selin to team up. Accepted.
-- **16h** The rescue drone evacuates Kenji (injured by a bad fall). 39 contestants remain.
-- **17h** The rescue drone evacuates Rafael (completely exhausted). 38 contestants remain.
-- **17h** Rémi is caught by a bad fall at the waterfall, but holds on.
-- **17h** Oscar is caught by a treacherous current at the waterfall, but holds on.
-- **18h** Sana and Ethan shake hands: an alliance is born.
-- **19h** Rémi asks Samuel to team up. Accepted.
-- **19h** Moussa quietly swipes a water flask from Mei.
-- **19h** Tonight, Inès, Mila and Tala are under threat. The audience decides who to save.
-- **19h** The audience saved Tala and Inès.
+- **10h** The rescue drone evacuates Freya (injured by a treacherous current). 40 contestants remain.
+- **11h** Moussa asks Noa to team up. Accepted.
+- **11h** Léa is caught by a high fever at the mangrove, but holds on.
+- **12h** The rescue drone evacuates Kwame (injured by a treacherous current). 39 contestants remain.
+- **12h** Thanks to 12 viewers, a parachuted crate brings a torch to Hana.
+- **12h** The crate meant for Rémi lands… in Pablo's hands!
+- **12h** Thanks to 14 viewers, a parachuted crate brings some rations to Ilona.
+- **12h** Thanks to 12 viewers, a parachuted crate brings a first-aid kit to Mei.
+- **13h** Selin asks Margaux to team up. Accepted.
+- **15h** Alma is caught by a high fever at the river, but holds on.
+- **16h** Tense standoff between Iris and Inès at the river. Iris comes out on top.
+- **16h** The rescue drone evacuates Morgan (injured by a snake bite). 38 contestants remain.
+- **16h** 📢 A crushing heatwave settles over the island.
+- **17h** Aaliyah asks Rémi to team up. Accepted.
+- **17h** Samuel asks Camille to team up. Accepted.
+- **17h** Sacha asks Hamza to team up. Accepted.
+- **18h** Mei and Robin shake hands: an alliance is born.
+- **18h** Alma and Inès shake hands: an alliance is born.
+- **19h** Leila asks Nils to team up. Accepted.
+- **19h** Tonight, Sana, Mila and Omar are under threat. The audience decides who to save.
+- **19h** The audience saved Omar and Sana.
 - **19h** The rescue drone evacuates Mila (was not saved by the audience). 37 contestants remain.
-- **20h** Alma and Oscar shake hands: an alliance is born.
-- **20h** Mei and Moussa shake hands: an alliance is born.
-- **20h** Robin is caught by a treacherous current at the beach, but holds on.
-- **21h** The rescue drone evacuates Robin (completely exhausted). 36 contestants remain.
-- **21h** 📢 A crushing heatwave settles over the island.
-- **22h** The rescue drone evacuates Omar (injured by a rockslide). 35 contestants remain.
-- **23h** Lucía is caught by a bad fall at the waterfall, but holds on.
+- **20h** Nils is hit by a high fever. Leila comes to the rescue just in time.
+- **20h** 📢 A tropical storm sweeps the island. Those without shelter will suffer.
+- **21h** The rescue drone evacuates Leila (injured by a treacherous current). 36 contestants remain.
+- **23h** Louis is caught by a treacherous current at the river, but holds on.
 
 </details>
 
@@ -159,65 +156,81 @@ Tonight, Inès, Mila and Tala are under threat. The audience decides who to save
 
 ### The 7 PM Daily · Day 3
 
-**Remaining contestants: 29**
+**Remaining contestants: 30**
 
 #### Highlights
-- Alma and Oscar shake hands: an alliance is born.
-- Mei and Moussa shake hands: an alliance is born.
-- Robin is caught by a treacherous current at the beach, but holds on.
+- 📢 A tropical storm sweeps the island. Those without shelter will suffer.
+- Nils is hit by a high fever. Leila comes to the rescue just in time.
+- Louis is caught by a treacherous current at the river, but holds on.
+- Hana is caught by a high fever at the river, but holds on.
+- 📢 Alert: a swarm of killer wasps descends on the mangrove!
 - 📢 A crushing heatwave settles over the island.
-- Lucía is caught by a bad fall at the waterfall, but holds on.
-- Pablo is caught by a swarm of wasps at the jungle, but holds on.
 
 #### Evacuated today
-- The rescue drone evacuates Robin (completely exhausted). 36 contestants remain.
-- The rescue drone evacuates Omar (injured by a rockslide). 35 contestants remain.
-- The rescue drone evacuates Mei (injured by a treacherous current). 34 contestants remain.
-- The rescue drone evacuates Rémi (injured by a bad fall). 33 contestants remain.
-- The rescue drone evacuates Samuel (threw in the towel). 32 contestants remain.
-- The rescue drone evacuates Morgan (injured by a bad fall). 31 contestants remain.
-- The rescue drone evacuates Charlie (injured by a swarm of wasps). 30 contestants remain.
-- The rescue drone evacuates Camille (was not saved by the audience). 29 contestants remain.
+- The rescue drone evacuates Leila (injured by a treacherous current). 36 contestants remain.
+- The rescue drone evacuates Sacha (injured by a treacherous current). 35 contestants remain.
+- The rescue drone evacuates Victor (threw in the towel). 34 contestants remain.
+- The rescue drone evacuates Pablo (injured by a treacherous current). 33 contestants remain.
+- The rescue drone evacuates Ingrid (defeated by Rémi). 32 contestants remain.
+- The rescue drone evacuates Louis (injured by a treacherous current). 31 contestants remain.
+- The rescue drone evacuates Inès (was not saved by the audience). 30 contestants remain.
 
-Tonight, Margaux, Camille and Sana are under threat. The audience decides who to save. The audience saved Margaux and Sana.
+Tonight, Inès, Ethan and Camille are under threat. The audience decides who to save. The audience saved Camille and Ethan.
 
 <details><summary>Live feed (subscribers)</summary>
 
-- **00h** Pablo is caught by a swarm of wasps at the jungle, but holds on.
-- **02h** Hamza is caught by a swarm of wasps at the mangrove, but holds on.
-- **03h** Inès is caught by a high fever at the river, but holds on.
-- **03h** Charlie is caught by a swarm of wasps at the jungle, but holds on.
-- **03h** The rescue drone evacuates Mei (injured by a treacherous current). 34 contestants remain.
-- **04h** The rescue drone evacuates Rémi (injured by a bad fall). 33 contestants remain.
-- **05h** The rescue drone evacuates Samuel (threw in the towel). 32 contestants remain.
-- **05h** Iris is caught by a treacherous current at the river, but holds on.
-- **05h** Selin is hit by a snake bite. Pablo comes to the rescue just in time.
-- **06h** The rescue drone evacuates Morgan (injured by a bad fall). 31 contestants remain.
-- **07h** Léa asks Sacha to team up. Accepted.
-- **08h** The rescue drone evacuates Charlie (injured by a swarm of wasps). 30 contestants remain.
-- **10h** Tala and Leila shake hands: an alliance is born.
-- **10h** Inès is caught by a swarm of wasps at the mangrove, but holds on.
-- **11h** Sana asks Sacha to team up. Accepted.
-- **12h** Thanks to 11 viewers, a parachuted crate brings a rope to Hana.
-- **12h** Thanks to 15 viewers, a parachuted crate brings a torch to Léa.
-- **12h** Thanks to 14 viewers, a parachuted crate brings a water flask to Louis.
-- **12h** Thanks to 18 viewers, a parachuted crate brings a first-aid kit to Kwame.
-- **12h** Thanks to 14 viewers, a parachuted crate brings a first-aid kit to Iris.
-- **12h** The crate meant for Ilona lands… in Tala's hands!
-- **12h** Thanks to 8 viewers, a parachuted crate brings a first-aid kit to Leila.
-- **12h** Thanks to 19 viewers, a parachuted crate brings a first-aid kit to Ingrid.
-- **12h** Thanks to 9 viewers, a parachuted crate brings a first-aid kit to Freya.
-- **12h** The crate meant for Pablo lands… in Selin's hands!
-- **12h** Thanks to 8 viewers, a parachuted crate brings some rations to Aaliyah.
-- **15h** Liam asks Lucas to team up. Accepted.
-- **15h** Hana is caught by a snake bite at the jungle, but holds on.
-- **17h** Louis is caught by a treacherous current at the beach, but holds on.
-- **18h** 📢 A crushing heatwave settles over the island.
-- **19h** Aaliyah is caught by a rockslide at the ruins, but holds on.
-- **19h** Tonight, Margaux, Camille and Sana are under threat. The audience decides who to save.
-- **19h** The audience saved Margaux and Sana.
-- **19h** The rescue drone evacuates Camille (was not saved by the audience). 29 contestants remain.
-- **22h** The rescue drone evacuates Hana (threw in the towel). 28 contestants remain.
+- **00h** Hana is caught by a high fever at the river, but holds on.
+- **01h** Rémi is caught by a treacherous current at the waterfall, but holds on.
+- **01h** Axel is caught by a bad fall at the waterfall, but holds on.
+- **02h** Liam is caught by a high fever at the river, but holds on.
+- **02h** Aaliyah is caught by a bad fall at the waterfall, but holds on.
+- **02h** Tariq is hit by a high fever. Iris comes to the rescue just in time.
+- **02h** Lucía is caught by a treacherous current at the river, but holds on.
+- **03h** Hana is caught by a high fever at the river, but holds on.
+- **03h** The rescue drone evacuates Sacha (injured by a treacherous current). 35 contestants remain.
+- **04h** Oscar is caught by a bad fall at the waterfall, but holds on.
+- **05h** The rescue drone evacuates Victor (threw in the towel). 34 contestants remain.
+- **05h** Nils is caught by a high fever at the river, but holds on.
+- **06h** Tariq and Charlie shake hands: an alliance is born.
+- **06h** Tariq is hit by a swarm of wasps. Charlie comes to the rescue just in time.
+- **07h** The rescue drone evacuates Pablo (injured by a treacherous current). 33 contestants remain.
+- **08h** Rémi and Tala shake hands: an alliance is born.
+- **10h** Moussa and Ingrid shake hands: an alliance is born.
+- **11h** Rémi and Ingrid fight over the same ground. Ingrid has to back down.
+- **11h** The rescue drone evacuates Ingrid (defeated by Rémi). 32 contestants remain.
+- **11h** Robin asks Léa to team up. Accepted.
+- **11h** Margaux asks Lucas to team up. Accepted.
+- **11h** 📢 Alert: a swarm of killer wasps descends on the mangrove!
+- **12h** Selin is hit by a swarm of wasps. Margaux comes to the rescue just in time.
+- **12h** Thanks to 14 viewers, a parachuted crate brings a map of the island to Omar.
+- **12h** The crate meant for Alma lands… in Inès's hands!
+- **12h** Thanks to 15 viewers, a parachuted crate brings some rations to Rémi.
+- **12h** The crate meant for Kenji lands… in Tala's hands!
+- **12h** Thanks to 9 viewers, a parachuted crate brings a first-aid kit to Rafael.
+- **12h** Thanks to 9 viewers, a parachuted crate brings a water flask to Louis.
+- **12h** Thanks to 17 viewers, a parachuted crate brings a water flask to Iris.
+- **12h** Thanks to 8 viewers, a parachuted crate brings a map of the island to Axel.
+- **12h** Thanks to 11 viewers, a parachuted crate brings a water flask to Samuel.
+- **12h** The crate meant for Sana gets lost in the trees.
+- **12h** The crate meant for Mei gets lost in the trees.
+- **13h** Louis is caught by a treacherous current at the river, but holds on.
+- **14h** Lucas is hit by a swarm of wasps. Margaux comes to the rescue just in time.
+- **15h** Kenji is caught by a treacherous current at the river, but holds on.
+- **17h** Sana asks Inès to team up. Accepted.
+- **17h** 📢 A crushing heatwave settles over the island.
+- **18h** Rafael shares their water with Hamza. A gesture that won't be forgotten.
+- **18h** The rescue drone evacuates Louis (injured by a treacherous current). 31 contestants remain.
+- **18h** Tala is caught by a swarm of wasps at the jungle, but holds on.
+- **19h** Omar asks Ethan to team up. Accepted.
+- **19h** Tonight, Inès, Ethan and Camille are under threat. The audience decides who to save.
+- **19h** The audience saved Camille and Ethan.
+- **19h** The rescue drone evacuates Inès (was not saved by the audience). 30 contestants remain.
+- **21h** Noa is caught by a high fever at the river, but holds on.
+- **21h** Robin is caught by a swarm of wasps at the jungle, but holds on.
+- **21h** 📢 The springs are drying up: water will be scarce for the next few hours.
+- **22h** Rafael is caught by a swarm of wasps at the jungle, but holds on.
+- **23h** Iris is caught by a high fever at the mangrove, but holds on.
+- **23h** Ilona is caught by a treacherous current at the beach, but holds on.
 
 </details>
 
@@ -225,70 +238,83 @@ Tonight, Margaux, Camille and Sana are under threat. The audience decides who to
 
 ### The 7 PM Daily · Day 4
 
-**Remaining contestants: 22**
+**Remaining contestants: 20**
 
 #### Highlights
-- Sana is caught by a high fever at the river, but holds on.
-- Selin is hit by a high fever. Pablo comes to the rescue just in time.
-- Axel is hit by a treacherous current. Leila comes to the rescue just in time.
-- Selin is hit by a treacherous current. Pablo comes to the rescue just in time.
-- Alma is caught by a bad fall at the summit, but holds on.
+- 📢 The springs are drying up: water will be scarce for the next few hours.
+- Noa is caught by a high fever at the river, but holds on.
+- Robin is caught by a swarm of wasps at the jungle, but holds on.
+- Rafael is caught by a swarm of wasps at the jungle, but holds on.
+- 📢 A crushing heatwave settles over the island.
 - 📢 A tropical storm sweeps the island. Those without shelter will suffer.
 
 #### Evacuated today
-- The rescue drone evacuates Hana (threw in the towel). 28 contestants remain.
-- The rescue drone evacuates Moussa (threw in the towel). 27 contestants remain.
-- The rescue drone evacuates Ilona (injured by a bad fall). 26 contestants remain.
-- The rescue drone evacuates Ingrid (threw in the towel). 25 contestants remain.
-- The rescue drone evacuates Aaliyah (defeated by Oscar). 24 contestants remain.
-- The rescue drone evacuates Sana (injured by a high fever). 23 contestants remain.
-- The rescue drone evacuates Lucía (was not saved by the audience). 22 contestants remain.
+- The rescue drone evacuates Lucía (injured by a treacherous current). 29 contestants remain.
+- The rescue drone evacuates Ilona (injured by a treacherous current). 28 contestants remain.
+- The rescue drone evacuates Tariq (injured by a bad fall). 27 contestants remain.
+- The rescue drone evacuates Hana (threw in the towel). 26 contestants remain.
+- The rescue drone evacuates Nils (defeated by Rémi). 25 contestants remain.
+- The rescue drone evacuates Kenji (injured by a swarm of wasps). 24 contestants remain.
+- The rescue drone evacuates Charlie (injured by a treacherous current). 23 contestants remain.
+- The rescue drone evacuates Omar (threw in the towel). 22 contestants remain.
+- The rescue drone evacuates Sana (completely exhausted). 21 contestants remain.
+- The rescue drone evacuates Oscar (was not saved by the audience). 20 contestants remain.
 
-Tonight, Ethan, Lucía and Lucas are under threat. The audience decides who to save. The audience saved Ethan and Lucas.
+Tonight, Tala, Oscar and Hamza are under threat. The audience decides who to save. The audience saved Tala and Hamza.
 
 <details><summary>Live feed (subscribers)</summary>
 
-- **01h** The rescue drone evacuates Moussa (threw in the towel). 27 contestants remain.
-- **01h** The rescue drone evacuates Ilona (injured by a bad fall). 26 contestants remain.
-- **01h** Sana is caught by a high fever at the river, but holds on.
-- **02h** Selin is hit by a high fever. Pablo comes to the rescue just in time.
-- **04h** Axel is hit by a treacherous current. Leila comes to the rescue just in time.
-- **05h** The rescue drone evacuates Ingrid (threw in the towel). 25 contestants remain.
-- **05h** Selin is hit by a treacherous current. Pablo comes to the rescue just in time.
-- **07h** Alma is caught by a bad fall at the summit, but holds on.
-- **08h** Tense standoff between Oscar and Aaliyah at the waterfall. Oscar comes out on top.
-- **08h** The rescue drone evacuates Aaliyah (defeated by Oscar). 24 contestants remain.
-- **08h** Liam is hit by a high fever. Iris comes to the rescue just in time.
-- **08h** The rescue drone evacuates Sana (injured by a high fever). 23 contestants remain.
-- **09h** Lucía asks Oscar to team up. Accepted.
-- **09h** Margaux tries to rob Inès… and gets caught red-handed.
-- **09h** 📢 A tropical storm sweeps the island. Those without shelter will suffer.
-- **12h** Thanks to 14 viewers, a parachuted crate brings a first-aid kit to Léa.
-- **12h** The crate meant for Louis gets lost in the trees.
-- **12h** Thanks to 22 viewers, a parachuted crate brings a first-aid kit to Kwame.
-- **12h** Thanks to 18 viewers, a parachuted crate brings a first-aid kit to Oscar.
-- **12h** Thanks to 12 viewers, a parachuted crate brings a water flask to Lucas.
-- **12h** The crate meant for Inès gets lost in the trees.
-- **12h** Thanks to 14 viewers, a parachuted crate brings a water flask to Liam.
-- **12h** Thanks to 11 viewers, a parachuted crate brings a map of the island to Tala.
-- **12h** Thanks to 13 viewers, a parachuted crate brings a water flask to Freya.
-- **12h** The crate meant for Pablo gets lost in the trees.
-- **12h** Thanks to 24 viewers, a parachuted crate brings a first-aid kit to Selin.
-- **12h** Thanks to 10 viewers, a parachuted crate brings some rations to Ethan.
-- **13h** Liam tries to rob Tala… and gets caught red-handed.
-- **14h** Kwame and Victor shake hands: an alliance is born.
-- **14h** Margaux and Selin shake hands: an alliance is born.
-- **15h** Selin is hit by a high fever. Pablo comes to the rescue just in time.
-- **16h** Iris and Lucas shake hands: an alliance is born.
-- **17h** Pablo asks Margaux to team up. Accepted.
-- **18h** Léa is caught by a bad fall at the waterfall, but holds on.
-- **19h** Tonight, Ethan, Lucía and Lucas are under threat. The audience decides who to save.
-- **19h** The audience saved Ethan and Lucas.
-- **19h** The rescue drone evacuates Lucía (was not saved by the audience). 22 contestants remain.
-- **20h** Leila is hit by a treacherous current. Axel comes to the rescue just in time.
-- **21h** Alma is caught by a high fever at the river, but holds on.
-- **22h** Liam is hit by a treacherous current. Iris comes to the rescue just in time.
-- **22h** Liam is hit by a high fever. Iris comes to the rescue just in time.
+- **00h** Aaliyah is caught by a swarm of wasps at the jungle, but holds on.
+- **01h** Alma is caught by a treacherous current at the waterfall, but holds on.
+- **01h** The rescue drone evacuates Lucía (injured by a treacherous current). 29 contestants remain.
+- **02h** Liam is caught by a high fever at the river, but holds on.
+- **03h** Camille is caught by a swarm of wasps at the mangrove, but holds on.
+- **03h** The rescue drone evacuates Ilona (injured by a treacherous current). 28 contestants remain.
+- **04h** Rémi is hit by a treacherous current. Tala comes to the rescue just in time.
+- **04h** Noa is caught by a treacherous current at the river, but holds on.
+- **04h** Samuel is hit by a high fever. Camille comes to the rescue just in time.
+- **05h** The rescue drone evacuates Tariq (injured by a bad fall). 27 contestants remain.
+- **06h** The rescue drone evacuates Hana (threw in the towel). 26 contestants remain.
+- **07h** Mei is caught by a swarm of wasps at the mangrove, but holds on.
+- **07h** 📢 A crushing heatwave settles over the island.
+- **08h** Tense standoff between Rémi and Nils at the jungle. Rémi comes out on top.
+- **08h** The rescue drone evacuates Nils (defeated by Rémi). 25 contestants remain.
+- **08h** Margaux is hit by a treacherous current. Lucas comes to the rescue just in time.
+- **09h** Aaliyah and Tala fight over the same ground. Tala has to back down.
+- **11h** Léa is caught by a treacherous current at the beach, but holds on.
+- **11h** 📢 A tropical storm sweeps the island. Those without shelter will suffer.
+- **12h** The rescue drone evacuates Kenji (injured by a swarm of wasps). 24 contestants remain.
+- **12h** The rescue drone evacuates Charlie (injured by a treacherous current). 23 contestants remain.
+- **12h** Thanks to 17 viewers, a parachuted crate brings a first-aid kit to Léa.
+- **12h** The crate meant for Omar lands… in Aaliyah's hands!
+- **12h** Thanks to 21 viewers, a parachuted crate brings a first-aid kit to Rémi.
+- **12h** The crate meant for Rafael lands… in Rémi's hands!
+- **12h** Thanks to 12 viewers, a parachuted crate brings a water flask to Noa.
+- **12h** The crate meant for Iris lands… in Hamza's hands!
+- **12h** Thanks to 10 viewers, a parachuted crate brings a first-aid kit to Oscar.
+- **12h** Thanks to 15 viewers, a parachuted crate brings a rope to Axel.
+- **12h** The crate meant for Liam lands… in Selin's hands!
+- **12h** The crate meant for Robin lands… in Margaux's hands!
+- **12h** Thanks to 18 viewers, a parachuted crate brings a first-aid kit to Aaliyah.
+- **12h** Thanks to 15 viewers, a parachuted crate brings a first-aid kit to Sana.
+- **12h** Thanks to 12 viewers, a parachuted crate brings a map of the island to Selin.
+- **12h** Thanks to 15 viewers, a parachuted crate brings a torch to Ethan.
+- **12h** Thanks to 20 viewers, a parachuted crate brings a first-aid kit to Mei.
+- **13h** The rescue drone evacuates Omar (threw in the towel). 22 contestants remain.
+- **13h** Margaux is hit by a snake bite. Lucas comes to the rescue just in time.
+- **13h** Sana is caught by a high fever at the river, but holds on.
+- **14h** Sana is caught by a treacherous current at the river, but holds on.
+- **15h** Lucas asks Selin to team up. Accepted.
+- **16h** Aaliyah and Ethan shake hands: an alliance is born.
+- **19h** The rescue drone evacuates Sana (completely exhausted). 21 contestants remain.
+- **19h** Aaliyah asks Hamza to team up. Accepted.
+- **19h** Léa is caught by a swarm of wasps at the jungle, but holds on.
+- **19h** Tonight, Tala, Oscar and Hamza are under threat. The audience decides who to save.
+- **19h** The audience saved Tala and Hamza.
+- **19h** The rescue drone evacuates Oscar (was not saved by the audience). 20 contestants remain.
+- **20h** The rescue drone evacuates Tala (completely exhausted). 19 contestants remain.
+- **20h** Rafael is caught by a treacherous current at the waterfall, but holds on.
+- **23h** Margaux is hit by a snake bite. Lucas comes to the rescue just in time.
 
 </details>
 
@@ -296,74 +322,73 @@ Tonight, Ethan, Lucía and Lucas are under threat. The audience decides who to s
 
 ### The 7 PM Daily · Day 5
 
-**Remaining contestants: 17**
+**Remaining contestants: 15**
 
 #### Highlights
-- Leila is hit by a treacherous current. Axel comes to the rescue just in time.
-- Alma is caught by a high fever at the river, but holds on.
-- Liam is hit by a treacherous current. Iris comes to the rescue just in time.
-- Liam is hit by a high fever. Iris comes to the rescue just in time.
-- 📢 Alert: a swarm of killer wasps descends on the river!
+- Rafael is caught by a treacherous current at the waterfall, but holds on.
+- Margaux is hit by a snake bite. Lucas comes to the rescue just in time.
+- Lucas is hit by a swarm of wasps. Margaux comes to the rescue just in time.
+- Hamza is hit by a treacherous current. Rafael comes to the rescue just in time.
+- 📢 A crushing heatwave settles over the island.
 - 📢 The springs are drying up: water will be scarce for the next few hours.
 
 #### Evacuated today
-- The rescue drone evacuates Tala (injured by a treacherous current). 21 contestants remain.
-- The rescue drone evacuates Pablo (injured by a swarm of wasps). 20 contestants remain.
-- The rescue drone evacuates Liam (defeated by Margaux). 19 contestants remain.
-- The rescue drone evacuates Freya (defeated by Leila). 18 contestants remain.
-- The rescue drone evacuates Léa (was not saved by the audience). 17 contestants remain.
+- The rescue drone evacuates Tala (completely exhausted). 19 contestants remain.
+- The rescue drone evacuates Rafael (injured by a bad fall). 18 contestants remain.
+- The rescue drone evacuates Liam (injured by a high fever). 17 contestants remain.
+- The rescue drone evacuates Alma (injured by a treacherous current). 16 contestants remain.
+- The rescue drone evacuates Moussa (was not saved by the audience). 15 contestants remain.
 
-Tonight, Léa, Ethan and Axel are under threat. The audience decides who to save. The audience saved Axel and Ethan.
+Tonight, Moussa, Samuel and Ethan are under threat. The audience decides who to save. The audience saved Samuel and Ethan.
 
 <details><summary>Live feed (subscribers)</summary>
 
-- **02h** Tala is hit by a treacherous current. Leila comes to the rescue just in time.
-- **02h** Tala is hit by a high fever. Leila comes to the rescue just in time.
-- **05h** Hamza is caught by a bad fall at the waterfall, but holds on.
-- **05h** The rescue drone evacuates Tala (injured by a treacherous current). 21 contestants remain.
-- **05h** The rescue drone evacuates Pablo (injured by a swarm of wasps). 20 contestants remain.
-- **06h** 📢 Alert: a swarm of killer wasps descends on the river!
-- **07h** Margaux is caught by a swarm of wasps at the river, but holds on.
-- **08h** Tense standoff between Margaux and Liam at the river. Margaux comes out on top.
-- **08h** The rescue drone evacuates Liam (defeated by Margaux). 19 contestants remain.
-- **08h** Iris is hit by a treacherous current. Lucas comes to the rescue just in time.
-- **08h** Oscar is caught by a treacherous current at the river, but holds on.
-- **10h** Kwame tries to rob Axel… and gets caught red-handed.
-- **10h** Lucas is hit by a treacherous current. Iris comes to the rescue just in time.
-- **11h** Margaux quietly swipes a water flask from Lucas.
-- **11h** Selin is hit by a treacherous current. Margaux comes to the rescue just in time.
-- **11h** 📢 The springs are drying up: water will be scarce for the next few hours.
-- **12h** Thanks to 12 viewers, a parachuted crate brings a first-aid kit to Léa.
-- **12h** Thanks to 10 viewers, a parachuted crate brings a first-aid kit to Nils.
-- **12h** Thanks to 20 viewers, a parachuted crate brings a first-aid kit to Louis.
-- **12h** Thanks to 21 viewers, a parachuted crate brings a first-aid kit to Kwame.
+- **00h** Lucas is hit by a swarm of wasps. Margaux comes to the rescue just in time.
+- **03h** Hamza is hit by a treacherous current. Rafael comes to the rescue just in time.
+- **04h** Liam is hit by a treacherous current. Iris comes to the rescue just in time.
+- **05h** Samuel is caught by a high fever at the river, but holds on.
+- **06h** Camille and Rafael shake hands: an alliance is born.
+- **07h** The rescue drone evacuates Rafael (injured by a bad fall). 18 contestants remain.
+- **07h** 📢 A crushing heatwave settles over the island.
+- **08h** Tense standoff between Léa and Liam at the river. Léa comes out on top.
+- **08h** Axel and Rémi shake hands: an alliance is born.
+- **08h** Lucas shares their water with Selin. A gesture that won't be forgotten.
+- **10h** The rescue drone evacuates Liam (injured by a high fever). 17 contestants remain.
+- **11h** Selin asks Rémi to team up. Accepted.
+- **12h** Thanks to 16 viewers, a parachuted crate brings a first-aid kit to Léa.
+- **12h** Thanks to 22 viewers, a parachuted crate brings a first-aid kit to Rémi.
+- **12h** Thanks to 19 viewers, a parachuted crate brings a torch to Camille.
+- **12h** The crate meant for Noa gets lost in the trees.
 - **12h** Thanks to 14 viewers, a parachuted crate brings a first-aid kit to Hamza.
-- **12h** Thanks to 25 viewers, a parachuted crate brings some rations to Iris.
-- **12h** Thanks to 11 viewers, a parachuted crate brings a first-aid kit to Oscar.
-- **12h** Thanks to 15 viewers, a parachuted crate brings some rations to Axel.
-- **12h** Thanks to 17 viewers, a parachuted crate brings some rations to Lucas.
-- **12h** The crate meant for Leila lands… in Alma's hands!
-- **12h** The crate meant for Inès lands… in Leila's hands!
-- **12h** The crate meant for Margaux gets lost in the trees.
-- **12h** Thanks to 17 viewers, a parachuted crate brings a torch to Freya.
-- **12h** Thanks to 21 viewers, a parachuted crate brings a map of the island to Selin.
-- **12h** Thanks to 14 viewers, a parachuted crate brings a first-aid kit to Sacha.
-- **12h** Thanks to 19 viewers, a parachuted crate brings some rations to Ethan.
-- **15h** Léa asks Inès to team up. Accepted.
-- **15h** Margaux tries to rob Iris… and gets caught red-handed.
-- **15h** Iris is hit by a treacherous current. Lucas comes to the rescue just in time.
-- **16h** Iris is hit by a treacherous current. Lucas comes to the rescue just in time.
-- **17h** Leila and Freya fight over the same ground. Freya has to back down.
-- **17h** The rescue drone evacuates Freya (defeated by Leila). 18 contestants remain.
-- **18h** Nils is caught by a snake bite at the mangrove, but holds on.
-- **19h** Hamza is caught by a high fever at the mangrove, but holds on.
-- **19h** Tonight, Léa, Ethan and Axel are under threat. The audience decides who to save.
-- **19h** The audience saved Axel and Ethan.
-- **19h** The rescue drone evacuates Léa (was not saved by the audience). 17 contestants remain.
-- **20h** Leila quietly swipes some rations from Lucas.
-- **21h** Alma is hit by a snake bite. Oscar comes to the rescue just in time.
-- **21h** Sacha is caught by a snake bite at the ruins, but holds on.
-- **23h** Alma is caught by a high fever at the river, but holds on.
+- **12h** Thanks to 16 viewers, a parachuted crate brings a torch to Iris.
+- **12h** Thanks to 16 viewers, a parachuted crate brings some rations to Axel.
+- **12h** Thanks to 16 viewers, a parachuted crate brings a first-aid kit to Lucas.
+- **12h** The crate meant for Samuel gets lost in the trees.
+- **12h** Thanks to 17 viewers, a parachuted crate brings a first-aid kit to Robin.
+- **12h** Thanks to 27 viewers, a parachuted crate brings a first-aid kit to Margaux.
+- **12h** Thanks to 23 viewers, a parachuted crate brings a rope to Aaliyah.
+- **12h** Thanks to 20 viewers, a parachuted crate brings some rations to Selin.
+- **12h** Thanks to 15 viewers, a parachuted crate brings a rope to Ethan.
+- **12h** Thanks to 19 viewers, a parachuted crate brings some rations to Mei.
+- **13h** Iris asks Alma to team up. Accepted.
+- **14h** Selin tries to rob Mei… and gets caught red-handed.
+- **14h** 📢 The springs are drying up: water will be scarce for the next few hours.
+- **15h** The rescue drone evacuates Alma (injured by a treacherous current). 16 contestants remain.
+- **16h** Hamza is caught by a high fever at the river, but holds on.
+- **17h** Iris tries to rob Mei… and gets caught red-handed.
+- **19h** Tonight, Moussa, Samuel and Ethan are under threat. The audience decides who to save.
+- **19h** The audience saved Samuel and Ethan.
+- **19h** The rescue drone evacuates Moussa (was not saved by the audience). 15 contestants remain.
+- **20h** Iris and Hamza shake hands: an alliance is born.
+- **20h** Hamza and Lucas shake hands: an alliance is born.
+- **20h** Camille is caught by a swarm of wasps at the mangrove, but holds on.
+- **21h** Selin shares their water with Margaux. A gesture that won't be forgotten.
+- **21h** 📢 Alert: a swarm of killer wasps descends on the river!
+- **23h** Léa is caught by a swarm of wasps at the river, but holds on.
+- **23h** Camille is caught by a swarm of wasps at the river, but holds on.
+- **23h** Hamza is caught by a swarm of wasps at the river, but holds on.
+- **23h** Robin is hit by a treacherous current. Mei comes to the rescue just in time.
+- **23h** Mei is caught by a swarm of wasps at the river, but holds on.
 
 </details>
 
@@ -371,62 +396,60 @@ Tonight, Léa, Ethan and Axel are under threat. The audience decides who to save
 
 ### The 7 PM Daily · Day 6
 
-**Remaining contestants: 11**
+**Remaining contestants: 13**
 
 #### Highlights
-- Leila quietly swipes some rations from Lucas.
-- Alma is hit by a snake bite. Oscar comes to the rescue just in time.
-- Sacha is caught by a snake bite at the ruins, but holds on.
-- Alma is caught by a high fever at the river, but holds on.
-- 📢 Alert: a swarm of killer wasps descends on the waterfall!
+- Iris and Hamza shake hands: an alliance is born.
+- Hamza and Lucas shake hands: an alliance is born.
+- Camille is caught by a swarm of wasps at the mangrove, but holds on.
+- 📢 Alert: a swarm of killer wasps descends on the river!
+- 📢 A crushing heatwave settles over the island.
 - 📢 A tropical storm sweeps the island. Those without shelter will suffer.
 
 #### Evacuated today
-- The rescue drone evacuates Louis (injured by a swarm of wasps). 16 contestants remain.
-- The rescue drone evacuates Hamza (injured by a swarm of wasps). 15 contestants remain.
-- The rescue drone evacuates Inès (injured by a swarm of wasps). 14 contestants remain.
-- The rescue drone evacuates Noa (injured by a bad fall). 13 contestants remain.
-- The rescue drone evacuates Nils (threw in the towel). 12 contestants remain.
-- The rescue drone evacuates Victor (was not saved by the audience). 11 contestants remain.
+- The rescue drone evacuates Léa (injured by a treacherous current). 14 contestants remain.
+- The rescue drone evacuates Axel (was not saved by the audience). 13 contestants remain.
 
-Tonight, Victor, Sacha and Ethan are under threat. The audience decides who to save. The audience saved Ethan and Sacha.
+Tonight, Axel, Robin and Margaux are under threat. The audience decides who to save. The audience saved Robin and Margaux.
 
 <details><summary>Live feed (subscribers)</summary>
 
-- **01h** Louis is caught by a snake bite at the mangrove, but holds on.
-- **02h** Noa is caught by a swarm of wasps at the mangrove, but holds on.
-- **02h** Kwame is caught by a bad fall at the waterfall, but holds on.
-- **03h** The rescue drone evacuates Louis (injured by a swarm of wasps). 16 contestants remain.
-- **04h** The rescue drone evacuates Hamza (injured by a swarm of wasps). 15 contestants remain.
-- **06h** 📢 Alert: a swarm of killer wasps descends on the waterfall!
-- **08h** The rescue drone evacuates Inès (injured by a swarm of wasps). 14 contestants remain.
-- **08h** Selin is caught by a bad fall at the summit, but holds on.
-- **10h** Leila and Iris shake hands: an alliance is born.
-- **10h** The rescue drone evacuates Noa (injured by a bad fall). 13 contestants remain.
-- **11h** The rescue drone evacuates Nils (threw in the towel). 12 contestants remain.
-- **11h** 📢 A tropical storm sweeps the island. Those without shelter will suffer.
-- **12h** The crate meant for Alma gets lost in the trees.
-- **12h** Thanks to 27 viewers, a parachuted crate brings a first-aid kit to Kwame.
-- **12h** Thanks to 36 viewers, a parachuted crate brings a first-aid kit to Iris.
-- **12h** The crate meant for Oscar lands… in Sacha's hands!
-- **12h** The crate meant for Axel gets lost in the trees.
-- **12h** Thanks to 23 viewers, a parachuted crate brings a first-aid kit to Lucas.
-- **12h** Thanks to 28 viewers, a parachuted crate brings a torch to Leila.
-- **12h** Thanks to 26 viewers, a parachuted crate brings a map of the island to Victor.
-- **12h** Thanks to 18 viewers, a parachuted crate brings a water flask to Margaux.
-- **12h** Thanks to 30 viewers, a parachuted crate brings a first-aid kit to Selin.
-- **12h** Thanks to 19 viewers, a parachuted crate brings a water flask to Sacha.
-- **12h** Thanks to 22 viewers, a parachuted crate brings a torch to Ethan.
-- **17h** Sacha quietly swipes a water flask from Margaux.
-- **17h** Oscar is caught by a snake bite at the mangrove, but holds on.
-- **17h** Selin is caught by a treacherous current at the waterfall, but holds on.
-- **18h** Selin and Lucas shake hands: an alliance is born.
-- **18h** Kwame is caught by a high fever at the river, but holds on.
-- **18h** Axel is hit by a treacherous current. Leila comes to the rescue just in time.
-- **19h** Tonight, Victor, Sacha and Ethan are under threat. The audience decides who to save.
-- **19h** The audience saved Ethan and Sacha.
-- **19h** The rescue drone evacuates Victor (was not saved by the audience). 11 contestants remain.
-- **21h** The rescue drone evacuates Lucas (injured by a bad fall). 10 contestants remain.
+- **00h** Axel is caught by a treacherous current at the lagoon, but holds on.
+- **00h** Aaliyah is caught by a snake bite at the jungle, but holds on.
+- **06h** Iris and Samuel shake hands: an alliance is born.
+- **06h** 📢 A crushing heatwave settles over the island.
+- **07h** Iris tries to rob Camille… and gets caught red-handed.
+- **07h** Selin is hit by a high fever. Margaux comes to the rescue just in time.
+- **08h** Hamza is caught by a treacherous current at the waterfall, but holds on.
+- **12h** The rescue drone evacuates Léa (injured by a treacherous current). 14 contestants remain.
+- **12h** Thanks to 27 viewers, a parachuted crate brings a water flask to Rémi.
+- **12h** The crate meant for Camille lands… in Iris's hands!
+- **12h** Thanks to 22 viewers, a parachuted crate brings a first-aid kit to Noa.
+- **12h** Thanks to 26 viewers, a parachuted crate brings a first-aid kit to Hamza.
+- **12h** Thanks to 32 viewers, a parachuted crate brings some rations to Iris.
+- **12h** Thanks to 14 viewers, a parachuted crate brings a water flask to Axel.
+- **12h** Thanks to 23 viewers, a parachuted crate brings a water flask to Lucas.
+- **12h** Thanks to 18 viewers, a parachuted crate brings a first-aid kit to Samuel.
+- **12h** Thanks to 22 viewers, a parachuted crate brings a first-aid kit to Robin.
+- **12h** The crate meant for Margaux lands… in Camille's hands!
+- **12h** Thanks to 14 viewers, a parachuted crate brings a torch to Aaliyah.
+- **12h** Thanks to 25 viewers, a parachuted crate brings a first-aid kit to Selin.
+- **12h** Thanks to 19 viewers, a parachuted crate brings a first-aid kit to Ethan.
+- **12h** The crate meant for Mei lands… in Iris's hands!
+- **14h** Ethan is caught by a bad fall at the waterfall, but holds on.
+- **15h** Rémi quietly swipes a torch from Margaux.
+- **18h** Samuel is hit by a high fever. Camille comes to the rescue just in time.
+- **18h** 📢 A tropical storm sweeps the island. Those without shelter will suffer.
+- **19h** Aaliyah is caught by a bad fall at the waterfall, but holds on.
+- **19h** Tonight, Axel, Robin and Margaux are under threat. The audience decides who to save.
+- **19h** The audience saved Robin and Margaux.
+- **19h** The rescue drone evacuates Axel (was not saved by the audience). 13 contestants remain.
+- **20h** Aaliyah is caught by a bad fall at the waterfall, but holds on.
+- **20h** Selin is hit by a snake bite. Margaux comes to the rescue just in time.
+- **21h** Betrayal! Camille breaks the alliance with Samuel.
+- **21h** Iris quietly swipes a rope from Aaliyah.
+- **21h** Mei is caught by a treacherous current at the river, but holds on.
+- **22h** Hamza is hit by a snake bite. Lucas comes to the rescue just in time.
 
 </details>
 
@@ -437,87 +460,90 @@ Tonight, Victor, Sacha and Ethan are under threat. The audience decides who to s
 **Remaining contestants: 1**
 
 #### Highlights
-- Leila is hit by a bad fall. Axel comes to the rescue just in time.
-- Iris is caught by a bad fall at the summit, but holds on.
-- 📢 A tropical storm sweeps the island. Those without shelter will suffer.
-- Grand finale: Alma, Kwame, Oscar, Axel, Leila, Margaux, Sacha and Ethan face the ultimate challenge.
-- 🏆 Kwame wins the season and becomes The Last!
-- 📢 Alert: a swarm of killer wasps descends on the river!
+- Betrayal! Camille breaks the alliance with Samuel.
+- 🏁 Endurance trial! Robin wins it. 3 contestants must leave the island.
+- 🏁 Orientation trial! Robin wins it. 3 contestants must leave the island.
+- 🏁 Trust trial! Rémi wins it. 2 contestants must leave the island.
+- Grand finale: Rémi, Robin and Margaux face the ultimate challenge.
+- 🏆 Margaux wins the season and becomes The Last!
 
 #### Evacuated today
-- The rescue drone evacuates Lucas (injured by a bad fall). 10 contestants remain.
-- The rescue drone evacuates Iris (injured by a bad fall). 9 contestants remain.
-- The rescue drone evacuates Selin (injured by a bad fall). 8 contestants remain.
-- The rescue drone evacuates Axel (beaten in the finale). 7 contestants remain.
-- The rescue drone evacuates Ethan (beaten in the finale). 6 contestants remain.
-- The rescue drone evacuates Alma (beaten in the finale). 5 contestants remain.
-- The rescue drone evacuates Sacha (beaten in the finale). 4 contestants remain.
-- The rescue drone evacuates Margaux (beaten in the finale). 3 contestants remain.
-- The rescue drone evacuates Leila (beaten in the finale). 2 contestants remain.
-- The rescue drone evacuates Oscar (beaten in the finale). 1 contestants remain.
+- The rescue drone evacuates Aaliyah (injured by a treacherous current). 12 contestants remain.
+- The rescue drone evacuates Selin (injured by a treacherous current). 11 contestants remain.
+- The rescue drone evacuates Samuel (knocked out in a trial). 10 contestants remain.
+- The rescue drone evacuates Camille (knocked out in a trial). 9 contestants remain.
+- The rescue drone evacuates Lucas (knocked out in a trial). 8 contestants remain.
+- The rescue drone evacuates Iris (knocked out in a trial). 7 contestants remain.
+- The rescue drone evacuates Hamza (knocked out in a trial). 6 contestants remain.
+- The rescue drone evacuates Noa (knocked out in a trial). 5 contestants remain.
+- The rescue drone evacuates Mei (knocked out in a trial). 4 contestants remain.
+- The rescue drone evacuates Ethan (knocked out in a trial). 3 contestants remain.
+- The rescue drone evacuates Rémi (beaten in the finale). 2 contestants remain.
+- The rescue drone evacuates Robin (beaten in the finale). 1 contestants remain.
 
 
 
 <details><summary>Live feed (subscribers)</summary>
 
-- **01h** Leila is hit by a bad fall. Axel comes to the rescue just in time.
-- **02h** Iris is caught by a bad fall at the summit, but holds on.
-- **07h** The rescue drone evacuates Iris (injured by a bad fall). 9 contestants remain.
-- **09h** Leila asks Selin to team up. Accepted.
-- **10h** The rescue drone evacuates Selin (injured by a bad fall). 8 contestants remain.
-- **12h** Thanks to 32 viewers, a parachuted crate brings a first-aid kit to Alma.
-- **12h** The crate meant for Kwame lands… in Margaux's hands!
-- **12h** Thanks to 29 viewers, a parachuted crate brings a first-aid kit to Oscar.
-- **12h** Thanks to 41 viewers, a parachuted crate brings a water flask to Axel.
-- **12h** Thanks to 45 viewers, a parachuted crate brings a first-aid kit to Leila.
-- **12h** The crate meant for Margaux lands… in Kwame's hands!
-- **12h** Thanks to 44 viewers, a parachuted crate brings a rope to Sacha.
-- **12h** The crate meant for Ethan gets lost in the trees.
-- **14h** Margaux and Ethan shake hands: an alliance is born.
-- **14h** Axel is hit by a swarm of wasps. Leila comes to the rescue just in time.
-- **15h** Sacha asks Axel to team up. Accepted.
-- **15h** 📢 A tropical storm sweeps the island. Those without shelter will suffer.
-- **16h** Ethan is hit by a treacherous current. Margaux comes to the rescue just in time.
-- **18h** Axel is hit by a swarm of wasps. Leila comes to the rescue just in time.
-- **19h** Axel is hit by a swarm of wasps. Leila comes to the rescue just in time.
-- **19h** 📢 Alert: a swarm of killer wasps descends on the river!
-- **19h** Grand finale: Alma, Kwame, Oscar, Axel, Leila, Margaux, Sacha and Ethan face the ultimate challenge.
-- **19h** The rescue drone evacuates Axel (beaten in the finale). 7 contestants remain.
-- **19h** The rescue drone evacuates Ethan (beaten in the finale). 6 contestants remain.
-- **19h** The rescue drone evacuates Alma (beaten in the finale). 5 contestants remain.
-- **19h** The rescue drone evacuates Sacha (beaten in the finale). 4 contestants remain.
-- **19h** The rescue drone evacuates Margaux (beaten in the finale). 3 contestants remain.
-- **19h** The rescue drone evacuates Leila (beaten in the finale). 2 contestants remain.
-- **19h** The rescue drone evacuates Oscar (beaten in the finale). 1 contestants remain.
-- **19h** 🏆 Kwame wins the season and becomes The Last!
+- **00h** Lucas is hit by a snake bite. Margaux comes to the rescue just in time.
+- **01h** The rescue drone evacuates Aaliyah (injured by a treacherous current). 12 contestants remain.
+- **06h** Iris and Mei shake hands: an alliance is born.
+- **06h** 📢 The springs are drying up: water will be scarce for the next few hours.
+- **09h** The rescue drone evacuates Selin (injured by a treacherous current). 11 contestants remain.
+- **10h** Lucas is caught by a swarm of wasps at the jungle, but holds on.
+- **10h** 🏁 Endurance trial! Robin wins it. 3 contestants must leave the island.
+- **10h** The rescue drone evacuates Samuel (knocked out in a trial). 10 contestants remain.
+- **10h** The rescue drone evacuates Camille (knocked out in a trial). 9 contestants remain.
+- **10h** The rescue drone evacuates Lucas (knocked out in a trial). 8 contestants remain.
+- **12h** Noa and Ethan shake hands: an alliance is born.
+- **12h** The crate meant for Rémi gets lost in the trees.
+- **12h** Thanks to 38 viewers, a parachuted crate brings a water flask to Noa.
+- **12h** The crate meant for Hamza lands… in Mei's hands!
+- **12h** Thanks to 28 viewers, a parachuted crate brings a rope to Iris.
+- **12h** Thanks to 46 viewers, a parachuted crate brings a first-aid kit to Robin.
+- **12h** Thanks to 32 viewers, a parachuted crate brings a water flask to Margaux.
+- **12h** Thanks to 42 viewers, a parachuted crate brings a torch to Ethan.
+- **12h** Thanks to 25 viewers, a parachuted crate brings a first-aid kit to Mei.
+- **13h** 🏁 Orientation trial! Robin wins it. 3 contestants must leave the island.
+- **13h** The rescue drone evacuates Iris (knocked out in a trial). 7 contestants remain.
+- **13h** The rescue drone evacuates Hamza (knocked out in a trial). 6 contestants remain.
+- **13h** The rescue drone evacuates Noa (knocked out in a trial). 5 contestants remain.
+- **16h** Mei is caught by a treacherous current at the waterfall, but holds on.
+- **16h** 🏁 Trust trial! Rémi wins it. 2 contestants must leave the island.
+- **16h** The rescue drone evacuates Mei (knocked out in a trial). 4 contestants remain.
+- **16h** The rescue drone evacuates Ethan (knocked out in a trial). 3 contestants remain.
+- **19h** Grand finale: Rémi, Robin and Margaux face the ultimate challenge.
+- **19h** The rescue drone evacuates Rémi (beaten in the finale). 2 contestants remain.
+- **19h** The rescue drone evacuates Robin (beaten in the finale). 1 contestants remain.
+- **19h** 🏆 Margaux wins the season and becomes The Last!
 
 </details>
 
 ## The Prime: season recap
 
-### 🏆 The winner: Kwame, 59 years old · lawyer · Dublin, Ireland
+### 🏆 The winner: Margaux, 53 years old · volunteer firefighter · Manchester, UK
 
-> « I'm here to win, not to make friends. »
+> « We leave no one behind. »
 
-Was bullied at school and found refuge in books. Won a TV contest ten years ago, then was forgotten. Their dream: open an animal shelter.
+Former child piano prodigy who quit everything at 15. Sailed solo across the Atlantic. Their dream: use the fame to launch a business.
 
 ### Highlights
 - Day 1: Leila is hit by a swarm of wasps. Axel comes to the rescue just in time.
 - Day 2: Tense standoff between Robin and Vera at the beach. Robin comes out on top.
-- Day 3: 📢 A crushing heatwave settles over the island.
-- Day 4: Lucía asks Oscar to team up. Accepted.
-- Day 5: Hamza is caught by a bad fall at the waterfall, but holds on.
-- Day 6: Sacha quietly swipes a water flask from Margaux.
-- Day 7: Leila is hit by a bad fall. Axel comes to the rescue just in time.
+- Day 3: 📢 Alert: a swarm of killer wasps descends on the mangrove!
+- Day 4: Lucas asks Selin to team up. Accepted.
+- Day 5: Samuel is caught by a high fever at the river, but holds on.
+- Day 6: Betrayal! Camille breaks the alliance with Samuel.
+- Day 7: 🏁 Endurance trial! Robin wins it. 3 contestants must leave the island.
 
 ### The season in numbers
 | | |
 | --- | --- |
-| Alliances | 32 |
-| Betrayals and thefts | 10 |
+| Alliances | 38 |
+| Betrayals and thefts | 7 |
 | Standoffs | 11 |
-| Crates delivered | 52 |
-| Showrunner twists | 13 |
+| Crates delivered | 55 |
+| Showrunner twists | 15 |
 
 ### Order of evacuations
 1. Matthias · Day 1 · injured by a swarm of wasps
@@ -529,43 +555,43 @@ Was bullied at school and found refuge in books. Won a TV contest ten years ago,
 7. Dmitri · Day 2 · injured by a snake bite
 8. Yusuf · Day 2 · injured by a treacherous current
 9. Youssef · Day 2 · injured by a swarm of wasps
-10. Tariq · Day 2 · defeated by Hana
-11. Kenji · Day 2 · injured by a bad fall
-12. Rafael · Day 2 · completely exhausted
+10. Freya · Day 2 · injured by a treacherous current
+11. Kwame · Day 2 · injured by a treacherous current
+12. Morgan · Day 2 · injured by a snake bite
 13. Mila · Day 2 · was not saved by the audience
-14. Robin · Day 2 · completely exhausted
-15. Omar · Day 2 · injured by a rockslide
-16. Mei · Day 3 · injured by a treacherous current
-17. Rémi · Day 3 · injured by a bad fall
-18. Samuel · Day 3 · threw in the towel
-19. Morgan · Day 3 · injured by a bad fall
-20. Charlie · Day 3 · injured by a swarm of wasps
-21. Camille · Day 3 · was not saved by the audience
-22. Hana · Day 3 · threw in the towel
-23. Moussa · Day 4 · threw in the towel
-24. Ilona · Day 4 · injured by a bad fall
-25. Ingrid · Day 4 · threw in the towel
-26. Aaliyah · Day 4 · defeated by Oscar
-27. Sana · Day 4 · injured by a high fever
-28. Lucía · Day 4 · was not saved by the audience
-29. Tala · Day 5 · injured by a treacherous current
-30. Pablo · Day 5 · injured by a swarm of wasps
-31. Liam · Day 5 · defeated by Margaux
-32. Freya · Day 5 · defeated by Leila
-33. Léa · Day 5 · was not saved by the audience
-34. Louis · Day 6 · injured by a swarm of wasps
-35. Hamza · Day 6 · injured by a swarm of wasps
-36. Inès · Day 6 · injured by a swarm of wasps
-37. Noa · Day 6 · injured by a bad fall
-38. Nils · Day 6 · threw in the towel
-39. Victor · Day 6 · was not saved by the audience
-40. Lucas · Day 6 · injured by a bad fall
-41. Iris · Day 7 · injured by a bad fall
-42. Selin · Day 7 · injured by a bad fall
-43. Alma · Day 7 · beaten in the finale
-44. Oscar · Day 7 · beaten in the finale
-45. Axel · Day 7 · beaten in the finale
-46. Leila · Day 7 · beaten in the finale
-47. Margaux · Day 7 · beaten in the finale
-48. Sacha · Day 7 · beaten in the finale
-49. Ethan · Day 7 · beaten in the finale
+14. Leila · Day 2 · injured by a treacherous current
+15. Sacha · Day 3 · injured by a treacherous current
+16. Victor · Day 3 · threw in the towel
+17. Pablo · Day 3 · injured by a treacherous current
+18. Ingrid · Day 3 · defeated by Rémi
+19. Louis · Day 3 · injured by a treacherous current
+20. Inès · Day 3 · was not saved by the audience
+21. Lucía · Day 4 · injured by a treacherous current
+22. Ilona · Day 4 · injured by a treacherous current
+23. Tariq · Day 4 · injured by a bad fall
+24. Hana · Day 4 · threw in the towel
+25. Nils · Day 4 · defeated by Rémi
+26. Kenji · Day 4 · injured by a swarm of wasps
+27. Charlie · Day 4 · injured by a treacherous current
+28. Omar · Day 4 · threw in the towel
+29. Oscar · Day 4 · was not saved by the audience
+30. Sana · Day 4 · completely exhausted
+31. Tala · Day 4 · completely exhausted
+32. Rafael · Day 5 · injured by a bad fall
+33. Liam · Day 5 · injured by a high fever
+34. Alma · Day 5 · injured by a treacherous current
+35. Moussa · Day 5 · was not saved by the audience
+36. Léa · Day 6 · injured by a treacherous current
+37. Axel · Day 6 · was not saved by the audience
+38. Aaliyah · Day 7 · injured by a treacherous current
+39. Selin · Day 7 · injured by a treacherous current
+40. Camille · Day 7 · knocked out in a trial
+41. Lucas · Day 7 · knocked out in a trial
+42. Samuel · Day 7 · knocked out in a trial
+43. Noa · Day 7 · knocked out in a trial
+44. Hamza · Day 7 · knocked out in a trial
+45. Iris · Day 7 · knocked out in a trial
+46. Ethan · Day 7 · knocked out in a trial
+47. Mei · Day 7 · knocked out in a trial
+48. Rémi · Day 7 · beaten in the finale
+49. Robin · Day 7 · beaten in the finale

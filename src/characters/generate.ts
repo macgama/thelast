@@ -20,7 +20,7 @@ export function generateCharacters(count: number, seed: number): Character[] {
       fr: x.fr.replace(/\{e\}/g, agree(n.gender, "fr")).replace(/([^|"]+)\|([^|"]+)/, (_, m, f) => (n.gender === "f" ? f : m)),
       en: x.en,
     });
-    return {
+    const c: Character = {
       id: `c${String(i + 1).padStart(3, "0")}`,
       name: n.name,
       age: rng.int(19, 62),
@@ -36,6 +36,9 @@ export function generateCharacters(count: number, seed: number): Character[] {
       phobia: rng.pick(PHOBIAS),
       career: { seasons: 0, wins: 0, bonus: {}, cosmetics: [] },
     };
+    // Cohérence : un secret « ne sait pas nager » exclut la compétence natation
+    if (c.secret.en.startsWith("Can't swim")) c.skills = c.skills.filter((sk) => sk !== "swimming");
+    return c;
   });
 }
 

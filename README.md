@@ -6,6 +6,7 @@ Télé-réalité 100% IA : 50 personnages IA vivent une aventure de 7 jours, sui
 
 **Étape 1 : la simulation sans écran.** Le moteur fait vivre une saison complète de 7 jours, heure par heure, et écrit les récits en français et en anglais. Il n'y a pas encore d'application à ouvrir dans le navigateur : on lit les saisons dans le dossier [`exemples/`](exemples/).
 
+- **Démo visuelle** : [`demo/index.html`](demo/index.html), avec la carte de l'île, les 50 candidats et 5 personnages à suivre avec leurs confessionnaux. Régénérer les données avec `npm run replay`.
 - [Exemple de saison en français](exemples/saison-42.fr.md)
 - [Example season in English](exemples/saison-42.en.md)
 
@@ -15,7 +16,7 @@ Télé-réalité 100% IA : 50 personnages IA vivent une aventure de 7 jours, sui
 | --- | --- |
 | Personnages | Un pool de 100 fiches bilingues ([`data/characters.json`](data/characters.json)). 50 sont tirées au hasard à chaque saison. |
 | Aventure | « Survie » sur l'Île aux Échos : 9 zones avec eau, nourriture, abris et dangers ([`src/engine/arenas/island.ts`](src/engine/arenas/island.ts)). |
-| Temps | 1 tick = 1 heure. Début le jour 1 à 8h, finale le jour 7 à 19h. |
+| Temps | 1 tick = 1 heure. Début le jour 1 à 8h, finale le jour 7 à 19h. Le jour 7, trois épreuves (endurance à 10h, orientation à 13h, confiance à 16h) laissent 3 finalistes. |
 | Éliminations | Dangers (guêpes, chutes, courants, serpents, fièvre…), soif, faim, épuisement, abandon, affrontements. À l'écran, un candidat éliminé est **évacué par un drone de secours**, jamais montré mort. |
 | Showrunner | Surveille le rythme. Si la saison s'endort, il déclenche un rebondissement : essaim de guêpes, tempête, sécheresse, canicule, ravitaillement. |
 | Vote du soir (19h) | Les 3 candidats les moins populaires sont menacés. Un vote gratuit par spectateur, même poids pour tous. Le public en sauve 2. |

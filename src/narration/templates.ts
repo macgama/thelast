@@ -30,6 +30,7 @@ export const CAUSE: Record<EliminationCause, I18n> = {
   exhaustion: t("à bout de forces", "completely exhausted"),
   withdrawal: t("a jeté l'éponge", "threw in the towel"),
   vote: t("n'a pas été sauvé{e} par le public", "was not saved by the audience"),
+  trial: t("éliminé{e} lors d'une épreuve", "knocked out in a trial"),
   finale: t("battu{e} lors de la finale", "beaten in the finale"),
 };
 
@@ -72,8 +73,15 @@ export const LINES: Record<string, I18n[]> = {
   gift_intercepted: [t("Le colis destiné à {a} tombe… dans les mains de {b} !", "The crate meant for {a} lands… in {b}'s hands!")],
   vote_threat: [t("Ce soir, {list} sont menacés. Au public de décider qui sauver.", "Tonight, {list} are under threat. The audience decides who to save.")],
   vote_saved: [t("Le public a sauvé {list}.", "The audience saved {list}.")],
+  trial: [t("Épreuve {trial} ! {a} la remporte. {n} candidats devront quitter l'île.", "{trial} trial! {a} wins it. {n} contestants must leave the island.")],
   finale: [t("Grande finale : {list} s'affrontent dans l'épreuve ultime.", "Grand finale: {list} face the ultimate challenge.")],
   winner: [t("{a} remporte la saison et devient The Last !", "{a} wins the season and becomes The Last!")],
+};
+
+export const TRIAL_NAME: Record<string, I18n> = {
+  endurance: t("d'endurance", "Endurance"),
+  orientation: t("d'orientation", "Orientation"),
+  trust: t("de confiance", "Trust"),
 };
 
 export const WHAT: Record<string, I18n> = { water: t("son eau", "their water"), food: t("sa nourriture", "their food") };

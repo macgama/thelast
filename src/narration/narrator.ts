@@ -1,7 +1,7 @@
 // Transforme les événements du moteur en texte : fil horaire, quotidienne de 19h et prime du jour 7.
 import { dayOf, hourOf, type ShowrunnerKind } from "../engine/season";
 import type { Character, GameEvent, HazardId, Item, Lang, SeasonResult } from "../engine/types";
-import { CAUSE, HAZARD, ITEM, LINES, SHOWRUNNER, UI, WHAT, agree, at, fill, list } from "./templates";
+import { CAUSE, HAZARD, ITEM, LINES, SHOWRUNNER, TRIAL_NAME, UI, WHAT, agree, at, fill, list } from "./templates";
 
 export class Narrator {
   private chars: Map<string, Character>;
@@ -69,6 +69,8 @@ export class Narrator {
         return fill(this.pick("vote_threat", e), { list: list(e.actors.map((id) => this.name(id)), L) });
       case "vote_saved":
         return fill(this.pick("vote_saved", e), { list: list(e.actors.map((id) => this.name(id)), L) });
+      case "trial":
+        return "🏁 " + fill(this.pick("trial", e), { a, trial: TRIAL_NAME[d.kind as string][L], n: d.out as number });
       case "finale":
         return fill(this.pick("finale", e), { list: list(e.actors.map((id) => this.name(id)), L) });
       case "winner":

@@ -83,8 +83,8 @@ Ce soir, Tariq, Raphaël et Léa sont menacés. Au public de décider qui sauver
 - Yusuf est surpris par un essaim de guêpes à la mangrove, mais tient bon.
 - Zara est surprise par un essaim de guêpes à la mangrove, mais tient bon.
 - Liam propose à Yusuf de faire équipe. Accepté.
-- 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
-- 📢 Les sources se tarissent : l'eau devient rare pour les prochaines heures.
+- Kenji est surpris par un courant traître à la plage, mais tient bon.
+- 📢 Une vague de chaleur écrasante s'installe sur l'île.
 
 #### Évacués aujourd'hui
 - Le drone de secours évacue Zara (blessée par un essaim de guêpes). Il reste 45 candidats.
@@ -92,12 +92,12 @@ Ce soir, Tariq, Raphaël et Léa sont menacés. Au public de décider qui sauver
 - Le drone de secours évacue Dmitri (blessé par une morsure de serpent). Il reste 43 candidats.
 - Le drone de secours évacue Yusuf (blessé par un courant traître). Il reste 42 candidats.
 - Le drone de secours évacue Youssef (blessé par un essaim de guêpes). Il reste 41 candidats.
-- Le drone de secours évacue Tariq (vaincu par Hana). Il reste 40 candidats.
-- Le drone de secours évacue Kenji (blessé par une mauvaise chute). Il reste 39 candidats.
-- Le drone de secours évacue Rafael (à bout de forces). Il reste 38 candidats.
+- Le drone de secours évacue Freya (blessée par un courant traître). Il reste 40 candidats.
+- Le drone de secours évacue Kwame (blessé par un courant traître). Il reste 39 candidats.
+- Le drone de secours évacue Morgan (blessé·e par une morsure de serpent). Il reste 38 candidats.
 - Le drone de secours évacue Mila (n'a pas été sauvée par le public). Il reste 37 candidats.
 
-Ce soir, Inès, Mila et Tala sont menacés. Au public de décider qui sauver. Le public a sauvé Tala et Inès.
+Ce soir, Sana, Mila et Omar sont menacés. Au public de décider qui sauver. Le public a sauvé Omar et Sana.
 
 <details><summary>Fil en direct (abonnés)</summary>
 
@@ -123,35 +123,32 @@ Ce soir, Inès, Mila et Tala sont menacés. Au public de décider qui sauver. Le
 - **09h** Iris propose à Kenji de faire équipe. Accepté.
 - **09h** Rafael et Sana se disputent le même territoire. Sana doit reculer.
 - **09h** Freya est surprise par une forte fièvre à la rivière, mais tient bon.
-- **10h** 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
-- **11h** Mei et Omar se disputent le même territoire. Omar doit reculer.
-- **11h** Hana et Tariq se disputent le même territoire. Tariq doit reculer.
-- **11h** Le drone de secours évacue Tariq (vaincu par Hana). Il reste 40 candidats.
-- **12h** Lucas tente de voler Mei… et se fait prendre la main dans le sac.
-- **12h** Alma et Victor se serrent la main : une alliance est née.
-- **12h** Le colis destiné à Hana tombe… dans les mains de Freya !
-- **12h** Grâce à 11 spectateurs, un colis parachuté apporte une corde à Rémi.
-- **12h** Le colis destiné à Noa tombe… dans les mains de Victor !
-- **12h** Grâce à 12 spectateurs, un colis parachuté apporte une trousse de secours à Kwame.
-- **14h** 📢 Les sources se tarissent : l'eau devient rare pour les prochaines heures.
-- **15h** Pablo propose à Selin de faire équipe. Accepté.
-- **16h** Le drone de secours évacue Kenji (blessé par une mauvaise chute). Il reste 39 candidats.
-- **17h** Le drone de secours évacue Rafael (à bout de forces). Il reste 38 candidats.
-- **17h** Rémi est surpris par une mauvaise chute à la cascade, mais tient bon.
-- **17h** Oscar est surpris par un courant traître à la cascade, mais tient bon.
-- **18h** Sana et Ethan se serrent la main : une alliance est née.
-- **19h** Rémi propose à Samuel de faire équipe. Accepté.
-- **19h** Moussa subtilise une gourde à Mei sans se faire voir.
-- **19h** Ce soir, Inès, Mila et Tala sont menacés. Au public de décider qui sauver.
-- **19h** Le public a sauvé Tala et Inès.
+- **10h** Le drone de secours évacue Freya (blessée par un courant traître). Il reste 40 candidats.
+- **11h** Moussa propose à Noa de faire équipe. Accepté.
+- **11h** Léa est surprise par une forte fièvre à la mangrove, mais tient bon.
+- **12h** Le drone de secours évacue Kwame (blessé par un courant traître). Il reste 39 candidats.
+- **12h** Grâce à 12 spectateurs, un colis parachuté apporte une lampe torche à Hana.
+- **12h** Le colis destiné à Rémi tombe… dans les mains de Pablo !
+- **12h** Grâce à 14 spectateurs, un colis parachuté apporte des rations à Ilona.
+- **12h** Grâce à 12 spectateurs, un colis parachuté apporte une trousse de secours à Mei.
+- **13h** Selin propose à Margaux de faire équipe. Accepté.
+- **15h** Alma est surprise par une forte fièvre à la rivière, mais tient bon.
+- **16h** Face-à-face tendu entre Iris et Inès à la rivière. Iris prend le dessus.
+- **16h** Le drone de secours évacue Morgan (blessé·e par une morsure de serpent). Il reste 38 candidats.
+- **16h** 📢 Une vague de chaleur écrasante s'installe sur l'île.
+- **17h** Aaliyah propose à Rémi de faire équipe. Accepté.
+- **17h** Samuel propose à Camille de faire équipe. Accepté.
+- **17h** Sacha propose à Hamza de faire équipe. Accepté.
+- **18h** Mei et Robin se serrent la main : une alliance est née.
+- **18h** Alma et Inès se serrent la main : une alliance est née.
+- **19h** Leila propose à Nils de faire équipe. Accepté.
+- **19h** Ce soir, Sana, Mila et Omar sont menacés. Au public de décider qui sauver.
+- **19h** Le public a sauvé Omar et Sana.
 - **19h** Le drone de secours évacue Mila (n'a pas été sauvée par le public). Il reste 37 candidats.
-- **20h** Alma et Oscar se serrent la main : une alliance est née.
-- **20h** Mei et Moussa se serrent la main : une alliance est née.
-- **20h** Robin est surpris·e par un courant traître à la plage, mais tient bon.
-- **21h** Le drone de secours évacue Robin (à bout de forces). Il reste 36 candidats.
-- **21h** 📢 Une vague de chaleur écrasante s'installe sur l'île.
-- **22h** Le drone de secours évacue Omar (blessé par un éboulement). Il reste 35 candidats.
-- **23h** Lucía est surprise par une mauvaise chute à la cascade, mais tient bon.
+- **20h** Nils est touché par une forte fièvre. Leila lui porte secours à temps.
+- **20h** 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
+- **21h** Le drone de secours évacue Leila (blessée par un courant traître). Il reste 36 candidats.
+- **23h** Louis est surpris par un courant traître à la rivière, mais tient bon.
 
 </details>
 
@@ -159,65 +156,81 @@ Ce soir, Inès, Mila et Tala sont menacés. Au public de décider qui sauver. Le
 
 ### La Quotidienne de 19h · Jour 3
 
-**Candidats restants : 29**
+**Candidats restants : 30**
 
 #### Les moments forts
-- Alma et Oscar se serrent la main : une alliance est née.
-- Mei et Moussa se serrent la main : une alliance est née.
-- Robin est surpris·e par un courant traître à la plage, mais tient bon.
+- 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
+- Nils est touché par une forte fièvre. Leila lui porte secours à temps.
+- Louis est surpris par un courant traître à la rivière, mais tient bon.
+- Hana est surprise par une forte fièvre à la rivière, mais tient bon.
+- 📢 Alerte : un essaim de guêpes tueuses s'abat sur la mangrove !
 - 📢 Une vague de chaleur écrasante s'installe sur l'île.
-- Lucía est surprise par une mauvaise chute à la cascade, mais tient bon.
-- Pablo est surpris par un essaim de guêpes à la jungle, mais tient bon.
 
 #### Évacués aujourd'hui
-- Le drone de secours évacue Robin (à bout de forces). Il reste 36 candidats.
-- Le drone de secours évacue Omar (blessé par un éboulement). Il reste 35 candidats.
-- Le drone de secours évacue Mei (blessée par un courant traître). Il reste 34 candidats.
-- Le drone de secours évacue Rémi (blessé par une mauvaise chute). Il reste 33 candidats.
-- Le drone de secours évacue Samuel (a jeté l'éponge). Il reste 32 candidats.
-- Le drone de secours évacue Morgan (blessé·e par une mauvaise chute). Il reste 31 candidats.
-- Le drone de secours évacue Charlie (blessé·e par un essaim de guêpes). Il reste 30 candidats.
-- Le drone de secours évacue Camille (n'a pas été sauvé·e par le public). Il reste 29 candidats.
+- Le drone de secours évacue Leila (blessée par un courant traître). Il reste 36 candidats.
+- Le drone de secours évacue Sacha (blessé·e par un courant traître). Il reste 35 candidats.
+- Le drone de secours évacue Victor (a jeté l'éponge). Il reste 34 candidats.
+- Le drone de secours évacue Pablo (blessé par un courant traître). Il reste 33 candidats.
+- Le drone de secours évacue Ingrid (vaincue par Rémi). Il reste 32 candidats.
+- Le drone de secours évacue Louis (blessé par un courant traître). Il reste 31 candidats.
+- Le drone de secours évacue Inès (n'a pas été sauvée par le public). Il reste 30 candidats.
 
-Ce soir, Margaux, Camille et Sana sont menacés. Au public de décider qui sauver. Le public a sauvé Margaux et Sana.
+Ce soir, Inès, Ethan et Camille sont menacés. Au public de décider qui sauver. Le public a sauvé Camille et Ethan.
 
 <details><summary>Fil en direct (abonnés)</summary>
 
-- **00h** Pablo est surpris par un essaim de guêpes à la jungle, mais tient bon.
-- **02h** Hamza est surpris par un essaim de guêpes à la mangrove, mais tient bon.
-- **03h** Inès est surprise par une forte fièvre à la rivière, mais tient bon.
-- **03h** Charlie est surpris·e par un essaim de guêpes à la jungle, mais tient bon.
-- **03h** Le drone de secours évacue Mei (blessée par un courant traître). Il reste 34 candidats.
-- **04h** Le drone de secours évacue Rémi (blessé par une mauvaise chute). Il reste 33 candidats.
-- **05h** Le drone de secours évacue Samuel (a jeté l'éponge). Il reste 32 candidats.
-- **05h** Iris est surprise par un courant traître à la rivière, mais tient bon.
-- **05h** Selin est touchée par une morsure de serpent. Pablo lui porte secours à temps.
-- **06h** Le drone de secours évacue Morgan (blessé·e par une mauvaise chute). Il reste 31 candidats.
-- **07h** Léa propose à Sacha de faire équipe. Accepté.
-- **08h** Le drone de secours évacue Charlie (blessé·e par un essaim de guêpes). Il reste 30 candidats.
-- **10h** Tala et Leila se serrent la main : une alliance est née.
-- **10h** Inès est surprise par un essaim de guêpes à la mangrove, mais tient bon.
-- **11h** Sana propose à Sacha de faire équipe. Accepté.
-- **12h** Grâce à 11 spectateurs, un colis parachuté apporte une corde à Hana.
-- **12h** Grâce à 15 spectateurs, un colis parachuté apporte une lampe torche à Léa.
-- **12h** Grâce à 14 spectateurs, un colis parachuté apporte une gourde à Louis.
-- **12h** Grâce à 18 spectateurs, un colis parachuté apporte une trousse de secours à Kwame.
-- **12h** Grâce à 14 spectateurs, un colis parachuté apporte une trousse de secours à Iris.
-- **12h** Le colis destiné à Ilona tombe… dans les mains de Tala !
-- **12h** Grâce à 8 spectateurs, un colis parachuté apporte une trousse de secours à Leila.
-- **12h** Grâce à 19 spectateurs, un colis parachuté apporte une trousse de secours à Ingrid.
-- **12h** Grâce à 9 spectateurs, un colis parachuté apporte une trousse de secours à Freya.
-- **12h** Le colis destiné à Pablo tombe… dans les mains de Selin !
-- **12h** Grâce à 8 spectateurs, un colis parachuté apporte des rations à Aaliyah.
-- **15h** Liam propose à Lucas de faire équipe. Accepté.
-- **15h** Hana est surprise par une morsure de serpent à la jungle, mais tient bon.
-- **17h** Louis est surpris par un courant traître à la plage, mais tient bon.
-- **18h** 📢 Une vague de chaleur écrasante s'installe sur l'île.
-- **19h** Aaliyah est surprise par un éboulement aux ruines, mais tient bon.
-- **19h** Ce soir, Margaux, Camille et Sana sont menacés. Au public de décider qui sauver.
-- **19h** Le public a sauvé Margaux et Sana.
-- **19h** Le drone de secours évacue Camille (n'a pas été sauvé·e par le public). Il reste 29 candidats.
-- **22h** Le drone de secours évacue Hana (a jeté l'éponge). Il reste 28 candidats.
+- **00h** Hana est surprise par une forte fièvre à la rivière, mais tient bon.
+- **01h** Rémi est surpris par un courant traître à la cascade, mais tient bon.
+- **01h** Axel est surpris par une mauvaise chute à la cascade, mais tient bon.
+- **02h** Liam est surpris par une forte fièvre à la rivière, mais tient bon.
+- **02h** Aaliyah est surprise par une mauvaise chute à la cascade, mais tient bon.
+- **02h** Tariq est touché par une forte fièvre. Iris lui porte secours à temps.
+- **02h** Lucía est surprise par un courant traître à la rivière, mais tient bon.
+- **03h** Hana est surprise par une forte fièvre à la rivière, mais tient bon.
+- **03h** Le drone de secours évacue Sacha (blessé·e par un courant traître). Il reste 35 candidats.
+- **04h** Oscar est surpris par une mauvaise chute à la cascade, mais tient bon.
+- **05h** Le drone de secours évacue Victor (a jeté l'éponge). Il reste 34 candidats.
+- **05h** Nils est surpris par une forte fièvre à la rivière, mais tient bon.
+- **06h** Tariq et Charlie se serrent la main : une alliance est née.
+- **06h** Tariq est touché par un essaim de guêpes. Charlie lui porte secours à temps.
+- **07h** Le drone de secours évacue Pablo (blessé par un courant traître). Il reste 33 candidats.
+- **08h** Rémi et Tala se serrent la main : une alliance est née.
+- **10h** Moussa et Ingrid se serrent la main : une alliance est née.
+- **11h** Rémi et Ingrid se disputent le même territoire. Ingrid doit reculer.
+- **11h** Le drone de secours évacue Ingrid (vaincue par Rémi). Il reste 32 candidats.
+- **11h** Robin propose à Léa de faire équipe. Accepté.
+- **11h** Margaux propose à Lucas de faire équipe. Accepté.
+- **11h** 📢 Alerte : un essaim de guêpes tueuses s'abat sur la mangrove !
+- **12h** Selin est touchée par un essaim de guêpes. Margaux lui porte secours à temps.
+- **12h** Grâce à 14 spectateurs, un colis parachuté apporte une carte de l'île à Omar.
+- **12h** Le colis destiné à Alma tombe… dans les mains de Inès !
+- **12h** Grâce à 15 spectateurs, un colis parachuté apporte des rations à Rémi.
+- **12h** Le colis destiné à Kenji tombe… dans les mains de Tala !
+- **12h** Grâce à 9 spectateurs, un colis parachuté apporte une trousse de secours à Rafael.
+- **12h** Grâce à 9 spectateurs, un colis parachuté apporte une gourde à Louis.
+- **12h** Grâce à 17 spectateurs, un colis parachuté apporte une gourde à Iris.
+- **12h** Grâce à 8 spectateurs, un colis parachuté apporte une carte de l'île à Axel.
+- **12h** Grâce à 11 spectateurs, un colis parachuté apporte une gourde à Samuel.
+- **12h** Le colis destiné à Sana se perd dans les arbres.
+- **12h** Le colis destiné à Mei se perd dans les arbres.
+- **13h** Louis est surpris par un courant traître à la rivière, mais tient bon.
+- **14h** Lucas est touché par un essaim de guêpes. Margaux lui porte secours à temps.
+- **15h** Kenji est surpris par un courant traître à la rivière, mais tient bon.
+- **17h** Sana propose à Inès de faire équipe. Accepté.
+- **17h** 📢 Une vague de chaleur écrasante s'installe sur l'île.
+- **18h** Rafael partage son eau avec Hamza. Un geste qui ne s'oublie pas.
+- **18h** Le drone de secours évacue Louis (blessé par un courant traître). Il reste 31 candidats.
+- **18h** Tala est surprise par un essaim de guêpes à la jungle, mais tient bon.
+- **19h** Omar propose à Ethan de faire équipe. Accepté.
+- **19h** Ce soir, Inès, Ethan et Camille sont menacés. Au public de décider qui sauver.
+- **19h** Le public a sauvé Camille et Ethan.
+- **19h** Le drone de secours évacue Inès (n'a pas été sauvée par le public). Il reste 30 candidats.
+- **21h** Noa est surpris·e par une forte fièvre à la rivière, mais tient bon.
+- **21h** Robin est surpris·e par un essaim de guêpes à la jungle, mais tient bon.
+- **21h** 📢 Les sources se tarissent : l'eau devient rare pour les prochaines heures.
+- **22h** Rafael est surpris par un essaim de guêpes à la jungle, mais tient bon.
+- **23h** Iris est surprise par une forte fièvre à la mangrove, mais tient bon.
+- **23h** Ilona est surprise par un courant traître à la plage, mais tient bon.
 
 </details>
 
@@ -225,70 +238,83 @@ Ce soir, Margaux, Camille et Sana sont menacés. Au public de décider qui sauve
 
 ### La Quotidienne de 19h · Jour 4
 
-**Candidats restants : 22**
+**Candidats restants : 20**
 
 #### Les moments forts
-- Sana est surprise par une forte fièvre à la rivière, mais tient bon.
-- Selin est touchée par une forte fièvre. Pablo lui porte secours à temps.
-- Axel est touché par un courant traître. Leila lui porte secours à temps.
-- Selin est touchée par un courant traître. Pablo lui porte secours à temps.
-- Alma est surprise par une mauvaise chute au sommet, mais tient bon.
+- 📢 Les sources se tarissent : l'eau devient rare pour les prochaines heures.
+- Noa est surpris·e par une forte fièvre à la rivière, mais tient bon.
+- Robin est surpris·e par un essaim de guêpes à la jungle, mais tient bon.
+- Rafael est surpris par un essaim de guêpes à la jungle, mais tient bon.
+- 📢 Une vague de chaleur écrasante s'installe sur l'île.
 - 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
 
 #### Évacués aujourd'hui
-- Le drone de secours évacue Hana (a jeté l'éponge). Il reste 28 candidats.
-- Le drone de secours évacue Moussa (a jeté l'éponge). Il reste 27 candidats.
-- Le drone de secours évacue Ilona (blessée par une mauvaise chute). Il reste 26 candidats.
-- Le drone de secours évacue Ingrid (a jeté l'éponge). Il reste 25 candidats.
-- Le drone de secours évacue Aaliyah (vaincue par Oscar). Il reste 24 candidats.
-- Le drone de secours évacue Sana (blessée par une forte fièvre). Il reste 23 candidats.
-- Le drone de secours évacue Lucía (n'a pas été sauvée par le public). Il reste 22 candidats.
+- Le drone de secours évacue Lucía (blessée par un courant traître). Il reste 29 candidats.
+- Le drone de secours évacue Ilona (blessée par un courant traître). Il reste 28 candidats.
+- Le drone de secours évacue Tariq (blessé par une mauvaise chute). Il reste 27 candidats.
+- Le drone de secours évacue Hana (a jeté l'éponge). Il reste 26 candidats.
+- Le drone de secours évacue Nils (vaincu par Rémi). Il reste 25 candidats.
+- Le drone de secours évacue Kenji (blessé par un essaim de guêpes). Il reste 24 candidats.
+- Le drone de secours évacue Charlie (blessé·e par un courant traître). Il reste 23 candidats.
+- Le drone de secours évacue Omar (a jeté l'éponge). Il reste 22 candidats.
+- Le drone de secours évacue Sana (à bout de forces). Il reste 21 candidats.
+- Le drone de secours évacue Oscar (n'a pas été sauvé par le public). Il reste 20 candidats.
 
-Ce soir, Ethan, Lucía et Lucas sont menacés. Au public de décider qui sauver. Le public a sauvé Ethan et Lucas.
+Ce soir, Tala, Oscar et Hamza sont menacés. Au public de décider qui sauver. Le public a sauvé Tala et Hamza.
 
 <details><summary>Fil en direct (abonnés)</summary>
 
-- **01h** Le drone de secours évacue Moussa (a jeté l'éponge). Il reste 27 candidats.
-- **01h** Le drone de secours évacue Ilona (blessée par une mauvaise chute). Il reste 26 candidats.
-- **01h** Sana est surprise par une forte fièvre à la rivière, mais tient bon.
-- **02h** Selin est touchée par une forte fièvre. Pablo lui porte secours à temps.
-- **04h** Axel est touché par un courant traître. Leila lui porte secours à temps.
-- **05h** Le drone de secours évacue Ingrid (a jeté l'éponge). Il reste 25 candidats.
-- **05h** Selin est touchée par un courant traître. Pablo lui porte secours à temps.
-- **07h** Alma est surprise par une mauvaise chute au sommet, mais tient bon.
-- **08h** Face-à-face tendu entre Oscar et Aaliyah à la cascade. Oscar prend le dessus.
-- **08h** Le drone de secours évacue Aaliyah (vaincue par Oscar). Il reste 24 candidats.
-- **08h** Liam est touché par une forte fièvre. Iris lui porte secours à temps.
-- **08h** Le drone de secours évacue Sana (blessée par une forte fièvre). Il reste 23 candidats.
-- **09h** Lucía propose à Oscar de faire équipe. Accepté.
-- **09h** Margaux tente de voler Inès… et se fait prendre la main dans le sac.
-- **09h** 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
-- **12h** Grâce à 14 spectateurs, un colis parachuté apporte une trousse de secours à Léa.
-- **12h** Le colis destiné à Louis se perd dans les arbres.
-- **12h** Grâce à 22 spectateurs, un colis parachuté apporte une trousse de secours à Kwame.
-- **12h** Grâce à 18 spectateurs, un colis parachuté apporte une trousse de secours à Oscar.
-- **12h** Grâce à 12 spectateurs, un colis parachuté apporte une gourde à Lucas.
-- **12h** Le colis destiné à Inès se perd dans les arbres.
-- **12h** Grâce à 14 spectateurs, un colis parachuté apporte une gourde à Liam.
-- **12h** Grâce à 11 spectateurs, un colis parachuté apporte une carte de l'île à Tala.
-- **12h** Grâce à 13 spectateurs, un colis parachuté apporte une gourde à Freya.
-- **12h** Le colis destiné à Pablo se perd dans les arbres.
-- **12h** Grâce à 24 spectateurs, un colis parachuté apporte une trousse de secours à Selin.
-- **12h** Grâce à 10 spectateurs, un colis parachuté apporte des rations à Ethan.
-- **13h** Liam tente de voler Tala… et se fait prendre la main dans le sac.
-- **14h** Kwame et Victor se serrent la main : une alliance est née.
-- **14h** Margaux et Selin se serrent la main : une alliance est née.
-- **15h** Selin est touchée par une forte fièvre. Pablo lui porte secours à temps.
-- **16h** Iris et Lucas se serrent la main : une alliance est née.
-- **17h** Pablo propose à Margaux de faire équipe. Accepté.
-- **18h** Léa est surprise par une mauvaise chute à la cascade, mais tient bon.
-- **19h** Ce soir, Ethan, Lucía et Lucas sont menacés. Au public de décider qui sauver.
-- **19h** Le public a sauvé Ethan et Lucas.
-- **19h** Le drone de secours évacue Lucía (n'a pas été sauvée par le public). Il reste 22 candidats.
-- **20h** Leila est touchée par un courant traître. Axel lui porte secours à temps.
-- **21h** Alma est surprise par une forte fièvre à la rivière, mais tient bon.
-- **22h** Liam est touché par un courant traître. Iris lui porte secours à temps.
-- **22h** Liam est touché par une forte fièvre. Iris lui porte secours à temps.
+- **00h** Aaliyah est surprise par un essaim de guêpes à la jungle, mais tient bon.
+- **01h** Alma est surprise par un courant traître à la cascade, mais tient bon.
+- **01h** Le drone de secours évacue Lucía (blessée par un courant traître). Il reste 29 candidats.
+- **02h** Liam est surpris par une forte fièvre à la rivière, mais tient bon.
+- **03h** Camille est surpris·e par un essaim de guêpes à la mangrove, mais tient bon.
+- **03h** Le drone de secours évacue Ilona (blessée par un courant traître). Il reste 28 candidats.
+- **04h** Rémi est touché par un courant traître. Tala lui porte secours à temps.
+- **04h** Noa est surpris·e par un courant traître à la rivière, mais tient bon.
+- **04h** Samuel est touché par une forte fièvre. Camille lui porte secours à temps.
+- **05h** Le drone de secours évacue Tariq (blessé par une mauvaise chute). Il reste 27 candidats.
+- **06h** Le drone de secours évacue Hana (a jeté l'éponge). Il reste 26 candidats.
+- **07h** Mei est surprise par un essaim de guêpes à la mangrove, mais tient bon.
+- **07h** 📢 Une vague de chaleur écrasante s'installe sur l'île.
+- **08h** Face-à-face tendu entre Rémi et Nils à la jungle. Rémi prend le dessus.
+- **08h** Le drone de secours évacue Nils (vaincu par Rémi). Il reste 25 candidats.
+- **08h** Margaux est touchée par un courant traître. Lucas lui porte secours à temps.
+- **09h** Aaliyah et Tala se disputent le même territoire. Tala doit reculer.
+- **11h** Léa est surprise par un courant traître à la plage, mais tient bon.
+- **11h** 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
+- **12h** Le drone de secours évacue Kenji (blessé par un essaim de guêpes). Il reste 24 candidats.
+- **12h** Le drone de secours évacue Charlie (blessé·e par un courant traître). Il reste 23 candidats.
+- **12h** Grâce à 17 spectateurs, un colis parachuté apporte une trousse de secours à Léa.
+- **12h** Le colis destiné à Omar tombe… dans les mains de Aaliyah !
+- **12h** Grâce à 21 spectateurs, un colis parachuté apporte une trousse de secours à Rémi.
+- **12h** Le colis destiné à Rafael tombe… dans les mains de Rémi !
+- **12h** Grâce à 12 spectateurs, un colis parachuté apporte une gourde à Noa.
+- **12h** Le colis destiné à Iris tombe… dans les mains de Hamza !
+- **12h** Grâce à 10 spectateurs, un colis parachuté apporte une trousse de secours à Oscar.
+- **12h** Grâce à 15 spectateurs, un colis parachuté apporte une corde à Axel.
+- **12h** Le colis destiné à Liam tombe… dans les mains de Selin !
+- **12h** Le colis destiné à Robin tombe… dans les mains de Margaux !
+- **12h** Grâce à 18 spectateurs, un colis parachuté apporte une trousse de secours à Aaliyah.
+- **12h** Grâce à 15 spectateurs, un colis parachuté apporte une trousse de secours à Sana.
+- **12h** Grâce à 12 spectateurs, un colis parachuté apporte une carte de l'île à Selin.
+- **12h** Grâce à 15 spectateurs, un colis parachuté apporte une lampe torche à Ethan.
+- **12h** Grâce à 20 spectateurs, un colis parachuté apporte une trousse de secours à Mei.
+- **13h** Le drone de secours évacue Omar (a jeté l'éponge). Il reste 22 candidats.
+- **13h** Margaux est touchée par une morsure de serpent. Lucas lui porte secours à temps.
+- **13h** Sana est surprise par une forte fièvre à la rivière, mais tient bon.
+- **14h** Sana est surprise par un courant traître à la rivière, mais tient bon.
+- **15h** Lucas propose à Selin de faire équipe. Accepté.
+- **16h** Aaliyah et Ethan se serrent la main : une alliance est née.
+- **19h** Le drone de secours évacue Sana (à bout de forces). Il reste 21 candidats.
+- **19h** Aaliyah propose à Hamza de faire équipe. Accepté.
+- **19h** Léa est surprise par un essaim de guêpes à la jungle, mais tient bon.
+- **19h** Ce soir, Tala, Oscar et Hamza sont menacés. Au public de décider qui sauver.
+- **19h** Le public a sauvé Tala et Hamza.
+- **19h** Le drone de secours évacue Oscar (n'a pas été sauvé par le public). Il reste 20 candidats.
+- **20h** Le drone de secours évacue Tala (à bout de forces). Il reste 19 candidats.
+- **20h** Rafael est surpris par un courant traître à la cascade, mais tient bon.
+- **23h** Margaux est touchée par une morsure de serpent. Lucas lui porte secours à temps.
 
 </details>
 
@@ -296,74 +322,73 @@ Ce soir, Ethan, Lucía et Lucas sont menacés. Au public de décider qui sauver.
 
 ### La Quotidienne de 19h · Jour 5
 
-**Candidats restants : 17**
+**Candidats restants : 15**
 
 #### Les moments forts
-- Leila est touchée par un courant traître. Axel lui porte secours à temps.
-- Alma est surprise par une forte fièvre à la rivière, mais tient bon.
-- Liam est touché par un courant traître. Iris lui porte secours à temps.
-- Liam est touché par une forte fièvre. Iris lui porte secours à temps.
-- 📢 Alerte : un essaim de guêpes tueuses s'abat sur la rivière !
+- Rafael est surpris par un courant traître à la cascade, mais tient bon.
+- Margaux est touchée par une morsure de serpent. Lucas lui porte secours à temps.
+- Lucas est touché par un essaim de guêpes. Margaux lui porte secours à temps.
+- Hamza est touché par un courant traître. Rafael lui porte secours à temps.
+- 📢 Une vague de chaleur écrasante s'installe sur l'île.
 - 📢 Les sources se tarissent : l'eau devient rare pour les prochaines heures.
 
 #### Évacués aujourd'hui
-- Le drone de secours évacue Tala (blessée par un courant traître). Il reste 21 candidats.
-- Le drone de secours évacue Pablo (blessé par un essaim de guêpes). Il reste 20 candidats.
-- Le drone de secours évacue Liam (vaincu par Margaux). Il reste 19 candidats.
-- Le drone de secours évacue Freya (vaincue par Leila). Il reste 18 candidats.
-- Le drone de secours évacue Léa (n'a pas été sauvée par le public). Il reste 17 candidats.
+- Le drone de secours évacue Tala (à bout de forces). Il reste 19 candidats.
+- Le drone de secours évacue Rafael (blessé par une mauvaise chute). Il reste 18 candidats.
+- Le drone de secours évacue Liam (blessé par une forte fièvre). Il reste 17 candidats.
+- Le drone de secours évacue Alma (blessée par un courant traître). Il reste 16 candidats.
+- Le drone de secours évacue Moussa (n'a pas été sauvé par le public). Il reste 15 candidats.
 
-Ce soir, Léa, Ethan et Axel sont menacés. Au public de décider qui sauver. Le public a sauvé Axel et Ethan.
+Ce soir, Moussa, Samuel et Ethan sont menacés. Au public de décider qui sauver. Le public a sauvé Samuel et Ethan.
 
 <details><summary>Fil en direct (abonnés)</summary>
 
-- **02h** Tala est touchée par un courant traître. Leila lui porte secours à temps.
-- **02h** Tala est touchée par une forte fièvre. Leila lui porte secours à temps.
-- **05h** Hamza est surpris par une mauvaise chute à la cascade, mais tient bon.
-- **05h** Le drone de secours évacue Tala (blessée par un courant traître). Il reste 21 candidats.
-- **05h** Le drone de secours évacue Pablo (blessé par un essaim de guêpes). Il reste 20 candidats.
-- **06h** 📢 Alerte : un essaim de guêpes tueuses s'abat sur la rivière !
-- **07h** Margaux est surprise par un essaim de guêpes à la rivière, mais tient bon.
-- **08h** Face-à-face tendu entre Margaux et Liam à la rivière. Margaux prend le dessus.
-- **08h** Le drone de secours évacue Liam (vaincu par Margaux). Il reste 19 candidats.
-- **08h** Iris est touchée par un courant traître. Lucas lui porte secours à temps.
-- **08h** Oscar est surpris par un courant traître à la rivière, mais tient bon.
-- **10h** Kwame tente de voler Axel… et se fait prendre la main dans le sac.
-- **10h** Lucas est touché par un courant traître. Iris lui porte secours à temps.
-- **11h** Margaux subtilise une gourde à Lucas sans se faire voir.
-- **11h** Selin est touchée par un courant traître. Margaux lui porte secours à temps.
-- **11h** 📢 Les sources se tarissent : l'eau devient rare pour les prochaines heures.
-- **12h** Grâce à 12 spectateurs, un colis parachuté apporte une trousse de secours à Léa.
-- **12h** Grâce à 10 spectateurs, un colis parachuté apporte une trousse de secours à Nils.
-- **12h** Grâce à 20 spectateurs, un colis parachuté apporte une trousse de secours à Louis.
-- **12h** Grâce à 21 spectateurs, un colis parachuté apporte une trousse de secours à Kwame.
+- **00h** Lucas est touché par un essaim de guêpes. Margaux lui porte secours à temps.
+- **03h** Hamza est touché par un courant traître. Rafael lui porte secours à temps.
+- **04h** Liam est touché par un courant traître. Iris lui porte secours à temps.
+- **05h** Samuel est surpris par une forte fièvre à la rivière, mais tient bon.
+- **06h** Camille et Rafael se serrent la main : une alliance est née.
+- **07h** Le drone de secours évacue Rafael (blessé par une mauvaise chute). Il reste 18 candidats.
+- **07h** 📢 Une vague de chaleur écrasante s'installe sur l'île.
+- **08h** Face-à-face tendu entre Léa et Liam à la rivière. Léa prend le dessus.
+- **08h** Axel et Rémi se serrent la main : une alliance est née.
+- **08h** Lucas partage son eau avec Selin. Un geste qui ne s'oublie pas.
+- **10h** Le drone de secours évacue Liam (blessé par une forte fièvre). Il reste 17 candidats.
+- **11h** Selin propose à Rémi de faire équipe. Accepté.
+- **12h** Grâce à 16 spectateurs, un colis parachuté apporte une trousse de secours à Léa.
+- **12h** Grâce à 22 spectateurs, un colis parachuté apporte une trousse de secours à Rémi.
+- **12h** Grâce à 19 spectateurs, un colis parachuté apporte une lampe torche à Camille.
+- **12h** Le colis destiné à Noa se perd dans les arbres.
 - **12h** Grâce à 14 spectateurs, un colis parachuté apporte une trousse de secours à Hamza.
-- **12h** Grâce à 25 spectateurs, un colis parachuté apporte des rations à Iris.
-- **12h** Grâce à 11 spectateurs, un colis parachuté apporte une trousse de secours à Oscar.
-- **12h** Grâce à 15 spectateurs, un colis parachuté apporte des rations à Axel.
-- **12h** Grâce à 17 spectateurs, un colis parachuté apporte des rations à Lucas.
-- **12h** Le colis destiné à Leila tombe… dans les mains de Alma !
-- **12h** Le colis destiné à Inès tombe… dans les mains de Leila !
-- **12h** Le colis destiné à Margaux se perd dans les arbres.
-- **12h** Grâce à 17 spectateurs, un colis parachuté apporte une lampe torche à Freya.
-- **12h** Grâce à 21 spectateurs, un colis parachuté apporte une carte de l'île à Selin.
-- **12h** Grâce à 14 spectateurs, un colis parachuté apporte une trousse de secours à Sacha.
-- **12h** Grâce à 19 spectateurs, un colis parachuté apporte des rations à Ethan.
-- **15h** Léa propose à Inès de faire équipe. Accepté.
-- **15h** Margaux tente de voler Iris… et se fait prendre la main dans le sac.
-- **15h** Iris est touchée par un courant traître. Lucas lui porte secours à temps.
-- **16h** Iris est touchée par un courant traître. Lucas lui porte secours à temps.
-- **17h** Leila et Freya se disputent le même territoire. Freya doit reculer.
-- **17h** Le drone de secours évacue Freya (vaincue par Leila). Il reste 18 candidats.
-- **18h** Nils est surpris par une morsure de serpent à la mangrove, mais tient bon.
-- **19h** Hamza est surpris par une forte fièvre à la mangrove, mais tient bon.
-- **19h** Ce soir, Léa, Ethan et Axel sont menacés. Au public de décider qui sauver.
-- **19h** Le public a sauvé Axel et Ethan.
-- **19h** Le drone de secours évacue Léa (n'a pas été sauvée par le public). Il reste 17 candidats.
-- **20h** Leila subtilise des rations à Lucas sans se faire voir.
-- **21h** Alma est touchée par une morsure de serpent. Oscar lui porte secours à temps.
-- **21h** Sacha est surpris·e par une morsure de serpent aux ruines, mais tient bon.
-- **23h** Alma est surprise par une forte fièvre à la rivière, mais tient bon.
+- **12h** Grâce à 16 spectateurs, un colis parachuté apporte une lampe torche à Iris.
+- **12h** Grâce à 16 spectateurs, un colis parachuté apporte des rations à Axel.
+- **12h** Grâce à 16 spectateurs, un colis parachuté apporte une trousse de secours à Lucas.
+- **12h** Le colis destiné à Samuel se perd dans les arbres.
+- **12h** Grâce à 17 spectateurs, un colis parachuté apporte une trousse de secours à Robin.
+- **12h** Grâce à 27 spectateurs, un colis parachuté apporte une trousse de secours à Margaux.
+- **12h** Grâce à 23 spectateurs, un colis parachuté apporte une corde à Aaliyah.
+- **12h** Grâce à 20 spectateurs, un colis parachuté apporte des rations à Selin.
+- **12h** Grâce à 15 spectateurs, un colis parachuté apporte une corde à Ethan.
+- **12h** Grâce à 19 spectateurs, un colis parachuté apporte des rations à Mei.
+- **13h** Iris propose à Alma de faire équipe. Accepté.
+- **14h** Selin tente de voler Mei… et se fait prendre la main dans le sac.
+- **14h** 📢 Les sources se tarissent : l'eau devient rare pour les prochaines heures.
+- **15h** Le drone de secours évacue Alma (blessée par un courant traître). Il reste 16 candidats.
+- **16h** Hamza est surpris par une forte fièvre à la rivière, mais tient bon.
+- **17h** Iris tente de voler Mei… et se fait prendre la main dans le sac.
+- **19h** Ce soir, Moussa, Samuel et Ethan sont menacés. Au public de décider qui sauver.
+- **19h** Le public a sauvé Samuel et Ethan.
+- **19h** Le drone de secours évacue Moussa (n'a pas été sauvé par le public). Il reste 15 candidats.
+- **20h** Iris et Hamza se serrent la main : une alliance est née.
+- **20h** Hamza et Lucas se serrent la main : une alliance est née.
+- **20h** Camille est surpris·e par un essaim de guêpes à la mangrove, mais tient bon.
+- **21h** Selin partage son eau avec Margaux. Un geste qui ne s'oublie pas.
+- **21h** 📢 Alerte : un essaim de guêpes tueuses s'abat sur la rivière !
+- **23h** Léa est surprise par un essaim de guêpes à la rivière, mais tient bon.
+- **23h** Camille est surpris·e par un essaim de guêpes à la rivière, mais tient bon.
+- **23h** Hamza est surpris par un essaim de guêpes à la rivière, mais tient bon.
+- **23h** Robin est touché·e par un courant traître. Mei lui porte secours à temps.
+- **23h** Mei est surprise par un essaim de guêpes à la rivière, mais tient bon.
 
 </details>
 
@@ -371,62 +396,60 @@ Ce soir, Léa, Ethan et Axel sont menacés. Au public de décider qui sauver. Le
 
 ### La Quotidienne de 19h · Jour 6
 
-**Candidats restants : 11**
+**Candidats restants : 13**
 
 #### Les moments forts
-- Leila subtilise des rations à Lucas sans se faire voir.
-- Alma est touchée par une morsure de serpent. Oscar lui porte secours à temps.
-- Sacha est surpris·e par une morsure de serpent aux ruines, mais tient bon.
-- Alma est surprise par une forte fièvre à la rivière, mais tient bon.
-- 📢 Alerte : un essaim de guêpes tueuses s'abat sur la cascade !
+- Iris et Hamza se serrent la main : une alliance est née.
+- Hamza et Lucas se serrent la main : une alliance est née.
+- Camille est surpris·e par un essaim de guêpes à la mangrove, mais tient bon.
+- 📢 Alerte : un essaim de guêpes tueuses s'abat sur la rivière !
+- 📢 Une vague de chaleur écrasante s'installe sur l'île.
 - 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
 
 #### Évacués aujourd'hui
-- Le drone de secours évacue Louis (blessé par un essaim de guêpes). Il reste 16 candidats.
-- Le drone de secours évacue Hamza (blessé par un essaim de guêpes). Il reste 15 candidats.
-- Le drone de secours évacue Inès (blessée par un essaim de guêpes). Il reste 14 candidats.
-- Le drone de secours évacue Noa (blessé·e par une mauvaise chute). Il reste 13 candidats.
-- Le drone de secours évacue Nils (a jeté l'éponge). Il reste 12 candidats.
-- Le drone de secours évacue Victor (n'a pas été sauvé par le public). Il reste 11 candidats.
+- Le drone de secours évacue Léa (blessée par un courant traître). Il reste 14 candidats.
+- Le drone de secours évacue Axel (n'a pas été sauvé par le public). Il reste 13 candidats.
 
-Ce soir, Victor, Sacha et Ethan sont menacés. Au public de décider qui sauver. Le public a sauvé Ethan et Sacha.
+Ce soir, Axel, Robin et Margaux sont menacés. Au public de décider qui sauver. Le public a sauvé Robin et Margaux.
 
 <details><summary>Fil en direct (abonnés)</summary>
 
-- **01h** Louis est surpris par une morsure de serpent à la mangrove, mais tient bon.
-- **02h** Noa est surpris·e par un essaim de guêpes à la mangrove, mais tient bon.
-- **02h** Kwame est surpris par une mauvaise chute à la cascade, mais tient bon.
-- **03h** Le drone de secours évacue Louis (blessé par un essaim de guêpes). Il reste 16 candidats.
-- **04h** Le drone de secours évacue Hamza (blessé par un essaim de guêpes). Il reste 15 candidats.
-- **06h** 📢 Alerte : un essaim de guêpes tueuses s'abat sur la cascade !
-- **08h** Le drone de secours évacue Inès (blessée par un essaim de guêpes). Il reste 14 candidats.
-- **08h** Selin est surprise par une mauvaise chute au sommet, mais tient bon.
-- **10h** Leila et Iris se serrent la main : une alliance est née.
-- **10h** Le drone de secours évacue Noa (blessé·e par une mauvaise chute). Il reste 13 candidats.
-- **11h** Le drone de secours évacue Nils (a jeté l'éponge). Il reste 12 candidats.
-- **11h** 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
-- **12h** Le colis destiné à Alma se perd dans les arbres.
-- **12h** Grâce à 27 spectateurs, un colis parachuté apporte une trousse de secours à Kwame.
-- **12h** Grâce à 36 spectateurs, un colis parachuté apporte une trousse de secours à Iris.
-- **12h** Le colis destiné à Oscar tombe… dans les mains de Sacha !
-- **12h** Le colis destiné à Axel se perd dans les arbres.
-- **12h** Grâce à 23 spectateurs, un colis parachuté apporte une trousse de secours à Lucas.
-- **12h** Grâce à 28 spectateurs, un colis parachuté apporte une lampe torche à Leila.
-- **12h** Grâce à 26 spectateurs, un colis parachuté apporte une carte de l'île à Victor.
-- **12h** Grâce à 18 spectateurs, un colis parachuté apporte une gourde à Margaux.
-- **12h** Grâce à 30 spectateurs, un colis parachuté apporte une trousse de secours à Selin.
-- **12h** Grâce à 19 spectateurs, un colis parachuté apporte une gourde à Sacha.
-- **12h** Grâce à 22 spectateurs, un colis parachuté apporte une lampe torche à Ethan.
-- **17h** Sacha subtilise une gourde à Margaux sans se faire voir.
-- **17h** Oscar est surpris par une morsure de serpent à la mangrove, mais tient bon.
-- **17h** Selin est surprise par un courant traître à la cascade, mais tient bon.
-- **18h** Selin et Lucas se serrent la main : une alliance est née.
-- **18h** Kwame est surpris par une forte fièvre à la rivière, mais tient bon.
-- **18h** Axel est touché par un courant traître. Leila lui porte secours à temps.
-- **19h** Ce soir, Victor, Sacha et Ethan sont menacés. Au public de décider qui sauver.
-- **19h** Le public a sauvé Ethan et Sacha.
-- **19h** Le drone de secours évacue Victor (n'a pas été sauvé par le public). Il reste 11 candidats.
-- **21h** Le drone de secours évacue Lucas (blessé par une mauvaise chute). Il reste 10 candidats.
+- **00h** Axel est surpris par un courant traître au lagon, mais tient bon.
+- **00h** Aaliyah est surprise par une morsure de serpent à la jungle, mais tient bon.
+- **06h** Iris et Samuel se serrent la main : une alliance est née.
+- **06h** 📢 Une vague de chaleur écrasante s'installe sur l'île.
+- **07h** Iris tente de voler Camille… et se fait prendre la main dans le sac.
+- **07h** Selin est touchée par une forte fièvre. Margaux lui porte secours à temps.
+- **08h** Hamza est surpris par un courant traître à la cascade, mais tient bon.
+- **12h** Le drone de secours évacue Léa (blessée par un courant traître). Il reste 14 candidats.
+- **12h** Grâce à 27 spectateurs, un colis parachuté apporte une gourde à Rémi.
+- **12h** Le colis destiné à Camille tombe… dans les mains de Iris !
+- **12h** Grâce à 22 spectateurs, un colis parachuté apporte une trousse de secours à Noa.
+- **12h** Grâce à 26 spectateurs, un colis parachuté apporte une trousse de secours à Hamza.
+- **12h** Grâce à 32 spectateurs, un colis parachuté apporte des rations à Iris.
+- **12h** Grâce à 14 spectateurs, un colis parachuté apporte une gourde à Axel.
+- **12h** Grâce à 23 spectateurs, un colis parachuté apporte une gourde à Lucas.
+- **12h** Grâce à 18 spectateurs, un colis parachuté apporte une trousse de secours à Samuel.
+- **12h** Grâce à 22 spectateurs, un colis parachuté apporte une trousse de secours à Robin.
+- **12h** Le colis destiné à Margaux tombe… dans les mains de Camille !
+- **12h** Grâce à 14 spectateurs, un colis parachuté apporte une lampe torche à Aaliyah.
+- **12h** Grâce à 25 spectateurs, un colis parachuté apporte une trousse de secours à Selin.
+- **12h** Grâce à 19 spectateurs, un colis parachuté apporte une trousse de secours à Ethan.
+- **12h** Le colis destiné à Mei tombe… dans les mains de Iris !
+- **14h** Ethan est surpris par une mauvaise chute à la cascade, mais tient bon.
+- **15h** Rémi subtilise une lampe torche à Margaux sans se faire voir.
+- **18h** Samuel est touché par une forte fièvre. Camille lui porte secours à temps.
+- **18h** 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
+- **19h** Aaliyah est surprise par une mauvaise chute à la cascade, mais tient bon.
+- **19h** Ce soir, Axel, Robin et Margaux sont menacés. Au public de décider qui sauver.
+- **19h** Le public a sauvé Robin et Margaux.
+- **19h** Le drone de secours évacue Axel (n'a pas été sauvé par le public). Il reste 13 candidats.
+- **20h** Aaliyah est surprise par une mauvaise chute à la cascade, mais tient bon.
+- **20h** Selin est touchée par une morsure de serpent. Margaux lui porte secours à temps.
+- **21h** Trahison ! Camille rompt son alliance avec Samuel.
+- **21h** Iris subtilise une corde à Aaliyah sans se faire voir.
+- **21h** Mei est surprise par un courant traître à la rivière, mais tient bon.
+- **22h** Hamza est touché par une morsure de serpent. Lucas lui porte secours à temps.
 
 </details>
 
@@ -437,87 +460,90 @@ Ce soir, Victor, Sacha et Ethan sont menacés. Au public de décider qui sauver.
 **Candidats restants : 1**
 
 #### Les moments forts
-- Leila est touchée par une mauvaise chute. Axel lui porte secours à temps.
-- Iris est surprise par une mauvaise chute au sommet, mais tient bon.
-- 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
-- Grande finale : Alma, Kwame, Oscar, Axel, Leila, Margaux, Sacha et Ethan s'affrontent dans l'épreuve ultime.
-- 🏆 Kwame remporte la saison et devient The Last !
-- 📢 Alerte : un essaim de guêpes tueuses s'abat sur la rivière !
+- Trahison ! Camille rompt son alliance avec Samuel.
+- 🏁 Épreuve d'endurance ! Robin la remporte. 3 candidats devront quitter l'île.
+- 🏁 Épreuve d'orientation ! Robin la remporte. 3 candidats devront quitter l'île.
+- 🏁 Épreuve de confiance ! Rémi la remporte. 2 candidats devront quitter l'île.
+- Grande finale : Rémi, Robin et Margaux s'affrontent dans l'épreuve ultime.
+- 🏆 Margaux remporte la saison et devient The Last !
 
 #### Évacués aujourd'hui
-- Le drone de secours évacue Lucas (blessé par une mauvaise chute). Il reste 10 candidats.
-- Le drone de secours évacue Iris (blessée par une mauvaise chute). Il reste 9 candidats.
-- Le drone de secours évacue Selin (blessée par une mauvaise chute). Il reste 8 candidats.
-- Le drone de secours évacue Axel (battu lors de la finale). Il reste 7 candidats.
-- Le drone de secours évacue Ethan (battu lors de la finale). Il reste 6 candidats.
-- Le drone de secours évacue Alma (battue lors de la finale). Il reste 5 candidats.
-- Le drone de secours évacue Sacha (battu·e lors de la finale). Il reste 4 candidats.
-- Le drone de secours évacue Margaux (battue lors de la finale). Il reste 3 candidats.
-- Le drone de secours évacue Leila (battue lors de la finale). Il reste 2 candidats.
-- Le drone de secours évacue Oscar (battu lors de la finale). Il reste 1 candidats.
+- Le drone de secours évacue Aaliyah (blessée par un courant traître). Il reste 12 candidats.
+- Le drone de secours évacue Selin (blessée par un courant traître). Il reste 11 candidats.
+- Le drone de secours évacue Samuel (éliminé lors d'une épreuve). Il reste 10 candidats.
+- Le drone de secours évacue Camille (éliminé·e lors d'une épreuve). Il reste 9 candidats.
+- Le drone de secours évacue Lucas (éliminé lors d'une épreuve). Il reste 8 candidats.
+- Le drone de secours évacue Iris (éliminée lors d'une épreuve). Il reste 7 candidats.
+- Le drone de secours évacue Hamza (éliminé lors d'une épreuve). Il reste 6 candidats.
+- Le drone de secours évacue Noa (éliminé·e lors d'une épreuve). Il reste 5 candidats.
+- Le drone de secours évacue Mei (éliminée lors d'une épreuve). Il reste 4 candidats.
+- Le drone de secours évacue Ethan (éliminé lors d'une épreuve). Il reste 3 candidats.
+- Le drone de secours évacue Rémi (battu lors de la finale). Il reste 2 candidats.
+- Le drone de secours évacue Robin (battu·e lors de la finale). Il reste 1 candidats.
 
 
 
 <details><summary>Fil en direct (abonnés)</summary>
 
-- **01h** Leila est touchée par une mauvaise chute. Axel lui porte secours à temps.
-- **02h** Iris est surprise par une mauvaise chute au sommet, mais tient bon.
-- **07h** Le drone de secours évacue Iris (blessée par une mauvaise chute). Il reste 9 candidats.
-- **09h** Leila propose à Selin de faire équipe. Accepté.
-- **10h** Le drone de secours évacue Selin (blessée par une mauvaise chute). Il reste 8 candidats.
-- **12h** Grâce à 32 spectateurs, un colis parachuté apporte une trousse de secours à Alma.
-- **12h** Le colis destiné à Kwame tombe… dans les mains de Margaux !
-- **12h** Grâce à 29 spectateurs, un colis parachuté apporte une trousse de secours à Oscar.
-- **12h** Grâce à 41 spectateurs, un colis parachuté apporte une gourde à Axel.
-- **12h** Grâce à 45 spectateurs, un colis parachuté apporte une trousse de secours à Leila.
-- **12h** Le colis destiné à Margaux tombe… dans les mains de Kwame !
-- **12h** Grâce à 44 spectateurs, un colis parachuté apporte une corde à Sacha.
-- **12h** Le colis destiné à Ethan se perd dans les arbres.
-- **14h** Margaux et Ethan se serrent la main : une alliance est née.
-- **14h** Axel est touché par un essaim de guêpes. Leila lui porte secours à temps.
-- **15h** Sacha propose à Axel de faire équipe. Accepté.
-- **15h** 📢 Une tempête tropicale balaie l'île. Ceux qui n'ont pas d'abri vont souffrir.
-- **16h** Ethan est touché par un courant traître. Margaux lui porte secours à temps.
-- **18h** Axel est touché par un essaim de guêpes. Leila lui porte secours à temps.
-- **19h** Axel est touché par un essaim de guêpes. Leila lui porte secours à temps.
-- **19h** 📢 Alerte : un essaim de guêpes tueuses s'abat sur la rivière !
-- **19h** Grande finale : Alma, Kwame, Oscar, Axel, Leila, Margaux, Sacha et Ethan s'affrontent dans l'épreuve ultime.
-- **19h** Le drone de secours évacue Axel (battu lors de la finale). Il reste 7 candidats.
-- **19h** Le drone de secours évacue Ethan (battu lors de la finale). Il reste 6 candidats.
-- **19h** Le drone de secours évacue Alma (battue lors de la finale). Il reste 5 candidats.
-- **19h** Le drone de secours évacue Sacha (battu·e lors de la finale). Il reste 4 candidats.
-- **19h** Le drone de secours évacue Margaux (battue lors de la finale). Il reste 3 candidats.
-- **19h** Le drone de secours évacue Leila (battue lors de la finale). Il reste 2 candidats.
-- **19h** Le drone de secours évacue Oscar (battu lors de la finale). Il reste 1 candidats.
-- **19h** 🏆 Kwame remporte la saison et devient The Last !
+- **00h** Lucas est touché par une morsure de serpent. Margaux lui porte secours à temps.
+- **01h** Le drone de secours évacue Aaliyah (blessée par un courant traître). Il reste 12 candidats.
+- **06h** Iris et Mei se serrent la main : une alliance est née.
+- **06h** 📢 Les sources se tarissent : l'eau devient rare pour les prochaines heures.
+- **09h** Le drone de secours évacue Selin (blessée par un courant traître). Il reste 11 candidats.
+- **10h** Lucas est surpris par un essaim de guêpes à la jungle, mais tient bon.
+- **10h** 🏁 Épreuve d'endurance ! Robin la remporte. 3 candidats devront quitter l'île.
+- **10h** Le drone de secours évacue Samuel (éliminé lors d'une épreuve). Il reste 10 candidats.
+- **10h** Le drone de secours évacue Camille (éliminé·e lors d'une épreuve). Il reste 9 candidats.
+- **10h** Le drone de secours évacue Lucas (éliminé lors d'une épreuve). Il reste 8 candidats.
+- **12h** Noa et Ethan se serrent la main : une alliance est née.
+- **12h** Le colis destiné à Rémi se perd dans les arbres.
+- **12h** Grâce à 38 spectateurs, un colis parachuté apporte une gourde à Noa.
+- **12h** Le colis destiné à Hamza tombe… dans les mains de Mei !
+- **12h** Grâce à 28 spectateurs, un colis parachuté apporte une corde à Iris.
+- **12h** Grâce à 46 spectateurs, un colis parachuté apporte une trousse de secours à Robin.
+- **12h** Grâce à 32 spectateurs, un colis parachuté apporte une gourde à Margaux.
+- **12h** Grâce à 42 spectateurs, un colis parachuté apporte une lampe torche à Ethan.
+- **12h** Grâce à 25 spectateurs, un colis parachuté apporte une trousse de secours à Mei.
+- **13h** 🏁 Épreuve d'orientation ! Robin la remporte. 3 candidats devront quitter l'île.
+- **13h** Le drone de secours évacue Iris (éliminée lors d'une épreuve). Il reste 7 candidats.
+- **13h** Le drone de secours évacue Hamza (éliminé lors d'une épreuve). Il reste 6 candidats.
+- **13h** Le drone de secours évacue Noa (éliminé·e lors d'une épreuve). Il reste 5 candidats.
+- **16h** Mei est surprise par un courant traître à la cascade, mais tient bon.
+- **16h** 🏁 Épreuve de confiance ! Rémi la remporte. 2 candidats devront quitter l'île.
+- **16h** Le drone de secours évacue Mei (éliminée lors d'une épreuve). Il reste 4 candidats.
+- **16h** Le drone de secours évacue Ethan (éliminé lors d'une épreuve). Il reste 3 candidats.
+- **19h** Grande finale : Rémi, Robin et Margaux s'affrontent dans l'épreuve ultime.
+- **19h** Le drone de secours évacue Rémi (battu lors de la finale). Il reste 2 candidats.
+- **19h** Le drone de secours évacue Robin (battu·e lors de la finale). Il reste 1 candidats.
+- **19h** 🏆 Margaux remporte la saison et devient The Last !
 
 </details>
 
 ## Le Prime : bilan de la saison
 
-### 🏆 Le vainqueur : Kwame, 59 ans · avocat · Dublin, Irlande
+### 🏆 Le vainqueur : Margaux, 53 ans · pompière volontaire · Manchester, Royaume-Uni
 
-> « Je suis là pour gagner, pas pour me faire des amis. »
+> « On ne laisse personne derrière. »
 
-A été harcelé à l'école et s'est réfugié dans les livres. A gagné un concours télé il y a dix ans, puis a été oublié. Son rêve : ouvrir un refuge pour animaux.
+Enfant prodige du piano, a tout arrêté à 15 ans. A traversé l'Atlantique à la voile en solitaire. Son rêve : lancer son entreprise grâce à la notoriété.
 
 ### Les moments forts
 - Jour 1 : Leila est touchée par un essaim de guêpes. Axel lui porte secours à temps.
 - Jour 2 : Face-à-face tendu entre Robin et Vera à la plage. Robin prend le dessus.
-- Jour 3 : 📢 Une vague de chaleur écrasante s'installe sur l'île.
-- Jour 4 : Lucía propose à Oscar de faire équipe. Accepté.
-- Jour 5 : Hamza est surpris par une mauvaise chute à la cascade, mais tient bon.
-- Jour 6 : Sacha subtilise une gourde à Margaux sans se faire voir.
-- Jour 7 : Leila est touchée par une mauvaise chute. Axel lui porte secours à temps.
+- Jour 3 : 📢 Alerte : un essaim de guêpes tueuses s'abat sur la mangrove !
+- Jour 4 : Lucas propose à Selin de faire équipe. Accepté.
+- Jour 5 : Samuel est surpris par une forte fièvre à la rivière, mais tient bon.
+- Jour 6 : Trahison ! Camille rompt son alliance avec Samuel.
+- Jour 7 : 🏁 Épreuve d'endurance ! Robin la remporte. 3 candidats devront quitter l'île.
 
 ### La saison en chiffres
 | | |
 | --- | --- |
-| Alliances | 32 |
-| Trahisons et vols | 10 |
+| Alliances | 38 |
+| Trahisons et vols | 7 |
 | Affrontements | 11 |
-| Colis livrés | 52 |
-| Interventions du showrunner | 13 |
+| Colis livrés | 55 |
+| Interventions du showrunner | 15 |
 
 ### Ordre des évacuations
 1. Matthias · Jour 1 · blessé par un essaim de guêpes
@@ -529,43 +555,43 @@ A été harcelé à l'école et s'est réfugié dans les livres. A gagné un con
 7. Dmitri · Jour 2 · blessé par une morsure de serpent
 8. Yusuf · Jour 2 · blessé par un courant traître
 9. Youssef · Jour 2 · blessé par un essaim de guêpes
-10. Tariq · Jour 2 · vaincu par Hana
-11. Kenji · Jour 2 · blessé par une mauvaise chute
-12. Rafael · Jour 2 · à bout de forces
+10. Freya · Jour 2 · blessée par un courant traître
+11. Kwame · Jour 2 · blessé par un courant traître
+12. Morgan · Jour 2 · blessé·e par une morsure de serpent
 13. Mila · Jour 2 · n'a pas été sauvée par le public
-14. Robin · Jour 2 · à bout de forces
-15. Omar · Jour 2 · blessé par un éboulement
-16. Mei · Jour 3 · blessée par un courant traître
-17. Rémi · Jour 3 · blessé par une mauvaise chute
-18. Samuel · Jour 3 · a jeté l'éponge
-19. Morgan · Jour 3 · blessé·e par une mauvaise chute
-20. Charlie · Jour 3 · blessé·e par un essaim de guêpes
-21. Camille · Jour 3 · n'a pas été sauvé·e par le public
-22. Hana · Jour 3 · a jeté l'éponge
-23. Moussa · Jour 4 · a jeté l'éponge
-24. Ilona · Jour 4 · blessée par une mauvaise chute
-25. Ingrid · Jour 4 · a jeté l'éponge
-26. Aaliyah · Jour 4 · vaincue par Oscar
-27. Sana · Jour 4 · blessée par une forte fièvre
-28. Lucía · Jour 4 · n'a pas été sauvée par le public
-29. Tala · Jour 5 · blessée par un courant traître
-30. Pablo · Jour 5 · blessé par un essaim de guêpes
-31. Liam · Jour 5 · vaincu par Margaux
-32. Freya · Jour 5 · vaincue par Leila
-33. Léa · Jour 5 · n'a pas été sauvée par le public
-34. Louis · Jour 6 · blessé par un essaim de guêpes
-35. Hamza · Jour 6 · blessé par un essaim de guêpes
-36. Inès · Jour 6 · blessée par un essaim de guêpes
-37. Noa · Jour 6 · blessé·e par une mauvaise chute
-38. Nils · Jour 6 · a jeté l'éponge
-39. Victor · Jour 6 · n'a pas été sauvé par le public
-40. Lucas · Jour 6 · blessé par une mauvaise chute
-41. Iris · Jour 7 · blessée par une mauvaise chute
-42. Selin · Jour 7 · blessée par une mauvaise chute
-43. Alma · Jour 7 · battue lors de la finale
-44. Oscar · Jour 7 · battu lors de la finale
-45. Axel · Jour 7 · battu lors de la finale
-46. Leila · Jour 7 · battue lors de la finale
-47. Margaux · Jour 7 · battue lors de la finale
-48. Sacha · Jour 7 · battu·e lors de la finale
-49. Ethan · Jour 7 · battu lors de la finale
+14. Leila · Jour 2 · blessée par un courant traître
+15. Sacha · Jour 3 · blessé·e par un courant traître
+16. Victor · Jour 3 · a jeté l'éponge
+17. Pablo · Jour 3 · blessé par un courant traître
+18. Ingrid · Jour 3 · vaincue par Rémi
+19. Louis · Jour 3 · blessé par un courant traître
+20. Inès · Jour 3 · n'a pas été sauvée par le public
+21. Lucía · Jour 4 · blessée par un courant traître
+22. Ilona · Jour 4 · blessée par un courant traître
+23. Tariq · Jour 4 · blessé par une mauvaise chute
+24. Hana · Jour 4 · a jeté l'éponge
+25. Nils · Jour 4 · vaincu par Rémi
+26. Kenji · Jour 4 · blessé par un essaim de guêpes
+27. Charlie · Jour 4 · blessé·e par un courant traître
+28. Omar · Jour 4 · a jeté l'éponge
+29. Oscar · Jour 4 · n'a pas été sauvé par le public
+30. Sana · Jour 4 · à bout de forces
+31. Tala · Jour 4 · à bout de forces
+32. Rafael · Jour 5 · blessé par une mauvaise chute
+33. Liam · Jour 5 · blessé par une forte fièvre
+34. Alma · Jour 5 · blessée par un courant traître
+35. Moussa · Jour 5 · n'a pas été sauvé par le public
+36. Léa · Jour 6 · blessée par un courant traître
+37. Axel · Jour 6 · n'a pas été sauvé par le public
+38. Aaliyah · Jour 7 · blessée par un courant traître
+39. Selin · Jour 7 · blessée par un courant traître
+40. Camille · Jour 7 · éliminé·e lors d'une épreuve
+41. Lucas · Jour 7 · éliminé lors d'une épreuve
+42. Samuel · Jour 7 · éliminé lors d'une épreuve
+43. Noa · Jour 7 · éliminé·e lors d'une épreuve
+44. Hamza · Jour 7 · éliminé lors d'une épreuve
+45. Iris · Jour 7 · éliminée lors d'une épreuve
+46. Ethan · Jour 7 · éliminé lors d'une épreuve
+47. Mei · Jour 7 · éliminée lors d'une épreuve
+48. Rémi · Jour 7 · battu lors de la finale
+49. Robin · Jour 7 · battu·e lors de la finale

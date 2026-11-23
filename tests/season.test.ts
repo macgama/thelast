@@ -44,10 +44,13 @@ describe("saison", () => {
     }
   });
 
-  it("garde des candidats jusqu'à la finale", () => {
-    for (const seed of [21, 22, 23]) {
-      const finale = run(seed).events.find((e) => e.type === "finale")!;
+  it("resserre le groupe à 3 finalistes grâce aux épreuves du jour 7", () => {
+    for (const seed of [21, 22, 23, 42]) {
+      const r = run(seed);
+      const finale = r.events.find((e) => e.type === "finale")!;
       expect(finale.actors.length).toBeGreaterThanOrEqual(2);
+      expect(finale.actors.length).toBeLessThanOrEqual(3);
+      expect(r.snapshots.length).toBeGreaterThan(150);
     }
   });
 

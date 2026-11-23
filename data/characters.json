@@ -136,8 +136,7 @@
     },
     "skills": [
       "crafting",
-      "foraging",
-      "swimming"
+      "foraging"
     ],
     "phobia": "darkness",
     "career": {
@@ -972,7 +971,6 @@
       "composure": 34
     },
     "skills": [
-      "swimming",
       "negotiation"
     ],
     "phobia": "heights",
@@ -1660,8 +1658,7 @@
     "skills": [
       "negotiation",
       "endurance",
-      "orientation",
-      "swimming"
+      "orientation"
     ],
     "phobia": "solitude",
     "career": {
@@ -3667,8 +3664,7 @@
       "composure": 16
     },
     "skills": [
-      "tracking",
-      "swimming"
+      "tracking"
     ],
     "phobia": "darkness",
     "career": {
