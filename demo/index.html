@@ -28,7 +28,8 @@ body { font-family: var(--body); font-size: 15px; line-height: 1.5; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ink); }
 button { font: inherit; color: inherit; cursor: pointer; }
 button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); outline-offset: 2px; }
-.wrap { max-width: 1100px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: none; margin: 0; padding-left: max(clamp(16px, 2vw, 32px), env(safe-area-inset-left, 0px)); padding-right: max(clamp(16px, 2vw, 32px), env(safe-area-inset-right, 0px)); }
+.intro .wrap { max-width: 1100px; margin: 0 auto; }
 
 /* En-tête */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--ink) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
@@ -44,7 +45,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 
 /* Mise en page */
 .stage { display: grid; gap: 16px; padding-block: 16px 40px; grid-template-columns: 1fr; }
-@media (min-width: 900px) { .stage { grid-template-columns: 1.7fr 1fr; align-items: start; } .side { position: sticky; top: 70px; max-height: calc(100vh - 86px); overflow-y: auto; } }
+@media (min-width: 900px) { .stage { grid-template-columns: minmax(0, 1fr) clamp(340px, 30vw, 520px); align-items: start; } .mapbox canvas { aspect-ratio: auto; height: clamp(420px, calc(100dvh - 200px), 76vw); } .side { position: sticky; top: 70px; max-height: calc(100vh - 86px); overflow-y: auto; } }
 /* fiche du candidat : bouton sur la carte et fenêtre par-dessus */
 .mechip { position: absolute; top: 10px; left: 10px; z-index: 3; display: flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid var(--torch); background: color-mix(in srgb, var(--ink) 82%, transparent); color: var(--sand); padding: 3px 12px 3px 3px; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .04em; max-width: 50%; }
 .mechip .mf { width: 30px; height: 30px; flex: none; }
@@ -173,8 +174,8 @@ body.fs .fsbtn { bottom: 164px; }
 .daymarks { display: flex; justify-content: space-between; font-family: var(--display); font-size: 11px; color: var(--mist); letter-spacing: .08em; padding-inline: 4px; }
 
 /* Panneau latéral */
-.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 14px; overflow-x: auto; }
-.tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; font-family: var(--display); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; color: var(--mist); white-space: nowrap; position: relative; }
+.tabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+.tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 2px; font-family: var(--display); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: clamp(11px, 0.9vw, 13px); text-align: center; color: var(--mist); white-space: nowrap; position: relative; }
 .tab[aria-selected="true"] { color: var(--sand); border-bottom-color: var(--torch); }
 .tab .badge { position: absolute; top: 4px; right: 2px; width: 7px; height: 7px; border-radius: 50%; background: var(--torch); }
 
