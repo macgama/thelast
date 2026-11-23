@@ -1181,6 +1181,17 @@ body.fs .fsbtn { bottom: 164px; }
   let saved = null;
   try { saved = localStorage.getItem("thelast-me"); } catch {}
   me = saved && C[saved] ? saved : ORDER[0];
+  // Ouvrir un épisode précis depuis l'accueil : survivor.html?jour=3 démarre le jour 3 au matin
+  const askDay = Number(new URLSearchParams(location.search).get("jour"));
+  if (askDay >= 1 && askDay <= D.days) {
+    document.getElementById("intro").hidden = true;
+    started = true;
+    setView("director");
+    tick = Math.min(TN - 1, Math.max(T0, (askDay - 1) * 24 + 8)); forceAnim = true;
+    render(); play();
+    toast("🎬", `Jour ${askDay}`, `Tu suis ${C[me].name}. Bon épisode !`);
+    return;
+  }
   // Retour sur l'île : pendant l'absence, l'émission a continué (1 minute réelle = 1 heure sur l'île)
   let pos = null;
   try { pos = JSON.parse(localStorage.getItem("thelast-pos") || "null"); } catch {}
