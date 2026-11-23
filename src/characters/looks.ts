@@ -243,7 +243,8 @@ export function cinePrompt(c: CharLite & { name: string }, l: Look): string {
     : c.age <= 23 ? "youthful fresh face" : "";
   const shortHair = ["buzz", "bald"].includes(l.hair.style);
   const hair = l.hair.style === "bald" ? "a clean shaved head" : `${l.hair.color} ${HAIR_EN[l.hair.style]}${l.hat.type !== "none" && shortHair ? ", clearly visible at the sides and back under the headwear" : ""}`;
-  const face = [`${l.skin} skin`, f.shape, f.eyes, f.nose, f.mouth, f.feature, f.expression].filter(Boolean).join(", ");
+  const nose = /(crooked|straight) nose/.test(f.feature) ? "" : f.nose; // le détail du visage décrit déjà le nez
+  const face = [`${l.skin} skin`, f.shape, f.eyes, nose, f.mouth, f.feature, f.expression].filter(Boolean).join(", ");
   const parts = [
     `${c.name}, a ${c.age}-year-old ${who}, ${c.job.en} from ${c.origin.en}`,
     `${BUILD_EN[l.build]}, ${l.height >= 1.03 ? "tall" : l.height <= 0.96 ? "short" : "medium height"}`,
