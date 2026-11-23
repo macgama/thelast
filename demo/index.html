@@ -44,7 +44,30 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 
 /* Mise en page */
 .stage { display: grid; gap: 16px; padding-block: 16px 40px; grid-template-columns: 1fr; }
-@media (min-width: 900px) { .stage { grid-template-columns: 1.25fr 1fr; align-items: start; } .side { position: sticky; top: 70px; } }
+@media (min-width: 900px) { .stage { grid-template-columns: 1.7fr 1fr; align-items: start; } .side { position: sticky; top: 70px; max-height: calc(100vh - 86px); overflow-y: auto; } }
+/* fiche du candidat : bouton sur la carte et fenêtre par-dessus */
+.mechip { position: absolute; top: 10px; left: 10px; z-index: 3; display: flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid var(--torch); background: color-mix(in srgb, var(--ink) 82%, transparent); color: var(--sand); padding: 3px 12px 3px 3px; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .04em; max-width: 50%; }
+.mechip .mf { width: 30px; height: 30px; flex: none; }
+.mechip .mf .face { width: 30px; height: 30px; display: block; }
+.mechip #meChipName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mechip .badge { position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; border-radius: 50%; background: var(--torch); box-shadow: 0 0 0 2px var(--ink); }
+.fsbtn { position: absolute; bottom: 62px; right: 10px; z-index: 3; width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--line); background: color-mix(in srgb, var(--ink) 80%, transparent); color: var(--sand); font-size: 18px; line-height: 1; }
+.fsbtn:hover, .mechip:hover { border-color: var(--torch); }
+.sheet { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 20px; background: rgb(4 12 16 / .55); backdrop-filter: blur(2px); }
+.sheetbox { position: relative; width: min(520px, 100%); max-height: calc(100dvh - 40px); overflow-y: auto; background: var(--ink); border: 1px solid var(--line); border-radius: 16px; padding: 20px 18px 18px; box-shadow: 0 20px 60px rgb(0 0 0 / .5); animation: sheetIn .22s ease-out; }
+.sheetclose { position: sticky; top: 0; float: right; margin: -8px -6px 0 8px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--deep); color: var(--sand); font-size: 20px; line-height: 1; z-index: 2; }
+.sheetclose:hover { border-color: var(--torch); }
+@keyframes sheetIn { from { transform: translateY(14px); opacity: 0; } }
+@media (max-width: 600px) { .sheet { place-items: end stretch; padding: 0; } .sheetbox { width: 100%; max-height: 88dvh; border-radius: 18px 18px 0 0; padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px)); } .mechip { font-size: 12px; } }
+/* plein écran : la carte prend tout l'écran, les commandes flottent en bas */
+body.fs { overflow: hidden; }
+body.fs .top, body.fs .side, body.fs .daymarks { display: none; }
+body.fs .mapbox { position: fixed; inset: 0; z-index: 20; border-radius: 0; border: 0; }
+body.fs .mapbox canvas { aspect-ratio: auto; height: 100dvh; }
+body.fs .controls { position: fixed; z-index: 21; left: 50%; transform: translateX(-50%); bottom: max(10px, env(safe-area-inset-bottom, 0px)); width: min(760px, calc(100% - 20px)); background: color-mix(in srgb, var(--ink) 85%, transparent); border: 1px solid var(--line); border-radius: 14px; padding: 8px 10px; margin: 0; }
+body.fs .onair { bottom: 108px; }
+body.fs .fsbtn { bottom: 164px; }
+@media (max-width: 600px) { body.fs .onair { bottom: 150px; } body.fs .fsbtn { bottom: 206px; } }
 .stage > * { min-width: 0; }
 
 /* Carte */
@@ -63,7 +86,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 .views { position: absolute; top: 10px; right: 10px; display: flex; gap: 4px; background: color-mix(in srgb, var(--ink) 75%, transparent); padding: 4px; border-radius: 999px; border: 1px solid var(--line); }
 .views button { background: none; border: 0; border-radius: 999px; padding: 5px 11px; font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--mist); }
 .views button[aria-pressed="true"] { background: var(--torch); color: var(--ink); }
-.hint { position: absolute; top: 12px; left: 12px; font-size: 11px; color: var(--sand); background: color-mix(in srgb, var(--ink) 65%, transparent); padding: 3px 8px; border-radius: 6px; pointer-events: none; max-width: 45%; }
+.hint { position: absolute; top: 54px; left: 12px; font-size: 11px; color: var(--sand); background: color-mix(in srgb, var(--ink) 65%, transparent); padding: 3px 8px; border-radius: 6px; pointer-events: none; max-width: 45%; }
 @media (max-width: 600px) { .hint { display: none; } }
 .w3-label, .w3-zone { position: absolute; left: 0; top: 0; pointer-events: none; white-space: nowrap; font-family: var(--display); font-weight: 700; }
 .w3-label { background: var(--torch); color: var(--ink); font-size: 12px; padding: 2px 8px; border-radius: 6px; }
@@ -266,6 +289,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   <section>
     <div class="mapbox">
       <canvas id="world" aria-label="L'île en 3D avec la position des candidats. Glisse pour tourner, pince ou molette pour zoomer, touche un candidat pour le suivre."></canvas>
+      <button type="button" class="mechip" id="meChip" aria-haspopup="dialog" aria-controls="sheet"><span class="mf" id="meChipFace"></span><span id="meChipName">Mon candidat</span><span class="badge" id="badge" hidden></span></button>
+      <button type="button" class="fsbtn" id="fsBtn" aria-pressed="false" aria-label="Plein écran" title="Plein écran">⛶</button>
       <div class="views" role="group" aria-label="Vue">
         <button type="button" data-view="director" aria-pressed="true">Réal</button>
         <button type="button" data-view="island" aria-pressed="false">Île</button>
@@ -299,18 +324,19 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
 
   <aside class="side">
     <nav class="tabs" role="tablist">
-      <button class="tab" role="tab" id="tab-me" aria-selected="true" type="button">Mon candidat<span class="badge" id="badge" hidden></span></button>
-      <button class="tab" role="tab" id="tab-feed" aria-selected="false" type="button">Direct</button>
+      <button class="tab" role="tab" id="tab-feed" aria-selected="true" type="button">Direct</button>
       <button class="tab" role="tab" id="tab-daily" aria-selected="false" type="button">Quotidienne</button>
       <button class="tab" role="tab" id="tab-cast" aria-selected="false" type="button">Casting</button>
     </nav>
-    <div id="panel-me"></div>
-    <div id="panel-feed" hidden><div class="card intrigues" id="intrigues" hidden></div><ul class="feed" id="feed"></ul></div>
+    <div id="panel-feed"><div class="card intrigues" id="intrigues" hidden></div><ul class="feed" id="feed"></ul></div>
     <div id="panel-daily" class="daily" hidden></div>
     <div id="panel-cast" hidden><div class="grid" id="castGrid"></div></div>
   </aside>
 </main>
 
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-label="Fiche du candidat">
+  <div class="sheetbox"><button type="button" class="sheetclose" id="sheetClose" aria-label="Fermer la fiche">×</button><div id="panel-me"></div></div>
+</div>
 <div class="finale" id="finale" hidden></div>
 <div class="finale recap" id="recap" hidden role="dialog" aria-modal="true" aria-labelledby="recapTitle"></div>
 <div class="toasts" id="toasts" aria-live="polite"></div>
@@ -536,6 +562,15 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     return Math.min((d - 1) * 24 + 21, TN);
   }
 
+  function meChip() {
+    const c = me && C[me];
+    document.getElementById("meChipName").textContent = c ? c.name : "Mon candidat";
+    const p = c && snapAt(tick)[me];
+    const key = c ? me + (p ? Math.round(p[3] / 20) : "out") : "";
+    const box = document.getElementById("meChipFace");
+    if (box.dataset.k !== key) { box.dataset.k = key; box.innerHTML = c ? face(c, p ? p[3] : 20, { gray: !p }) : ""; }
+  }
+
   function panelMe() {
     const el = document.getElementById("panel-me");
     if (!me) { el.innerHTML = `<p class="locked">Choisis un candidat dans le casting.</p>`; return; }
@@ -589,7 +624,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     const c = C[me];
     const open = Object.keys(c.confessions).map(Number).filter((d) => confUnlock(c, d) <= tick);
     const last = open[open.length - 1] || 0;
-    document.getElementById("badge").hidden = !(last > (seenConf[me] || 0)) || active === "me";
+    document.getElementById("badge").hidden = !(last > (seenConf[me] || 0)) || sheetOpen;
   }
 
   // ---------- autres onglets ----------
@@ -640,22 +675,59 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
   }
 
   // ---------- onglets ----------
-  let active = "me";
+  let active = "feed";
+  const sheet = document.getElementById("sheet");
+  var sheetOpen = false, sheetBack = null;
+  function openSheet() {
+    if (!sheetOpen) sheetBack = document.activeElement;
+    sheetOpen = true; sheet.hidden = false; panelMe(); badge();
+    document.getElementById("sheetClose").focus({ preventScroll: true });
+  }
+  function closeSheet() {
+    sheetOpen = false; sheet.hidden = true;
+    if (sheetBack && document.contains(sheetBack)) sheetBack.focus({ preventScroll: true });
+  }
+  document.getElementById("sheetClose").addEventListener("click", closeSheet);
+  sheet.addEventListener("click", (e) => { if (e.target === sheet) closeSheet(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && sheetOpen) closeSheet(); });
+  document.getElementById("meChip").addEventListener("click", openSheet);
   function select(name) {
+    if (name === "me") return openSheet();
     active = name;
-    for (const n of ["me", "feed", "daily", "cast"]) {
+    for (const n of ["feed", "daily", "cast"]) {
       document.getElementById("tab-" + n).setAttribute("aria-selected", n === name);
       document.getElementById("panel-" + n).hidden = n !== name;
     }
     render();
   }
-  for (const n of ["me", "feed", "daily", "cast"]) document.getElementById("tab-" + n).addEventListener("click", () => select(n));
+  for (const n of ["feed", "daily", "cast"]) document.getElementById("tab-" + n).addEventListener("click", () => select(n));
+
+  // ---------- plein écran ----------
+  const fsBtn = document.getElementById("fsBtn");
+  function setFs(on) {
+    document.body.classList.toggle("fs", on);
+    fsBtn.setAttribute("aria-pressed", String(on));
+    fsBtn.textContent = on ? "✕" : "⛶";
+    fsBtn.title = fsBtn.ariaLabel = on ? "Quitter le plein écran" : "Plein écran";
+  }
+  fsBtn.addEventListener("click", () => {
+    const on = !document.body.classList.contains("fs");
+    setFs(on);
+    const el = document.documentElement;
+    try {
+      if (on && el.requestFullscreen && !document.fullscreenElement) el.requestFullscreen().catch(() => {});
+      if (!on && document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    } catch {}
+  });
+  document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement && document.body.classList.contains("fs")) setFs(false); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheetOpen && document.body.classList.contains("fs") && !document.fullscreenElement) setFs(false); });
 
   // ---------- rendu ----------
   function render() {
     scrub.value = tick - T0;
     header(); placeDots(); flash();
-    if (active === "me") panelMe();
+    if (sheetOpen) panelMe();
+    meChip();
     if (active === "feed") panelFeed();
     if (active === "daily") panelDaily();
     if (active === "cast") panelCast();
@@ -830,7 +902,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
     started = true;
     setView("director");
     tick = START; forceAnim = true;
-    select("me");
+    render();
     play();
   }));
   let saved = null;
@@ -851,7 +923,6 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); out
       me = pos.me;
       started = true;
       setView("director");
-      select("me");
       tick = pos.tick;
       if (target - pos.tick >= 3) { tick = target; render(); recapOpen(pos.tick, target); }
       else { tick = target; forceAnim = true; render(); play(); }

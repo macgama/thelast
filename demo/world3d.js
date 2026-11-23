@@ -728,6 +728,7 @@
     // Candidats
     const people = {};
     for (const c of D.cast) { const p = makePerson(c); people[c.id] = p; p.visible = false; scene.add(p); }
+    if (/[?&]debug/.test(location.search)) window.__people = people; // outil de mesure pour les tests
 
     // Étiquettes HTML (prénom du suivi, noms des zones)
     const host = canvas.parentElement;

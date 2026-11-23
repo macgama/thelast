@@ -456,7 +456,7 @@
         case "walk": { const s = Math.sin(ph) * 0.6; L.x = s; R.x = -s; dy = Math.abs(Math.sin(ph)) * 0.08; break; }
         case "run": { const s = Math.sin(t * 16 + u.phase) * 1.1; L.x = s; R.x = -s; dy = Math.abs(Math.sin(t * 16 + u.phase)) * 0.18; tilt = 0.25; break; }
         case "sneak": { const s = Math.sin(t * 5) * 0.3; L.x = -0.6 + s; R.x = -0.6 - s; sq = 0.78; tilt = 0.35; break; }
-        case "panic": L.z = -2.7 + Math.sin(t * 20) * 0.5; R.z = 2.7 - Math.sin(t * 20 + 1) * 0.5; dy = Math.abs(Math.sin(t * 14)) * 0.35; jx = Math.sin(t * 31) * 0.05; break;
+        case "panic": L.z = -2.7 + Math.sin(t * 20) * 0.5; R.z = 2.7 - Math.sin(t * 20 + 1) * 0.5; dy = Math.abs(Math.sin(t * 14)) * 0.35; jx = Math.sin(t * 12) * 0.04; break;
         case "cheer": L.z = -2.6; R.z = 2.6; L.x = R.x = -0.3; dy = Math.abs(Math.sin(t * 8 + u.phase)) * 0.6; break;
         case "hold": L.x = R.x = -2.9; L.z = -0.15; R.z = 0.15; break;
         case "argue": R.x = -1.6 + Math.sin(t * 12) * 0.35; L.z = -0.5; L.x = -0.2; dy = Math.abs(Math.sin(t * 6)) * 0.1; break;
@@ -473,7 +473,7 @@
         case "sit": dy = -0.45; sq = 0.85; L.x = R.x = -0.5; tilt = -0.15; break;
         case "shiver": jx = Math.sin(t * 40) * 0.04; L.x = R.x = -0.9; L.z = 0.7; R.z = -0.7; sq = 0.92; break;
         case "swim": L.x = -2.6 + Math.sin(t * 7) * 1.0; R.x = -2.6 - Math.sin(t * 7) * 1.0; break;
-        case "flail": L.z = -2.6 + Math.sin(t * 18) * 0.6; R.z = 2.6 + Math.sin(t * 18) * 0.6; jx = Math.sin(t * 25) * 0.06; break;
+        case "flail": L.z = -2.6 + Math.sin(t * 18) * 0.6; R.z = 2.6 + Math.sin(t * 18) * 0.6; jx = Math.sin(t * 10) * 0.05; break;
         case "climb": L.x = -2.8 + Math.sin(t * 8) * 0.4; R.x = -2.8 - Math.sin(t * 8) * 0.4; break;
         case "paddle": dy = -0.25; sq = 0.85; L.x = -1.2 + Math.sin(t * 6) * 0.7; R.x = -1.2 - Math.sin(t * 6) * 0.7; break;
         case "balance": L.z = -1.5 + Math.sin(t * 3 + u.phase) * 0.4; R.z = 1.5 + Math.sin(t * 3.4 + u.phase) * 0.4; roll = Math.sin(t * 2.6 + u.phase) * 0.14; break;
@@ -1417,8 +1417,19 @@
           if (fp) {
             const dd = Math.hypot(u.pos.x - fp.x, u.pos.z - fp.z);
             if (dd < 9 && a.kind !== "sleep") { faceP = fp; if (restPose === "gather" || restPose === "fish") restPose = "idle"; }
+            // Les curieux laissent la place à la scène : on déplace leur point d'arrivée hors du cercle
+            // (et pas seulement leur pas), sinon ils font des allers-retours au bord et semblent trembler.
             const R0 = cur.clear || 3.8;
-            if (dd < R0 && far < R0 + 1.2) { target = u.pos.clone().add(new T.Vector3(u.pos.x - fp.x || 0.1, 0, u.pos.z - fp.z).setLength(R0 + 0.2 - dd)); speed = 3; }
+            if (target && a.kind !== "sleep") {
+              const tx = target.x - fp.x, tz = target.z - fp.z, td = Math.hypot(tx, tz);
+              if (td < R0 + 0.3) {
+                const ang = td > 0.05 ? Math.atan2(tz, tx) : Math.atan2(u.pos.z - fp.z, u.pos.x - fp.x || 0.1);
+                const out = new T.Vector3(fp.x + Math.cos(ang) * (R0 + 0.8), 0, fp.z + Math.sin(ang) * (R0 + 0.8));
+                if (a.target) a.target.copy(out); else a.target = out;
+                target = a.target;
+                if (dd < R0) speed = 3;
+              }
+            }
           }
         }
         const d = tmp.subVectors(target, u.pos);
