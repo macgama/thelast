@@ -31,7 +31,9 @@
    "shape": "round face",
    "eyes": "warm brown eyes",
    "feature": "a tiny scar through one eyebrow",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a strong aquiline nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -66,7 +68,9 @@
    "shape": "heart-shaped face",
    "eyes": "warm brown eyes",
    "feature": "long eyelashes",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a slightly upturned nose",
+   "mouth": "a strong angular jawline"
   }
  },
  {
@@ -101,7 +105,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "amber eyes",
    "feature": "freckles across the nose",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a prominent hooked nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -136,7 +142,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "deep brown eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a broad flat nose",
+   "mouth": "thin lips"
   }
  },
  {
@@ -171,7 +179,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "blue eyes",
    "feature": "long eyelashes",
-   "expression": "a restless, opportunistic glint in the eyes"
+   "expression": "a restless, opportunistic glint in the eyes",
+   "nose": "a wide rounded nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -206,7 +216,9 @@
    "shape": "heart-shaped face",
    "eyes": "brown eyes",
    "feature": "freckles across the nose",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a prominent hooked nose",
+   "mouth": "thin lips"
   }
  },
  {
@@ -241,7 +253,9 @@
    "shape": "soft round cheeks",
    "eyes": "dark brown eyes",
    "feature": "a small beauty mark on the cheek",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a long straight nose",
+   "mouth": "a strong angular jawline"
   }
  },
  {
@@ -276,7 +290,9 @@
    "shape": "square jaw",
    "eyes": "hazel eyes",
    "feature": "big bright eyes",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a narrow pointed nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -311,7 +327,9 @@
    "shape": "oval face",
    "eyes": "amber eyes",
    "feature": "freckles across the nose",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a small button nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -346,7 +364,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "hazel eyes",
    "feature": "freckles across the nose",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a slightly upturned nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -380,8 +400,10 @@
   "face": {
    "shape": "soft round cheeks",
    "eyes": "warm brown eyes",
-   "feature": "a gap-toothed smile",
-   "expression": "a steady, dependable look"
+   "feature": "a small gap between the front teeth",
+   "expression": "a steady, dependable look",
+   "nose": "a prominent hooked nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -416,7 +438,9 @@
    "shape": "oval face",
    "eyes": "warm brown eyes",
    "feature": "big bright eyes",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a strong aquiline nose",
+   "mouth": "thin lips"
   }
  },
  {
@@ -451,7 +475,9 @@
    "shape": "soft round cheeks",
    "eyes": "deep brown eyes",
    "feature": "weathered sun-tanned skin",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a wide rounded nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -471,7 +497,7 @@
   },
   "top": {
    "type": "overalls",
-   "color": "chocolate brown"
+   "color": "forest green"
   },
   "bottom": {
    "type": "pants",
@@ -486,7 +512,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "blue eyes",
    "feature": "big bright eyes",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a prominent hooked nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -521,7 +549,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "green eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a long straight nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -545,18 +575,20 @@
   },
   "bottom": {
    "type": "pants",
-   "color": "black"
+   "color": "denim blue"
   },
   "item": {
    "type": "scarf",
-   "color": "mustard yellow"
+   "color": "lavender"
   },
   "signature": "toque et veste de chef",
   "face": {
    "shape": "square jaw",
    "eyes": "brown eyes",
    "feature": "deep wrinkles from years of smiling",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a narrow pointed nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -591,7 +623,9 @@
    "shape": "heart-shaped face",
    "eyes": "brown eyes",
    "feature": "laugh lines around the eyes",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a strong aquiline nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -626,7 +660,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "brown eyes",
    "feature": "freckles across the nose",
-   "expression": "a wary, hesitant look"
+   "expression": "a wary, hesitant look",
+   "nose": "a slightly upturned nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -661,7 +697,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "deep brown eyes",
    "feature": "weathered sun-tanned skin",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a narrow pointed nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -696,7 +734,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "brown eyes",
    "feature": "laugh lines around the eyes",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a broad flat nose",
+   "mouth": "a strong angular jawline"
   }
  },
  {
@@ -731,7 +771,9 @@
    "shape": "heart-shaped face",
    "eyes": "dark brown eyes",
    "feature": "a strong straight nose",
-   "expression": "a wary, hesitant look"
+   "expression": "a wary, hesitant look",
+   "nose": "a wide rounded nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -766,7 +808,9 @@
    "shape": "square jaw",
    "eyes": "brown eyes",
    "feature": "a tiny scar through one eyebrow",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a prominent hooked nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -800,8 +844,10 @@
   "face": {
    "shape": "soft round cheeks",
    "eyes": "dark brown eyes",
-   "feature": "a gap-toothed smile",
-   "expression": "a sly, knowing half-smile"
+   "feature": "a small gap between the front teeth",
+   "expression": "a sly, knowing half-smile",
+   "nose": "a broad flat nose",
+   "mouth": "a strong angular jawline"
   }
  },
  {
@@ -836,7 +882,9 @@
    "shape": "round face",
    "eyes": "warm brown eyes",
    "feature": "laugh lines around the eyes",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a wide rounded nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -871,7 +919,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "hazel eyes",
    "feature": "deep dimples",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a small button nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -906,7 +956,9 @@
    "shape": "soft round cheeks",
    "eyes": "blue eyes",
    "feature": "freckles across the nose",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a slightly upturned nose",
+   "mouth": "a strong angular jawline"
   }
  },
  {
@@ -941,7 +993,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "brown eyes",
    "feature": "laugh lines around the eyes",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a narrow pointed nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -976,7 +1030,9 @@
    "shape": "round face",
    "eyes": "brown eyes",
    "feature": "a small beauty mark on the cheek",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a broad flat nose",
+   "mouth": "a strong angular jawline"
   }
  },
  {
@@ -1011,7 +1067,9 @@
    "shape": "heart-shaped face",
    "eyes": "green eyes",
    "feature": "a slightly crooked nose",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a wide rounded nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -1031,7 +1089,7 @@
   },
   "top": {
    "type": "overalls",
-   "color": "forest green"
+   "color": "denim blue"
   },
   "bottom": {
    "type": "shorts",
@@ -1046,7 +1104,9 @@
    "shape": "oval face",
    "eyes": "hazel eyes",
    "feature": "a slightly crooked nose",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a small button nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -1081,7 +1141,9 @@
    "shape": "round face",
    "eyes": "dark brown eyes",
    "feature": "freckles across the nose",
-   "expression": "an open, trusting expression"
+   "expression": "an open, trusting expression",
+   "nose": "a long straight nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -1116,7 +1178,9 @@
    "shape": "soft round cheeks",
    "eyes": "dark brown eyes",
    "feature": "freckles across the nose",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a wide rounded nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -1151,7 +1215,9 @@
    "shape": "heart-shaped face",
    "eyes": "blue eyes",
    "feature": "big bright eyes",
-   "expression": "a nervous, fidgety smile"
+   "expression": "a nervous, fidgety smile",
+   "nose": "a strong aquiline nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -1186,7 +1252,9 @@
    "shape": "heart-shaped face",
    "eyes": "grey eyes",
    "feature": "a slightly crooked nose",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a long straight nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -1221,7 +1289,9 @@
    "shape": "round face",
    "eyes": "brown eyes",
    "feature": "laugh lines around the eyes",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a prominent hooked nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -1256,7 +1326,9 @@
    "shape": "soft round cheeks",
    "eyes": "amber eyes",
    "feature": "a strong straight nose",
-   "expression": "a cool, unreadable face"
+   "expression": "a cool, unreadable face",
+   "nose": "a broad flat nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -1291,7 +1363,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "warm brown eyes",
    "feature": "freckles across the nose",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a wide rounded nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -1326,7 +1400,9 @@
    "shape": "oval face",
    "eyes": "grey eyes",
    "feature": "deep dimples",
-   "expression": "an open, trusting expression"
+   "expression": "an open, trusting expression",
+   "nose": "a prominent hooked nose",
+   "mouth": "thin lips"
   }
  },
  {
@@ -1361,7 +1437,9 @@
    "shape": "oval face",
    "eyes": "deep brown eyes",
    "feature": "long eyelashes",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a long straight nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -1396,7 +1474,9 @@
    "shape": "oval face",
    "eyes": "grey eyes",
    "feature": "freckles across the nose",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a narrow pointed nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -1431,7 +1511,9 @@
    "shape": "soft round cheeks",
    "eyes": "green eyes",
    "feature": "long eyelashes",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a strong aquiline nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -1466,7 +1548,9 @@
    "shape": "round face",
    "eyes": "hazel eyes",
    "feature": "deep dimples",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a long straight nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -1501,7 +1585,9 @@
    "shape": "soft round cheeks",
    "eyes": "hazel eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a narrow pointed nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -1536,7 +1622,9 @@
    "shape": "oval face",
    "eyes": "blue eyes",
    "feature": "sun-kissed cheeks",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a strong aquiline nose",
+   "mouth": "thin lips"
   }
  },
  {
@@ -1571,7 +1659,9 @@
    "shape": "round face",
    "eyes": "warm brown eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a slightly upturned nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -1606,7 +1696,9 @@
    "shape": "heart-shaped face",
    "eyes": "hazel eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a prominent hooked nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -1641,7 +1733,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "brown eyes",
    "feature": "deep wrinkles from years of smiling",
-   "expression": "a cool, unreadable face"
+   "expression": "a cool, unreadable face",
+   "nose": "a long straight nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -1675,8 +1769,10 @@
   "face": {
    "shape": "heart-shaped face",
    "eyes": "deep brown eyes",
-   "feature": "a gap-toothed smile",
-   "expression": "a nervous, fidgety smile"
+   "feature": "a small gap between the front teeth",
+   "expression": "a nervous, fidgety smile",
+   "nose": "a narrow pointed nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -1704,14 +1800,16 @@
   },
   "item": {
    "type": "gloves",
-   "color": "fire red"
+   "color": "cream"
   },
   "signature": "sweat à capuche et gants de boxe",
   "face": {
    "shape": "heart-shaped face",
    "eyes": "brown eyes",
    "feature": "a slightly crooked nose",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a small button nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -1746,7 +1844,9 @@
    "shape": "oval face",
    "eyes": "amber eyes",
    "feature": "a slightly crooked nose",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a slightly upturned nose",
+   "mouth": "a strong angular jawline"
   }
  },
  {
@@ -1781,7 +1881,9 @@
    "shape": "heart-shaped face",
    "eyes": "warm brown eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a wary, hesitant look"
+   "expression": "a wary, hesitant look",
+   "nose": "a prominent hooked nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -1801,7 +1903,7 @@
   },
   "top": {
    "type": "overalls",
-   "color": "denim blue"
+   "color": "forest green"
   },
   "bottom": {
    "type": "pants",
@@ -1816,7 +1918,9 @@
    "shape": "heart-shaped face",
    "eyes": "hazel eyes",
    "feature": "big bright eyes",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a strong aquiline nose",
+   "mouth": "thin lips"
   }
  },
  {
@@ -1851,7 +1955,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "deep brown eyes",
    "feature": "a strong straight nose",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a wide rounded nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -1871,7 +1977,7 @@
   },
   "top": {
    "type": "jacket",
-   "color": "black"
+   "color": "slate grey"
   },
   "bottom": {
    "type": "shorts",
@@ -1886,7 +1992,9 @@
    "shape": "square jaw",
    "eyes": "warm brown eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a small button nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -1921,7 +2029,9 @@
    "shape": "round face",
    "eyes": "dark brown eyes",
    "feature": "deep dimples",
-   "expression": "a nervous, fidgety smile"
+   "expression": "a nervous, fidgety smile",
+   "nose": "a broad flat nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -1956,7 +2066,9 @@
    "shape": "round face",
    "eyes": "amber eyes",
    "feature": "long eyelashes",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a wide rounded nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -1991,7 +2103,9 @@
    "shape": "round face",
    "eyes": "blue eyes",
    "feature": "deep dimples",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a strong aquiline nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -2026,7 +2140,9 @@
    "shape": "heart-shaped face",
    "eyes": "hazel eyes",
    "feature": "a slightly crooked nose",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a long straight nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -2061,7 +2177,9 @@
    "shape": "heart-shaped face",
    "eyes": "green eyes",
    "feature": "laugh lines around the eyes",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a prominent hooked nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -2096,7 +2214,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "green eyes",
    "feature": "a tiny scar through one eyebrow",
-   "expression": "a nervous, fidgety smile"
+   "expression": "a nervous, fidgety smile",
+   "nose": "a broad flat nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -2120,18 +2240,20 @@
   },
   "bottom": {
    "type": "pants",
-   "color": "black"
+   "color": "sand beige"
   },
   "item": {
    "type": "scarf",
-   "color": "olive green"
+   "color": "sky blue"
   },
   "signature": "toque et veste de chef",
   "face": {
    "shape": "long face with high cheekbones",
    "eyes": "amber eyes",
    "feature": "deep dimples",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a slightly upturned nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -2166,7 +2288,9 @@
    "shape": "round face",
    "eyes": "hazel eyes",
    "feature": "freckles across the nose",
-   "expression": "a restless, opportunistic glint in the eyes"
+   "expression": "a restless, opportunistic glint in the eyes",
+   "nose": "a small button nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -2201,7 +2325,9 @@
    "shape": "square jaw",
    "eyes": "green eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a broad flat nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -2236,7 +2362,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "dark brown eyes",
    "feature": "a slightly crooked nose",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a narrow pointed nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -2271,7 +2399,9 @@
    "shape": "round face",
    "eyes": "grey eyes",
    "feature": "big bright eyes",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a strong aquiline nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -2306,7 +2436,9 @@
    "shape": "heart-shaped face",
    "eyes": "dark brown eyes",
    "feature": "freckles across the nose",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a slightly upturned nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -2341,7 +2473,9 @@
    "shape": "square jaw",
    "eyes": "deep brown eyes",
    "feature": "freckles across the nose",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a narrow pointed nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -2361,7 +2495,7 @@
   },
   "top": {
    "type": "jacket",
-   "color": "fire red"
+   "color": "teal"
   },
   "bottom": {
    "type": "pants",
@@ -2376,7 +2510,9 @@
    "shape": "oval face",
    "eyes": "dark brown eyes",
    "feature": "long eyelashes",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a broad flat nose",
+   "mouth": "a strong angular jawline"
   }
  },
  {
@@ -2396,7 +2532,7 @@
   },
   "top": {
    "type": "overalls",
-   "color": "slate grey"
+   "color": "navy blue"
   },
   "bottom": {
    "type": "shorts",
@@ -2411,7 +2547,9 @@
    "shape": "square jaw",
    "eyes": "green eyes",
    "feature": "big bright eyes",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a wide rounded nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -2431,7 +2569,7 @@
   },
   "top": {
    "type": "vest",
-   "color": "burgundy"
+   "color": "black"
   },
   "bottom": {
    "type": "pants",
@@ -2446,7 +2584,9 @@
    "shape": "heart-shaped face",
    "eyes": "blue eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a small button nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -2466,7 +2606,7 @@
   },
   "top": {
    "type": "shirt",
-   "color": "khaki"
+   "color": "sand beige"
   },
   "bottom": {
    "type": "pants",
@@ -2481,7 +2621,9 @@
    "shape": "round face",
    "eyes": "blue eyes",
    "feature": "a strong straight nose",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a broad flat nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -2516,7 +2658,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "warm brown eyes",
    "feature": "deep dimples",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a wide rounded nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -2550,8 +2694,10 @@
   "face": {
    "shape": "soft round cheeks",
    "eyes": "warm brown eyes",
-   "feature": "a gap-toothed smile",
-   "expression": "a warm, kind smile"
+   "feature": "a small gap between the front teeth",
+   "expression": "a warm, kind smile",
+   "nose": "a strong aquiline nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -2571,7 +2717,7 @@
   },
   "top": {
    "type": "shirt",
-   "color": "sand beige"
+   "color": "khaki"
   },
   "bottom": {
    "type": "shorts",
@@ -2586,7 +2732,9 @@
    "shape": "round face",
    "eyes": "dark brown eyes",
    "feature": "big bright eyes",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a long straight nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -2621,7 +2769,9 @@
    "shape": "square jaw",
    "eyes": "hazel eyes",
    "feature": "deep wrinkles from years of smiling",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a prominent hooked nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -2656,7 +2806,9 @@
    "shape": "oval face",
    "eyes": "amber eyes",
    "feature": "freckles across the nose",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a broad flat nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -2691,7 +2843,9 @@
    "shape": "oval face",
    "eyes": "warm brown eyes",
    "feature": "freckles across the nose",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a slightly upturned nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -2726,7 +2880,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "green eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a small button nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -2761,7 +2917,9 @@
    "shape": "square jaw",
    "eyes": "blue eyes",
    "feature": "deep dimples",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a broad flat nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -2781,7 +2939,7 @@
   },
   "top": {
    "type": "suit",
-   "color": "navy blue"
+   "color": "charcoal"
   },
   "bottom": {
    "type": "pants",
@@ -2795,8 +2953,10 @@
   "face": {
    "shape": "heart-shaped face",
    "eyes": "hazel eyes",
-   "feature": "a gap-toothed smile",
-   "expression": "a warm, kind smile"
+   "feature": "a small gap between the front teeth",
+   "expression": "a warm, kind smile",
+   "nose": "a wide rounded nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -2831,7 +2991,9 @@
    "shape": "oval face",
    "eyes": "hazel eyes",
    "feature": "long eyelashes",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a strong aquiline nose",
+   "mouth": "thin lips"
   }
  },
  {
@@ -2865,8 +3027,10 @@
   "face": {
    "shape": "round face",
    "eyes": "grey eyes",
-   "feature": "a gap-toothed smile",
-   "expression": "a fearless, confident grin"
+   "feature": "a small gap between the front teeth",
+   "expression": "a fearless, confident grin",
+   "nose": "a long straight nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -2901,7 +3065,9 @@
    "shape": "square jaw",
    "eyes": "grey eyes",
    "feature": "long eyelashes",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a prominent hooked nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -2921,7 +3087,7 @@
   },
   "top": {
    "type": "vest",
-   "color": "tangerine orange"
+   "color": "safety yellow"
   },
   "bottom": {
    "type": "shorts",
@@ -2936,7 +3102,9 @@
    "shape": "heart-shaped face",
    "eyes": "deep brown eyes",
    "feature": "sun-kissed cheeks",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a broad flat nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -2971,7 +3139,9 @@
    "shape": "oval face",
    "eyes": "hazel eyes",
    "feature": "a small beauty mark on the cheek",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a wide rounded nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -3006,7 +3176,9 @@
    "shape": "round face",
    "eyes": "hazel eyes",
    "feature": "freckles across the nose",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a prominent hooked nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -3041,7 +3213,9 @@
    "shape": "oval face",
    "eyes": "dark brown eyes",
    "feature": "laugh lines around the eyes",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a broad flat nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -3076,7 +3250,9 @@
    "shape": "heart-shaped face",
    "eyes": "deep brown eyes",
    "feature": "a small beauty mark on the cheek",
-   "expression": "a wary, hesitant look"
+   "expression": "a wary, hesitant look",
+   "nose": "a narrow pointed nose",
+   "mouth": "a cleft chin"
   }
  },
  {
@@ -3111,7 +3287,9 @@
    "shape": "square jaw",
    "eyes": "hazel eyes",
    "feature": "deep dimples",
-   "expression": "a sly, knowing half-smile"
+   "expression": "a sly, knowing half-smile",
+   "nose": "a small button nose",
+   "mouth": "thin lips"
   }
  },
  {
@@ -3131,7 +3309,7 @@
   },
   "top": {
    "type": "jacket",
-   "color": "sand beige"
+   "color": "chocolate brown"
   },
   "bottom": {
    "type": "shorts",
@@ -3146,7 +3324,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "amber eyes",
    "feature": "a slightly crooked nose",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a slightly upturned nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -3181,7 +3361,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "deep brown eyes",
    "feature": "a small beauty mark on the cheek",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a prominent hooked nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -3216,7 +3398,9 @@
    "shape": "soft round cheeks",
    "eyes": "amber eyes",
    "feature": "weathered sun-tanned skin",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a broad flat nose",
+   "mouth": "thin lips"
   }
  },
  {
@@ -3251,7 +3435,9 @@
    "shape": "round face",
    "eyes": "brown eyes",
    "feature": "a slightly crooked nose",
-   "expression": "a warm, kind smile"
+   "expression": "a warm, kind smile",
+   "nose": "a slightly upturned nose",
+   "mouth": "a soft double chin"
   }
  },
  {
@@ -3286,7 +3472,9 @@
    "shape": "soft round cheeks",
    "eyes": "hazel eyes",
    "feature": "deep dimples",
-   "expression": "a cool, unreadable face"
+   "expression": "a cool, unreadable face",
+   "nose": "a prominent hooked nose",
+   "mouth": "a wide mouth"
   }
  },
  {
@@ -3310,18 +3498,20 @@
   },
   "bottom": {
    "type": "pants",
-   "color": "charcoal"
+   "color": "slate grey"
   },
   "item": {
    "type": "scarf",
-   "color": "safety yellow"
+   "color": "teal"
   },
   "signature": "toque et veste de chef",
   "face": {
    "shape": "round face",
    "eyes": "deep brown eyes",
    "feature": "long eyelashes",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a long straight nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -3356,7 +3546,9 @@
    "shape": "oval face",
    "eyes": "dark brown eyes",
    "feature": "deep dimples",
-   "expression": "a fearless, confident grin"
+   "expression": "a fearless, confident grin",
+   "nose": "a narrow pointed nose",
+   "mouth": "a prominent pointed chin"
   }
  },
  {
@@ -3391,7 +3583,9 @@
    "shape": "oval face",
    "eyes": "brown eyes",
    "feature": "sun-kissed cheeks",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a strong aquiline nose",
+   "mouth": "full lips"
   }
  },
  {
@@ -3426,7 +3620,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "hazel eyes",
    "feature": "thick expressive eyebrows",
-   "expression": "a nervous, fidgety smile"
+   "expression": "a nervous, fidgety smile",
+   "nose": "a long straight nose",
+   "mouth": "a strong angular jawline"
   }
  },
  {
@@ -3461,7 +3657,9 @@
    "shape": "square jaw",
    "eyes": "grey eyes",
    "feature": "a small beauty mark on the cheek",
-   "expression": "a calm, relaxed expression"
+   "expression": "a calm, relaxed expression",
+   "nose": "a narrow pointed nose",
+   "mouth": "a small mouth with a defined cupid's bow"
   }
  },
  {
@@ -3496,7 +3694,9 @@
    "shape": "long face with high cheekbones",
    "eyes": "deep brown eyes",
    "feature": "a strong straight nose",
-   "expression": "a steady, dependable look"
+   "expression": "a steady, dependable look",
+   "nose": "a broad flat nose",
+   "mouth": "thin lips"
   }
  }
 ]

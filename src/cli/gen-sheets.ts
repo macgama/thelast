@@ -36,7 +36,7 @@ async function pickModel(): Promise<string> {
 
 async function one(model: string, prompt: string): Promise<Buffer> {
   const text = style
-    ? `Match the exact art style, rendering quality, lighting, light grey background and sheet layout (large full-body front view, side view, back view, smaller full-body view and a face close-up in the top-left corner) of the attached reference sheet, but draw a completely different person, described here. ${prompt}`
+    ? `Match the exact art style, rendering quality, lighting, light grey background and sheet layout (large full-body front view, side view, back view, smaller full-body view and a face close-up in the top-left corner) of the attached reference sheet ONLY. Do not reuse anything else from it: not the face, body, skin tone, hairstyle, clothes, colors, bag, camera or any accessory. Draw a completely different person, described here. ${prompt}`
     : prompt;
   for (let attempt = 0; ; attempt++) {
     const res = await fetch(`${BASE}/models/${model}:generateContent`, {

@@ -27,7 +27,7 @@ export interface Look {
   face?: Face;         // détails du visage, utilisés par les prompts des cinématiques
 }
 
-export interface Face { shape: string; eyes: string; feature: string; expression: string }
+export interface Face { shape: string; eyes: string; feature: string; expression: string; nose?: string; mouth?: string }
 
 // Palettes : un nom anglais précis (pour les prompts) et sa couleur.
 export const SKIN: Record<string, string> = {
@@ -238,20 +238,25 @@ const CINE_TOP: Record<Top, string> = {
 export function cinePrompt(c: CharLite & { name: string }, l: Look): string {
   const f = l.face ?? makeFace(c, l);
   const who = c.gender === "f" ? "woman" : c.gender === "m" ? "man" : "androgynous non-binary person";
-  const col = (k: string) => k;
-  const hair = l.hair.style === "bald" ? "a clean shaved head" : `${col(l.hair.color)} ${HAIR_EN[l.hair.style]}`;
+  const age = c.age >= 60 ? "clearly in their sixties: grey-streaked brows, deep wrinkles on the forehead and around the eyes, slightly sagging jawline"
+    : c.age >= 48 ? "visibly middle-aged: fine wrinkles around the eyes and forehead, slightly weathered skin"
+    : c.age <= 23 ? "youthful fresh face" : "";
+  const shortHair = ["buzz", "bald"].includes(l.hair.style);
+  const hair = l.hair.style === "bald" ? "a clean shaved head" : `${l.hair.color} ${HAIR_EN[l.hair.style]}${l.hat.type !== "none" && shortHair ? ", clearly visible at the sides and back under the headwear" : ""}`;
+  const face = [`${l.skin} skin`, f.shape, f.eyes, f.nose, f.mouth, f.feature, f.expression].filter(Boolean).join(", ");
   const parts = [
     `${c.name}, a ${c.age}-year-old ${who}, ${c.job.en} from ${c.origin.en}`,
     `${BUILD_EN[l.build]}, ${l.height >= 1.03 ? "tall" : l.height <= 0.96 ? "short" : "medium height"}`,
-    `${l.skin} skin, ${f.shape}, ${f.eyes}, ${f.feature}, ${f.expression}`,
+    face,
+    age,
     hair,
     l.facial !== "none" && FACIAL_EN[l.facial],
-    l.glasses !== "none" && GLASSES_EN[l.glasses],
-    l.hat.type !== "none" && `${col(l.hat.color)} ${HAT_EN[l.hat.type]}`,
-    `${col(l.top.color)} ${CINE_TOP[l.top.type]}`,
-    `${col(l.bottom.color)} ${l.bottom.type}`,
-    l.item.type !== "none" && `signature accessory: ${col(l.item.color)} ${ITEM_EN[l.item.type]}`,
+    l.glasses === "sun" ? "dark sunglasses pushed up on the head so the eyes stay visible" : l.glasses !== "none" && GLASSES_EN[l.glasses],
+    l.hat.type !== "none" && `${l.hat.color} ${HAT_EN[l.hat.type]}`,
+    `${l.top.color} ${CINE_TOP[l.top.type]}`,
+    `${l.bottom.color} ${l.bottom.type}`,
+    l.item.type !== "none" ? `signature accessory: ${l.item.color} ${ITEM_EN[l.item.type]}` : "no bag and no other accessory",
     "clothes slightly sun-faded and sandy after days on a tropical island",
   ].filter(Boolean);
-  return `High-end stylized 3D character for an animated reality-show cinematic: modern animated feature film quality, appealing slightly exaggerated proportions, expressive face with lifelike eyes, detailed skin, hair and fabric textures, vibrant colors, cinematic rim lighting, fun and charismatic, family-friendly. ${parts.join("; ")}. Character reference sheet of the same person: full body front, side and back views in a relaxed A-pose, plus a close-up portrait of the face; consistent design in every view; plain light grey background; no text, no logo, no watermark.`;
+  return `High-end stylized 3D character for an animated reality-show cinematic: modern animated feature film quality, appealing slightly exaggerated proportions, expressive face with lifelike eyes, detailed skin, hair and fabric textures, vibrant colors, cinematic rim lighting, fun and charismatic, family-friendly. ${parts.join("; ")}. The face must be unique and recognisable, true to every facial detail above. Character reference sheet of the same person: full body front, side and back views in a relaxed A-pose, plus a close-up portrait of the face; consistent design in every view; plain light grey background; no text, no logo, no watermark.`;
 }
