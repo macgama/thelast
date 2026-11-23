@@ -1,4 +1,4 @@
-// Exporte une saison au format compact lu par la démo visuelle (demo/index.html).
+// Exporte une saison au format compact lu par la démo visuelle (demo/survivor.html).
 // Usage : npm run replay -- [graine=42]  -> demo/data.json
 import { resolveLook, type Look } from "../characters/looks.js";
 import { existsSync } from "node:fs";

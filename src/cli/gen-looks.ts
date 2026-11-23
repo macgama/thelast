@@ -27,3 +27,13 @@ writeFileSync("demo/casting.json", JSON.stringify(pool.map((c: any, i: number) =
   signature: looks[i].signature, look: resolveLook(looks[i]), prompt: lookPrompt(c, looks[i]), cine: cinePrompt(c, looks[i]),
 }))));
 console.log(`${path} : ${looks.length} fiches, ${seen.size} silhouettes distinctes`);
+
+// Fiches publiques pour la page « Personnages » de la démo (sans les secrets, qui se dévoilent pendant la saison)
+const season = existsSync("demo/data.json") ? new Set(JSON.parse(readFileSync("demo/data.json", "utf8")).cast.map((c: any) => c.id)) : new Set();
+const featured = existsSync("demo/featured.json") ? JSON.parse(readFileSync("demo/featured.json", "utf8")) : {};
+writeFileSync("demo/personnages.json", JSON.stringify(pool.map((c: any, i: number) => ({
+  id: c.id, name: c.name, age: c.age, gender: c.gender, job: c.job.fr, origin: c.origin.fr,
+  bio: c.backstory.fr, motivation: c.motivation.fr, catchphrase: c.catchphrase.fr,
+  traits: c.traits, skills: c.skills, phobia: c.phobia, signature: looks[i].signature,
+  season: season.has(c.id), featured: !!featured[c.id], wins: c.career?.wins ?? 0,
+}))));

@@ -6,7 +6,7 @@ Télé-réalité 100% IA : 50 personnages IA vivent une aventure de 7 jours, sui
 
 **Étape 1 : la simulation sans écran.** Le moteur fait vivre une saison complète de 7 jours, heure par heure, et écrit les récits en français et en anglais. Il n'y a pas encore d'application à ouvrir dans le navigateur : on lit les saisons dans le dossier [`exemples/`](exemples/).
 
-- **Démo visuelle** : [`demo/index.html`](demo/index.html), avec l'île en 3D low poly (Three.js, rotation et zoom), les 50 candidats et 5 personnages à suivre avec leurs confessionnaux. Régénérer les données avec `npm run replay`.
+- **Démo visuelle** : [`demo/survivor.html`](demo/survivor.html), avec l'île en 3D low poly (Three.js, rotation et zoom), les 50 candidats et 5 personnages à suivre avec leurs confessionnaux. Régénérer les données avec `npm run replay`.
   - [`demo/world3d.js`](demo/world3d.js) : l'île, les personnages, la météo, les animaux, les drones et la caméra « réalisateur ».
   - Île agrandie (constante `S` dans `world3d.js`) : quand la caméra filme de près, les arbres placés entre elle et l'action s'effacent.
   - [`demo/scenes.js`](demo/scenes.js) : chaque événement devient une scène cartoon de 5 à 20 secondes (accidents, vols, disputes, sabotages, épreuves, vote, évacuations), avec bulles de dialogue et bandeau EN DIRECT. Entre deux scènes, les candidats pêchent, cherchent à manger, dorment et se méfient. Les répliques sont écrites à la main dans `SAY` ; plus tard, une IA les écrira.
