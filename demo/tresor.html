@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Last · Chasse au trésor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Concept : une expédition dans la jungle, carnet de bord et pierre de jade. Un seul thème sombre, assumé, comme un plateau télé.
+   La vallée occupe tout l'écran ; le direct, les candidats et la carte sont dans un panneau (à droite sur grand écran, en bas sur mobile). */
+:root {
+  --ink: #0b1410;
+  --deep: #12201a;
+  --raise: #1a2d24;
+  --line: #29443a;
+  --text: #f3ead0;
+  --mist: #a7beb1;
+  --gold: #ffd166;
+  --torch: #ff8a3d;
+  --jade: #4fd1a1;
+  --danger: #ff6b5b;
+  --curse: #b58cff;
+  --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; background: var(--ink); color: var(--text); font-family: var(--body); font-size: 15px; line-height: 1.45; overflow: hidden; }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; }
+button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
+
+.app { position: fixed; inset: 0; display: grid; grid-template-columns: 1fr 390px; grid-template-rows: auto 1fr; }
+.top { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; padding: 10px max(16px, env(safe-area-inset-left)); padding-top: max(10px, env(safe-area-inset-top)); background: var(--deep); border-bottom: 1px solid var(--line); flex-wrap: wrap; z-index: 3; }
+.logo { font-family: var(--display); font-weight: 700; letter-spacing: .16em; font-size: 17px; white-space: nowrap; }
+.logo b { color: var(--gold); }
+.clock { font-family: var(--display); font-weight: 600; font-size: 15px; padding: 4px 10px; border-radius: 8px; background: var(--raise); white-space: nowrap; }
+.count { color: var(--mist); font-size: 14px; white-space: nowrap; }
+.count b { color: var(--text); font-family: var(--display); font-size: 16px; }
+.live { display: inline-flex; align-items: center; gap: 6px; font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .12em; color: var(--danger); }
+.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--danger); animation: blink 1.2s infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.spacer { flex: 1; }
+.ctrl { display: flex; gap: 4px; background: var(--raise); padding: 3px; border-radius: 10px; }
+.ctrl button { min-width: 40px; height: 34px; border-radius: 8px; font-family: var(--display); font-weight: 600; font-size: 14px; color: var(--mist); }
+.ctrl button[aria-pressed="true"] { background: var(--gold); color: #1a1406; }
+.icon-btn { height: 40px; min-width: 40px; border-radius: 10px; background: var(--raise); font-family: var(--display); font-weight: 600; }
+
+.stage { position: relative; overflow: hidden; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+.a3-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.a3-tag { position: absolute; left: 0; top: 0; font-family: var(--display); font-weight: 600; font-size: 12px; padding: 2px 8px; border-radius: 6px; background: rgba(11, 20, 16, .8); white-space: nowrap; }
+.a3-tag.is-me { background: var(--gold); color: #1a1406; }
+.a3-pop { position: absolute; left: 0; top: 0; font-family: var(--display); font-weight: 700; font-size: 22px; white-space: nowrap; color: #fff; text-shadow: 0 2px 0 #000, 0 0 12px rgba(0,0,0,.6); animation: popin .25s ease-out; }
+.a3-pop.is-hit { color: var(--gold); font-size: 26px; }
+.a3-pop.is-betray { color: var(--curse); font-size: 26px; }
+.a3-pop.is-ko { color: var(--danger); font-size: 24px; }
+.a3-pop.is-stars { color: var(--gold); font-size: 20px; letter-spacing: .06em; }
+.a3-pop.is-item, .a3-pop.is-gift { font-size: 26px; }
+.a3-pop.is-gift { color: var(--jade); }
+@keyframes popin { from { scale: .3; } to { scale: 1; } }
+
+.banner { position: absolute; left: 50%; top: 16px; translate: -50% 0; max-width: min(640px, calc(100% - 32px)); padding: 10px 16px; border-radius: 12px; background: rgba(11, 20, 16, .88); border: 1px solid var(--line); font-size: 14px; text-align: center; pointer-events: none; }
+.cam { position: absolute; left: 16px; bottom: 16px; display: flex; gap: 4px; background: rgba(11, 20, 16, .88); padding: 3px; border-radius: 10px; }
+.cam button { padding: 0 12px; height: 34px; border-radius: 8px; font-size: 13px; color: var(--mist); }
+.cam button[aria-pressed="true"] { background: var(--raise); color: var(--text); }
+.riddleBtn { position: absolute; right: 16px; bottom: 16px; height: 48px; padding: 0 18px; border-radius: 14px; background: var(--gold); color: #1a1406; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .04em; box-shadow: 0 6px 24px rgba(0,0,0,.4); }
+.riddleBtn.is-new { animation: pulse 1.4s infinite; }
+.riddleBtn.is-done { background: var(--raise); color: var(--mist); box-shadow: none; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--gold) 30%, transparent); } }
+
+/* Panneau */
+.side { background: var(--deep); border-left: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+.fav { padding: 14px 16px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; }
+.fav img { width: 64px; height: 64px; border-radius: 12px; object-fit: cover; background: var(--raise); }
+.fav h3 { font-size: 17px; }
+.fav .meta { color: var(--mist); font-size: 13px; }
+.state { font-size: 12px; font-family: var(--display); font-weight: 600; padding: 1px 8px; border-radius: 6px; background: var(--raise); }
+.state.risk { background: color-mix(in srgb, var(--danger) 25%, transparent); color: #ffc9c2; }
+.state.out { background: #2a2a2a; color: var(--mist); }
+.state.win { background: var(--gold); color: #1a1406; }
+.fav .actions { grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { min-height: 40px; padding: 0 14px; border-radius: 10px; background: var(--raise); font-weight: 600; font-size: 14px; }
+.btn.primary { background: var(--gold); color: #1a1406; }
+.btn:disabled { opacity: .45; cursor: default; }
+.tabs { display: flex; border-bottom: 1px solid var(--line); }
+.tabs button { flex: 1; height: 44px; font-family: var(--display); font-weight: 600; color: var(--mist); border-bottom: 2px solid transparent; }
+.tabs button[aria-selected="true"] { color: var(--text); border-color: var(--gold); }
+.pane { flex: 1; overflow-y: auto; min-height: 0; padding: 8px 16px 24px; }
+.feed { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column-reverse; gap: 8px; }
+.feed li { padding: 8px 10px; border-radius: 10px; background: var(--raise); font-size: 14px; animation: slidein .3s ease-out; }
+.feed li .when { color: var(--mist); font-size: 12px; font-family: var(--display); margin-right: 6px; }
+.feed li.hot { border-left: 3px solid var(--danger); }
+.feed li.good { border-left: 3px solid var(--jade); }
+.feed li.gold { border-left: 3px solid var(--gold); }
+.feed li.curse { border-left: 3px solid var(--curse); }
+.feed li .voice { display: block; margin-top: 4px; color: var(--mist); font-style: italic; font-size: 13px; }
+.feed li .voice b { font-style: normal; color: var(--torch); font-family: var(--display); }
+@keyframes slidein { from { opacity: 0; translate: 0 -6px; } }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 8px; }
+.cand { position: relative; text-align: center; font-size: 12px; padding: 4px; border-radius: 10px; }
+.cand img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; background: var(--raise); display: block; }
+.cand .n { font-weight: 600; display: block; margin-top: 2px; }
+.cand .s { font-size: 11px; color: var(--mist); }
+.cand.is-risk img { outline: 2px solid var(--danger); }
+.cand.is-out { opacity: .38; }
+.cand.is-out img { filter: grayscale(1); }
+.cand.is-me { background: color-mix(in srgb, var(--gold) 18%, transparent); }
+.cand .rk { position: absolute; top: 8px; left: 8px; font-family: var(--display); font-size: 11px; background: rgba(0,0,0,.7); padding: 0 5px; border-radius: 5px; }
+.pieces { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 8px; }
+.piece { border-radius: 12px; background: var(--raise); padding: 8px; text-align: center; font-size: 12px; border: 1px solid var(--line); }
+.piece .no { font-family: var(--display); font-weight: 700; color: var(--gold); font-size: 15px; }
+.piece img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; display: block; margin: 4px auto; }
+.piece .q { width: 56px; height: 56px; border-radius: 10px; margin: 4px auto; display: grid; place-items: center; background: var(--deep); font-size: 24px; color: var(--mist); }
+.piece.cursed { border-color: var(--curse); }
+.note { color: var(--mist); font-size: 13px; margin: 8px 0; }
+
+/* Fenêtres par-dessus */
+.over { position: fixed; inset: 0; z-index: 10; background: rgba(6, 10, 8, .86); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: max(16px, env(safe-area-inset-top)) 16px 16px; overflow-y: auto; }
+.card { width: min(860px, 100%); background: var(--deep); border: 1px solid var(--line); border-radius: 18px; padding: 24px; max-height: 100%; overflow-y: auto; }
+.card h2 { font-size: clamp(22px, 4vw, 32px); }
+.card .kicker { font-family: var(--display); color: var(--gold); letter-spacing: .14em; font-size: 13px; font-weight: 600; }
+.card p { color: var(--mist); margin: 8px 0 16px; }
+.card .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--mist); margin-bottom: 10px; }
+.badge { font-family: var(--display); font-size: 10px; font-weight: 600; letter-spacing: .06em; padding: 1px 6px; border-radius: 5px; position: absolute; bottom: 30px; left: 50%; translate: -50% 0; white-space: nowrap; }
+.badge.pub { background: var(--torch); color: #1a1406; }
+.badge.prod { background: #7fb0ff; color: #0b1428; }
+.legend .badge { position: static; translate: none; }
+.pick .cand { cursor: pointer; }
+.pick .cand[aria-pressed="true"] { background: color-mix(in srgb, var(--gold) 30%, transparent); }
+.votes { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+.vote { padding: 10px; border-radius: 14px; background: var(--raise); text-align: center; border: 2px solid transparent; }
+.vote:hover { border-color: var(--jade); }
+.vote img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; display: block; margin-bottom: 6px; }
+.vote .q { font-size: 12px; color: var(--mist); display: block; }
+.bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; margin-top: 6px; }
+.bar i { display: block; height: 100%; background: var(--jade); }
+.podium { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: end; text-align: center; margin: 12px 0; }
+.podium img { width: 100%; max-width: 140px; aspect-ratio: 1; border-radius: 14px; object-fit: cover; }
+.podium .p1 img { outline: 3px solid var(--gold); }
+.podium .pl { font-family: var(--display); font-size: 20px; font-weight: 700; color: var(--gold); }
+.timer { font-family: var(--display); color: var(--mist); font-size: 13px; }
+
+/* L'énigme */
+.puzzle { background: #0e1a15; border: 1px solid var(--line); border-radius: 16px; padding: 16px; margin: 12px 0; text-align: center; }
+.puzzle .ask { font-family: var(--display); font-size: 17px; margin-bottom: 12px; }
+.glyphs { font-size: clamp(30px, 7vw, 44px); letter-spacing: .15em; line-height: 1.3; }
+.glyphs .qm { display: inline-block; min-width: 1.2em; border-radius: 10px; background: var(--raise); color: var(--gold); font-family: var(--display); }
+.pgrid { display: inline-grid; gap: 4px; font-size: clamp(18px, 4.6vw, 26px); }
+.pgrid span { width: 1.7em; height: 1.7em; display: grid; place-items: center; background: var(--raise); border-radius: 8px; }
+.pgrid span.star { background: var(--gold); }
+.moves { font-size: 28px; letter-spacing: .3em; margin-top: 10px; font-weight: 700; color: var(--gold); }
+.eq { font-size: clamp(24px, 6vw, 34px); line-height: 1.6; font-family: var(--display); }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+.opt { min-height: 64px; border-radius: 14px; background: var(--raise); font-size: 28px; border: 2px solid transparent; font-family: var(--display); font-weight: 700; }
+.opt:hover:not(:disabled) { border-color: var(--gold); }
+.opt.is-ok { border-color: var(--jade); background: color-mix(in srgb, var(--jade) 22%, var(--raise)); }
+.opt.is-ko { border-color: var(--danger); opacity: .6; }
+.hints { text-align: left; margin-top: 10px; }
+.hints div { font-size: 13px; color: var(--mist); padding: 6px 10px; border-radius: 8px; background: var(--raise); margin-top: 6px; }
+.msg { font-weight: 600; margin-top: 10px; min-height: 1.4em; }
+.msg.ok { color: var(--jade); }
+.msg.ko { color: var(--danger); }
+
+@media (max-width: 820px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: auto 1fr 44vh; }
+  .side { border-left: 0; border-top: 1px solid var(--line); }
+  .fav { grid-template-columns: 48px 1fr; padding: 10px 16px; }
+  .fav img { width: 48px; height: 48px; }
+  .count .lbl, .live { display: none; }
+  .top { gap: 6px; }
+  .logo { font-size: 13px; letter-spacing: .1em; flex-basis: 100%; }
+  .ctrl button { min-width: 34px; }
+  .icon-btn { height: 40px; min-width: 38px; }
+  .card { padding: 18px; }
+  .cam { bottom: 10px; left: 10px; }
+  .cam button { padding: 0 9px; }
+  .riddleBtn { right: 10px; bottom: 56px; height: 44px; }
+}
+</style>
+
+<div class="app">
+  <header class="top">
+    <span class="logo">THE LAST · <b data-i18n>CHASSE AU TRÉSOR</b></span>
+    <span class="live" data-i18n>EN DIRECT</span>
+    <span class="clock" id="clock">J1 · 08h</span>
+    <span class="count"><b id="alive">24</b> <span class="lbl" data-i18n>en lice</span></span>
+    <span class="spacer"></span>
+    <div class="ctrl" role="group" aria-label="Vitesse" data-i18n-attr="aria-label">
+      <button id="pause" aria-pressed="false" title="Pause" data-i18n-attr="title,aria-label" aria-label="Pause">❚❚</button>
+      <button data-speed="1" aria-pressed="true">×1</button>
+      <button data-speed="3" aria-pressed="false">×3</button>
+      <button data-speed="8" aria-pressed="false">×8</button>
+    </div>
+    <button class="icon-btn" id="sound" title="Son" aria-label="Son" data-i18n-attr="title,aria-label">🔊</button>
+    <button class="icon-btn" data-lang-switch></button>
+  </header>
+
+  <main class="stage">
+    <canvas id="c"></canvas>
+    <div class="banner" id="banner" hidden></div>
+    <div class="cam" role="group" aria-label="Caméra" data-i18n-attr="aria-label">
+      <button data-cam="director" aria-pressed="true" data-i18n>Réalisateur</button>
+      <button data-cam="follow" aria-pressed="false" data-i18n>Mon favori</button>
+      <button data-cam="wide" aria-pressed="false" data-i18n>Vue large</button>
+    </div>
+    <button class="riddleBtn" id="riddleBtn">🧩 <span id="riddleLbl"></span></button>
+  </main>
+
+  <aside class="side">
+    <div class="fav" id="fav"></div>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="feed" data-i18n>Le direct</button>
+      <button role="tab" aria-selected="false" data-tab="cast" data-i18n>Les 24</button>
+      <button role="tab" aria-selected="false" data-tab="map" data-i18n>La carte</button>
+    </div>
+    <div class="pane" id="paneFeed"><ol class="feed" id="feed"></ol></div>
+    <div class="pane" id="paneCast" hidden><div class="grid" id="grid"></div></div>
+    <div class="pane" id="paneMap" hidden><div id="map"></div></div>
+  </aside>
+</div>
+
+<div class="over" id="over" hidden><div class="card" id="card"></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="i18n.js"></script>
+<script src="i18n-en-tresor.js"></script>
+<script src="sound.js"></script>
+<script src="avatar.js"></script>
+<script src="tresor-engine.js"></script>
+<script src="tresor3d.js"></script>
+<script>
+(async function () {
+  "use strict";
+  const $ = (s) => document.querySelector(s);
+  const L = I18N.lang;
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const pic = (id) => `img/p/${id}.webp`;
+  const seed = Number(new URLSearchParams(location.search).get("graine")) || 7;
+
+  // le vivier : fiches (carrière) + fiches visuelles (modèle 3D)
+  const [pool, looks] = await Promise.all([fetch("personnages.json").then((r) => r.json()), fetch("casting.json").then((r) => r.json())]);
+  const lookOf = Object.fromEntries(looks.map((c) => [c.id, c.look]));
+  const cast = TresorEngine.cast(pool.map((c) => ({ ...c, look: lookOf[c.id] })), seed);
+  const game = TresorEngine.create(cast, seed);
+  const info = Object.fromEntries(cast.map((c) => [c.id, c]));
+  const nameOf = (id) => info[id]?.name || id;
+  const field = (c, k) => (L === "en" && c.en?.[k]) || c[k];
+  const SKILL = { negotiation: t("négociation"), firstAid: t("premiers secours"), tracking: t("pistage"), stealth: t("discrétion"), orientation: t("orientation"), crafting: t("bricolage"), climbing: t("escalade"), swimming: t("natation"), endurance: t("endurance"), foraging: t("cueillette") };
+
+  const Snd = window.TheLastSound;
+  const world = Tresor3D.init($("#c"), cast, {
+    sfx: (n) => Snd?.sfx(n),
+    onPick: (id) => openCand(id),
+    piecesOf: (id) => game.byId[id]?.pieces.length || 0,
+  });
+  world.setHour(1, 8);
+
+  // ---------- état de l'interface ----------
+  let me = null, speed = 1, paused = false;
+  const puz = { day: 0, tries: 0, done: false, solvedDays: [], whispered: [] };
+
+  // ---------- les commentateurs ----------
+  const VOICES = {
+    piece: [t("Un morceau de plus ! La carte se reconstitue."), t("Celui-là, tout le monde va le vouloir.")],
+    trap: [t("La jungle ne pardonne rien… mais elle a de l'humour."), t("Ça, c'est le genre d'image qu'on repassera au prime !")],
+    steal: [t("Pas vu, pas pris ! Enfin… nous, on a tout vu."), t("Dans cette vallée, on dort d'un œil.")],
+    toucan: [t("Le public a parlé, et le toucan a bien transmis !"), t("Les spectateurs plus rapides que les candidats. Encore !")],
+    curse: [t("Ce morceau porte vraiment malheur."), t("Je ne voudrais pas être à sa place.")],
+    out: [t("Au revoir, et merci pour l'aventure."), t("Le drone l'emmène loin de la vallée.")],
+    pact: [t("Un pacte… pour combien de temps ?"), t("Ensemble, ils iront plus loin. En théorie.")],
+    win: [t("Quelle saison ! Le trésor d'Itzaluna a trouvé son maître.")],
+  };
+  const CASTERS = ["Paz", "Tito"];
+  let castTurn = 0;
+  function voice(type) {
+    const L2 = VOICES[type];
+    if (!L2 || Math.random() < 0.4) return "";
+    castTurn++;
+    return `<span class="voice"><b>${CASTERS[castTurn % 2]}</b> · ${esc(L2[Math.floor(Math.random() * L2.length)])}</span>`;
+  }
+  const hh = (h) => (L === "en" ? `${h % 12 || 12} ${h < 12 ? "AM" : "PM"}` : String(h).padStart(2, "0") + "h");
+  function log(e) {
+    if (e.type === "riddle") return;
+    const cls = { out: "hot", trap: "", vote: "good", toucan: "good", medal: "good", piece: "gold", win: "gold", finale: "gold", lock: "gold", zone: "gold", guardian: "hot", steal: "curse", curse: "curse", fake: "hot" }[e.type] || "";
+    const li = document.createElement("li");
+    li.className = cls;
+    li.innerHTML = `<span class="when">${t("J{d}", { d: e.day })} · ${hh(e.hour)}</span>${esc(e.text)}${voice(e.cause === "finale" ? "" : e.type)}`;
+    $("#feed").appendChild(li);
+    while ($("#feed").children.length > 140) $("#feed").firstChild.remove();
+    if (me && (e.a === me || e.v === me || e.ids?.includes(me)) && e.type !== "night") banner(e.text);
+  }
+  let bannerT = 0;
+  function banner(text) {
+    const b = $("#banner"); b.textContent = text; b.hidden = false;
+    clearTimeout(bannerT); bannerT = setTimeout(() => (b.hidden = true), 4500);
+  }
+
+  // ---------- panneau ----------
+  const snapC = (id) => game.snapshot().cast.find((x) => x.id === id);
+  function stateLabel(c) {
+    const snap = game.snapshot();
+    if (c.id === snap.winner) return `<span class="state win">${t("Vainqueur")}</span>`;
+    if (c.state === "out") return `<span class="state out">${t("Évacué·e · {n}e", { n: c.rank })}</span>`;
+    if (snap.threatened.includes(c.id) && snap.hour >= 19) return `<span class="state risk">${t("Menacé·e")}</span>`;
+    return "";
+  }
+  const kit = (c) => `${c.medal ? "🟢" : ""}${c.pieces.length ? " 📜" + c.pieces.length : ""}${c.copies ? " ✍️" + c.copies : ""}`;
+  function renderSide() {
+    const snap = game.snapshot();
+    $("#alive").textContent = snap.cast.filter((c) => c.state !== "out").length;
+    $("#grid").innerHTML = snap.cast.map((c) => `<button class="cand ${c.state === "out" ? "is-out" : snap.threatened.includes(c.id) && snap.hour >= 19 ? "is-risk" : ""} ${c.id === me ? "is-me" : ""}" data-id="${c.id}">
+      ${c.state === "out" ? `<span class="rk">${c.rank}e</span>` : ""}<img src="${pic(c.id)}" alt="" loading="lazy"><span class="n">${esc(c.name)}</span><span class="s">${c.state === "out" ? "" : kit(c)}</span></button>`).join("");
+    $("#map").innerHTML = `<p class="note">${t("Les 7 morceaux de la carte déchirée et qui les détient. 🟢 médaillon de jade · 📜 morceau de carte · ✍️ copie.")}</p>
+      <div class="pieces">${snap.pieces.map((h, i) => `<div class="piece ${i + 1 === 3 ? "cursed" : ""}"><div class="no">n°${i + 1}${i + 1 === 3 ? " ☁️" : ""}</div>${h ? `<img src="${pic(h)}" alt="">${esc(nameOf(h))}` : `<div class="q">?</div>${i + 1 < snap.day || (i + 1 === snap.day && snap.solved) ? t("perdu") : t("caché")}`}</div>`).join("")}</div>
+      <p class="note">${t("Le morceau n°3 est maudit : son porteur attire les ennuis. Le n°7 se gagne le jour du prime et vaut double au coffre.")}</p>`;
+    world.setCursed(snap.pieces[2] && snapC(snap.pieces[2])?.state === "in" ? snap.pieces[2] : null);
+    for (const c of snap.cast) world.setScroll(c.id, c.pieces.length > 0 && c.state === "in");
+    renderRiddleBtn();
+    const f = $("#fav");
+    if (!me) { f.innerHTML = `<div style="grid-column:1/-1;color:var(--mist);font-size:14px">${t("Choisis un favori dans « Les 24 » ou en touchant un candidat dans la vallée.")}</div>`; return; }
+    const c = snap.cast.find((x) => x.id === me), ci = info[me];
+    const pact = c.pact ? t("Pacte avec {a}", { a: nameOf(c.pact) }) : t("Sans pacte");
+    f.innerHTML = `<img src="${pic(me)}" alt="">
+      <div><h3>${esc(ci.name)} <span style="font-size:15px">${c.state === "out" ? "" : kit(c)}</span></h3>
+      <div class="meta">${esc(field(ci, "job"))} · ${ci.age} ${t("ans")} · ${(ci.skills || []).map((s) => SKILL[s] || s).join(", ")}</div>
+      <div class="meta">${pact} · ${c.medal ? t("a son médaillon") : t("sans médaillon")} · ${t("{n} morceau(x)", { n: c.pieces.length })} ${stateLabel(c)}</div></div>
+      <div class="actions"><button class="btn" id="seeBtn">${t("Voir dans la vallée")}</button></div>`;
+    $("#seeBtn").onclick = () => { setCam("follow"); world.focusOn(me); };
+  }
+  $("#grid").addEventListener("click", (e) => { const b = e.target.closest("[data-id]"); if (b) openCand(b.dataset.id); });
+  document.querySelectorAll("[data-tab]").forEach((b) => b.onclick = () => {
+    document.querySelectorAll("[data-tab]").forEach((x) => x.setAttribute("aria-selected", x === b));
+    $("#paneFeed").hidden = b.dataset.tab !== "feed"; $("#paneCast").hidden = b.dataset.tab !== "cast"; $("#paneMap").hidden = b.dataset.tab !== "map";
+  });
+
+  // ---------- fenêtres ----------
+  let cardOpen = false;
+  function showCard(html, keepRunning = false) {
+    $("#card").innerHTML = html; $("#over").hidden = false; cardOpen = true;
+    if (!keepRunning) world.setPaused(true);
+  }
+  function closeCard() { $("#over").hidden = true; cardOpen = false; world.setPaused(paused); }
+
+  function openCand(id) {
+    const ci = info[id], c = snapC(id);
+    const rivals = (ci.career?.rivals || []).slice(0, 3).map((r) => `${esc(pool.find((p) => p.id === r.id)?.name || r.id)} (${esc(r.where)})`).join(", ");
+    showCard(`<div class="kicker">${ci.pick === "public" ? t("CHOISI·E PAR LE PUBLIC") : t("REPÊCHÉ·E PAR LA PRODUCTION")}</div>
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;margin-top:8px">
+        <img src="${pic(id)}" alt="" style="width:120px;border-radius:14px">
+        <div><h2>${esc(ci.name)} <span style="font-size:18px">${c.state === "out" ? "" : kit(c)}</span></h2>
+        <p style="margin:4px 0">${esc(field(ci, "job"))} · ${ci.age} ${t("ans")} · ${esc(field(ci, "origin"))}</p>
+        <p style="margin:4px 0;color:var(--text)">« ${esc(field(ci, "catchphrase"))} »</p>
+        <p style="margin:4px 0">${esc(field(ci, "bio"))}</p>
+        <p style="margin:4px 0">${t("Atouts dans la jungle : {s}", { s: (ci.skills || []).map((s) => SKILL[s] || s).join(", ") })}</p>
+        ${rivals ? `<p style="margin:4px 0">${t("Comptes à régler : {r}", { r: rivals })}</p>` : ""}
+        <p style="margin:4px 0">${t("Carrière : niveau {l}, {w} victoire(s)", { l: ci.career?.level ?? 1, w: ci.career?.wins ?? 0 })} ${stateLabel(c)}</p></div>
+      </div>
+      <div class="row"><button class="btn primary" id="mkFav">${me === id ? t("C'est ton favori") : t("En faire mon favori")}</button><button class="btn" id="closeC">${t("Fermer")}</button></div>`);
+    $("#mkFav").onclick = () => { setFav(id); closeCard(); };
+    $("#closeC").onclick = closeCard;
+  }
+  function setFav(id) { me = id; world.setFavorite(id); renderSide(); }
+
+  // ---------- l'énigme du jour ----------
+  function renderRiddleBtn() {
+    const snap = game.snapshot(), R = game.riddle();
+    const b = $("#riddleBtn");
+    if (!R || snap.over) { b.hidden = true; return; }
+    b.hidden = false;
+    const fresh = puz.day !== R.day;
+    b.classList.toggle("is-new", !snap.solved && !puz.done && !snap.whisper);
+    b.classList.toggle("is-done", snap.solved || puz.done);
+    $("#riddleLbl").textContent = snap.solved ? t("Énigme du jour {d} : résolue", { d: R.day }) : snap.whisper ? t("Réponse soufflée") : puz.done && puz.day === R.day ? t("Énigme : tu as trouvé !") : t("Énigme du jour {d}", { d: R.day });
+    if (fresh) { puz.day = R.day; puz.tries = 0; puz.done = false; }
+  }
+  function puzzleHTML(R) {
+    if (R.kind === "sequence") return `<div class="ask">${t("Quel symbole vient ensuite ?")}</div><div class="glyphs">${R.seq.join(" ")} <span class="qm">?</span></div>`;
+    if (R.kind === "count") return `<div class="ask">${t("Combien de {g} se cachent dans les arbres ?", { g: R.target })}</div><div class="pgrid" style="grid-template-columns:repeat(6,auto)">${R.grid.map((g) => `<span>${g}</span>`).join("")}</div>`;
+    if (R.kind === "balance") return `<div class="ask">${t("Sur les dalles du temple, combien vaut {g} ?", { g: R.ask })}</div><div class="eq">${R.lines.map((l) => l.join(" ")).join("<br>")}</div>`;
+    if (R.kind === "mirror") return `<div class="ask">${t("Les flèches gravées au-dessus de la cascade se reflètent dans l'eau. Quel est leur reflet ?")}</div><div class="glyphs" style="font-family:var(--display)">${R.src} ┃ <span class="qm">?</span></div>`;
+    if (R.kind === "path") return `<div class="ask">${t("Pars de l'étoile et suis les flèches, une case par flèche. Sur quel symbole arrives-tu ?")}</div><div class="pgrid" style="grid-template-columns:repeat(${R.size},auto)">${R.grid.map((g) => `<span class="${g === "⭐" ? "star" : ""}">${g}</span>`).join("")}</div><div class="moves">${R.moves.join(" ")}</div>`;
+    if (R.kind === "odd") return `<div class="ask">${t("Au fond du cénote, une seule dalle n'est pas comme les autres. Laquelle ?")}</div>`;
+    return `<div class="ask">${t("Le coffre : chaque symbole vaut un chiffre. Quel code ouvre la serrure ?")}</div><div class="eq">${R.key.map(([g, n]) => `${g} = ${n}`).join(" · ")}</div><div class="glyphs" style="margin-top:8px">🔒 ${R.lock.join(" ")}</div>`;
+  }
+  function openRiddle(auto = false) {
+    const R = game.riddle(), snap = game.snapshot();
+    if (!R) return;
+    renderRiddleBtn();
+    const hintsShown = R.hints.filter((_, i) => snap.hour >= [12, 15][i] || snap.day > R.day);
+    const late = snap.solved && !puz.done;
+    const head = late ? t("Trop tard pour souffler : {a} a déjà trouvé. Tu peux quand même t'entraîner.", { a: nameOf(snap.solvedBy) })
+      : snap.whisper ? t("Le toucan est déjà en route vers {a}.", { a: nameOf(snap.whisper) })
+      : t("Résous-la avant les candidats : la communauté choisira à qui souffler la réponse. Dans cette maquette, ta réponse représente celle de la communauté.");
+    showCard(`<div class="kicker">${t("L'ÉNIGME DU JOUR {d} · {z}", { d: R.day, z: game.zoneName(R.day - 1).toUpperCase() })}</div>
+      <h2>${t("Trouve le morceau de carte n°{d}", { d: R.day })}</h2><p>${head}</p>
+      <div class="puzzle">${puzzleHTML(R)}</div>
+      <div class="opts" style="${R.kind === "odd" ? "grid-template-columns:repeat(3,1fr)" : ""}">${R.options.map((o, i) => `<button class="opt" data-i="${i}" ${puz.done && puz.day === R.day ? "disabled" : ""}>${esc(o)}</button>`).join("")}</div>
+      <div class="msg" id="pmsg">${puz.done && puz.day === R.day ? t("Tu as trouvé cette énigme.") : t("{n} essai(s) restant(s)", { n: 3 - puz.tries })}</div>
+      ${hintsShown.length ? `<div class="hints">${hintsShown.map((h, i) => `<div>💡 ${t("Indice n°{i} : {h}", { i: i + 1, h: t(h) })}</div>`).join("")}</div>` : `<div class="hints"><div>💡 ${t("Les indices arrivent à 12h et 15h.")}</div></div>`}
+      <div class="row"><button class="btn" id="closeC">${auto ? t("Plus tard") : t("Fermer")}</button></div>`);
+    $("#closeC").onclick = closeCard;
+    $("#card").querySelectorAll(".opt").forEach((b) => b.onclick = () => {
+      if (puz.done || puz.tries >= 3) return;
+      const i = Number(b.dataset.i);
+      if (i === R.answer) {
+        b.classList.add("is-ok"); puz.done = true; puz.solvedDays.push(R.day);
+        Snd?.sfx("fanfare");
+        $("#pmsg").className = "msg ok";
+        const s2 = game.snapshot();
+        if (!s2.solved && !s2.whisper) { $("#pmsg").textContent = t("Bravo ! Tu as trouvé avant les candidats."); setTimeout(() => askWhisper(), 900); }
+        else $("#pmsg").textContent = t("Bonne réponse ! Badge « Décrypteur » : {n} énigme(s) résolue(s).", { n: puz.solvedDays.length });
+        renderRiddleBtn();
+      } else {
+        b.classList.add("is-ko"); b.disabled = true; puz.tries++;
+        Snd?.sfx("bonk");
+        $("#pmsg").className = "msg ko";
+        $("#pmsg").textContent = puz.tries >= 3 ? t("Plus d'essai pour aujourd'hui. La réponse sera révélée ce soir.") : t("Raté ! {n} essai(s) restant(s).", { n: 3 - puz.tries });
+        if (puz.tries >= 3) $("#card").querySelectorAll(".opt").forEach((x) => x.disabled = true);
+      }
+    });
+  }
+  function askWhisper() {
+    const ids = game.snapshot().cast.filter((c) => c.state === "in").map((c) => c.id).sort((a, b) => (b === me) - (a === me));
+    showCard(`<div class="kicker">${t("LE VOTE DU SOUFFLE")}</div><h2>${t("À qui le toucan doit-il souffler la réponse ?")}</h2>
+      <p>${t("La communauté a trouvé avant les candidats. Le candidat choisi recevra la réponse et filera droit vers le morceau de carte. Un seul vote par personne, gratuit.")}</p>
+      <div class="votes">${ids.map((id) => `<button class="vote" data-id="${id}" style="${id === me ? "border-color:var(--gold)" : ""}"><img src="${pic(id)}" alt="">${esc(nameOf(id))}<span class="q">${kit(snapC(id))}</span></button>`).join("")}</div>
+      <div class="row"><button class="btn" id="skip">${t("Ne rien souffler")}</button></div>`);
+    $("#card").querySelectorAll("[data-id]").forEach((b) => b.onclick = () => {
+      const id = b.dataset.id;
+      if (game.whisper(id)) { puz.whispered.push(R0()); banner(t("Le toucan s'envole vers {a} !", { a: nameOf(id) })); }
+      closeCard(); renderSide();
+    });
+    $("#skip").onclick = () => { closeCard(); renderSide(); };
+  }
+  const R0 = () => game.riddle()?.day;
+  $("#riddleBtn").onclick = () => openRiddle(false);
+
+  // ---------- casting d'ouverture ----------
+  function openCasting() {
+    return new Promise((res) => {
+      let pick = null;
+      showCard(`<div class="kicker">${t("SAISON 1 · LA VALLÉE D'ITZALUNA")}</div>
+        <h2>${t("24 candidats. Une carte déchirée en 7. Un seul trésor.")}</h2>
+        <p>${t("Chaque jour, une nouvelle zone de la jungle s'ouvre avec une énigme qui mène à un morceau de carte. Sans médaillon de jade à 19h, on est menacé à l'Heure du gardien, et ton vote peut sauver. Toi aussi, tu peux résoudre l'énigme : si tu trouves avant les candidats, tu choisis à qui la souffler.")}</p>
+        <div class="legend"><span><span class="badge pub">${t("PUBLIC")}</span> ${t("20 choisis par les spectateurs")}</span><span><span class="badge prod">${t("PROD")}</span> ${t("4 repêchés par la production")}</span></div>
+        <div class="grid pick">${cast.map((c) => `<button class="cand" data-id="${c.id}" aria-pressed="false"><img src="${pic(c.id)}" alt=""><span class="badge ${c.pick === "public" ? "pub" : "prod"}">${c.pick === "public" ? t("PUBLIC") : t("PROD")}</span><span class="n">${esc(c.name)}</span></button>`).join("")}</div>
+        <div class="row"><button class="btn primary" id="go">${t("Entrer dans la vallée sans favori")}</button><span class="timer">${t("Touche un visage pour choisir ton favori.")}</span></div>`);
+      $("#card").querySelector(".pick").onclick = (e) => {
+        const b = e.target.closest("[data-id]"); if (!b) return;
+        pick = b.dataset.id;
+        $("#card").querySelectorAll(".pick [data-id]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+        $("#go").textContent = t("Entrer dans la vallée avec {a}", { a: nameOf(pick) });
+      };
+      $("#go").onclick = () => { Snd?.start(); Snd?.music("calm"); if (pick) setFav(pick); closeCard(); res(); };
+    });
+  }
+
+  function askVote(ask) {
+    return new Promise((res) => {
+      Snd?.sfx("tension");
+      let left = 30;
+      showCard(`<div class="kicker">${t("19H · L'HEURE DU GARDIEN")}</div><h2>${t("Qui sauves-tu ?")}</h2>
+        <p>${t("Ces candidats n'ont pas de médaillon de jade ce soir. Un seul reste dans la vallée, les autres sont évacués par drone. Dans cette maquette, ton vote pèse un peu plus que celui d'un spectateur réel.")}</p>
+        <div class="votes">${ask.ids.map((id) => `<button class="vote" data-id="${id}"><img src="${pic(id)}" alt="">${esc(nameOf(id))}<span class="q">${kit(snapC(id)) || "—"}</span><span class="q">« ${esc(field(info[id], "catchphrase"))} »</span></button>`).join("")}</div>
+        <div class="row"><button class="btn" id="skip">${t("Laisser le public décider")}</button><span class="timer" id="tm"></span></div>`);
+      const tick = () => { $("#tm") && ($("#tm").textContent = t("Fin du vote dans {s} s", { s: left })); if (left-- <= 0) done(null); };
+      const iv = setInterval(tick, 1000); tick();
+      function done(id) { clearInterval(iv); closeCard(); res(id); }
+      $("#card").querySelectorAll("[data-id]").forEach((b) => b.onclick = () => done(b.dataset.id));
+      $("#skip").onclick = () => done(null);
+    });
+  }
+  function showVoteResult(e) {
+    return new Promise((res) => {
+      showCard(`<div class="kicker">${t("RÉSULTAT DU VOTE")}</div><h2>${t("{a} est sauvé·e !", { a: esc(nameOf(e.saved)) })}</h2>
+        <div class="votes" style="margin-top:12px">${e.result.map((r) => `<div class="vote" style="${r.id === e.saved ? "border-color:var(--jade)" : ""}"><img src="${pic(r.id)}" alt="">${esc(nameOf(r.id))}<div class="bar"><i style="width:${r.pct}%"></i></div><span class="q">${r.pct} %</span></div>`).join("")}</div>
+        <div class="row"><button class="btn primary" id="ok">${t("Continuer")}</button></div>`);
+      const go = () => { closeCard(); res(); };
+      $("#ok").onclick = go; setTimeout(() => { if (!$("#over").hidden && $("#ok")) go(); }, 7000);
+    });
+  }
+  function showNight(d, out, R) {
+    return new Promise((res) => {
+      const snap = game.snapshot();
+      const gone = out.map((id) => `<div class="cand"><img src="${pic(id)}" alt=""><span class="n">${esc(nameOf(id))}</span></div>`).join("");
+      const by = snap.pieces[d - 1];
+      showCard(`<div class="kicker">${t("LA QUOTIDIENNE · JOUR {d}", { d })}</div><h2>${t("La nuit tombe sur Itzaluna")}</h2>
+        <p>${R ? t("La réponse de l'énigme était : {r}", { r: esc(R.options[R.answer]) }) + (puz.solvedDays.includes(d) ? " · " + t("tu l'avais trouvée !") : "") : ""}</p>
+        <p>${by ? t("Le morceau n°{n} est entre les mains de {a}.", { n: d, a: esc(nameOf(by)) }) : ""}</p>
+        <p>${out.length ? t("Évacués aujourd'hui :") : t("Personne n'a quitté la vallée aujourd'hui.")}</p><div class="grid">${gone}</div>
+        <p>${t("{n} candidats encore en lice. Cette nuit, gare aux voleurs de carte.", { n: snap.cast.filter((c) => c.state !== "out").length })}</p>
+        <div class="row"><button class="btn primary" id="ok">${t("Jour suivant")}</button></div>`);
+      const go = () => { closeCard(); res(); };
+      $("#ok").onclick = go; setTimeout(() => { if (!$("#over").hidden && $("#ok")) go(); }, 10000);
+    });
+  }
+  function showWinner() {
+    const snap = game.snapshot();
+    const top = [...snap.cast].sort((a, b) => (a.rank || 99) - (b.rank || 99)).slice(0, 3);
+    const order = [top[1], top[0], top[2]].filter(Boolean);
+    const mine = me ? snap.cast.find((c) => c.id === me) : null;
+    const thief = [...snap.cast].sort((a, b) => b.stats.steals - a.stats.steals)[0];
+    showCard(`<div class="kicker">${t("LE PRIME · LE COFFRE D'ITZALUNA")}</div><h2>${t("{a} remporte The Last - Chasse au trésor !", { a: esc(nameOf(snap.winner)) })}</h2>
+      <div class="podium">${order.map((c) => `<div class="${c.rank === 1 ? "p1" : ""}"><img src="${pic(c.id)}" alt=""><div class="pl">${c.rank}</div>${esc(c.name)}</div>`).join("")}</div>
+      <p>${t("Ce que gagne le vainqueur : le trait « Cartographe » pour ses prochaines émissions, et une boussole dorée autour de son portrait.")}</p>
+      ${thief.stats.steals ? `<p>${t("Le plus rusé de la saison : {a}, avec {n} vol(s).", { a: esc(thief.name), n: thief.stats.steals })}</p>` : ""}
+      <p>${t("Tes énigmes : {n} sur 7 résolues.", { n: puz.solvedDays.length })} ${puz.solvedDays.length ? t("Tu gagnes le badge « Décrypteur ».") : ""} ${puz.whispered.length ? t("Ton toucan a soufflé {n} réponse(s).", { n: puz.whispered.length }) : ""}</p>
+      ${mine ? `<p>${mine.rank === 1 ? t("Ton favori a gagné ! Tu reçois le badge « Je l'avais dit ».") : t("Ton favori, {a}, finit {n}e.", { a: esc(mine.name), n: mine.rank })}</p>` : ""}
+      <div class="row"><button class="btn primary" id="again">${t("Nouvelle saison")}</button><button class="btn" id="closeC">${t("Revoir la vallée")}</button></div>`, true);
+    $("#again").onclick = () => { const u = new URL(location.href); u.searchParams.set("graine", seed + 1); location.href = u.toString(); };
+    $("#closeC").onclick = closeCard;
+  }
+
+  // ---------- contrôles ----------
+  document.querySelectorAll("[data-speed]").forEach((b) => b.onclick = () => {
+    speed = Number(b.dataset.speed); world.setSpeed(speed);
+    document.querySelectorAll("[data-speed]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+  });
+  $("#pause").onclick = () => { paused = !paused; world.setPaused(paused); $("#pause").setAttribute("aria-pressed", paused); $("#pause").textContent = paused ? "▶" : "❚❚"; };
+  function setCam(m) { world.setMode(m); document.querySelectorAll("[data-cam]").forEach((x) => x.setAttribute("aria-pressed", x.dataset.cam === m)); }
+  document.querySelectorAll("[data-cam]").forEach((b) => b.onclick = () => setCam(b.dataset.cam));
+  const updSound = () => { $("#sound").textContent = Snd?.muted ? "🔇" : "🔊"; };
+  $("#sound").onclick = () => { Snd?.setMuted(!Snd.muted); updSound(); };
+  updSound();
+
+  // ---------- la saison ----------
+  renderSide();
+  await openCasting();
+  const evacuatedToday = [];
+  let lastRiddle = null;
+  async function playAll(events) {
+    for (const e of events) {
+      if (e.type === "night") {
+        world.setHour(e.day, 22);
+        Snd?.setNight?.(true); Snd?.music("night");
+        log(e);
+        await world.play(e);
+        renderSide();
+        await showNight(e.day, evacuatedToday.splice(0), lastRiddle);
+        Snd?.setNight?.(false); Snd?.music("calm");
+        continue;
+      }
+      if (e.type === "vote") { log(e); await showVoteResult(e); await world.play(e); renderSide(); continue; }
+      if (e.type === "out") evacuatedToday.push(e.v);
+      log(e);
+      if (e.type === "riddle") {
+        lastRiddle = game.riddle(); renderSide();
+        banner(t("Nouvelle énigme ! Touche « Énigme du jour » pour la résoudre avant les candidats."));
+        if (e.day === 1) { await world.play(e); openRiddle(true); while (cardOpen) await new Promise((r) => setTimeout(r, 200)); continue; }
+      }
+      if (e.type === "finale") Snd?.music("challenge");
+      if (e.type === "win") { renderSide(); await world.play(e); showWinner(); continue; }
+      await world.play(e);
+      renderSide();
+    }
+  }
+  let step;
+  while ((step = game.next())) {
+    world.setHour(step.day, step.hour);
+    renderSide();
+    $("#clock").textContent = `${t("J{d}", { d: step.day })} · ${hh(step.hour)}`;
+    await playAll(step.events);
+    if (step.ask) {
+      const value = await askVote(step.ask);
+      await playAll(game.answer(value));
+    }
+    while (cardOpen) await new Promise((r) => setTimeout(r, 200));
+    await world.wait(step.events.length ? 0.9 : 1.6);
+  }
+})();
+</script>
+</html>
