@@ -1977,6 +1977,656 @@
     "fr": "Attention, l'eau monte trop vite ici !",
     "en": "Watch out, water is rising fast!"
    }
+  },
+  "78:steal:c053,c054": {
+   "sneak": {
+    "fr": "Je prends ça discrètement.",
+    "en": "I'll take that quietly."
+   }
+  },
+  "78:steal:c029,c033": {
+   "sneak": {
+    "fr": "Personne ne regarde par ici.",
+    "en": "Nobody is looking over here."
+   }
+  },
+  "79:steal:c031,c054": {
+   "sneak": {
+    "fr": "Un petit peu de nourriture change de main.",
+    "en": "A little bit of food changes hands."
+   }
+  },
+  "79:steal:c082,c076": {
+   "sneak": {
+    "fr": "Je fais vite et sans bruit.",
+    "en": "I'll do it fast and silently."
+   }
+  },
+  "79:steal:c090,c036": {
+   "sneak": {
+    "fr": "Je pars sans faire de vagues.",
+    "en": "I'm leaving without making waves."
+   },
+   "betray": {
+    "fr": "Je dois penser à ma propre survie.",
+    "en": "I must think of my own survival."
+   }
+  },
+  "79:hazard:c029": {
+   "help": {
+    "fr": "Aïe, mon pied est coincé !",
+    "en": "Ouch, my foot is stuck!"
+   },
+   "rescue": {
+    "fr": "Accroche-toi, je te sors de là.",
+    "en": "Hold on, I am getting you out."
+   },
+   "thanks": {
+    "fr": "Merci, tu m'as sauvé la mise.",
+    "en": "Thanks, you saved my life."
+   }
+  },
+  "81:steal:c054,c075": {
+   "sneak": {
+    "fr": "Je tente ma chance par ici.",
+    "en": "I am trying my luck here."
+   },
+   "caughtB": {
+    "fr": "Mais qu'est-ce que tu fais dans mon sac ?",
+    "en": "What are you doing in my bag?"
+   },
+   "caughtA": {
+    "fr": "Euh, je cherchais juste une boussole.",
+    "en": "Um, I was just looking for a compass."
+   }
+  },
+  "81:steal:c041,c038": {
+   "sneak": {
+    "fr": "Voyons ce qu'il y a là-dedans.",
+    "en": "Let's see what is inside here."
+   },
+   "caughtB": {
+    "fr": "Touche pas à mes affaires !",
+    "en": "Do not touch my things!"
+   },
+   "caughtA": {
+    "fr": "Je remettais juste ça en place.",
+    "en": "I was just putting that back."
+   }
+  },
+  "83:steal:c054,c053": {
+   "sneak": {
+    "fr": "Personne ne remarque mon geste.",
+    "en": "Nobody notices my move."
+   },
+   "caughtB": {
+    "fr": "Hé, tu fouilles dans mon campement !",
+    "en": "Hey, you are searching my camp!"
+   },
+   "caughtA": {
+    "fr": "Je voulais juste emprunter ceci.",
+    "en": "I just wanted to borrow this."
+   }
+  },
+  "83:hazard:c031": {
+   "help": {
+    "fr": "Au secours, une araignée sur moi !",
+    "en": "Help, a spider is on me!"
+   },
+   "rescue": {
+    "fr": "Ne bouge surtout pas, je m'en occupe.",
+    "en": "Do not move at all, I've got it."
+   },
+   "thanks": {
+    "fr": "Ouf, j'ai eu très peur.",
+    "en": "Phew, I was very scared."
+   }
+  },
+  "84:steal:c071,c075": {
+   "sneak": {
+    "fr": "Personne ne verra rien du tout.",
+    "en": "Nobody will see a thing."
+   }
+  },
+  "84:gift_lost:c054,c053": {
+   "lost": {
+    "fr": "Oh non, il dévie complètement !",
+    "en": "Oh no, it is drifting away!"
+   },
+   "interB": {
+    "fr": "Il atterrit pile devant moi, magnifique.",
+    "en": "It lands right in front of me, great."
+   },
+   "interA": {
+    "fr": "Rends-moi ce paquet immédiatement.",
+    "en": "Give me that package right now."
+   }
+  },
+  "84:gift_delivered:c071": {
+   "gift": {
+    "fr": "Merci pour cette gourde, c'est parfait.",
+    "en": "Thanks for this flask, it is perfect."
+   }
+  },
+  "84:gift_delivered:c031": {
+   "gift": {
+    "fr": "Merci pour le soutien du public.",
+    "en": "Thank you for the public support."
+   }
+  },
+  "84:gift_delivered:c016": {
+   "gift": {
+    "fr": "Cette trousse arrive juste à temps.",
+    "en": "This kit arrives just in time."
+   }
+  },
+  "84:gift_delivered:c086": {
+   "gift": {
+    "fr": "Des rations, voilà une excellente nouvelle.",
+    "en": "Rations, that is great news."
+   }
+  },
+  "84:gift_delivered:c046": {
+   "gift": {
+    "fr": "Merci, ça va bien m'aider.",
+    "en": "Thanks, that will really help me."
+   }
+  },
+  "84:gift_delivered:c076": {
+   "gift": {
+    "fr": "Une gourde fraîche, merci à tous.",
+    "en": "A fresh flask, thanks everyone."
+   }
+  },
+  "84:gift_lost:c029,c076": {
+   "lost": {
+    "fr": "Il m'échappe des mains !",
+    "en": "It is slipping away from me!"
+   },
+   "interB": {
+    "fr": "Je l'attrape au vol, quelle chance.",
+    "en": "I caught it mid-air, what luck."
+   },
+   "interA": {
+    "fr": "C'était pour moi au départ.",
+    "en": "It was meant for me initially."
+   }
+  },
+  "84:gift_lost:c038": {
+   "lost": {
+    "fr": "Il est coincé tout là-haut.",
+    "en": "It is stuck way up there."
+   }
+  },
+  "84:gift_delivered:c099": {
+   "gift": {
+    "fr": "Merci pour cette trousse de secours.",
+    "en": "Thanks for this medical kit."
+   }
+  },
+  "84:gift_lost:c041,c050": {
+   "lost": {
+    "fr": "Il tombe du mauvais côté.",
+    "en": "It falls on the wrong side."
+   },
+   "interB": {
+    "fr": "Je récupère ce colis inattendu.",
+    "en": "I am recovering this unexpected package."
+   },
+   "interA": {
+    "fr": "C'est mon colis que tu as là.",
+    "en": "That is my package you have there."
+   }
+  },
+  "84:gift_delivered:c088": {
+   "gift": {
+    "fr": "Le matériel arrive au bon moment.",
+    "en": "The gear arrives at the right time."
+   }
+  },
+  "84:gift_delivered:c024": {
+   "gift": {
+    "fr": "Une corde solide, merci au public.",
+    "en": "A sturdy rope, thanks to the public."
+   }
+  },
+  "84:gift_delivered:c082": {
+   "gift": {
+    "fr": "Parfait, je cherchais justement une corde.",
+    "en": "Great, I was actually looking for rope."
+   }
+  },
+  "84:gift_delivered:c075": {
+   "gift": {
+    "fr": "Merci pour ces vivres supplémentaires.",
+    "en": "Thanks for these extra supplies."
+   }
+  },
+  "84:gift_lost:c050,c038": {
+   "lost": {
+    "fr": "Mince, il m'échappe complètement.",
+    "en": "Darn, it completely escapes me."
+   },
+   "interB": {
+    "fr": "Je le saisis avant qu'il ne tombe.",
+    "en": "I grab it before it falls."
+   },
+   "interA": {
+    "fr": "Tu as pris mon colis par erreur.",
+    "en": "You took my package by mistake."
+   }
+  },
+  "84:gift_delivered:c033": {
+   "gift": {
+    "fr": "Merci pour cette trousse médicale.",
+    "en": "Thanks for this medical kit."
+   }
+  },
+  "84:gift_delivered:c063": {
+   "gift": {
+    "fr": "Super, je prends ce matériel.",
+    "en": "Awesome, I am taking this gear."
+   }
+  },
+  "85:steal:c086,c053": {
+   "sneak": {
+    "fr": "Je prends la lampe sans bruit.",
+    "en": "I'll take the flashlight silently."
+   }
+  },
+  "120:evacuated:c054": {
+   "quit": {
+    "fr": "Je n'en peux plus, je m'en vais.",
+    "en": "I cannot do this anymore, I am leaving."
+   }
+  },
+  "120:evacuated:c075": {
+   "quit": {
+    "fr": "Ces bêtes m'ont fait trop peur, j'arrête.",
+    "en": "Those creatures scared me too much, I'm done."
+   }
+  },
+  "128:steal:c053,c050": {
+   "sneak": {
+    "fr": "Un petit regard dans son sac.",
+    "en": "A quick look inside their bag."
+   },
+   "caughtB": {
+    "fr": "Matthias ? Tu touches à mes affaires !",
+    "en": "Matthias? You are touching my things!"
+   },
+   "caughtA": {
+    "fr": "Je cherchais juste quelque chose, vraiment.",
+    "en": "I was just looking for something, really."
+   }
+  },
+  "129:suspicion:c053,c082": {
+   "suspect": {
+    "fr": "Elle cache quelque chose, c'est évident.",
+    "en": "She is hiding something, it is obvious."
+   }
+  },
+  "132:gift_delivered:c071": {
+   "gift": {
+    "fr": "Merci infiniment pour cette aide précieuse.",
+    "en": "Thank you so much for this precious help."
+   }
+  },
+  "132:gift_delivered:c053": {
+   "gift": {
+    "fr": "Enfin de l'eau, merci à vous tous.",
+    "en": "Finally some water, thank you everyone."
+   }
+  },
+  "132:gift_lost:c016,c086": {
+   "lost": {
+    "fr": "Mon colis, il était pour moi !",
+    "en": "My package, it was for me!"
+   },
+   "interB": {
+    "fr": "Désolé, il est tombé juste ici.",
+    "en": "Sorry, it fell right here."
+   },
+   "interA": {
+    "fr": "Redonne-le moi, c'est ma propriété.",
+    "en": "Give it back to me, it is my property."
+   }
+  },
+  "132:gift_delivered:c086": {
+   "gift": {
+    "fr": "Merci, c'est exactement ce qu'il me fallait.",
+    "en": "Thank you, this is exactly what I needed."
+   }
+  },
+  "132:gift_delivered:c046": {
+   "gift": {
+    "fr": "C'est une grande chance, merci le public.",
+    "en": "This is a great fortune, thank you public."
+   }
+  },
+  "132:gift_delivered:c076": {
+   "gift": {
+    "fr": "Je suis tellement soulagée, merci infiniment.",
+    "en": "I am so relieved, thank you so much."
+   }
+  },
+  "132:gift_delivered:c029": {
+   "gift": {
+    "fr": "Un geste incroyable, merci de votre soutien.",
+    "en": "An incredible gesture, thank you for your support."
+   }
+  },
+  "132:gift_delivered:c007": {
+   "gift": {
+    "fr": "Merci, cela va m'aider à avancer.",
+    "en": "Thank you, this will help me move forward."
+   }
+  },
+  "132:gift_delivered:c010": {
+   "gift": {
+    "fr": "Merci beaucoup pour ce cadeau indispensable.",
+    "en": "Thank you very much for this essential gift."
+   }
+  },
+  "132:gift_delivered:c088": {
+   "gift": {
+    "fr": "Je vous remercie pour cette générosité.",
+    "en": "I thank you for this generosity."
+   }
+  },
+  "132:gift_delivered:c090": {
+   "gift": {
+    "fr": "Quel soulagement, merci pour cette attention.",
+    "en": "What a relief, thank you for this attention."
+   }
+  },
+  "132:gift_lost:c057,c082": {
+   "lost": {
+    "fr": "Non, ce colis était destiné à moi !",
+    "en": "No, that package was meant for me!"
+   },
+   "interB": {
+    "fr": "C'est tombé à mes pieds, Mila.",
+    "en": "It landed at my feet, Mila."
+   },
+   "interA": {
+    "fr": "Je sais, mais il m'était adressé.",
+    "en": "I know, but it was addressed to me."
+   }
+  },
+  "132:gift_delivered:c082": {
+   "gift": {
+    "fr": "Merci, je souris mais je note tout.",
+    "en": "Thank you, I smile but I note everything."
+   }
+  },
+  "132:gift_delivered:c050": {
+   "gift": {
+    "fr": "Ça va bien se passer, merci à tous.",
+    "en": "It is going to be fine, thank you all."
+   }
+  },
+  "134:hazard:c086": {
+   "help": {
+    "fr": "Au secours, cette eau me brûle !",
+    "en": "Help, this water is burning me!"
+   },
+   "rescue": {
+    "fr": "Viens vite, sors de là, Louis.",
+    "en": "Come quickly, get out of there, Louis."
+   },
+   "thanks": {
+    "fr": "Merci de m'avoir sorti de là.",
+    "en": "Thank you for pulling me out of there."
+   }
+  },
+  "134:evacuated:c090": {
+   "quit": {
+    "fr": "Ma jambe ne tient plus, c'est fini.",
+    "en": "My leg won't hold anymore, it's over."
+   }
+  },
+  "134:hazard:c050": {
+   "help": {
+    "fr": "Une araignée, elle est énorme !",
+    "en": "A spider, it is huge!"
+   },
+   "rescue": {
+    "fr": "Recule, je m'en occupe.",
+    "en": "Step back, I will handle it."
+   },
+   "thanks": {
+    "fr": "Merci, j'ai eu une sacrée peur.",
+    "en": "Thank you, I was really scared."
+   }
+  },
+  "135:hazard:c010": {
+   "help": {
+    "fr": "À l'aide, des guêpes partout !",
+    "en": "Help, wasps everywhere!"
+   },
+   "rescue": {
+    "fr": "Cache-toi dans les buissons, vite.",
+    "en": "Hide in the bushes, quickly."
+   },
+   "thanks": {
+    "fr": "Merci, tu m'as sauvée.",
+    "en": "Thank you, you saved me."
+   }
+  },
+  "135:challenge:c071,c029,c086": {
+   "win": {
+    "fr": "Je l'ai fait, je suis immunisé !",
+    "en": "I did it, I am immune!"
+   }
+  },
+  "137:evacuated:c057": {
+   "quit": {
+    "fr": "Je n'ai plus aucune énergie, je pars.",
+    "en": "I have no energy left, I am leaving."
+   }
+  },
+  "137:conspire:c053,c071,c082": {
+   "plot1": {
+    "fr": "Omar, on doit parler de Zara.",
+    "en": "Omar, we need to talk about Zara."
+   },
+   "plot2": {
+    "fr": "Pourquoi elle ? Elle semble calme.",
+    "en": "Why her? She seems calm."
+   },
+   "plot3": {
+    "fr": "Elle observe trop, c'est suspect.",
+    "en": "She observes too much, it is suspicious."
+   }
+  },
+  "138:evacuated:c016": {
+   "quit": {
+    "fr": "Mon corps dit stop, je rends mon tablier.",
+    "en": "My body says stop, I am handing in my apron."
+   }
+  },
+  "139:vote_threat:c029,c007,c053": {
+   "saved": {
+    "fr": "Je reste, merci de votre confiance.",
+    "en": "I am staying, thank you for your trust."
+   },
+   "outVote": {
+    "fr": "L'aventure s'arrête ici pour moi, salut.",
+    "en": "The adventure ends here for me, goodbye."
+   }
+  },
+  "139:campaign:c076,c029": {
+   "plead": {
+    "fr": "S'il vous plaît, sauvez Oscar ce soir.",
+    "en": "Please, save Oscar tonight."
+   }
+  },
+  "139:campaign:c010,c053": {
+   "plead": {
+    "fr": "Gardez Matthias parmi nous, je vous prie.",
+    "en": "Keep Matthias with us, I beg you."
+   }
+  },
+  "139:evacuated:c053": {
+   "quit": {
+    "fr": "Le public a choisi, je m'en vais.",
+    "en": "The public has chosen, I am leaving."
+   }
+  },
+  "140:clan_meal:c086,c046,c050": {
+   "meal": {
+    "fr": "On partage tout ce qu'on a ce soir.",
+    "en": "We are sharing everything we have tonight."
+   },
+   "mealThanks": {
+    "fr": "Merci, ça va bien se passer.",
+    "en": "Thanks, it will go just fine."
+   }
+  },
+  "140:clan_meal:c076,c029": {
+   "meal": {
+    "fr": "Je souris, mais je note tout. Mangez.",
+    "en": "I smile, but I take notes. Eat."
+   },
+   "mealThanks": {
+    "fr": "C'est généreux, merci pour ce repas.",
+    "en": "That is generous, thank you for this meal."
+   }
+  },
+  "140:clan_meal:c010,c082": {
+   "meal": {
+    "fr": "Tiens, un pas après l'autre, bois ça.",
+    "en": "Here, one step at a time, drink this."
+   },
+   "mealThanks": {
+    "fr": "Merci, c'est précieux en ce moment.",
+    "en": "Thanks, this is precious right now."
+   }
+  },
+  "141:evacuated:c010": {
+   "quit": {
+    "fr": "Je ne peux plus, je dois partir.",
+    "en": "I cannot go on, I must leave."
+   }
+  },
+  "141:evacuated:c029": {
+   "quit": {
+    "fr": "La blessure est trop grave, je cède.",
+    "en": "The injury is too severe, I give up."
+   }
+  },
+  "150:steal:c071,c046": {
+   "sneak": {
+    "fr": "Juste un coup d'œil...",
+    "en": "Just a quick look..."
+   },
+   "caughtB": {
+    "fr": "Omar, tu touches à quoi ?",
+    "en": "Omar, what are you touching?"
+   },
+   "caughtA": {
+    "fr": "Je cherchais juste un truc.",
+    "en": "I was just looking for something."
+   }
+  },
+  "151:steal:c007,c086": {
+   "sneak": {
+    "fr": "Ni vu, ni connu.",
+    "en": "Not seen, not known."
+   }
+  },
+  "154:evacuated:c088": {
+   "quit": {
+    "fr": "La confiance, ça se mérite, adieu.",
+    "en": "Trust is earned, goodbye."
+   }
+  },
+  "154:evacuated:c007": {
+   "quit": {
+    "fr": "Doucement, mais sûrement, je m'en vais.",
+    "en": "Slowly, but surely, I am leaving."
+   }
+  },
+  "156:gift_delivered:c071": {
+   "gift": {
+    "fr": "Qui a faim ? Moi, toujours. Merci !",
+    "en": "Who's hungry? Me, always. Thanks!"
+   }
+  },
+  "156:gift_lost:c086,c046": {
+   "lost": {
+    "fr": "Hé, ce colis est à moi !",
+    "en": "Hey, that package is mine!"
+   },
+   "interB": {
+    "fr": "C'est tombé vers moi, je garde.",
+    "en": "It landed near me, I'm keeping it."
+   },
+   "interA": {
+    "fr": "Chacun pour soi, et moi pour moi.",
+    "en": "Each for themselves, and me for me."
+   }
+  },
+  "156:gift_delivered:c046": {
+   "gift": {
+    "fr": "Merci, le public a bon cœur.",
+    "en": "Thanks, the public has a good heart."
+   }
+  },
+  "156:gift_delivered:c076": {
+   "gift": {
+    "fr": "Je souris, mais je note tout. Merci.",
+    "en": "I smile, but I note everything. Thanks."
+   }
+  },
+  "156:gift_delivered:c082": {
+   "gift": {
+    "fr": "Je souris, mais je note tout. Génial.",
+    "en": "I smile, but I note everything. Great."
+   }
+  },
+  "156:gift_delivered:c050": {
+   "gift": {
+    "fr": "Ça va bien se passer, merci !",
+    "en": "Everything will be fine, thanks!"
+   }
+  },
+  "157:hazard:c050": {
+   "help": {
+    "fr": "Au secours, la vague m'emporte !",
+    "en": "Help, the wave is taking me!"
+   }
+  },
+  "157:evacuated:c050": {
+   "quit": {
+    "fr": "Ça va bien se passer pour vous.",
+    "en": "Everything will be fine for you."
+   }
+  },
+  "157:evacuated:c076": {
+   "quit": {
+    "fr": "Je souris, mais je note tout. Salut.",
+    "en": "I smile, but I note everything. Bye."
+   }
+  },
+  "160:evacuated:c082": {
+   "quit": {
+    "fr": "Je souris, mais je note tout. Ciao.",
+    "en": "I smile, but I note everything. Ciao."
+   }
+  },
+  "163:evacuated:c071": {
+   "quit": {
+    "fr": "Qui a faim ? Moi, toujours.",
+    "en": "Who's hungry? Me, always."
+   }
+  },
+  "163:evacuated:c086": {
+   "quit": {
+    "fr": "Chacun pour soi, et moi pour moi.",
+    "en": "Each for themselves, and me for me."
+   }
   }
  },
  "confessions": {
@@ -2010,6 +2660,14 @@
    "4": {
     "fr": "Aujourd'hui, j'ai voulu jouer fin en volant des rations, mais j'ai fini par me faire prendre la main dans le sac deux fois avant que Matthias ne pique mon propre colis. Pour couronner le tout, un serpent m'a mordue dans la mangrove. Respire. Observe. Agis. Je ne lâcherai pas, vous m'avez donné les moyens de survivre ici.",
     "en": "Today, I wanted to play it smart by stealing rations, but I ended up getting caught red-handed twice before Matthias snatched my own package. To top it all off, a snake bit me in the mangrove. Breathe. Observe. Act. I will not give up, you have given me the means to survive here."
+   },
+   "5": {
+    "fr": "Merci infiniment aux quatorze personnes qui m'ont envoyé cette trousse de secours aujourd'hui. Elle m'a été d'une aide précieuse lorsque la fièvre m'a terrassée ce soir au bord de la rivière. J'ai lutté en silence pour ne pas flancher. Votre soutien me donne la force de rester debout dans ce jeu intense.",
+    "en": "Thank you so much to the fourteen viewers who sent me this first aid kit today. It was a lifesaver when a high fever hit me tonight by the river. I fought in silence so I wouldn't collapse. Your support gives me the strength to stay standing in this intense game."
+   },
+   "6": {
+    "fr": "Je vous dis au revoir depuis ce drone qui m'emporte. Mon corps a lâché avant mon esprit. Je n'ai pas pu tout accomplir, mais j'ai observé ce jeu sous un autre angle. Pour être honnête, je ne suis pas seule, je pense à celui qui m'attend dehors sans rien savoir de tout cela. Respire. Observe. Agis. Ce fut une expérience marquante.",
+    "en": "I am saying goodbye from this drone carrying me away. My body gave up before my mind. I couldn't finish, but I observed this game from a new angle. To be honest, I am not alone, I am thinking of the one waiting for me outside with no idea of all this. Breathe. Observe. Act. This was a remarkable experience."
    }
   },
   "c008": {
@@ -2102,6 +2760,14 @@
    "4": {
     "fr": "Cette journée a été mouvementée entre mes petits vols de matériel pour m'assurer un peu de sécurité et la super veillée avec Louis, Noa et Charlie au clan des Tortues. La confiance, ça se mérite, et je dois vous faire une confidence : j'ai menti sur mon âge pour participer à cette aventure.",
     "en": "This day was eventful between my little gear thefts to ensure some safety and the great evening gathering with Louis, Noa, and Charlie at the Tortoises clan. Trust is earned, and I must make a confession to you: I lied about my age to participate in this adventure."
+   },
+   "5": {
+    "fr": "Quelle journée mouvementée. Ce tourbillon m'a pris par surprise à onze heures, mais heureusement Noa est intervenu à temps. Bon, il a récupéré le colis qui me visait, mais ce soir à la plage, il a partagé sa gourde avec Louis, Charlie et moi. Je ressors de cette veillée très ému et reconnaissant envers vous.",
+    "en": "What an eventful day. That whirlwind caught me off guard at eleven, but fortunately Noa stepped in just in time. Sure, he ended up getting the supply crate intended for me, but tonight on the beach, he shared his water bottle with Louis, Charlie, and me. I feel deeply moved and grateful to you."
+   },
+   "6": {
+    "fr": "Je n'ai plus d'énergie, mes forces m'ont quitté. Ce soir, je quitte l'île, lessivé par cette aventure exigeante. J'ai beaucoup appris sur moi-même malgré ma nervosité. Je voulais voir jusqu'où je pouvais aller, et j'ai atteint ma limite. Merci pour tout ce que vous avez fait pour moi. La confiance, ça se mérite. Au revoir, mes amis.",
+    "en": "I have no energy left, my strength has abandoned me. Tonight, I leave the island, exhausted by this demanding adventure. I learned a lot about myself despite my nervousness. I wanted to see how far I could go, and I reached my limit. Thank you for everything you did for me. Trust is earned. Goodbye, my friends."
    }
   },
   "c078": {
@@ -2168,6 +2834,18 @@
    "4": {
     "fr": "Je souris, mais je note tout. Entre les rations volées par Zara, mon colis égaré qui a fini chez Oscar et mes propres larcins, le camp des Requins bouillonne. Heureusement, la veillée dans la jungle m'a apaisée. Partager cette gourde avec Oscar m'a redonné le sourire grâce à votre soutien.",
     "en": "I smile, but I note everything. Between the rations stolen by Zara, my lost package that ended up with Oscar, and my own petty thefts, the Shark camp is buzzing. Fortunately, the evening gathering in the jungle calmed me. Sharing this water bottle with Oscar brought my smile back thanks to your support."
+   },
+   "5": {
+    "fr": "Entre la trousse prise à Louis, les rations chipées à Freya et celle arrivée du ciel grâce à vous, ma journée fut remplie. Mais ces deux courants traîtres ont failli m'emporter, et Oscar m'a sauvée deux fois. Notre veillée commune sur la plage a scellé notre alliance. Je me sens touchée par tant de solidarité.",
+    "en": "Between taking the first aid kit from Louis, snatching rations from Freya, and receiving crate from you, my day was packed. But those two treacherous currents almost swept me away, and Oscar rescued me twice. Sharing everything at the beach vigil sealed our alliance. I feel deeply touched by such solidarity."
+   },
+   "6": {
+    "fr": "Aujourd'hui, j'ai tout mis en commun avec Oscar aux sources chaudes. C'était un moment de pur apaisement. Je dois vous avouer que j'ai été recalée trois fois avant d'être sélectionnée ici, j'ai donc savouré chaque seconde. Je suis prête à continuer malgré mes peurs, car je souris, mais je note tout. Merci de nous soutenir dans ce défi quotidien.",
+    "en": "Today, I shared everything with Oscar at the hot springs. It was a moment of pure peace. I must confess that I was rejected three times before being selected, so I savored every second. I am ready to continue despite my fears, because I smile, but I note everything. Thank you for supporting us in this daily challenge."
+   },
+   "7": {
+    "fr": "Le drone m'emporte et c'est la fin de cette parenthèse. Ces sept jours furent un tourbillon. Recevoir cette trousse grâce à vous m'a profondément émue, c'était un signe de solidarité magnifique. Je ne gagne pas l'épreuve, mais je pars avec la fierté d'avoir été authentique jusqu'au bout. Merci de m'avoir accompagnée, ce fut une expérience inoubliable pour moi.",
+    "en": "The drone is taking me away and this is the end of this chapter. These seven days were a whirlwind. Receiving that medical kit thanks to you moved me deeply; it was a beautiful sign of solidarity. I didn't win the challenge, but I leave proud of having been authentic until the end. Thank you for accompanying me; this was an unforgettable experience."
    }
   },
   "c029": {
@@ -2186,6 +2864,14 @@
    "4": {
     "fr": "Si ça ne me tue pas, ça me rend célèbre. J'ai bien débuté la journée en prenant des rations à Ethan, puis j'ai évité de peu une vilaine chute dans un trou grâce à Iris. La veillée de ce soir avec elle m'a prouvé qu'on forme un duo solide face à vous tous.",
     "en": "If it doesn't kill me, it makes me famous. I started the day well by taking rations from Ethan, then I narrowly avoided a nasty fall into a hole thanks to Iris. Tonight's gathering with her proved to me that we form a solid duo in front of all of you."
+   },
+   "5": {
+    "fr": "Ma tentative de vol sur Louis ce matin s'est soldée par un échec retentissant, et c'est lui qui a récupéré mon colis. Heureusement, repêcher Iris deux fois de suite m'a remis les idées en place. Ce soir, lors de notre veillée chez les Requins, nous avons tout partagé. Je reste déterminé et confiant pour la suite.",
+    "en": "My attempt to steal from Louis this morning ended in complete failure, and he ended up grabbing my crate. Fortunately, pulling Iris out of treacherous currents twice brought me back on track. Tonight, during our Sharks vigil on the beach, we shared everything. I remain focused and determined for what comes next."
+   },
+   "6": {
+    "fr": "Le tourbillon m'a blessé, et maintenant ce drone me sort de l'eau que je déteste tant. Je pars, mais fier de mon parcours. Je dois vous révéler un secret : je suis diplômé en médecine, mais j'ai caché mon titre pour rester discret. Si ça ne me tue pas, ça me rend célèbre. Merci pour votre aide, le public a été fantastique.",
+    "en": "The whirlwind injured me, and now this drone is taking me out of the water I hate so much. I am leaving, but proud of my journey. I must reveal a secret: I have a medical degree, but I hid my title to stay discreet. If it doesn't kill me, it makes me famous. Thank you for your help, the public was fantastic."
    }
   },
   "c012": {
@@ -2218,6 +2904,18 @@
    "4": {
     "fr": "Doucement, mais sûrement. Après les tensions de la veille, j'ai savouré notre veillée au clan des Lucioles avec Mila en mettant tout en commun. Votre présence à travers nos échanges me réchauffe le cœur. Je veille à protéger notre petit groupe, loin des disputes inutiles des autres.",
     "en": "Slowly, but surely. After yesterday's tensions, I savored our gathering at the Fireflies clan with Mila by pooling everything together. Your presence through our exchanges warms my heart. I make sure to protect our little group, far from the useless arguments of the others."
+   },
+   "5": {
+    "fr": "Dmitri m'a volé ma corde ce matin, puis Margaux a intercepté mon colis de midi. Pourtant, l'intégrer chez les Lucioles fut une excellente surprise. Sa gourde partagée ce soir à la rivière avec Mila et moi apporte un vrai réconfort. Malgré ma discrétion naturelle, je savoure cette harmonie retrouvée et votre présence bienveillante.",
+    "en": "Dmitri stole my rope this morning, and then Margaux intercepted my noon crate. Still, having her join the Fireflies was a wonderful surprise. Sharing her water bottle at the river with Mila and me brought genuine comfort. Despite my quiet nature, I savor this restored harmony and your warm presence."
+   },
+   "6": {
+    "fr": "Je suis soulagé d'être sauvé par vous ce soir. Quel stress de se sentir menacé ! J'en profite pour révéler mon secret : j'écris secrètement un livre sur cette aventure. C'est mon refuge, ma façon de gérer les insectes et le manque de confort. Doucement, mais sûrement, je poursuis mon chemin sur cette île. Merci infiniment pour votre soutien constant.",
+    "en": "I am relieved to be saved by you tonight. Such stress to feel threatened! I take this opportunity to reveal my secret: I am secretly writing a book about this adventure. It is my refuge, my way of dealing with the insects and the lack of comfort. Slowly but surely, I continue my journey on this island. Thank you infinitely for your constant support."
+   },
+   "7": {
+    "fr": "Je quitte l'aventure après avoir récupéré la corde de Louis ce matin. C'était un acte impulsif, peut-être une erreur. Voir ce drone arriver est une sensation étrange. Je n'ai pas atteint mon but final, mais j'ai appris beaucoup sur mes limites. Merci à vous d'avoir suivi mon parcours, même si je n'ai pas été le plus courageux.",
+    "en": "I'm leaving the adventure after taking Louis's rope this morning. It was an impulsive act, perhaps a mistake. Seeing this drone arrive is a strange feeling. I didn't reach my final goal, but I learned a lot about my limits. Thank you for following my journey, even if I wasn't the bravest one."
    }
   },
   "c073": {
@@ -2250,6 +2948,14 @@
    "4": {
     "fr": "Un pas après l'autre. Après qu'Iris m'a subtilisé mes rations, j'ai eu une grosse frayeur en voyant mon nom menacé ce soir, mais vous m'avez sauvée avec Charlie ! Votre soutien est un carburant incroyable pour continuer cette aventure avec les Albatros la tête haute.",
     "en": "One step after the other. After Iris stole my rations, I had a big scare seeing my name threatened tonight, but you saved me with Charlie! Your support is incredible fuel to continue this adventure with the Albatrosses with my head held high."
+   },
+   "5": {
+    "fr": "L'arrivée de Matthias ce matin chez les Albatros m'a ravi, tout comme votre trousseau et cette gourde parachutée. Même si Omar me l'a dérobée plus tard, ma victoire à l'épreuve d'immunité des noix de coco me protège ce soir. Autour du feu avec Matthias et Zara, j'ai ressenti une immense fierté. Merci du fond du cœur.",
+    "en": "Matthias joining the Albatrosses this morning made me very happy, just like receiving your parachuted water bottle. Even though Omar stole it later, winning the coconut immunity challenge keeps me safe tonight. Gathering around the fire with Matthias and Zara, I felt immense pride. Thank you from the bottom of my heart."
+   },
+   "6": {
+    "fr": "Mes forces m'ont abandonné après cette journée épuisante, et ce drone m'emmène maintenant. Avant de partir, voici ma vérité : je ne sais pas nager, mais je l'ai toujours caché pour ne pas paraître vulnérable. Un pas après l'autre, j'ai essayé de tout donner ici. Merci pour cette aventure incroyable, je vous dis au revoir.",
+    "en": "My strength abandoned me after this exhausting day, and this drone is taking me now. Before I leave, here is my truth: I don't know how to swim, but I always hid it so as not to appear vulnerable. One step at a time, I tried to give it my all here. Thank you for this incredible adventure, I bid you farewell."
    }
   },
   "c062": {
@@ -2310,6 +3016,10 @@
    "4": {
     "fr": "On ne laisse personne derrière. Raphaël a osé fouiller mon sac aujourd'hui, mais Omar l'a remis à sa place. Heureusement, notre veillée aux Mangoustes avec sa gourde partagée m'a fait du bien. Je tiens bon pour ma fille malgré la solitude qui pèse sur mes épaules.",
     "en": "We leave no one behind. Raphaël dared to search my bag today, but Omar put him in his place. Fortunately, our gathering at the Mongooses with his shared water bottle did me good. I'm holding on for my daughter despite the loneliness weighing on my shoulders."
+   },
+   "5": {
+    "fr": "Mon aventure s'achève ce soir depuis ce drone de secours. Omar m'avait pourtant défendu ce matin face à Dmitri, mais le public a tranché. Je pars sans amertume, le cœur léger. Merci à toutes et tous de m'avoir soutenu pendant ces cinq jours. Prenez soin de vous, je rentre la tête haute.",
+    "en": "My adventure ends tonight from this rescue drone. Omar defended me this morning against Dmitri, but the public made its choice. I leave without bitterness and with a light heart. Thank you all for supporting me during these five days. Take care of yourselves, I am heading home with my head held high."
    }
   },
   "c036": {
@@ -2378,6 +3088,14 @@
    "4": {
     "fr": "La confiance, ça se mérite. J'ai bien reçu ma trousse de secours grâce à vous, et la veillée avec Freya chez les Orques m'a fait un bien fou. On a tout mis en commun. C'est précieux de se sentir entouré quand la peur des insectes refait surface.",
     "en": "Trust is earned. I well received my first aid kit thanks to you, and the evening gathering with Freya at the Orcas did me a world of good. We pooled everything. It's precious to feel surrounded when the fear of insects resurfaces."
+   },
+   "5": {
+    "fr": "Quelle frayeur aujourd'hui entre l'accrochage avec Omar, le vol de la corde de Lucas et la menace d'élimination. Heureusement, la carte reçue grâce à vous et le soutien de Freya m'ont porté. Vous m'avez sauvé ce soir face à Victor. Je suis bouleversé et infiniment reconnaissant pour cette seconde chance dans l'aventure.",
+    "en": "What a scary day between the clash with Omar, stealing Lucas's rope, and being up for elimination. Luckily, receiving the map thanks to you and having Freya plead for me kept me going. You saved me tonight over Victor. I am overwhelmed and deeply grateful for this second chance in the game."
+   },
+   "6": {
+    "fr": "Recevoir cette trousse de secours a été une véritable bouffée d'oxygène. J'essaie de rester calme dans cet environnement imprévisible avec les Orques. Je ressens une profonde empathie pour mes camarades, même si je reste vigilant. La confiance, ça se mérite, et je sens que nous bâtissons quelque chose de solide ensemble. Merci d'être là pour moi à chaque étape.",
+    "en": "Receiving this medical kit was a true breath of fresh air. I try to remain calm in this unpredictable environment with the Orcas. I feel deep empathy for my comrades, even if I remain vigilant. Trust is earned, and I feel we are building something solid together. Thank you for being there for me every step of the way."
    }
   },
   "c009": {
@@ -2420,6 +3138,10 @@
    "4": {
     "fr": "Quelle journée épuisante. Cette corde arrivée par miracle m'a redonné un peu d'espoir, mais Rafael a réussi à me la subtiliser sans que je m'en rende compte. C'est frustrant de se sentir si vulnérable quand on essaie juste de construire un abri stable. J'essaie de rester lucide malgré la fatigue et les coups bas. Un pas après l'autre.",
     "en": "What an exhausting day. This rope that arrived by miracle gave me some hope, but Rafael managed to steal it from me without me noticing. It is frustrating to feel so vulnerable when you are just trying to build a stable shelter. I am trying to stay lucid despite the fatigue and the low blows. One step at a time."
+   },
+   "5": {
+    "fr": "Depuis ce drone qui m'éloigne de l'île, je vous dis au revoir. J'ai jeté l'éponge ce matin, épuisé. Avant de partir, je dois vous avouer mon secret : je suis venu ici pour retrouver quelqu'un parmi les candidats. L'épreuve était trop dure, mais je pars apaisé. Merci d'avoir été là pour moi.",
+    "en": "From this drone carrying me away from the island, I say goodbye. I threw in the towel this morning, completely exhausted. Before leaving, I must reveal my secret: I came here to find someone among the contestants. The challenge was too hard, but I leave in peace. Thank you for being there for me."
    }
   },
   "c064": {
@@ -2462,6 +3184,10 @@
    "4": {
     "fr": "J'ai pris la décision de quitter les Coraux, c'était devenu invivable. En partant, j'ai pris quelques rations, c'est la survie qui veut ça. La marée montante m'a surprise ce soir sur la plage, j'ai eu une frayeur bleue, mais j'ai tenu bon. On ne laisse personne derrière, mais aujourd'hui, j'ai dû penser à moi avant tout.",
     "en": "I made the decision to leave the Corals, it had become unlivable. On my way out, I took some rations; survival demands it. The rising tide surprised me tonight on the beach, I had a real scare, but I held on. We leave no one behind, but today, I had to think of myself first."
+   },
+   "5": {
+    "fr": "En interceptant le colis de Lucas puis en recevant ma propre trousse de secours grâce à vous, ma journée a pris un tournant décisif. Rejoindre le clan des Lucioles fut un choix du cœur. Partager ma gourde à la rivière avec Lucas et Mila ce soir m'emplit d'une grande sérénité pour la suite.",
+    "en": "Intercepting Lucas's crate and then receiving my own first aid kit thanks to you made today a turning point. Joining the Fireflies clan was a choice from the heart. Sharing my water bottle at the river with Lucas and Mila tonight fills me with great peace for what lies ahead."
    }
   },
   "c057": {
@@ -2480,6 +3206,10 @@
    "4": {
     "fr": "La veillée avec Lucas était un moment suspendu. Partager nos maigres ressources nous a soudés, et je me sens enfin à ma place parmi les Lucioles. La peur de l'eau est toujours là, mais cette solidarité m'apaise. Si ça ne me tue pas, ça me rend célèbre. Je me sens capable de tout affronter pour aller le plus loin possible.",
     "en": "The evening with Lucas was a suspended moment. Sharing our meager resources bonded us, and I finally feel at home among the Fireflies. The fear of water is still there, but this solidarity calms me. If it doesn't kill me, it makes me famous. I feel capable of facing anything to go as far as possible."
+   },
+   "5": {
+    "fr": "Surprise par Freya en train de fouiller mon sac, puis secouée par un tourbillon à la cascade, j'ai tenu bon. Votre trousse de secours m'a réconfortée. Ce soir, autour de la gourde de Margaux, c'est le moment de vous avouer mon secret : j'ai promis à ma fille de gagner. Je donnerai tout pour elle.",
+    "en": "Caught Freya trying to search my bag, then shaken by a whirlpool at the waterfall, I held on. Your first aid kit brought me comfort. Tonight, sharing Margaux's water bottle, it is time to reveal my secret: I promised my daughter I would win. I will give everything for her."
    }
   },
   "c074": {
@@ -2512,6 +3242,14 @@
    "4": {
     "fr": "La journée a été intense. Recevoir cette corde grâce à vous a été un soulagement immense pour le camp. J'ai aussi dû assurer nos arrières en prenant quelques rations chez Iris. Ce n'est jamais facile de faire ces choix, mais je dois protéger mon équipe. Je reste calme et j'observe tout. Je souris, mais je note tout.",
     "en": "The day was intense. Receiving this rope thanks to you was an immense relief for the camp. I also had to cover our backs by taking some rations from Iris. It is never easy to make these choices, but I must protect my team. I stay calm and observe everything. I smile, but I note everything."
+   },
+   "5": {
+    "fr": "Sauvée des guêpes par Matthias ce matin, j'ai aussi reçu une trousse de secours de votre part. Ce soir, autour de notre gourde chez les Albatros, je dois vous confier mon secret : je connais déjà un autre candidat ici, et je le déteste. Cette révélation me libère d'un poids. Merci pour votre soutien.",
+    "en": "Saved from wasps by Matthias this morning, I also received a first aid kit from you. Tonight, around our water bottle with the Albatrosses, I must share my secret with you: I already know another contestant here, and I hate them. Revealing this takes a weight off my shoulders. Thank you for your support."
+   },
+   "7": {
+    "fr": "Ces rations tombées du ciel grâce à votre soutien furent mon dernier rayon de soleil. Quel dommage de partir maintenant ! La solitude m'a effrayée ici, mais votre présence constante m'a aidée à tenir. Je souris, mais je note tout ce que j'ai vécu. Merci pour ces instants précieux, je quitte l'île avec beaucoup d'émotions en tête.",
+    "en": "Those rations that fell from the sky thanks to your support were my last ray of sunshine. What a shame to leave now! Loneliness scared me here, but your constant presence helped me hold on. I smile, but I take note of everything I experienced. Thank you for these precious moments; I leave the island with many emotions in my mind."
    }
   },
   "c075": {
@@ -2530,6 +3268,10 @@
    "4": {
     "fr": "J'ai eu une journée éprouvante avec ces fourmis, mais le colis reçu à midi nous a sauvés. Dmitri est un allié précieux, nous avons tout mis en commun lors de la veillée, c'était un beau moment de partage. La peur de l'obscurité m'habite encore, mais avec lui, je me sens plus en sécurité. Moi, j'y crois.",
     "en": "I had a trying day with those ants, but the parcel received at noon saved us. Dmitri is a precious ally, we pooled everything during the evening, it was a beautiful moment of sharing. The fear of darkness still haunts me, but with him, I feel safer. I believe in it."
+   },
+   "5": {
+    "fr": "Aujourd'hui, j'ai touché le fond. Omar a volé mon colis, Iris mes rations, et j'ai été prise en flagrant délit en tentant de récupérer de la nourriture. Le plus dur, c'est ce secret que je porte : je ne sais pas nager. Dans cette île, c'est un danger constant. S'il vous plaît, protégez Dmitri, il mérite de continuer l'aventure malgré mes maladresses.",
+    "en": "Today, I hit rock bottom. Omar stole my parcel, Iris took my rations, and I was caught red-handed trying to get some food. The hardest part is this secret I carry: I cannot swim. On this island, it is a constant danger. Please, protect Dmitri; he deserves to continue this adventure despite my blunders."
    }
   },
   "c006": {
@@ -2592,6 +3334,18 @@
    "4": {
     "fr": "Quelle frayeur avec ces fourmis rouges, Rafael a été un ange gardien pour moi. Être menacé au vote était terrifiant, merci infiniment de m'avoir sauvé. La veillée avec Louis, Rafael et Noa m'a permis de souffler. Malgré les difficultés, je sens que nous formons un groupe soudé. Ça va bien se passer.",
     "en": "What a scare with those red ants, Rafael was a guardian angel for me. Being threatened at the vote was terrifying, thank you so much for saving me. The evening with Louis, Rafael, and Noa allowed me to breathe. Despite the difficulties, I feel that we are a solid group. It will go well."
+   },
+   "5": {
+    "fr": "Quelle journée intense ! Recevoir cette trousse de secours grâce à vous est un soulagement immense, je vais pouvoir soigner tout le monde. J'ai aussi récupéré le colis de Louis par erreur, mais nous avons partagé une belle veillée avec Noa et Rafael ce soir. On se sent vraiment soutenus ici. Merci pour votre aide précieuse, ça va bien se passer.",
+    "en": "What an intense day! Receiving this medical kit thanks to you is a huge relief; I will be able to treat everyone. I also picked up Louis's parcel by mistake, but we shared a lovely evening with Noa and Rafael tonight. We really feel supported here. Thank you for your precious help, things are going to be fine."
+   },
+   "6": {
+    "fr": "La veillée avec Louis et Noa a été un moment de douceur rare. Je me sens utile ici. Je dois être honnête avec vous : j'ai menti sur mon âge pour participer à cette expérience. C'était nécessaire pour réaliser ce rêve. Ça va bien se passer, j'en suis convaincu. Merci de m'avoir offert cette trousse de secours si précieuse aujourd'hui.",
+    "en": "The evening with Louis and Noa was a rare moment of gentleness. I feel useful here. I must be honest with you: I lied about my age to participate in this experience. It was necessary to fulfill this dream. It will go well, I am convinced of it. Thank you for giving me this precious medical kit today."
+   },
+   "7": {
+    "fr": "Cette vague m'a surpris·e au lagon, et maintenant le drone m'emmène. Recevoir la trousse de secours juste avant fut un vrai soulagement. Je suis déçu·e de ne pas aller plus loin, mais j'ai vécu des moments de partage incroyables. Ça va bien se passer pour la suite sans moi. Merci infiniment de m'avoir soutenu·e pendant toute cette semaine.",
+    "en": "That wave caught me by surprise at the lagoon, and now the drone is taking me away. Receiving the medical kit just before was a real relief. I'm disappointed not to go further, but I experienced incredible moments of sharing. It will go well for the rest without me. Thank you so much for supporting me throughout this week."
    }
   },
   "c092": {
@@ -2656,6 +3410,10 @@
    "4": {
     "fr": "Recevoir cette trousse de secours est une bénédiction, mes mains sont un peu abîmées par le travail. Je dois vous confier quelque chose : je traîne une dette de jeu très lourde, c'est pour ça que je suis ici. Je veux juste m'en sortir dignement. Je suis seule, mais je reste forte. Chacun pour soi, et moi pour moi.",
     "en": "Receiving this first-aid kit is a blessing, my hands are a bit damaged from the work. I have to confess something to you: I have a very heavy gambling debt, that is why I am here. I just want to get out of it with dignity. I am alone, but I remain strong. Each for themselves, and me for myself."
+   },
+   "5": {
+    "fr": "Je n'ai pas vu ce rocher arriver, la mousse m'a piégée et ma cheville a lâché. Le drone m'emmène déjà. Je suis déçue de quitter l'aventure si vite, moi qui voulais montrer qu'on pouvait gagner en restant fidèle à soi-même. Vous allez me manquer, mais la santé passe avant tout. C'est la fin du voyage pour moi, prenez bien soin des autres.",
+    "en": "I didn't see that rock coming, the moss trapped me and my ankle gave out. The drone is taking me away already. I am disappointed to leave the adventure so soon, after wanting to show that one could win while staying true to oneself. I will miss you all, but health comes first. This is the end of the journey for me, take good care of the others."
    }
   }
  }
