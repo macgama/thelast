@@ -456,6 +456,7 @@ body.fs .fsbtn { bottom: 164px; }
 <script src="i18n.js"></script>
 <script src="i18n-en.js"></script>
 <script src="live.js"></script>
+<script src="audience.js"></script>
 <script src="sound.js"></script>
 <script src="scenes.js"></script>
 <script src="avatar.js"></script>
@@ -1145,6 +1146,7 @@ body.fs .fsbtn { bottom: 164px; }
     lockState();
     paintGift();
     prono();
+    if (started) window.TheLastAudience?.follow(me);
     if (started) try { localStorage.setItem("thelast-pos", JSON.stringify({ tick, at: Date.now(), me, season: LIVE ? LV.season.id : null })); } catch {}
     clearTimeout(finaleTimer);
     if (tick >= TN && D.winner) {
@@ -1414,6 +1416,8 @@ body.fs .fsbtn { bottom: 164px; }
   let saved = null;
   try { saved = localStorage.getItem("thelast-me"); } catch {}
   me = saved && C[saved] ? saved : ORDER[0] || pickIds[0];
+  // audience anonyme : saison regardée, en direct ou en différé, et candidat suivi
+  window.TheLastAudience?.page("survivor", { season: LIVE ? LV.season.id : 0, mode: LIVE ? (LV.season.status === "done" ? "replay" : "live") : "demo", follow: saved && C[saved] ? saved : null });
   if (LIVE) { document.querySelectorAll("[data-plan]")[0].parentElement.hidden = true; plan = LV.isSub() && !NOFEED ? "sub" : "free"; }
   // Ouvrir un épisode précis depuis l'accueil : survivor.html?jour=3 démarre le jour 3 au matin
   const askDay = Number(new URLSearchParams(location.search).get("jour"));

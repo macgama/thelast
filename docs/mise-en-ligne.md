@@ -115,6 +115,15 @@ Envoyer simplement le lien **https://macgama.github.io/thelast/**. Chacun crée 
 
 Le bouton **EN** / **FR** en haut des pages change la langue.
 
+## Suivre la saison : statistiques et différé
+
+- **Back-office, onglet Statistiques** : votes et colis par jour, spectateurs actifs, candidats les plus soutenus (votes, colis, nombre de spectateurs qui les suivent), visiteurs par jour et temps de visionnage, pages les plus vues, inscriptions.
+- **Audience anonyme** : chaque navigateur reçoit un identifiant tiré au hasard, sans lien avec le compte, le nom ou l'e-mail. On compte les visites, le temps passé (par tranches de 5 minutes de page visible) et le candidat suivi. Rien n'est envoyé tant que le site est en mode démo.
+- **Page Revoir** (`revoir.html`, lien « Revoir » en haut des pages) : chaque saison en cours ou terminée, jour par jour, avec un bouton pour regarder chaque épisode en différé. Les résumés sont floutés pour éviter les spoilers. Le vote et les colis étant fermés une fois le jour passé, regarder en différé ne change rien à l'histoire.
+- **Évolution des personnages** : à la fin de chaque saison, le moteur enregistre dans la fiche de chaque candidat son classement, son expérience, ses bonus et ses titres. Visible dans le back-office, onglet Personnages.
+
+Après une mise à jour du code, recoller `supabase/schema.sql` dans le SQL Editor de Supabase (sans risque : il ne supprime rien) pour ajouter les nouvelles tables et fonctions.
+
 ---
 
 ## Si quelque chose ne marche pas

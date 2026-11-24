@@ -261,6 +261,7 @@ begin
   delete from public.votes where season_id = p_season;
   delete from public.gifts where season_id = p_season;
   delete from public.season_private where season_id = p_season;
+  delete from public.audience where season_id = p_season;
   update public.seasons set public = null, winner = null, engine = null,
     status = case when status = 'draft' then 'draft' else 'scheduled' end, updated_at = now() where id = p_season;
 end $$;
@@ -290,3 +291,77 @@ drop policy if exists "portraits : remplacement admin" on storage.objects;
 create policy "portraits : remplacement admin" on storage.objects for update using (bucket_id = 'portraits' and public.is_admin());
 drop policy if exists "portraits : suppression admin" on storage.objects;
 create policy "portraits : suppression admin" on storage.objects for delete using (bucket_id = 'portraits' and public.is_admin());
+
+-- ---------- Audience anonyme ----------
+-- Un identifiant au hasard, gardé dans le navigateur, sans lien avec le compte : on compte les visiteurs,
+-- les pages vues, le temps passé et le candidat suivi, jamais qui est qui. season_id = 0 : hors saison (démo, pages du site).
+create table if not exists public.audience (
+  season_id bigint not null default 0,
+  day date not null default (now() at time zone 'Europe/Paris')::date,
+  visitor text not null check (char_length(visitor) between 8 and 40),
+  page text not null check (char_length(page) <= 24),
+  mode text not null default 'live' check (mode in ('live', 'replay', 'demo', 'site')),
+  follow text check (char_length(follow) <= 12),
+  hits int not null default 1,
+  minutes int not null default 0,
+  first_at timestamptz not null default now(),
+  last_at timestamptz not null default now(),
+  primary key (season_id, day, visitor, page)
+);
+alter table public.audience enable row level security; -- aucune lecture directe : seulement par les fonctions ci-dessous
+create index if not exists audience_day on public.audience (day);
+
+-- Appelé par les pages (même sans compte). minutes : temps passé depuis le dernier appel (plafonné à 10).
+create or replace function public.track(p_season bigint, p_visitor text, p_page text, p_mode text default 'live', p_follow text default null, p_minutes int default 0)
+returns void language plpgsql security definer set search_path = public as $$
+begin
+  if p_visitor is null or char_length(p_visitor) not between 8 and 40 or p_page is null or char_length(p_page) > 24 then return; end if;
+  if p_season is not null and p_season <> 0 and not exists (select 1 from public.seasons where id = p_season) then return; end if;
+  insert into public.audience (season_id, visitor, page, mode, follow, minutes)
+  values (coalesce(p_season, 0), p_visitor, p_page, case when p_mode in ('live', 'replay', 'demo', 'site') then p_mode else 'site' end,
+          left(p_follow, 12), greatest(0, least(coalesce(p_minutes, 0), 10)))
+  on conflict (season_id, day, visitor, page) do update set
+    hits = audience.hits + case when coalesce(p_minutes, 0) = 0 then 1 else 0 end, -- -1 : simple changement de candidat suivi
+    minutes = audience.minutes + greatest(0, least(coalesce(p_minutes, 0), 10)),
+    follow = coalesce(left(p_follow, 12), audience.follow), mode = excluded.mode, last_at = now();
+end $$;
+grant execute on function public.track(bigint, text, text, text, text, int) to anon, authenticated;
+
+-- Statistiques détaillées d'une saison pour l'onglet « Statistiques » du back-office
+create or replace function public.admin_stats_full(p_season bigint) returns json
+language plpgsql stable security definer set search_path = public as $$
+declare s record; d0 date; d1 date;
+begin
+  if not public.is_admin() then raise exception 'admin_only'; end if;
+  select * into s from public.seasons where id = p_season;
+  if s is null then raise exception 'no_season'; end if;
+  d0 := ((s.start_at - interval '1 day') at time zone 'Europe/Paris')::date;
+  d1 := least((now() at time zone 'Europe/Paris')::date, ((s.start_at + interval '8 days') at time zone 'Europe/Paris')::date);
+  return json_build_object(
+    'votes', (select coalesce(json_agg(x order by x.day), '[]') from (select day, count(*) n from public.votes where season_id = p_season group by day) x),
+    'gifts', (select coalesce(json_agg(x order by x.day), '[]') from (select gift_day as day, count(*) n,
+        count(*) filter (where item = 'flask') flask, count(*) filter (where item = 'rations') rations, count(*) filter (where item = 'medkit') medkit
+        from public.gifts where season_id = p_season group by gift_day) x),
+    'active', (select coalesce(json_agg(x order by x.day), '[]') from (select day, count(distinct user_id) n from (
+        select day, user_id from public.votes where season_id = p_season union all select gift_day, user_id from public.gifts where season_id = p_season) u group by day) x),
+    'supported', (select coalesce(json_agg(x order by x.total desc, x.id), '[]') from (
+        select id, sum(v)::int votes, sum(g)::int gifts, sum(v + g)::int total, (select count(distinct a.visitor) from public.audience a where a.season_id = p_season and a.follow = id)::int fans from (
+          select character_id id, 1 v, 0 g from public.votes where season_id = p_season
+          union all select character_id, 0, 1 from public.gifts where season_id = p_season
+          union all select follow, 0, 0 from public.audience where season_id = p_season and follow is not null) t
+        group by id order by sum(v + g) desc, id limit 15) x),
+    'audience', (select coalesce(json_agg(x order by x.day), '[]') from (select day, count(distinct visitor) visitors, sum(hits)::int hits, sum(minutes)::int minutes,
+        count(distinct visitor) filter (where mode = 'replay') replay
+        from public.audience where (season_id = p_season or season_id = 0) and day between d0 and d1 group by day) x),
+    'pages', (select coalesce(json_agg(x order by x.visitors desc), '[]') from (select page, count(distinct visitor) visitors, sum(hits)::int hits
+        from public.audience where (season_id = p_season or season_id = 0) and day between d0 and d1 group by page) x),
+    'signups', (select coalesce(json_agg(x order by x.day), '[]') from (select (created_at at time zone 'Europe/Paris')::date as day, count(*) n from public.profiles
+        where (created_at at time zone 'Europe/Paris')::date between d0 and d1 group by 1) x),
+    'totals', json_build_object(
+      'viewers', (select count(*) from public.profiles),
+      'voters', (select count(distinct user_id) from public.votes where season_id = p_season),
+      'givers', (select count(distinct user_id) from public.gifts where season_id = p_season),
+      'visitors', (select count(distinct visitor) from public.audience where season_id = p_season),
+      'minutes', (select coalesce(sum(minutes), 0) from public.audience where season_id = p_season)));
+end $$;
+grant execute on function public.admin_stats_full(bigint) to authenticated;

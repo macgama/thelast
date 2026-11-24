@@ -154,5 +154,21 @@ describe.skipIf(!hasPg)("base de données (Postgres local + schéma Supabase)", 
     expect((await call("/rest/v1/rpc/admin_users", { method: "POST", token: admin, body: "{}" })).body).toHaveLength(2);
     expect((await call("/rest/v1/rpc/admin_users", { method: "POST", token: viewer, body: "{}" })).body.message).toBe("admin_only");
     expect((await call(`/rest/v1/characters?select=id`, { token: admin })).body).toHaveLength(100);
+
+    // audience anonyme : n'importe qui peut compter une visite, personne ne peut lire la table directement
+    const track = (body: object) => call("/rest/v1/rpc/track", { method: "POST", body: JSON.stringify({ p_season: sid, p_visitor: "visiteur-test-1", p_page: "survivor", p_mode: "live", p_follow: null, p_minutes: 0, ...body }) });
+    expect((await track({})).status).toBeLessThan(300);
+    await track({ p_follow: thr.ids[2], p_minutes: -1 });
+    await track({ p_minutes: 5 });
+    await track({ p_minutes: 500 }); // plafonné à 10
+    await track({ p_visitor: "visiteur-test-2", p_follow: thr.ids[2] });
+    await track({ p_visitor: "court" }); // ignoré
+    expect((await call(`/rest/v1/audience?select=visitor`, { token: admin })).body).toEqual([]);
+    const st = (await call("/rest/v1/rpc/admin_stats_full", { method: "POST", token: admin, body: JSON.stringify({ p_season: sid }) })).body;
+    expect(st.totals).toMatchObject({ voters: 2, givers: 1, visitors: 2, minutes: 15 });
+    expect(st.votes).toEqual([{ day: 2, n: 2 }]);
+    expect(st.supported[0]).toMatchObject({ id: thr.ids[2], votes: 2, gifts: 1, fans: 2 });
+    expect(st.audience[0]).toMatchObject({ visitors: 2, hits: 2, minutes: 15 });
+    expect((await call("/rest/v1/rpc/admin_stats_full", { method: "POST", token: viewer, body: JSON.stringify({ p_season: sid }) })).body.message).toBe("admin_only");
   }, 60000);
 });

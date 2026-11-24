@@ -3,7 +3,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-const PAGES = ["survivor.html", "scenes.js", "live.js", "index.html", "personnages.html", "selection.html", "fanclub.js", "compte.html"];
+const PAGES = ["survivor.html", "scenes.js", "live.js", "index.html", "personnages.html", "selection.html", "fanclub.js", "compte.html", "revoir.html"];
 const read = (f: string) => { try { return readFileSync(`demo/${f}`, "utf8"); } catch { return ""; } };
 
 function dictionary(): Record<string, string> {

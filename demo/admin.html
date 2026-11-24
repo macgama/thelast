@@ -25,6 +25,17 @@ h2 { font-size: 18px; margin: 0 0 10px; }
 .lede { color: var(--mist); margin: 0 0 18px; max-width: 75ch; }
 .card { background: var(--deep); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
 .grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.grid2 { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); }
+.kpis { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); margin-bottom: 14px; }
+.kpis div { background: var(--deep); border: 1px solid var(--line); border-radius: 12px; padding: 12px; color: var(--mist); font-size: 13px; }
+.kpis b { display: block; color: var(--sand); font-size: 22px; }
+.bars { display: grid; gap: 6px; }
+.bars .b { display: grid; grid-template-columns: minmax(70px, 30%) 1fr auto; gap: 8px; align-items: center; font-size: 13px; }
+.bars .b > span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bars i { height: 10px; background: var(--ink); border-radius: 99px; overflow: hidden; }
+.bars i b { display: block; height: 100%; background: var(--torch); border-radius: 99px; }
+.bars .v { white-space: nowrap; text-align: right; }
+@media (max-width: 600px) { .bars .b { grid-template-columns: 90px 1fr; } .bars .v { grid-column: 1 / -1; text-align: left; white-space: normal; } }
 .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .btn { font: inherit; font-size: 14px; font-weight: 600; border: 1px solid var(--line); background: var(--ink); color: var(--sand); border-radius: 10px; padding: 8px 14px; cursor: pointer; min-height: 40px; }
 .btn.main { background: var(--torch); border-color: var(--torch); color: #1a0f05; }
@@ -76,6 +87,7 @@ th { color: var(--mist); font-weight: 600; font-size: 12px; text-transform: uppe
     <button type="button" data-tab="seasons" aria-pressed="true">📅 Saisons</button>
     <button type="button" data-tab="chars" aria-pressed="false">👥 Personnages</button>
     <button type="button" data-tab="cats" aria-pressed="false">🌪️ Catastrophes</button>
+    <button type="button" data-tab="stats" aria-pressed="false">📊 Statistiques</button>
     <button type="button" data-tab="users" aria-pressed="false">🙋 Spectateurs</button>
     <button type="button" data-tab="settings" aria-pressed="false">⚙️ Réglages</button>
   </nav>
@@ -116,7 +128,7 @@ th { color: var(--mist); font-weight: 600; font-size: 12px; text-transform: uppe
   document.getElementById("out").addEventListener("click", (e) => { e.preventDefault(); LV.signOut(); });
   const nav = document.getElementById("nav");
   nav.hidden = false;
-  const tabs = { seasons, chars, cats, users, settings };
+  const tabs = { seasons, chars, cats, stats, users, settings };
   let current = (location.hash.slice(1) in tabs) ? location.hash.slice(1) : "seasons";
   nav.querySelectorAll("[data-tab]").forEach((b) => b.addEventListener("click", () => show(b.dataset.tab)));
   function show(name) {
@@ -370,6 +382,46 @@ th { color: var(--mist); font-weight: 600; font-size: 12px; text-transform: uppe
   }
 
   // ================= Spectateurs =================
+  // ================= Statistiques =================
+  let statSeason = null;
+  async function stats() {
+    const { data: list, error } = await sb.from("seasons").select("id,name,status,start_at,public").neq("status", "draft").order("start_at", { ascending: false });
+    if (error) throw error;
+    if (!list.length) { main.innerHTML = `<h1>Statistiques</h1><div class="card muted">Les statistiques apparaîtront dès qu'une saison sera programmée.</div>`; return; }
+    if (!list.some((s) => s.id === statSeason)) statSeason = (list.find((s) => s.status === "live") || list[0]).id;
+    const s = list.find((x) => x.id === statSeason);
+    const r = await sb.rpc("admin_stats_full", { p_season: s.id });
+    if (r.error) throw r.error;
+    const st = r.data, T = st.totals;
+    const name = Object.fromEntries((s.public?.cast || []).map((c) => [c.id, c.name]));
+    const n = (x) => Number(x || 0).toLocaleString("fr-FR");
+    const dayLabel = (d) => new Date(d + "T12:00:00").toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" });
+    // petit graphique en barres horizontales, lisible sur mobile
+    const bars = (rows, label, val, extra = () => "") => {
+      if (!rows.length) return `<p class="muted">Pas encore de données.</p>`;
+      const max = Math.max(1, ...rows.map(val));
+      return `<div class="bars">${rows.map((x) => `<div class="b"><span>${label(x)}</span><i><b style="width:${Math.round((val(x) / max) * 100)}%"></b></i><span class="v">${n(val(x))}${extra(x)}</span></div>`).join("")}</div>`;
+    };
+    const PAGE = { survivor: "Émission (Survivor)", index: "Accueil", personnages: "Personnages", selection: "Votes du public", revoir: "Revoir" };
+    main.innerHTML = `<h1>Statistiques</h1>
+      <p class="lede">Les votes et les colis sont comptés par compte. L'audience est anonyme : un identifiant au hasard par navigateur, sans lien avec le compte. Les jours sont à l'heure de Paris.</p>
+      <div class="row" style="margin-bottom:14px"><label style="max-width:360px">Saison<select id="ss">${list.map((x) => `<option value="${x.id}" ${x.id === s.id ? "selected" : ""}>${esc(x.name)} · ${STATUS[x.status] || x.status}</option>`).join("")}</select></label></div>
+      <div class="kpis">
+        <div><b>${n(T.viewers)}</b>comptes inscrits</div><div><b>${n(T.voters)}</b>ont voté au moins une fois</div><div><b>${n(T.givers)}</b>ont envoyé un colis</div>
+        <div><b>${n(T.visitors)}</b>visiteurs de l'émission</div><div><b>${n(Math.round(T.minutes / 60))} h</b>de visionnage</div>
+      </div>
+      <div class="grid2">
+        <div class="card"><h2>Votes par jour de saison</h2>${bars(st.votes, (x) => "Jour " + x.day, (x) => x.n)}</div>
+        <div class="card"><h2>Colis par jour</h2>${bars(st.gifts, (x) => "Jour " + x.day, (x) => x.n, (x) => ` <small class="muted">💧${x.flask} 🍌${x.rations} 🩹${x.medkit}</small>`)}</div>
+        <div class="card"><h2>Spectateurs actifs (vote ou colis)</h2>${bars(st.active, (x) => "Jour " + x.day, (x) => x.n)}</div>
+        <div class="card"><h2>Visiteurs par jour</h2>${bars(st.audience, (x) => dayLabel(x.day), (x) => x.visitors, (x) => ` <small class="muted">visiteurs · ${n(x.hits)} pages vues · ${n(x.minutes)} min${x.replay ? ` · dont ${x.replay} en différé` : ""}</small>`)}</div>
+        <div class="card"><h2>Candidats les plus soutenus</h2>${bars(st.supported, (x) => esc(name[x.id] || x.id), (x) => x.total, (x) => ` <small class="muted">${x.votes} votes · ${x.gifts} colis · ${x.fans} le suivent</small>`)}</div>
+        <div class="card"><h2>Pages les plus vues</h2>${bars(st.pages, (x) => esc(PAGE[x.page] || x.page), (x) => x.visitors, () => " <small class=\"muted\">visiteurs</small>")}</div>
+        <div class="card"><h2>Inscriptions par jour</h2>${bars(st.signups, (x) => dayLabel(x.day), (x) => x.n)}</div>
+      </div>`;
+    document.getElementById("ss").addEventListener("change", (e) => { statSeason = Number(e.target.value); show("stats"); });
+  }
+
   async function users() {
     const { data, error } = await sb.rpc("admin_users");
     if (error) throw error;
