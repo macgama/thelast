@@ -1,0 +1,24 @@
+{
+  "name": "thelast",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Last : simulation de télé-réalité 100% IA",
+  "scripts": {
+    "characters": "tsx src/characters/generate.ts",
+    "simulate": "tsx src/cli/simulate.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "replay": "tsx src/cli/export-replay.ts",
+    "looks": "tsx src/cli/gen-looks.ts",
+    "ai": "NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 tsx src/cli/ai-write.ts",
+    "sheets": "tsx src/cli/gen-sheets.ts",
+    "site": "tsx src/cli/gen-site.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquettes des onglets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root {
+  --ink: #0b1820; --deep: #10262f; --raise: #173440; --line: #24505e; --sea: #1d5a66;
+  --sand: #e9cf98; --mist: #9fb9bd; --torch: #ff8a3d; --danger: #ff5b6b; --safe: #62d6a0;
+  --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ink: #0b1820; } }
+:root[data-theme="dark"] { --ink: #0b1820; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--sand); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--torch); outline-offset: 2px; }
+header { max-width: 1240px; margin: 0 auto; padding: 28px 16px 4px; }
+h1 { font-family: var(--display); letter-spacing: .14em; font-size: 22px; margin: 0 0 6px; }
+h1 b { color: var(--torch); }
+header p { color: var(--mist); max-width: 760px; margin: 0; }
+main { max-width: 1240px; margin: 0 auto; padding: 8px 16px 48px; display: grid; gap: 28px; }
+section { display: grid; gap: 10px; }
+.head { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.letter { font-family: var(--display); font-weight: 700; font-size: 26px; color: var(--torch); width: 1.2em; }
+h2 { font-family: var(--display); font-size: 19px; margin: 0; }
+.head p { margin: 0; color: var(--mist); flex: 1 1 320px; font-size: 14px; }
+.pros { display: flex; gap: 8px; flex-wrap: wrap; font-size: 12.5px; }
+.pros span { background: var(--deep); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; color: var(--mist); }
+.pros span.up { color: var(--safe); border-color: color-mix(in srgb, var(--safe) 40%, var(--line)); }
+
+/* cadre commun : carte + panneau */
+.frame { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--deep); display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 34%); min-height: 380px; }
+.map { position: relative; background:
+  radial-gradient(ellipse 38% 30% at 45% 55%, #c9a86a 0 55%, transparent 56%),
+  radial-gradient(ellipse 46% 38% at 45% 55%, #2f7d73 0 60%, transparent 61%),
+  radial-gradient(circle at 50% 60%, var(--sea), #0d2730 80%); }
+.map::after { content: "carte 3D"; position: absolute; left: 12px; top: 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: color-mix(in srgb, var(--sand) 55%, transparent); }
+.panel { border-left: 1px solid var(--line); display: flex; flex-direction: column; min-width: 0; }
+.body { padding: 12px 14px; display: grid; gap: 8px; align-content: start; flex: 1; }
+.row { background: var(--raise); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font-size: 13px; }
+.row b { color: var(--torch); font-family: var(--display); font-weight: 600; margin-right: 6px; }
+.row.warn { border-color: var(--danger); }
+.row.warn b { color: var(--danger); }
+.title { font-family: var(--display); font-weight: 700; font-size: 15px; }
+.muted { color: var(--mist); font-size: 12.5px; }
+.badge { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--danger); color: #fff; font: 700 11px/18px var(--body); text-align: center; }
+
+/* A : pastilles segmentées */
+.segs { margin: 12px 14px 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 4px; background: var(--ink); border: 1px solid var(--line); border-radius: 999px; }
+.segs button { border: 0; background: none; border-radius: 999px; padding: 7px 4px; font-size: 12.5px; font-weight: 600; color: var(--mist); display: flex; align-items: center; justify-content: center; gap: 5px; position: relative; }
+.segs button[aria-selected="true"] { background: var(--torch); color: var(--ink); }
+.segs .badge { position: absolute; top: -6px; right: 2px; }
+
+/* B : rail d'icônes vertical */
+.frame.b { grid-template-columns: minmax(0, 1fr) 64px minmax(260px, 30%); }
+.rail { border-left: 1px solid var(--line); background: var(--ink); display: flex; flex-direction: column; align-items: center; padding: 10px 0; gap: 6px; }
+.rail button { width: 52px; border: 0; background: none; border-radius: 12px; padding: 7px 0 5px; display: grid; justify-items: center; gap: 2px; font-size: 10px; color: var(--mist); position: relative; }
+.rail button .ico { font-size: 20px; line-height: 1; }
+.rail button[aria-selected="true"] { background: var(--raise); color: var(--sand); box-shadow: inset 3px 0 0 var(--torch); }
+.rail .badge { position: absolute; top: 2px; right: 4px; }
+
+/* C : barre du bas */
+.frame.c .panel { position: relative; }
+.dock { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); background: var(--ink); }
+.dock button { border: 0; background: none; padding: 8px 0 9px; display: grid; justify-items: center; gap: 1px; font-size: 11px; color: var(--mist); position: relative; }
+.dock .ico { font-size: 20px; line-height: 1.1; }
+.dock button[aria-selected="true"] { color: var(--torch); }
+.dock button[aria-selected="true"]::before { content: ""; position: absolute; top: 0; left: 30%; right: 30%; height: 3px; border-radius: 0 0 3px 3px; background: var(--torch); }
+.dock .badge { position: absolute; top: 4px; left: calc(50% + 6px); }
+.phone { width: 260px; justify-self: center; border: 1px solid var(--line); border-radius: 28px; overflow: hidden; background: var(--deep); display: flex; flex-direction: column; height: 460px; }
+.phone .map { flex: 0 0 190px; }
+.phone .body { overflow: hidden; }
+.duo { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 16px; align-items: start; }
+
+/* D : tableau de bord en tuiles */
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 14px; }
+.tile { text-align: left; background: var(--raise); border: 1px solid var(--line); border-radius: 12px; padding: 10px; display: grid; gap: 3px; position: relative; }
+.tile .ico { font-size: 18px; }
+.tile .t { font-family: var(--display); font-weight: 700; font-size: 14px; }
+.tile .p { font-size: 12px; color: var(--mist); line-height: 1.35; }
+.tile[aria-selected="true"] { border-color: var(--torch); box-shadow: 0 0 0 1px var(--torch); }
+.tile .badge { position: absolute; top: 8px; right: 8px; }
+.open { margin: 0 14px 14px; border-top: 1px dashed var(--line); padding-top: 10px; display: grid; gap: 8px; }
+
+@media (max-width: 860px) {
+  .frame, .frame.b { grid-template-columns: 1fr; }
+  .map { min-height: 200px; }
+  .panel, .rail { border-left: 0; border-top: 1px solid var(--line); }
+  .rail { flex-direction: row; justify-content: center; }
+  .rail button[aria-selected="true"] { box-shadow: inset 0 -3px 0 var(--torch); }
+  .duo { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>THE <b>LAST</b> · 4 maquettes pour les onglets</h1>
+  <p>Quatre façons d'afficher « Direct, Quotidienne, Relations, Casting » à côté de la carte. Chaque maquette est cliquable : touchez un onglet pour voir son contenu changer. La pastille rouge montre les nouveautés depuis la dernière visite.</p>
+</header>
+<main id="main"></main>
+<script>
+const TABS = [
+  { k: "feed", ico: "📡", name: "Direct", short: "Direct", badge: 3, preview: "Noa trouve l'idole près de la cascade · il y a 2 min" },
+  { k: "daily", ico: "🌅", name: "Quotidienne", short: "Jour", badge: 0, preview: "Résumé du jour 3 prêt · 19 h" },
+  { k: "rel", ico: "🤝", name: "Relations", short: "Liens", badge: 1, preview: "Omar et Selin : alliance rompue" },
+  { k: "cast", ico: "👥", name: "Casting", short: "Casting", badge: 0, preview: "41 en jeu · 9 évacués" },
+];
+const CONTENT = {
+  feed: `<div class="row warn"><b>14:52</b>Guêpes près du camp nord ! Matthias s'enfuit.</div>
+    <div class="row"><b>14:47</b>Noa trouve l'idole près de la cascade.</div>
+    <div class="row"><b>14:31</b>Louis partage sa noix de coco avec Omar.</div>
+    <div class="row"><b>14:12</b>Selin surprend une conversation.</div>`,
+  daily: `<div class="title">Jour 3 · « La nuit des alliances »</div>
+    <div class="muted">Le résumé de la journée, à 19 h pour tout le monde.</div>
+    <div class="row">Matin : la pêche ne donne rien, la tension monte.</div>
+    <div class="row">Après-midi : l'idole change de mains.</div>`,
+  rel: `<div class="title">Carte des liens</div>
+    <div class="row">🤝 Louis et Omar : amis (+62)</div>
+    <div class="row warn"><b>!</b>Omar et Selin : alliance rompue</div>
+    <div class="row">😒 Matthias et Noa : méfiance (−18)</div>`,
+  cast: `<div class="title">41 candidats en jeu</div>
+    <div class="row">Noa · pêcheur·se · 🔥 forme 82 %</div>
+    <div class="row">Selin · architecte · 💧 soif</div>
+    <div class="row">Omar · cuisinier · 😴 fatigue</div>`,
+};
+const MOCKS = [
+  { L: "A", h: "Pastilles avec icônes", p: "Un seul bandeau arrondi en haut du panneau, comme un interrupteur. L'onglet actif est rempli de couleur torche.", pros: ["+ très lisible", "+ prend peu de place", "− 4 onglets maximum"], up: 2 },
+  { L: "B", h: "Rail d'icônes vertical", p: "Une colonne d'icônes entre la carte et le panneau, comme sur Discord ou Slack. Sur téléphone, le rail passe en ligne sous la carte.", pros: ["+ on peut ajouter des onglets", "+ le panneau garde toute sa hauteur", "− les icônes doivent être claires"], up: 2 },
+  { L: "C", h: "Barre du bas, façon appli", p: "Les onglets descendent en bas du panneau, à portée de pouce. C'est le réflexe des applis mobiles (Instagram, TikTok).", pros: ["+ idéal sur téléphone", "+ rendu « vraie appli »", "− moins habituel sur ordinateur"], up: 2 },
+  { L: "D", h: "Tableau de bord en tuiles", p: "Quatre tuiles qui montrent déjà la dernière nouvelle de chaque rubrique. On ouvre la tuile pour lire la suite.", pros: ["+ on voit tout d'un coup d'œil", "+ donne envie de cliquer", "− le contenu ouvert est plus bas"], up: 2 },
+];
+const tabBtns = (cls, label) => TABS.map((t, i) => `<button type="button" role="tab" data-k="${t.k}" aria-selected="${i === 0}">${label(t)}${t.badge ? `<span class="badge">${t.badge}</span>` : ""}</button>`).join("");
+const map = `<div class="map" aria-hidden="true"></div>`;
+const frames = {
+  A: () => `<div class="frame a">${map}<div class="panel"><div class="segs" role="tablist">${tabBtns("", (t) => `<span>${t.ico}</span>${t.name}`)}</div><div class="body"></div></div></div>`,
+  B: () => `<div class="frame b">${map}<nav class="rail" role="tablist">${tabBtns("", (t) => `<span class="ico">${t.ico}</span>${t.short}`)}</nav><div class="panel"><div class="body"></div></div></div>`,
+  C: () => `<div class="duo"><div class="frame c">${map}<div class="panel"><div class="body"></div><nav class="dock" role="tablist">${tabBtns("", (t) => `<span class="ico">${t.ico}</span>${t.short}`)}</nav></div></div>
+    <div class="phone c" aria-label="Sur téléphone">${map}<div class="body"></div><nav class="dock" role="tablist">${tabBtns("", (t) => `<span class="ico">${t.ico}</span>${t.short}`)}</nav></div></div>`,
+  D: () => `<div class="frame d">${map}<div class="panel"><div class="tiles" role="tablist">${TABS.map((t, i) => `<button type="button" class="tile" role="tab" data-k="${t.k}" aria-selected="${i === 0}"><span class="ico">${t.ico}</span><span class="t">${t.name}</span><span class="p">${t.preview}</span>${t.badge ? `<span class="badge">${t.badge}</span>` : ""}</button>`).join("")}</div><div class="open body"></div></div></div>`,
+};
+const main = document.getElementById("main");
+main.innerHTML = MOCKS.map((m) => `<section data-m="${m.L}"><div class="head"><span class="letter">${m.L}</span><h2>${m.h}</h2><p>${m.p}</p></div>
+  <div class="pros">${m.pros.map((x) => `<span class="${x.startsWith("+") ? "up" : ""}">${x}</span>`).join("")}</div>${frames[m.L]()}</section>`).join("");
+for (const sec of main.querySelectorAll("section")) {
+  // chaque groupe (ordinateur / téléphone) a ses propres onglets et son propre contenu
+  for (const host of sec.querySelectorAll(".frame, .phone")) {
+    const show = (k) => {
+      host.querySelectorAll('[role="tab"]').forEach((b) => b.setAttribute("aria-selected", b.dataset.k === k));
+      host.querySelectorAll(".body").forEach((b) => (b.innerHTML = CONTENT[k]));
+      const btn = host.querySelector(`[data-k="${k}"] .badge`); if (btn) btn.remove();
+    };
+    host.querySelectorAll('[role="tab"]').forEach((b) => b.addEventListener("click", () => show(b.dataset.k)));
+    host.querySelectorAll(".body").forEach((b) => (b.innerHTML = CONTENT.feed));
+  }
+}
+</script>
+</body>
+</html>

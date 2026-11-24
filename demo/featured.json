@@ -1,0 +1,81 @@
+{
+  "_note": "Fiches enrichies et confessionnaux écrits pour la démo de la saison 42 (île agrandie, 12 zones), à partir de ce qui s'est réellement passé dans la simulation. Plus tard, une IA les écrira en direct.",
+  "c085": {
+    "job": "développeuse de jeux vidéo",
+    "bio": "Fille d'épiciers de Mumbai, elle a grandi derrière le comptoir. À 30 ans, un grave accident de voiture la cloue au lit six mois : elle y apprend à coder. Son premier jeu s'est vendu à des millions d'exemplaires. Généreuse jusqu'à l'absurde, nerveuse, et terrifiée par l'eau.",
+    "motivation": "Ouvrir un refuge pour animaux dans la banlieue de Mumbai.",
+    "secret": "Elle est millionnaire grâce à son jeu. Ce qu'elle « prend » aux plus forts sur l'île, elle essaie de le redonner aux plus faibles.",
+    "secretDay": 2,
+    "confessions": {
+      "1": "Une île. Entourée d'eau. Moi qui ne sais même pas nager. Je me suis répété toute la journée : tu as survécu à pire, Selin. Six mois dans un lit, tu te souviens ? Ce soir, je dors seule au pied d'un rocher.",
+      "2": "Des guêpes cette nuit dans la jungle, et ce matin le courant de la rivière m'a fauchée. L'eau, encore l'eau. Huit d'entre vous m'ont envoyé une trousse de secours. Je l'ai serrée contre moi comme une peluche. Ma jambe me fait mal, mais je souris.",
+      "3": "Hana a essayé de me voler ce matin. Je l'ai vue, et je ne lui en ai pas voulu. Quelques heures plus tard, elle m'a ouvert son clan, les Iguanes. Et puis ma jambe a lâché, la blessure de la rivière. Le drone m'a emportée. Je ne sais pas nager, et j'ai tenu trois jours sur une île. Le refuge, je l'ouvrirai quand même."
+    }
+  },
+  "c053": {
+    "job": "avocat d'affaires",
+    "bio": "Placé en famille d'accueil à 8 ans, Matthias s'est construit seul : bourses, concours, et un poste d'avocat d'affaires à 26 ans. Il a un plan pour tout et une stratégie pour chacun. Peu courageux, très malin, il préfère la ruse à la confrontation. Et il a une peur panique des insectes.",
+    "motivation": "Ouvrir son propre cabinet grâce à la notoriété.",
+    "secret": "Il a reconnu Omar dès le premier jour. Il y a quatre ans, pour son premier gros dossier, il a fait fermer le chantier de fouilles d'Omar pour le compte d'un promoteur. Depuis, il fait semblant de ne pas le connaître.",
+    "secretDay": 5,
+    "confessions": {
+      "1": "Cinquante candidats, cinquante dossiers. J'en ai déjà classé quarante-neuf. Il y a un visage, l'archéologue, qui me dit quelque chose. Je n'aime pas ce qui me dit quelque chose.",
+      "2": "Menacé dès le deuxième soir. Vous m'avez sauvé, avec Ayumi. Merci. Je ne sais pas encore ce que vous me trouvez, mais je vais m'en servir. Pas de panique, j'ai un plan.",
+      "3": "Des guêpes, deux fois dans la même nuit, la mangrove puis la jungle. J'ai les insectes en horreur. Et aujourd'hui, j'ai gagné le grand puzzle, devant Rafael et Samuel. Immunisé ce soir. Personne ne m'a félicité. Un avocat, ça gagne. Ça ne se fait pas aimer.",
+      "4": "Journée de voleurs. J'ai pris des rations à Hana, elle a voulu me les reprendre, j'ai recommencé et elle m'a vu. Son colis est tombé dans mes bras. Ma lampe torche a disparu. Et Omar m'a battu aux poteaux en me regardant droit dans les yeux. Je crois qu'il sait.",
+      "5": "Je vais être honnête, pour une fois. Je connais Omar. Il y a quatre ans, j'ai fait fermer son chantier de fouilles pour un promoteur. Je fais semblant de ne pas le reconnaître. Ce soir, Ayumi m'a accueilli chez les Albatros et m'a tendu sa gourde. Ça faisait longtemps qu'on ne m'avait rien offert.",
+      "6": "J'ai voulu prendre le sac de Charlie, on m'a vu. Puis j'ai glissé à Omar de se méfier de Zara. C'était ma façon de m'excuser. Il n'a rien répondu. Ayumi a plaidé pour moi devant vous, ça n'a pas suffi. Je pars sans plan. C'est nouveau."
+    }
+  },
+  "c071": {
+    "job": "archéologue",
+    "bio": "Né à Nouméa, Omar a élevé seul ses deux petites sœurs quand ses parents sont partis. Archéologue, il passe sa vie à fouiller la terre à la recherche de ce que les autres ont laissé. Sur l'île, il fouille aussi les sacs. Loyal à l'extrême avec les siens, il ne supporte pas d'être seul.",
+    "motivation": "Offrir à ses sœurs la maison qu'elles n'ont jamais eue.",
+    "catchphrase": "Tout ce qui est enterré finit par remonter.",
+    "secret": "Omar connaît Matthias. C'est l'avocat qui a fait fermer, il y a quatre ans, le chantier de fouilles de sa vie, pour le compte d'un promoteur.",
+    "secretDay": 4,
+    "confessions": {
+      "1": "Une lampe torche parachutée dès midi, merci à vous. Sana m'a proposé de rejoindre les Mangoustes, avec Victor. Ce soir, on a tout mis en commun sur la plage. Je déteste être seul. Ce soir, je ne le suis pas.",
+      "2": "Deuxième veillée des Mangoustes, au lagon. On a parlé de nos familles. J'ai parlé de mes sœurs. Je n'en parle jamais.",
+      "3": "Hier soir, la marée m'a pris par surprise et Sana m'a attrapé par le bras. Aujourd'hui, c'est elle qui a quitté l'île. Des nuées de moustiques dans la mangrove, je les ai à peine senties. Ce soir, au feu, on n'était plus que deux, Victor et moi.",
+      "4": "J'ai gagné les poteaux devant Matthias. Il ne se souvient pas de moi. Moi, je me souviens de lui : c'est l'avocat qui a fait fermer le chantier de fouilles de ma vie. Ce soir, Raphaël fouillait le sac de Victor. Je l'ai arrêté. On ne touche pas aux Mangoustes.",
+      "5": "J'ai fouillé le sac de Dmitri, Freya m'a surpris. Dmitri a fouillé celui de Victor, je l'ai surpris. Ce soir, vous deviez choisir entre Victor, Dmitri et moi. Victor est parti. Je suis le dernier des Mangoustes.",
+      "6": "Matthias m'a glissé de me méfier de Zara. Matthias, me donner des conseils. Une heure plus tard, vous l'avez renvoyé chez lui. Je n'ai rien eu à faire. Et j'ai gagné le relais. Tout ce qui est enterré finit par remonter.",
+      "7": "Ce matin, je me suis fait prendre la main dans le sac de Noa. Puis j'ai gagné l'endurance et la confiance. Quarante-huit d'entre vous m'ont envoyé un colis. Et en finale, Noa a fait mieux que moi. Mes sœurs, je rentre. Sans la maison, mais avec une histoire."
+    }
+  },
+  "c046": {
+    "job": "ingénieur·e en construction navale",
+    "bio": "Né·e à Osaka, Noa a déménagé tous les deux ans pendant toute son enfance, sans jamais avoir le temps de se faire des amis. À 30 ans, iel a traversé l'Atlantique à la voile, en solitaire, sur un bateau construit de ses mains. Lent·e, patient·e, rarement en colère. Iel a peur du noir.",
+    "motivation": "Prouver à sa famille, qui n'a jamais cru en iel, ce qu'iel vaut vraiment.",
+    "catchphrase": "Doucement, mais sûrement.",
+    "secret": "Iel a traversé l'Atlantique en solitaire… et ne sait pas nager. Iel ne l'a jamais avoué à personne.",
+    "secretDay": 4,
+    "confessions": {
+      "1": "Quarante-neuf inconnus sur une plage. J'ai fait ce que je fais à chaque déménagement : repérer la personne la plus calme. C'était Louis. On s'appelle les Tortues. Doucement, mais sûrement. Ce soir, Charlie nous a rejoints.",
+      "2": "Cette nuit, un éboulement aux falaises, et c'est Charlie qui m'a tendu la main. Je déteste le noir. Ce matin, j'ai pris des rations à Samuel. Il n'a rien vu. Je ne suis pas quelqu'un de méchant, j'ai juste appris très tôt à ne compter que sur mon sac. Rafael nous a rejoints. Quatre amis. Je n'en ai jamais eu quatre en même temps.",
+      "3": "Mon colis est tombé dans les mains de Louis. Il l'a ouvert au feu, pour tout le monde, et m'a tendu sa gourde. Liam est arrivé chez les Tortues. Je commence à croire que ce clan peut tenir jusqu'au bout.",
+      "4": "Je vais vous dire une chose que je n'ai jamais dite à personne : je ne sais pas nager. J'ai traversé l'Atlantique seul·e, et je ne sais pas nager. Aujourd'hui, à la rivière, le courant m'a pris les jambes. Charlie a plongé. Je lui dois tout.",
+      "5": "Le colis de Rafael a atterri sur moi. Je ne lui ai pas rendu. Je l'ai partagé ce soir au feu, avec lui, avec tout le clan. Il a souri. Mais il a compté, je l'ai vu. Et vingt d'entre vous m'ont envoyé une trousse de secours. Merci.",
+      "6": "Liam est parti, puis Rafael, à bout de forces. Il ne reste que trois Tortues : Louis, Charlie et moi. Vingt-huit d'entre vous m'ont parachuté une trousse. Je ne sais pas ce que vous voyez en moi. Ma famille, elle, n'a jamais rien vu.",
+      "7": "À l'aube, Omar a fouillé mon sac. À midi, le colis de Louis est tombé sur moi, devant tout le monde. Charlie a dû partir à l'orientation. En finale, face à Louis et Omar, j'ai fait ce que je sais faire : doucement, mais sûrement. Papa, maman, vous voyez ? Je suis The Last."
+    }
+  },
+  "c086": {
+    "job": "agent immobilier",
+    "bio": "Louis a grandi à Accra, au bord de la mer, entre les bateaux et les tempêtes. À 19 ans, il a sauvé un inconnu de la noyade et il est devenu le héros du quartier. Depuis, il n'a plus jamais mis un pied dans l'eau. Agent immobilier criblé de dettes, il répète qu'il ne pense qu'à lui. Personne ne le croit.",
+    "motivation": "Rembourser ses dettes et repartir de zéro.",
+    "catchphrase": "Chacun pour soi, et moi pour moi.",
+    "secret": "Il a été recalé trois fois au casting de The Last. La quatrième fois, il a menti : il a dit qu'il était égoïste.",
+    "secretDay": 4,
+    "confessions": {
+      "1": "Chacun pour soi, et moi pour moi. C'est ce que je dis à mes clients. Puis Noa m'a proposé de faire équipe, et je n'ai pas su dire non. Deuxième au radeau, derrière Lucas. Le radeau. L'eau. Et ce soir, ma lampe torche a disparu.",
+      "2": "Des moustiques par centaines, et c'est Noa qui m'a sorti de là. Charlie et Rafael nous ont rejoints. Je partage tout, je n'y arrive pas autrement. Mon père disait que c'est pour ça que j'aurais toujours des dettes.",
+      "3": "Le colis était pour Noa. Il est tombé sur moi. Je l'ai ouvert au feu, pour tout le monde. Chacun pour soi ? Je me demande encore pourquoi j'ai choisi cette phrase.",
+      "4": "J'ai été recalé trois fois au casting. Trois. La quatrième fois, j'ai menti : j'ai dit que je ne pensais qu'à moi. Ce soir, j'ai plaidé pour Charlie devant vous, et vous avez gardé Charlie. Et oui, j'ai pris une lampe à Matthias. Il avait volé tout le monde.",
+      "5": "Iris m'a pris ma trousse, Oscar a essayé lui aussi. Puis le colis d'Oscar m'est tombé dans les mains. L'île rend ce qu'elle prend, on dirait.",
+      "6": "L'eau croupie m'a rendu malade. Rafael m'a soigné. Ce soir, il est parti, épuisé. Troisième au relais, derrière Omar. On n'est plus que trois Tortues, et je vois bien qu'Omar nous regarde.",
+      "7": "J'ai gagné l'orientation, et c'est Charlie qui a dû quitter l'île. En finale, c'est Noa qui l'a emporté. Je n'ai aucun regret : recalé trois fois, et je finis sur le podium. Mes dettes attendront. Pas mes amis."
+    }
+  }
+}
