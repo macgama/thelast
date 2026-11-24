@@ -23,7 +23,7 @@ Télé-réalité 100% IA : 50 personnages IA vivent une aventure de 7 jours, sui
 
 ## Le vrai direct (saison de test)
 
-Le site est prévu pour tourner gratuitement : **GitHub Pages** (le dossier `demo/`), **Supabase** (comptes, votes, colis, back-office) et **GitHub Actions** (le moteur passe toutes les 10 minutes). Tout est expliqué pas à pas dans [`docs/mise-en-ligne.md`](docs/mise-en-ligne.md).
+Le site est prévu pour tourner gratuitement : **Infomaniak** (le dossier `demo/`, envoyé par FTP), **Supabase** (comptes, votes, colis, back-office) et **GitHub Actions** (le moteur passe toutes les 10 minutes). Tout est expliqué pas à pas dans [`docs/mise-en-ligne.md`](docs/mise-en-ligne.md).
 
 | Élément | Fichier |
 | --- | --- |
