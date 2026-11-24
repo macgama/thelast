@@ -109,10 +109,10 @@ const shows = [
   },
   {
     id: "arena", name: "The Last - Arena Battle", tagline: "Une arène, des duels, un seul debout.", icon: "⚔️",
-    text: "La deuxième émission de The Last, en préparation. Des duels chaque jour et une mêlée finale, avec des armes cartoon. Les candidats viennent du même vivier de 100 personnages.",
+    text: "30 candidats dans une arène fermée, chacun pour soi : le dernier debout gagne. Pièges, potions et trahisons, mais tout en mousse et en peinture. Chaque soir, le public sauve un candidat de la Cage du sursis. Une maquette jouable est déjà prête.", demo: "arena.html",
     genres: ["Combat", "Duels", "Trahisons"], status: "casting",
-    en: { tagline: "One arena, duels, only one left standing.", text: "The second show from The Last, in the works. Duels every day and a final free-for-all, with cartoon weapons. Contestants come from the same pool of 100 characters.", genres: ["Combat", "Duels", "Betrayals"] },
-    seasons: [{ n: 1, label: "Saison 1", en: { label: "Season 1" }, status: "casting", cast: 50, voted: 30, episodes: [] }],
+    en: { tagline: "One arena, duels, only one left standing.", text: "30 contestants in a closed arena, every one for themselves: the last one standing wins. Traps, potions and betrayals, but all in foam and paint. Every evening, the public saves one contestant from the Second Chance Cage. A playable prototype is already available.", genres: ["Combat", "Duels", "Betrayals"] },
+    seasons: [{ n: 1, label: "Saison 1 · Le Colisée d'acier", en: { label: "Season 1 · The Steel Colosseum" }, status: "casting", cast: 30, voted: 24, episodes: [] }],
   },
   {
     id: "retour", name: "The Last - Le Retour", tagline: "Une seconde chance, votée par le public.", special: true, icon: "🔁",

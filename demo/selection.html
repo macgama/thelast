@@ -179,10 +179,10 @@ input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep);
   const CAMPS = {
     arena: {
       tab: _("⚔️ Arena Battle"), kick: _("Casting ouvert · The Last - Arena Battle · Saison 1"), title: _("Choisis qui entre dans l'arène"),
-      text: _("Les 50 candidats d'Arena Battle viennent du vivier des 100 personnages. C'est toi, avec les autres spectateurs, qui décides qui part se battre. Le vote est gratuit et chaque spectateur a le même nombre de voix."),
-      pool: people.map((c) => c.id), max: 10, voted: 30, size: 50, deadline: _("Fin du vote dimanche à 20 h · démo"),
-      rules: [["10", _("voix gratuites pour toi"), _("Une voix par personnage au maximum. Tu peux changer d'avis jusqu'à la fin du vote.")], ["30", _("places pour les plus votés"), _("Les 30 personnages qui ont le plus de voix sont qualifiés.")], ["20", _("places tirées au sort"), _("Parmi tous les autres, pour que les moins connus aient aussi leur chance.")]],
-      qualified: _("Qualifié·e par le vote (top 30)"),
+      text: _("Les 30 candidats d'Arena Battle viennent du vivier des 100 personnages. C'est toi, avec les autres spectateurs, qui décides qui part se battre. Le vote est gratuit et chaque spectateur a le même nombre de voix."),
+      pool: people.map((c) => c.id), max: 10, voted: 24, size: 30, deadline: _("Fin du vote dimanche à 20 h · démo"),
+      rules: [["10", _("voix gratuites pour toi"), _("Une voix par personnage au maximum. Tu peux changer d'avis jusqu'à la fin du vote.")], ["24", _("places pour les plus votés"), _("Les 24 personnages qui ont le plus de voix sont qualifiés.")], ["6", _("places complétées par la production"), _("Parmi les personnages les moins vus, pour qu'ils aient aussi leur chance.")]],
+      qualified: _("Qualifié·e par le vote (top 24)"),
     },
     retour: {
       tab: _("🔁 Le Retour"), kick: _("Repêchage · The Last - Le Retour · Spécial 1"), title: _("Offre une seconde chance"),

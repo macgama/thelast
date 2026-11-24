@@ -276,7 +276,7 @@ footer { color: var(--mist); font-size: 13px; padding: 20px var(--gut) 30px; bor
   rows.push(row(_("Survivor · Saison 1"), s1.episodes.map((e) => epCard(sv, s1, e)).join(""), "", ` <small>${_("7 épisodes · un par jour, en direct")}</small>`));
   rows.push(row(`<span id="shows">${_("Toutes les émissions")}</span>`, site.shows.map(poster).join("")));
   const VOTES = [
-    { id: "arena", ic: "⚔️", title: _("Choisis qui entre dans l'arène"), text: _("10 voix gratuites. Les 30 plus votés sont qualifiés, 20 places tirées au sort."), go: _("Voter pour le casting") },
+    { id: "arena", ic: "⚔️", title: _("Choisis qui entre dans l'arène"), text: _("10 voix gratuites. Les 24 plus votés sont qualifiés, la production complète avec 6 personnages peu vus."), go: _("Voter pour le casting") },
     { id: "retour", ic: "🔁", title: _("Repêche un ancien candidat"), text: _("3 voix gratuites. Les 10 plus repêchés reviennent pour un spécial de 24 heures."), go: _("Voter pour le repêchage") },
     { id: "allstars", ic: "⭐", title: _("Réunis les champions"), text: _("5 voix gratuites. Les 20 plus votés parmi les 30 plus expérimentés entrent dans l'All-Stars."), go: _("Voter pour l'All-Stars") },
   ];
@@ -305,7 +305,7 @@ footer { color: var(--mist); font-size: 13px; padding: 20px var(--gut) 30px; bor
     const status = { live: `<span class="live">${_("En direct")}</span>`, casting: `<b>${_("Casting ouvert")}</b>`, soon: `<b>${_("Bientôt")}</b>` }[s.status];
     mbox.innerHTML = `<button type="button" class="mclose" id="mClose" aria-label="${_("Fermer")}">×</button>
       <div class="mhead">${head}<div class="ht"><div class="kick">${status}<span>${esc(s.tagline)}</span></div><h2 id="mTitle">${esc(s.name)}</h2>
-      ${s.status === "live" ? `<a class="btn main" href="survivor.html">${pos ? _("▶ Reprendre") : _("▶ Regarder")}</a>` : s.status === "casting" ? `<a class="btn main" href="selection.html#${id}">${id === "retour" ? _("Voter pour le repêchage") : _("Voter pour le casting")}</a>` : ""}</div></div>
+      ${s.status === "live" ? `<a class="btn main" href="survivor.html">${pos ? _("▶ Reprendre") : _("▶ Regarder")}</a>` : s.status === "casting" ? `<a class="btn main" href="selection.html#${id}">${id === "retour" ? _("Voter pour le repêchage") : _("Voter pour le casting")}</a>${s.demo ? `<a class="btn" href="${s.demo}">${_("▶ Essayer la maquette")}</a>` : ""}` : ""}</div></div>
       <div class="mbody"><p>${esc(s.text)}</p><div class="genres">${s.genres.map((g) => `<span>${esc(g)}</span>`).join("")}</div><div id="mSeason"></div></div>`;
     const box = document.getElementById("mSeason");
     const paint = (n) => {

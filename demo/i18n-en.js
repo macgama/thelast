@@ -662,4 +662,11 @@ window.I18N && window.I18N.add({
   "Choisis ton nouveau mot de passe (6 caractères minimum).": "Choose your new password (at least 6 characters).",
   "Enregistrer": "Save",
   "Mot de passe changé ✓": "Password changed ✓",
+  "Les 30 candidats d'Arena Battle viennent du vivier des 100 personnages. C'est toi, avec les autres spectateurs, qui décides qui part se battre. Le vote est gratuit et chaque spectateur a le même nombre de voix.": "Arena Battle's 30 contestants come from the pool of 100 characters. You and the other viewers decide who goes to fight. Voting is free and every viewer gets the same number of votes.",
+  "Les 24 personnages qui ont le plus de voix sont qualifiés.": "The 24 characters with the most votes qualify.",
+  "places complétées par la production": "spots filled by the production",
+  "Parmi les personnages les moins vus, pour qu'ils aient aussi leur chance.": "From the least-seen characters, so they get a chance too.",
+  "Qualifié·e par le vote (top 24)": "Qualified by vote (top 24)",
+  "▶ Essayer la maquette": "▶ Try the prototype",
+  "10 voix gratuites. Les 24 plus votés sont qualifiés, la production complète avec 6 personnages peu vus.": "10 free votes. The top 24 qualify, and the production adds 6 rarely seen characters.",
 });
