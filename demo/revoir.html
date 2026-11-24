@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-i18n>Revoir les saisons</title>
+<script src="config.js"></script>
+<script src="vendor/supabase.js"></script>
+<script src="i18n.js"></script>
+<script src="i18n-en.js"></script>
+<script src="live.js"></script>
+<script src="audience.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root {
+  --ink: #0b1820; --deep: #10262f; --raise: #173440; --line: #24505e;
+  --sand: #e9cf98; --mist: #9fb9bd; --torch: #ff8a3d; --danger: #ff5b6b; --safe: #62d6a0;
+  --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; background: var(--ink); color: var(--sand); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--torch); outline-offset: 3px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+.wrap { padding-inline: clamp(16px, 4vw, 56px); max-width: 1300px; margin: 0 auto; }
+.top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--ink) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 14px; padding-block: 12px; }
+.logo { font-family: var(--display); font-weight: 700; letter-spacing: .18em; font-size: 19px; text-decoration: none; white-space: nowrap; }
+.logo b { color: var(--torch); }
+.top nav { margin-left: auto; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.top nav a { text-decoration: none; color: var(--mist); font-size: 14px; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+.top nav a:hover, .top nav a[aria-current] { color: var(--sand); background: var(--raise); }
+.langsw { flex: none; background: transparent; color: var(--mist); border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; font: 600 12px/1 Inter, sans-serif; letter-spacing: .06em; }
+.langsw:hover { color: var(--sand); border-color: var(--sand); }
+h1 { font-family: var(--display); font-size: clamp(28px, 5vw, 44px); line-height: 1.1; margin: 32px 0 8px; }
+.lede { color: var(--mist); max-width: 70ch; margin: 0 0 28px; }
+.season { background: var(--deep); border: 1px solid var(--line); border-radius: 18px; padding: clamp(16px, 3vw, 24px); margin-bottom: 24px; }
+.shead { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 16px; }
+.shead h2 { font-family: var(--display); font-size: 24px; margin: 0; }
+.chip { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 3px 10px; border: 1px solid var(--line); color: var(--mist); }
+.chip.live { color: #fff; background: var(--danger); border-color: var(--danger); }
+.meta { color: var(--mist); font-size: 14px; }
+.spoil { margin-left: auto; background: var(--raise); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+.spoil[aria-pressed="true"] { background: var(--sand); color: var(--ink); border-color: var(--sand); font-weight: 600; }
+.winner { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; padding: 10px 14px; border-radius: 12px; background: color-mix(in srgb, var(--torch) 14%, transparent); }
+.winner img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--raise); }
+.eps { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+.ep { display: grid; grid-template-rows: auto 1fr auto; gap: 8px; text-decoration: none; background: var(--ink); border: 1px solid var(--line); border-radius: 14px; padding: 14px; transition: border-color .15s, transform .15s; }
+.ep:hover { border-color: var(--torch); transform: translateY(-2px); }
+.ep .t { display: flex; align-items: center; gap: 10px; }
+.ep .n { font-family: var(--display); font-size: 28px; font-weight: 700; color: var(--torch); line-height: 1; min-width: 1.2em; }
+.ep .faces { display: flex; margin-left: auto; }
+.ep .faces img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--ink); margin-left: -8px; background: var(--raise); }
+.ep .t b { font-size: 16px; }
+.ep p { margin: 0; color: var(--mist); font-size: 14px; }
+.ep .out { color: var(--danger); font-size: 13px; }
+.ep .go { font-size: 13px; font-weight: 600; color: var(--sand); }
+.hide .sp { filter: blur(6px); user-select: none; }
+.hide .ep .faces { filter: grayscale(1) blur(2px); }
+.empty { color: var(--mist); background: var(--deep); border: 1px dashed var(--line); border-radius: 14px; padding: 20px; }
+footer { color: var(--mist); font-size: 13px; padding-block: 30px 40px; }
+@media (max-width: 520px) { .logo { font-size: 16px; letter-spacing: .12em; } .top nav a { padding: 6px 7px; font-size: 13px; } .spoil { margin-left: 0; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html">THE <b>LAST</b></a>
+    <nav aria-label="Navigation principale" data-i18n-attr="aria-label">
+      <a href="index.html" data-i18n>Accueil</a>
+      <a href="revoir.html" aria-current="page" data-i18n>Revoir</a>
+      <a href="personnages.html" data-i18n>Personnages</a>
+      <a href="selection.html" data-i18n>Sélection</a>
+    </nav>
+    <button type="button" class="langsw" data-lang-switch></button>
+  </div>
+</header>
+<main class="wrap">
+  <h1 data-i18n>Revoir les saisons</h1>
+  <p class="lede" data-i18n>Chaque saison reste disponible en différé, jour par jour. Tu regardes l'île comme si tu y étais, mais le vote et les colis sont fermés : rien ne peut plus changer.</p>
+  <div id="list"><p class="meta" data-i18n>Chargement…</p></div>
+</main>
+<footer class="wrap" data-i18n>Les résumés sont floutés pour ne rien te gâcher : touche « Voir les résumés » pour les afficher.</footer>
+<script>
+(async function () {
+  "use strict";
+  const _ = window.t, EN = window.I18N.lang === "en", LV = window.TheLastLive, list = document.getElementById("list");
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const date = (iso) => new Date(iso).toLocaleDateString(EN ? "en-US" : "fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  const pic = (id) => `<img src="img/p/${esc(id)}.webp" alt="" loading="lazy" onerror="this.style.visibility='hidden'">`;
+  const shown = (() => { try { return JSON.parse(localStorage.getItem("thelast-spoilers") || "{}"); } catch { return {}; } })();
+  const remember = () => { try { localStorage.setItem("thelast-spoilers", JSON.stringify(shown)); } catch {} };
+
+  // Un épisode = une journée, de la Quotidienne de la veille à celle du soir
+  function epCard(href, n, title, moments, outs, left, faces) {
+    return `<a class="ep" href="${href}"><span class="t"><span class="n">${n}</span><b>${esc(title)}</b><span class="faces">${faces.slice(0, 3).map(pic).join("")}</span></span>
+      <span class="sp"><p>${esc(moments.slice(0, 2).join(" "))}</p>${outs.length ? `<p class="out">${esc(_("Évacué·es : {l}", { l: outs.join(", ") }))}</p>` : ""}${left ? `<p>${esc(left > 1 ? _("{n} candidats en fin de journée", { n: left }) : _("{n} candidat en fin de journée", { n: left }))}</p>` : ""}</span>
+      <span class="go">${_("▶ Regarder le jour {d}", { d: n })}</span></a>`;
+  }
+  function seasonCard(key, head, winner, eps) {
+    const open = !!shown[key];
+    return `<section class="season ${open ? "" : "hide"}" data-key="${esc(key)}"><div class="shead">${head}<button type="button" class="spoil" aria-pressed="${open}">${open ? _("Masquer les résumés") : _("Voir les résumés")}</button></div>
+      ${winner ? `<div class="winner sp">${pic(winner.id)}<span>${_("🏆 Vainqueur : <b>{n}</b>", { n: esc(winner.name) })}</span></div>` : ""}
+      <div class="eps">${eps || `<p class="empty">${_("Le premier épisode sera disponible après la première Quotidienne.")}</p>`}</div></section>`;
+  }
+  list.addEventListener("click", (e) => {
+    const b = e.target.closest(".spoil"); if (!b) return;
+    const box = b.closest(".season"), key = box.dataset.key, open = box.classList.toggle("hide") === false;
+    shown[key] = open; remember();
+    b.setAttribute("aria-pressed", open); b.textContent = open ? _("Masquer les résumés") : _("Voir les résumés");
+  });
+
+  // Saisons en ligne (base Supabase)
+  let html = "";
+  if (LV?.enabled) {
+    await LV.init();
+    const { data: seasons, error } = await LV.sb.from("seasons").select("id,name,start_at,status,public,winner").in("status", ["live", "done"]).order("start_at", { ascending: false });
+    if (error) { list.innerHTML = `<p class="empty">${esc(LV.errText(error))}</p>`; return; }
+    const ids = (seasons || []).map((s) => s.id);
+    const { data: dailies } = ids.length ? await LV.sb.from("reveals").select("season_id,key,payload").eq("kind", "daily").in("season_id", ids) : { data: [] };
+    for (const s of seasons || []) {
+      const cast = Object.fromEntries((s.public?.cast || []).map((c) => [c.id, c]));
+      const name = (id) => cast[id]?.name || id;
+      const days = (dailies || []).filter((r) => r.season_id === s.id).map((r) => r.payload).sort((a, b) => a.day - b.day);
+      const eps = days.map((d) => {
+        const ms = d.hl.map((ev) => (EN && ev.en) || ev.fr).filter(Boolean).map((x) => x.replace(/^📢\s*/, ""));
+        const faces = [...new Set([...d.hl.flatMap((ev) => ev.a || []), ...d.outs.flatMap((ev) => ev.a || [])])].filter((id) => cast[id]);
+        return epCard(`survivor.html?saison=${s.id}&jour=${d.day}`, d.day, d.day === (s.public?.days || 7) ? _("Le Prime") : _("Jour {d}", { d: d.day }), ms, d.outs.map((ev) => name(ev.a[0])), d.left, faces);
+      }).join("");
+      const head = `<h2>${esc(s.name)}</h2>${s.status === "live" ? `<span class="chip live">${_("En cours")}</span>` : `<span class="chip">${_("Terminée")}</span>`}<span class="meta">${_("Depuis le {d}", { d: date(s.start_at) })}${s.public?.arena?.name ? " · " + esc(EN && s.public.arena.en ? s.public.arena.en : s.public.arena.name) : ""}</span>`;
+      html += seasonCard("s" + s.id, head, s.status === "done" && s.winner ? { id: s.winner, name: name(s.winner) } : null, eps);
+    }
+    window.TheLastAudience?.page("revoir", { mode: "replay" });
+  }
+  // La saison de démo (déjà simulée), toujours disponible
+  try {
+    const site = await (await fetch("emissions.json")).json();
+    const sv = site.shows.find((x) => x.id === "survivor"), s1 = sv.seasons.find((x) => x.n === 1);
+    const people = await (await fetch("personnages.json")).json();
+    const P = Object.fromEntries(people.map((c) => [c.id, c]));
+    if (EN) for (const e of s1.episodes) if (e.en) Object.assign(e, Object.fromEntries(Object.entries(e.en).filter(([, v]) => v)));
+    const label = EN && s1.en?.label ? s1.en.label : s1.label;
+    const winner = Object.values(P).find((c) => c.season && c.featured && false); // la démo ne dévoile pas son vainqueur ici
+    const eps = s1.episodes.map((e) => epCard(`survivor.html?jour=${e.n}`, e.n, e.title || _("Jour {d}", { d: e.n }), e.moments, e.out, e.left, e.faces)).join("");
+    html += seasonCard("demo", `<h2>${esc(label)}</h2><span class="chip">${_("Démo")}</span><span class="meta">${_("Saison simulée pour découvrir l'émission")}</span>`, winner, eps);
+  } catch {}
+  list.innerHTML = html || `<p class="empty">${_("Aucune saison à revoir pour l'instant.")}</p>`;
+  if (!LV?.enabled) window.TheLastAudience?.page("revoir", { mode: "demo" });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-i18n>Votes du public</title>
+<script src="i18n.js"></script>
+<script src="i18n-en.js"></script>
+<script src="config.js"></script>
+<script src="audience.js"></script>
+<script>window.TheLastAudience.page("selection");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root {
+  --ink: #0b1820; --deep: #10262f; --raise: #173440; --line: #24505e; --sea: #1d5a66;
+  --sand: #e9cf98; --mist: #9fb9bd; --torch: #ff8a3d; --danger: #ff5b6b; --safe: #62d6a0;
+  --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ink: #0b1820; } }
+:root[data-theme="dark"] { --ink: #0b1820; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; background: var(--ink); color: var(--sand); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--torch); outline-offset: 3px; }
+.wrap { padding-inline: clamp(16px, 4vw, 56px); max-width: 1600px; margin: 0 auto; }
+.top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--ink) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 18px; padding-block: 12px; }
+.logo { font-family: var(--display); font-weight: 700; letter-spacing: .18em; font-size: 19px; text-decoration: none; white-space: nowrap; }
+.logo b { color: var(--torch); }
+.langsw { flex: none; background: transparent; color: var(--mist); border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; font: 600 12px/1 Inter, sans-serif; letter-spacing: .06em; cursor: pointer; }
+.langsw:hover { color: var(--sand); border-color: var(--sand); }
+.top nav { margin-left: auto; display: flex; gap: 4px; }
+.top nav a { text-decoration: none; color: var(--mist); font-size: 14px; padding: 6px 10px; border-radius: 999px; }
+.top nav a:hover, .top nav a[aria-current] { color: var(--sand); background: var(--raise); }
+
+.hero { background: radial-gradient(circle at 85% 130%, #ff8a3d55, transparent 50%), radial-gradient(circle at 100% 0%, #7a2a1e88, transparent 55%), var(--deep); border-bottom: 1px solid var(--line); }
+.hero .wrap { padding-block: clamp(24px, 4vw, 48px); display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(16px, 4vw, 48px); align-items: center; }
+.kick { font-family: var(--display); font-weight: 600; letter-spacing: .18em; text-transform: uppercase; font-size: 13px; color: var(--torch); }
+h1 { font-family: var(--display); font-size: clamp(30px, 4.4vw, 58px); line-height: 1; margin: 8px 0 12px; }
+.hero p { color: var(--mist); margin: 0; max-width: 640px; }
+.rules { display: grid; gap: 10px; }
+.rule { display: grid; grid-template-columns: 54px 1fr; gap: 12px; align-items: center; background: color-mix(in srgb, var(--ink) 55%, transparent); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+.rule b { font-family: var(--display); font-size: 28px; color: var(--torch); text-align: center; }
+.rule span { font-size: 14px; }
+.rule small { display: block; color: var(--mist); font-size: 12.5px; }
+
+.tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding-block: 18px 8px; }
+.seg { display: inline-flex; background: var(--deep); border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+.seg button { border: 0; background: none; border-radius: 999px; padding: 7px 14px; font-size: 14px; font-weight: 600; color: var(--mist); }
+.seg button[aria-pressed="true"] { background: var(--torch); color: var(--ink); }
+input[type=search] { flex: 1 1 200px; max-width: 360px; background: var(--deep); border: 1px solid var(--line); color: var(--sand); border-radius: 999px; padding: 9px 16px; font: inherit; font-size: 15px; }
+.legend { display: flex; gap: 14px; font-size: 13px; color: var(--mist); flex-wrap: wrap; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(46%, 180px), 1fr)); gap: 12px; padding-block: 8px 120px; }
+.card { position: relative; border: 1px solid var(--line); background: var(--deep); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+.card.q { border-color: color-mix(in srgb, var(--safe) 55%, var(--line)); }
+.card.mine { box-shadow: 0 0 0 2px var(--torch); }
+.card.flash { animation: flash 1.4s 2; }
+@keyframes flash { 50% { box-shadow: 0 0 0 4px var(--sand); } }
+.card .ph { position: relative; aspect-ratio: 1; background: #d9d6d2; display: block; }
+.card .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rank { position: absolute; left: 8px; top: 8px; font: 700 12px var(--display); padding: 3px 8px; border-radius: 999px; background: var(--ink); }
+.card.q .rank { background: var(--safe); color: var(--ink); }
+.lvl { position: absolute; right: 8px; top: 8px; font: 700 11px var(--display); padding: 3px 8px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 85%, transparent); }
+.card .t { padding: 9px 11px 11px; display: grid; gap: 2px; flex: 1; }
+.card .n { font-family: var(--display); font-weight: 700; font-size: 17px; text-decoration: none; }
+.card .j { font-size: 12.5px; color: var(--mist); }
+.card .v { font-size: 13px; font-variant-numeric: tabular-nums; }
+.card .v small { color: var(--mist); }
+.card .st { font-size: 12px; color: var(--mist); }
+.card.q .st { color: var(--safe); }
+.vote { margin: 0 11px 11px; border: 1px solid var(--torch); background: none; color: var(--torch); border-radius: 999px; padding: 7px; font-family: var(--display); font-weight: 700; font-size: 14px; }
+.vote[aria-pressed="true"] { background: var(--torch); color: var(--ink); }
+.vote:disabled { opacity: .4; cursor: not-allowed; }
+
+.dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: color-mix(in srgb, var(--ink) 94%, transparent); backdrop-filter: blur(8px); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.dock .wrap { display: flex; gap: 14px; align-items: center; padding-block: 10px; flex-wrap: wrap; }
+.dock .left { font-family: var(--display); font-weight: 700; font-size: 18px; white-space: nowrap; }
+.dock .left small { font-family: var(--body); font-weight: 500; font-size: 12.5px; color: var(--mist); display: block; }
+.chips { display: flex; gap: 4px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.chips button { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--torch); padding: 0; overflow: hidden; background: #d9d6d2; }
+.chips button img { width: 100%; height: 100%; object-fit: cover; }
+.chips .empty { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 2px dashed var(--line); }
+.btn { border: 0; background: var(--sand); color: var(--ink); font-family: var(--display); font-weight: 700; font-size: 15px; padding: 10px 18px; border-radius: 999px; white-space: nowrap; }
+
+.draw { position: fixed; inset: 0; z-index: 30; background: rgba(2, 6, 9, .8); display: grid; justify-items: center; align-items: start; overflow-y: auto; padding: 24px 16px; }
+.dbox { width: min(1000px, 100%); background: var(--deep); border: 1px solid var(--line); border-radius: 16px; padding: clamp(18px, 3vw, 30px); position: relative; }
+.dbox h2 { font-family: var(--display); margin: 0 0 6px; font-size: clamp(22px, 2.6vw, 32px); }
+.dbox p { color: var(--mist); margin: 0 0 14px; }
+.dbox h3 { font-family: var(--display); font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); margin: 16px 0 8px; }
+.dgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 8px; }
+.dgrid a { display: grid; justify-items: center; gap: 3px; text-decoration: none; font-size: 11.5px; text-align: center; line-height: 1.2; }
+.dgrid img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background: #d9d6d2; border: 2px solid var(--line); }
+.dgrid a.mine img { border-color: var(--torch); }
+.dgrid a.luck img { border-color: var(--safe); }
+.dclose { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--ink); font-size: 22px; }
+
+@media (max-width: 820px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .top nav a { padding: 6px 8px; font-size: 13px; }
+  .dock .wrap { gap: 10px; }
+  .chips { order: 3; flex-basis: 100%; }
+}
+.camps { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-block: 12px; }
+.camps button { flex: none; border: 1px solid var(--line); background: var(--deep); color: var(--mist); border-radius: 999px; padding: 8px 16px; font-family: var(--display); font-weight: 700; font-size: 15px; }
+.camps button[aria-selected="true"] { background: var(--sand); color: var(--ink); border-color: var(--sand); }
+.card .ph .fan { position: absolute; right: 8px; bottom: 8px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--danger); color: #fff; font-size: 13px; }
+@media (max-width: 460px) { .logo { font-size: 16px; letter-spacing: .12em; } .top nav a { padding: 6px 7px; font-size: 13px; } .top .wrap, .top { gap: 10px; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html">THE <b>LAST</b></a>
+    <nav aria-label="Navigation principale" data-i18n-attr="aria-label">
+      <a href="index.html" data-i18n>Accueil</a>
+      <a href="revoir.html" data-i18n>Revoir</a>
+      <a href="personnages.html" data-i18n>Personnages</a>
+      <a href="selection.html" aria-current="page" data-i18n>Sélection</a>
+    </nav>
+    <button type="button" class="langsw" data-lang-switch></button>
+  </div>
+</header>
+
+<div class="camps wrap" role="tablist" aria-label="Votes ouverts" data-i18n-attr="aria-label" id="camps"></div>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="kick" id="hKick"></div>
+      <h1 id="hTitle"></h1>
+      <p id="hText"></p>
+    </div>
+    <div class="rules" id="hRules"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Trier" data-i18n-attr="aria-label">
+      <button type="button" data-s="votes" aria-pressed="true" data-i18n>Les plus votés</button>
+      <button type="button" data-s="level" aria-pressed="false" data-i18n>Niveau</button>
+      <button type="button" data-s="mine" aria-pressed="false" data-i18n>Mes choix</button>
+    </div>
+    <input type="search" id="q" placeholder="Chercher un nom, un métier…" aria-label="Chercher un personnage" data-i18n-attr="placeholder,aria-label">
+    <div class="legend"><span><i style="background:var(--safe)"></i><span id="legQ" data-i18n>Qualifié·e par le vote</span></span><span><i style="background:var(--torch)"></i><span data-i18n>Ton choix</span></span></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<div class="dock">
+  <div class="wrap">
+    <div class="left"><span id="left"></span><small id="deadline"></small></div>
+    <div class="chips" id="chips" aria-label="Tes choix" data-i18n-attr="aria-label"></div>
+    <button type="button" class="btn" id="drawBtn"></button>
+  </div>
+</div>
+
+<div class="draw" id="draw" hidden role="dialog" aria-modal="true" aria-labelledby="dTitle"><div class="dbox" id="dbox"></div></div>
+
+<script src="fanclub.js"></script>
+<script>
+(async function () {
+  const _ = window.t, EN = window.I18N.lang === "en", LOC = EN ? "en-US" : "fr-FR";
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const [people, site] = await Promise.all([fetch("personnages.json").then((r) => r.json()), fetch("emissions.json").then((r) => r.json())]);
+  if (EN) for (const c of people) { Object.assign(c, Object.fromEntries(Object.entries(c.en || {}).filter(([, v]) => v))); if (c.career.titlesEn) c.career.titles = c.career.titlesEn; }
+  const P = Object.fromEntries(people.map((c) => [c.id, c]));
+  const FANS = window.TheLastFans;
+  const hash = (s) => { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return (h >>> 0) / 4294967296; };
+
+  // les trois votes ouverts : mêmes principes (gratuit, même nombre de voix pour tous), règles adaptées à chaque émission
+  const CAMPS = {
+    arena: {
+      tab: _("⚔️ Arena Battle"), kick: _("Casting ouvert · The Last - Arena Battle · Saison 1"), title: _("Choisis qui entre dans l'arène"),
+      text: _("Les 50 candidats d'Arena Battle viennent du vivier des 100 personnages. C'est toi, avec les autres spectateurs, qui décides qui part se battre. Le vote est gratuit et chaque spectateur a le même nombre de voix."),
+      pool: people.map((c) => c.id), max: 10, voted: 30, size: 50, deadline: _("Fin du vote dimanche à 20 h · démo"),
+      rules: [["10", _("voix gratuites pour toi"), _("Une voix par personnage au maximum. Tu peux changer d'avis jusqu'à la fin du vote.")], ["30", _("places pour les plus votés"), _("Les 30 personnages qui ont le plus de voix sont qualifiés.")], ["20", _("places tirées au sort"), _("Parmi tous les autres, pour que les moins connus aient aussi leur chance.")]],
+      qualified: _("Qualifié·e par le vote (top 30)"),
+    },
+    retour: {
+      tab: _("🔁 Le Retour"), kick: _("Repêchage · The Last - Le Retour · Spécial 1"), title: _("Offre une seconde chance"),
+      text: _("Ils ont été évacués pendant la saison pilote de Survivor. Les 10 plus repêchés par le public reviennent pour une émission spéciale de 24 heures. Le vainqueur gagne sa place dans la prochaine saison."),
+      pool: site.eligible.retour, max: 3, voted: 10, size: 10, deadline: _("Fin du repêchage samedi à 19 h · démo"),
+      rules: [["3", _("voix gratuites pour toi"), _("Une voix par ancien candidat au maximum.")], ["10", _("anciens candidats repêchés"), _("Les 10 plus votés reviennent sur l'île pour 24 heures.")], ["1", _("place en saison 2"), _("Le vainqueur du spécial rejoint la prochaine saison de Survivor.")]],
+      qualified: _("Repêché·e (top 10)"),
+    },
+    allstars: {
+      tab: _("⭐ All-Stars"), kick: _("Crossover · The Last - All-Stars · Saison 1"), title: _("Réunis les meilleurs"),
+      text: _("Les 30 personnages les plus expérimentés de Survivor et d'Arena Battle peuvent entrer dans l'All-Stars. Le public en choisit 20 : trois jours sur l'île, puis quatre jours dans l'arène."),
+      pool: site.eligible.allstars, max: 5, voted: 20, size: 20, deadline: _("Fin du vote dans 2 semaines · démo"),
+      rules: [["5", _("voix gratuites pour toi"), _("Une voix par champion au maximum.")], ["20", _("places pour les plus votés"), _("Les 20 champions qui ont le plus de voix entrent dans l'All-Stars.")], ["👑", _("une Légende à la clé"), _("Un vainqueur qui a déjà gagné une autre émission devient Légende.")]],
+      qualified: _("Sélectionné·e (top 20)"),
+    },
+  };
+
+  const [h0, h1] = location.hash.slice(1).split(":");
+  let camp = CAMPS[h0] ? h0 : "arena", target = CAMPS[h0] ? h1 : h0;
+  let mine = {}, sort = "votes";
+  const key = () => `thelast-selection-${camp}`;
+  const loadMine = () => { try { mine = JSON.parse(localStorage.getItem(key()) || "{}").votes || {}; } catch { mine = {}; } };
+  const save = () => { try { localStorage.setItem(key(), JSON.stringify({ votes: mine })); } catch {} };
+  // voix du public (simulées pour la démo) : les personnages connus, expérimentés et suivis attirent plus de voix
+  const crowd = (id) => Math.round(400 + hash(id + camp) * 2600 + P[id].career.level * 450 + (P[id].featured ? 1800 : 0) + (P[id].season ? 300 : 0) + (P[id].career.titles.length ? 900 : 0) + FANS.members(P[id]) / 20);
+  let CROWD = {};
+  const votes = (id) => CROWD[id] + (mine[id] ? 1 : 0);
+  const ranked = () => [...CAMPS[camp].pool].sort((a, b) => votes(b) - votes(a) || a.localeCompare(b));
+
+  function setCamp(k, keepTarget) {
+    camp = k; const C = CAMPS[k];
+    loadMine();
+    CROWD = Object.fromEntries(C.pool.map((id) => [id, crowd(id)]));
+    document.getElementById("camps").innerHTML = Object.entries(CAMPS).map(([id, x]) => `<button type="button" role="tab" data-c="${id}" aria-selected="${id === k}">${x.tab}</button>`).join("");
+    document.getElementById("hKick").textContent = C.kick;
+    document.getElementById("hTitle").textContent = C.title;
+    document.getElementById("hText").textContent = C.text;
+    document.getElementById("hRules").innerHTML = C.rules.map(([n, t, s]) => `<div class="rule"><b>${n}</b><span>${esc(t)}<small>${esc(s)}</small></span></div>`).join("");
+    document.getElementById("legQ").textContent = C.qualified;
+    document.getElementById("deadline").textContent = C.deadline;
+    document.getElementById("drawBtn").textContent = C.size > C.voted ? _("Voir un tirage possible") : _("Voir le résultat actuel");
+    try { history.replaceState(null, "", "#" + k); } catch {}
+    paint();
+    if (!keepTarget) scrollTo({ top: 0 });
+  }
+  document.getElementById("camps").addEventListener("click", (e) => { const b = e.target.closest("[data-c]"); if (b && b.dataset.c !== camp) setCamp(b.dataset.c); });
+
+  const grid = document.getElementById("grid");
+  function paint() {
+    const C = CAMPS[camp], order = ranked(), rank = Object.fromEntries(order.map((id, i) => [id, i + 1]));
+    const q = document.getElementById("q").value.trim().toLowerCase();
+    let list = sort === "level" ? [...C.pool].sort((a, b) => P[b].career.xp - P[a].career.xp) : order;
+    if (sort === "mine") list = list.filter((id) => mine[id]);
+    list = list.filter((id) => !q || `${P[id].name} ${P[id].job} ${P[id].origin}`.toLowerCase().includes(q));
+    const used = Object.keys(mine).length;
+    const gap = (id) => (votes(order[C.voted - 1]) - votes(id) + 1).toLocaleString(LOC);
+    const status = (id, r) => r <= C.voted ? `✓ ${C.qualified.replace(/ \(.*\)$/, "")}` : C.size > C.voted ? _("Au tirage au sort · {n} voix du top {t}", { n: gap(id), t: C.voted }) : _("{n} voix du top {t}", { n: gap(id), t: C.voted });
+    const extra = (id) => { const r = P[id].career.results[0]; return camp === "retour" && r ? _("Évacué·e le jour {d} · {r}e", { d: r.day, r: r.rank }) : camp === "allstars" ? `${P[id].career.titles[0] ? esc(P[id].career.titles[0]) : `${P[id].career.xp} XP`}` : esc(P[id].job); };
+    grid.innerHTML = list.length ? list.map((id) => {
+      const c = P[id], r = rank[id], qd = r <= C.voted;
+      return `<article class="card ${qd ? "q" : ""} ${mine[id] ? "mine" : ""}" id="${id}">
+        <a class="ph" href="personnages.html#${id}"><img src="img/p/${id}.webp" alt="" loading="lazy"><span class="rank">#${r}</span><span class="lvl">${c.career.legend ? "👑" : _("Niv. {n}", { n: c.career.level })}</span>${FANS.isFan(id) ? `<span class="fan" title="${_("Dans ton fan-club")}">❤</span>` : ""}</a>
+        <div class="t"><a class="n" href="personnages.html#${id}">${esc(c.name)}</a><span class="j">${extra(id)}</span>
+        <span class="v">${votes(id).toLocaleString(LOC)} <small>${mine[id] ? _("voix · dont la tienne") : _("voix")}</small></span>
+        <span class="st">${status(id, r)}</span></div>
+        <button type="button" class="vote" data-id="${id}" aria-pressed="${!!mine[id]}" ${!mine[id] && used >= C.max ? "disabled" : ""}>${mine[id] ? _("✓ Ton choix") : _("Voter")}</button></article>`;
+    }).join("") : `<p style="color:var(--mist)">${sort === "mine" ? _("Tu n'as encore choisi personne. Touche « Voter » sous un personnage.") : _("Aucun personnage ne correspond.")}</p>`;
+    document.getElementById("left").textContent = (C.max - used > 1 ? _("{n} voix restantes", { n: C.max - used }) : _("{n} voix restante", { n: C.max - used }));
+    document.getElementById("chips").innerHTML = Object.keys(mine).map((id) => `<button type="button" data-go="${id}" title="${esc(P[id].name)}"><img src="img/p/${id}.webp" alt="${esc(P[id].name)}"></button>`).join("") + Array.from({ length: C.max - used }, () => `<span class="empty" aria-hidden="true"></span>`).join("");
+  }
+  grid.addEventListener("click", (e) => {
+    const b = e.target.closest(".vote"); if (!b) return;
+    const id = b.dataset.id;
+    if (mine[id]) delete mine[id]; else if (Object.keys(mine).length < CAMPS[camp].max) mine[id] = 1;
+    save(); paint();
+    document.querySelector(`#${id} .vote`)?.focus({ preventScroll: true });
+  });
+  document.getElementById("chips").addEventListener("click", (e) => { const b = e.target.closest("[data-go]"); if (b) goTo(b.dataset.go); });
+  document.querySelectorAll(".tools .seg button").forEach((b) => b.addEventListener("click", () => {
+    sort = b.dataset.s; document.querySelectorAll(".tools .seg button").forEach((x) => x.setAttribute("aria-pressed", x === b)); paint();
+  }));
+  document.getElementById("q").addEventListener("input", paint);
+  function goTo(id) {
+    let el = document.getElementById(id);
+    if (!el) { document.getElementById("q").value = ""; sort = "votes"; document.querySelectorAll(".tools .seg button").forEach((x) => x.setAttribute("aria-pressed", x.dataset.s === "votes")); paint(); el = document.getElementById(id); }
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+  }
+
+  // le résultat si le vote s'arrêtait maintenant (avec tirage au sort quand la règle en prévoit un)
+  const draw = document.getElementById("draw"), dbox = document.getElementById("dbox");
+  document.getElementById("drawBtn").addEventListener("click", () => {
+    const C = CAMPS[camp], order = ranked(), top = order.slice(0, C.voted), rest = order.slice(C.voted), luck = [];
+    while (luck.length < C.size - C.voted && rest.length) luck.push(rest.splice(Math.floor(Math.random() * rest.length), 1)[0]);
+    const tile = (id, cls) => `<a class="${cls} ${mine[id] ? "mine" : ""}" href="personnages.html#${id}"><img src="img/p/${id}.webp" alt="">${esc(P[id].name)}</a>`;
+    const n = Object.keys(mine).length, inMine = Object.keys(mine).filter((id) => top.includes(id) || luck.includes(id)).length;
+    dbox.innerHTML = `<button type="button" class="dclose" id="dClose" aria-label="${_("Fermer")}">×</button>
+      <div class="kick">${_("Simulation")}</div><h2 id="dTitle">${_("{s} : le résultat si le vote s'arrêtait maintenant", { s: esc(C.tab.slice(2)) })}</h2>
+      <p>${n ? (inMine > 1 ? _("{k} de tes {n} choix seraient retenus.", { k: inMine, n }) : _("{k} de tes {n} choix serait retenu.", { k: inMine, n })) : _("Tu n'as pas encore voté.")}${luck.length ? " " + _("Le tirage change à chaque fois : relance-le pour voir d'autres chanceux.") : ""}</p>
+      <h3>${esc(C.qualified.replace(/ \(.*\)$/, ""))} · ${top.length}</h3><div class="dgrid">${top.map((id) => tile(id, "")).join("")}</div>
+      ${luck.length ? `<h3>${_("Tirés au sort · {n}", { n: luck.length })}</h3><div class="dgrid">${luck.map((id) => tile(id, "luck")).join("")}</div><p style="margin-top:16px"><button type="button" class="btn" id="again">${_("Relancer le tirage")}</button></p>` : ""}`;
+    draw.hidden = false; document.body.style.overflow = "hidden";
+    document.getElementById("dClose").addEventListener("click", closeDraw);
+    document.getElementById("again")?.addEventListener("click", () => document.getElementById("drawBtn").click());
+    document.getElementById("dClose").focus({ preventScroll: true });
+  });
+  function closeDraw() { draw.hidden = true; document.body.style.overflow = ""; document.getElementById("drawBtn").focus({ preventScroll: true }); }
+  draw.addEventListener("click", (e) => { if (e.target === draw) closeDraw(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !draw.hidden) closeDraw(); });
+
+  setCamp(camp, !!target);
+  if (target && P[target]) setTimeout(() => goTo(target), 200);
+})();
+</script>
+</body>
+</html>

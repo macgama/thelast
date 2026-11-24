@@ -1,0 +1,76 @@
+{
+  "_note": "English version of demo/featured.json (hand-written profiles and confessionals for the seed 42 demo season).",
+  "c085": {
+    "job": "video game developer",
+    "bio": "The daughter of grocers in Mumbai, she grew up behind the counter. At 30, a serious car accident left her bedridden for six months: that's where she learned to code. Her first game sold millions of copies. Generous to the point of absurdity, nervous, and terrified of water.",
+    "motivation": "Open an animal shelter on the outskirts of Mumbai.",
+    "secret": "She's a millionaire thanks to her game. Whatever she \"takes\" from the strongest on the island, she tries to give back to the weakest.",
+    "confessions": {
+      "1": "An island. Surrounded by water. And I can't even swim. I kept telling myself all day: you've survived worse, Selin. Six months in bed, remember? Tonight I'm sleeping alone at the foot of a rock.",
+      "2": "Wasps last night in the jungle, and this morning the river current knocked me off my feet. Water, always water. Eight of you sent me a first aid kit. I hugged it like a teddy bear. My leg hurts, but I'm smiling.",
+      "3": "Hana tried to rob me this morning. I saw her, and I didn't hold it against her. A few hours later, she welcomed me into her clan, the Iguanas. And then my leg gave out, the injury from the river. The drone took me away. I can't swim, and I lasted three days on an island. I'll open that shelter anyway."
+    }
+  },
+  "c053": {
+    "job": "corporate lawyer",
+    "bio": "Placed in foster care at 8, Matthias built himself up alone: scholarships, competitive exams, and a job as a corporate lawyer at 26. He has a plan for everything and a strategy for everyone. Not very brave, very clever, he prefers cunning to confrontation. And he's terrified of insects.",
+    "motivation": "Open his own firm on the back of his fame.",
+    "secret": "He recognized Omar on day one. Four years ago, on his first big case, he got Omar's excavation site shut down for a property developer. Ever since, he's pretended not to know him.",
+    "confessions": {
+      "1": "Fifty contestants, fifty case files. I've already closed forty-nine. There's one face, the archaeologist, that rings a bell. I don't like things that ring a bell.",
+      "2": "Nominated on the second night already. You saved me, along with Ayumi. Thank you. I don't know what you see in me yet, but I'll make use of it. Don't panic, I have a plan.",
+      "3": "Wasps, twice in the same night, the mangrove and then the jungle. I can't stand insects. And today I won the big puzzle, ahead of Rafael and Samuel. Immune tonight. Nobody congratulated me. A lawyer wins. A lawyer doesn't get loved.",
+      "4": "A day of thieves. I took rations from Hana, she tried to take them back, I did it again and she saw me. Her care package fell into my arms. My flashlight disappeared. And Omar beat me on the posts, looking me straight in the eye. I think he knows.",
+      "5": "I'll be honest, for once. I know Omar. Four years ago, I got his excavation site shut down for a developer. I pretend not to recognize him. Tonight, Ayumi welcomed me into the Albatrosses and handed me her flask. It's been a long time since anyone gave me anything.",
+      "6": "I tried to take Charlie's bag, and I got caught. Then I quietly told Omar to watch out for Zara. That was my way of apologizing. He didn't answer. Ayumi pleaded for me in front of you, it wasn't enough. I'm leaving without a plan. That's new."
+    }
+  },
+  "c071": {
+    "job": "archaeologist",
+    "bio": "Born in Nouméa, Omar raised his two little sisters on his own when his parents left. As an archaeologist, he spends his life digging through the earth for what others left behind. On the island, he digs through bags too. Fiercely loyal to his own, he can't stand being alone.",
+    "motivation": "Give his sisters the home they never had.",
+    "catchphrase": "Whatever is buried always comes back up.",
+    "secret": "Omar knows Matthias. He's the lawyer who, four years ago, got the excavation of his life shut down for a property developer.",
+    "confessions": {
+      "1": "A flashlight parachuted in at noon, thank you. Sana asked me to join the Mongooses, with Victor. Tonight we pooled everything on the beach. I hate being alone. Tonight, I'm not.",
+      "2": "Second Mongoose campfire, at the lagoon. We talked about our families. I talked about my sisters. I never talk about them.",
+      "3": "Last night the tide caught me by surprise and Sana grabbed my arm. Today, she's the one who left the island. Swarms of mosquitoes in the mangrove, I barely felt them. Tonight at the fire, there were only two of us left, Victor and me.",
+      "4": "I won the posts ahead of Matthias. He doesn't remember me. I remember him: he's the lawyer who got the excavation of my life shut down. Tonight, Raphaël was going through Victor's bag. I stopped him. Nobody touches the Mongooses.",
+      "5": "I went through Dmitri's bag, Freya caught me. Dmitri went through Victor's, I caught him. Tonight you had to choose between Victor, Dmitri and me. Victor left. I'm the last of the Mongooses.",
+      "6": "Matthias quietly told me to watch out for Zara. Matthias, giving me advice. An hour later, you sent him home. I didn't have to do a thing. And I won the relay. Whatever is buried always comes back up.",
+      "7": "This morning I got caught red-handed in Noa's bag. Then I won endurance and trust. Forty-eight of you sent me a care package. And in the final, Noa did better than me. Sisters, I'm coming home. Without the house, but with a story."
+    }
+  },
+  "c046": {
+    "job": "naval construction engineer",
+    "bio": "Born in Osaka, Noa moved every two years throughout their childhood, never having time to make friends. At 30, they sailed solo across the Atlantic on a boat they built with their own hands. Slow, patient, rarely angry. They're afraid of the dark.",
+    "motivation": "Prove to their family, who never believed in them, what they're really worth.",
+    "catchphrase": "Slow and steady.",
+    "secret": "They sailed solo across the Atlantic… and can't swim. They've never told anyone.",
+    "confessions": {
+      "1": "Forty-nine strangers on a beach. I did what I do every time I move: find the calmest person. It was Louis. We're the Turtles. Slow and steady. Tonight, Charlie joined us.",
+      "2": "Last night, a rockslide at the cliffs, and Charlie was the one who reached out to me. I hate the dark. This morning I took rations from Samuel. He didn't see a thing. I'm not a bad person, I just learned very early to count only on my own bag. Rafael joined us. Four friends. I've never had four at the same time.",
+      "3": "My care package fell into Louis's hands. He opened it by the fire, for everyone, and handed me his flask. Liam joined the Turtles. I'm starting to believe this clan can make it to the end.",
+      "4": "I'm going to tell you something I've never told anyone: I can't swim. I crossed the Atlantic alone, and I can't swim. Today at the river, the current swept my legs away. Charlie dove in. I owe them everything.",
+      "5": "Rafael's care package landed on me. I didn't give it back. I shared it tonight by the fire, with him, with the whole clan. He smiled. But he was keeping score, I saw it. And twenty of you sent me a first aid kit. Thank you.",
+      "6": "Liam left, then Rafael, worn out. Only three Turtles left: Louis, Charlie and me. Twenty-eight of you parachuted me a first aid kit. I don't know what you see in me. My family never saw anything.",
+      "7": "At dawn, Omar went through my bag. At noon, Louis's care package fell on me, in front of everyone. Charlie had to leave at the orientation challenge. In the final, against Louis and Omar, I did what I do best: slow and steady. Mom, Dad, do you see? I am The Last."
+    }
+  },
+  "c086": {
+    "job": "real estate agent",
+    "bio": "Louis grew up in Accra, by the sea, among boats and storms. At 19, he saved a stranger from drowning and became the neighborhood hero. He hasn't set foot in the water since. A real estate agent drowning in debt, he keeps saying he only thinks about himself. Nobody believes him.",
+    "motivation": "Pay off his debts and start over.",
+    "catchphrase": "Every man for himself, and me for me.",
+    "secret": "He was turned down three times at The Last auditions. The fourth time, he lied: he said he was selfish.",
+    "confessions": {
+      "1": "Every man for himself, and me for me. That's what I tell my clients. Then Noa asked me to team up, and I couldn't say no. Second on the raft, behind Lucas. The raft. The water. And tonight, my flashlight disappeared.",
+      "2": "Mosquitoes by the hundred, and Noa was the one who got me out. Charlie and Rafael joined us. I share everything, I can't do it any other way. My father used to say that's why I'd always be in debt.",
+      "3": "The care package was for Noa. It landed on me. I opened it by the fire, for everyone. Every man for himself? I still wonder why I picked that line.",
+      "4": "I was turned down three times at the auditions. Three. The fourth time, I lied: I said I only thought about myself. Tonight I pleaded for Charlie in front of you, and you kept Charlie. And yes, I took a flashlight from Matthias. He'd robbed everyone.",
+      "5": "Iris took my first aid kit, Oscar tried too. Then Oscar's care package fell into my hands. Looks like the island gives back what it takes.",
+      "6": "The stagnant water made me sick. Rafael looked after me. Tonight he left, exhausted. Third in the relay, behind Omar. There are only three Turtles left, and I can see Omar watching us.",
+      "7": "I won orientation, and Charlie had to leave the island. In the final, Noa took it. I have no regrets: turned down three times, and I finish on the podium. My debts can wait. My friends can't."
+    }
+  }
+}

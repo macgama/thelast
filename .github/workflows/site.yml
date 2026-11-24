@@ -1,0 +1,57 @@
+# Met le site en ligne chez Infomaniak (FTP) à chaque changement de la branche main (ou à la demande).
+# Réglages dans Settings > Secrets and variables > Actions :
+#  - onglet « Variables » : SUPABASE_URL et SUPABASE_PUBLISHABLE_KEY (publiques, écrites dans demo/config.js) ;
+#  - onglet « Secrets » : FTP_SERVER, FTP_USERNAME, FTP_PASSWORD (compte FTP limité au dossier du site).
+# Sans variables Supabase, le site reste la démo. Seuls les fichiers modifiés sont renvoyés.
+name: Site en ligne
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Préparer le site
+        env:
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          mkdir -p demo/vendor
+          cp node_modules/@supabase/supabase-js/dist/umd/supabase.js demo/vendor/supabase.js
+          node -e 'const c={supabaseUrl:(process.env.SUPABASE_URL||"").trim().replace(/\/+$/,""),supabaseKey:(process.env.SUPABASE_PUBLISHABLE_KEY||"").trim()};
+          require("fs").writeFileSync("demo/config.js","// Écrit automatiquement par .github/workflows/site.yml\nwindow.THELAST_CONFIG = "+JSON.stringify(c)+";\n");
+          console.log(c.supabaseUrl ? "Site relié à Supabase : "+c.supabaseUrl : "Pas de variables Supabase : le site reste la démo.")'
+          cp deploy/htaccess demo/.htaccess
+      - name: Vérifier les accès FTP
+        if: env.FTP_SERVER == ''
+        run: |
+          echo "::error::Secrets FTP_SERVER, FTP_USERNAME et FTP_PASSWORD absents : voir docs/mise-en-ligne.md, étape 4."
+          exit 1
+      - name: Envoyer chez Infomaniak
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./demo/
+          server-dir: ./
