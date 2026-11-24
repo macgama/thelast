@@ -60,10 +60,18 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
 .a3-pop.is-stars { color: var(--gold); font-size: 18px; letter-spacing: .1em; }
 .a3-pop.is-item, .a3-pop.is-gift { font-size: 26px; }
 .a3-pop.is-gift { color: var(--safe); }
+.a3-pop.is-trap { color: var(--danger); font-size: 30px; }
+.a3-pop.is-warn { color: var(--torch); font-size: 24px; }
+.a3-place { position: absolute; left: 0; top: 0; font-family: var(--display); font-weight: 600; font-size: 11px; letter-spacing: .04em; padding: 1px 7px; border-radius: 6px; background: rgba(13, 15, 22, .55); color: var(--mist); white-space: nowrap; }
+.a3-place.is-hot { background: rgba(120, 20, 32, .8); color: #ffd9dd; }
+.a3-trap { position: absolute; left: 0; top: 0; font-size: 16px; color: var(--danger); text-shadow: 0 1px 0 #000; animation: blink 1s infinite; }
 @keyframes popin { from { scale: .3; } to { scale: 1; } }
 
 .banner { position: absolute; left: 50%; top: 16px; translate: -50% 0; max-width: min(640px, calc(100% - 32px)); padding: 10px 16px; border-radius: 12px; background: rgba(13, 15, 22, .86); border: 1px solid var(--line); font-size: 14px; text-align: center; pointer-events: none; transition: opacity .3s; }
 .banner b { font-family: var(--display); color: var(--gold); }
+.alert { position: absolute; left: 50%; bottom: 64px; translate: -50% 0; width: min(520px, calc(100% - 32px)); display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 10px 12px 10px 16px; border-radius: 14px; background: rgba(60, 10, 18, .92); border: 1px solid var(--danger); font-size: 14px; z-index: 2; animation: slidein .3s ease-out; }
+.alert b { font-family: var(--display); color: #ffc2c8; letter-spacing: .06em; display: block; font-size: 12px; }
+.alert .btn { background: var(--danger); color: #1a0406; white-space: nowrap; }
 .cam { position: absolute; left: 16px; bottom: 16px; display: flex; gap: 4px; background: rgba(13, 15, 22, .86); padding: 3px; border-radius: 10px; }
 .cam button { padding: 0 12px; height: 34px; border-radius: 8px; font-size: 13px; color: var(--mist); }
 .cam button[aria-pressed="true"] { background: var(--raise); color: var(--text); }
@@ -107,6 +115,23 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
 .cand.is-me { background: color-mix(in srgb, var(--gold) 18%, transparent); }
 .cand .rk { position: absolute; top: 8px; left: 8px; font-family: var(--display); font-size: 11px; background: rgba(0,0,0,.7); padding: 0 5px; border-radius: 5px; }
 
+.zone h4 { font-family: var(--display); font-size: 13px; letter-spacing: .1em; color: var(--gold); margin: 14px 0 6px; }
+.zone ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.zone li { padding: 8px 10px; border-radius: 10px; background: var(--raise); font-size: 13px; }
+.zone li.mine { outline: 2px solid var(--danger); }
+.zone li .k { color: var(--mist); font-size: 12px; display: block; }
+.zone .empty { color: var(--mist); font-size: 13px; }
+.arenas { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-bottom: 8px; }
+.arena { text-align: left; padding: 12px; border-radius: 14px; background: var(--raise); border: 2px solid transparent; display: flex; flex-direction: column; gap: 6px; }
+.arena[aria-pressed="true"] { border-color: var(--gold); }
+.arena .sw { height: 46px; border-radius: 10px; position: relative; overflow: hidden; }
+.arena .sw i { position: absolute; bottom: 0; height: 60%; width: 18%; border-radius: 6px 6px 0 0; }
+.arena h3 { font-size: 16px; }
+.arena .pitch { color: var(--mist); font-size: 12px; }
+.arena .places { display: flex; flex-wrap: wrap; gap: 4px; }
+.arena .places span { font-size: 11px; padding: 1px 6px; border-radius: 5px; background: var(--deep); }
+.arena .tr { font-size: 11px; color: #ffc2c8; }
+.step { font-family: var(--display); color: var(--mist); font-size: 13px; letter-spacing: .1em; margin: 16px 0 8px; }
 /* Écrans par-dessus (casting, votes, fin) */
 .over { position: fixed; inset: 0; z-index: 10; background: rgba(8, 9, 14, .86); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: max(16px, env(safe-area-inset-top)) 16px 16px; overflow-y: auto; }
 .card { width: min(860px, 100%); background: var(--deep); border: 1px solid var(--line); border-radius: 18px; padding: 24px; max-height: 100%; overflow-y: auto; }
@@ -160,6 +185,7 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
     <span class="logo">THE LAST · <b>ARENA BATTLE</b></span>
     <span class="live" data-i18n>EN DIRECT</span>
     <span class="clock" id="clock">J1 · 08h</span>
+    <span class="count" id="arenaName"></span>
     <span class="count"><b id="alive">30</b> <span class="lbl" data-i18n>en lice</span></span>
     <span class="spacer"></span>
     <div class="ctrl" role="group" aria-label="Vitesse" data-i18n-attr="aria-label">
@@ -175,6 +201,7 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
   <main class="stage">
     <canvas id="c"></canvas>
     <div class="banner" id="banner" hidden></div>
+    <div class="alert" id="alert" hidden></div>
     <div class="cam" role="group" aria-label="Caméra" data-i18n-attr="aria-label">
       <button data-cam="director" aria-pressed="true" data-i18n>Réalisateur</button>
       <button data-cam="follow" aria-pressed="false" data-i18n>Mon favori</button>
@@ -186,9 +213,11 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
     <div class="fav" id="fav"></div>
     <div class="tabs" role="tablist">
       <button role="tab" aria-selected="true" data-tab="feed" data-i18n>Le direct</button>
+      <button role="tab" aria-selected="false" data-tab="zone" data-i18n>Pièges & dangers</button>
       <button role="tab" aria-selected="false" data-tab="cast" data-i18n>Les 30</button>
     </div>
     <div class="pane" id="paneFeed"><ol class="feed" id="feed"></ol></div>
+    <div class="pane zone" id="paneZone" hidden></div>
     <div class="pane" id="paneCast" hidden><div class="grid" id="grid"></div></div>
   </aside>
 </div>
@@ -201,6 +230,7 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
 <script src="i18n-en-arena.js"></script>
 <script src="sound.js"></script>
 <script src="avatar.js"></script>
+<script src="arenas.js"></script>
 <script src="arena-engine.js"></script>
 <script src="arena3d.js"></script>
 <script>
@@ -210,38 +240,48 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
   const L = I18N.lang;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const pic = (id) => `img/p/${id}.webp`;
-  const seed = Number(new URLSearchParams(location.search).get("graine")) || 7;
+  const params = new URLSearchParams(location.search);
+  const seed = Number(params.get("graine")) || 7;
+  let arenaId = ARENAS[params.get("arene")] ? params.get("arene") : ARENA_LIST[(seed - 1) % ARENA_LIST.length];
 
   // le vivier : fiches (carrière) + fiches visuelles (modèle 3D)
   const [pool, looks] = await Promise.all([fetch("personnages.json").then((r) => r.json()), fetch("casting.json").then((r) => r.json())]);
   const lookOf = Object.fromEntries(looks.map((c) => [c.id, c.look]));
   const cast = ArenaEngine.cast(pool.map((c) => ({ ...c, look: lookOf[c.id] })), seed);
-  const game = ArenaEngine.create(cast, seed);
+  let game = null, world = null, A = null;
   const info = Object.fromEntries(cast.map((c) => [c.id, c]));
   const nameOf = (id) => info[id]?.name || id;
   const field = (c, k) => (L === "en" && c.en?.[k]) || c[k];
 
   const Snd = window.TheLastSound;
-  const world = Arena3D.init($("#c"), cast, {
-    sfx: (n) => Snd?.sfx(n),
-    onPick: (id) => openCand(id),
-  });
-  world.setScreen("ARENA BATTLE", t("Le Colisée d'acier"));
-  world.restore(game.snapshot());
-  world.setHour(1, 8);
+  function start(id) {
+    arenaId = id; A = ARENAS[id];
+    game = ArenaEngine.create(cast, seed, id);
+    world = Arena3D.init($("#c"), cast, A, {
+      sfx: (n) => Snd?.sfx(n),
+      onPick: (cid) => openCand(cid),
+    });
+    world.setScreen("ARENA BATTLE", A.name);
+    world.restore(game.snapshot());
+    world.setHour(1, 8);
+    $("#arenaName").textContent = A.name;
+  }
 
   // ---------- état de l'interface ----------
-  let me = null, speed = 1, paused = false, dropDay = 0;
+  let me = null, speed = 1, paused = false, dropDay = 0, warnDay = 0;
   const day = () => game.state.day;
 
   // ---------- les commentateurs ----------
   const VOICES = {
-    hit: [t("Aïe, ça va laisser des étoiles !"), t("Quel coup ! Le public est debout !"), t("Ça, c'est du grand spectacle."), t("On n'avait jamais vu ça dans le Colisée !")],
+    hit: [t("Aïe, ça va laisser des étoiles !"), t("Quel coup ! Le public est debout !"), t("Ça, c'est du grand spectacle."), t("On n'avait jamais vu ça dans cette arène !")],
     ko: [t("Et c'est la Cage ! Il faudra compter sur le public ce soir."), t("Hors jeu ! Le drone arrive déjà."), t("Une étoile de trop… direction la Cage du sursis.")],
     betray: [t("Je n'en reviens pas. Trahi·e par son allié·e !"), t("Voilà pourquoi on ne fait confiance à personne dans l'arène.")],
     out: [t("Au revoir, et merci pour le spectacle."), t("Le drone l'emmène loin de l'arène. Fin de l'aventure.")],
     ally: [t("Une alliance… pour combien de temps ?"), t("Ensemble, ils sont plus forts. En théorie.")],
-    win: [t("Quelle saison ! Quel champion !"), t("Le Colisée d'acier a trouvé son roi.")],
+    trap: [t("Il ne l'a pas vu venir. Personne ne regarde jamais par terre !"), t("Le piège a fonctionné à la perfection. Diabolique… et hilarant."), t("Le public l'avait vu, lui ! On l'a crié pendant une heure !")],
+    hazard: [t("L'arène elle-même s'en mêle !"), t("Il fallait se cacher. On l'avait annoncé !")],
+    heed: [t("Le public lui a sauvé la mise !"), t("Bien joué, les spectateurs !")],
+    win: [t("Quelle saison ! Quel champion !"), t("L'arène a trouvé son champion.")],
   };
   const CASTERS = ["Rex", "Nova"];
   let castTurn = 0;
@@ -253,10 +293,11 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
   }
   const hh = (h) => (L === "en" ? `${h % 12 || 12} ${h < 12 ? "AM" : "PM"}` : String(h).padStart(2, "0") + "h");
   function log(e) {
-    const cls = { hit: e.kind === "betray" ? "hot" : "", ko: "hot", out: "hot", vote: "good", drop: "good", win: "gold", finale: "gold", zone: "hot", duelStart: "gold" }[e.type] || "";
+    if (e.type === "danger" && e.quiet && e.v !== me) return;
+    const cls = { hit: e.kind === "betray" ? "hot" : "", ko: "hot", out: "hot", vote: "good", drop: "good", win: "gold", finale: "gold", zone: "hot", duelStart: "gold", danger: "hot", trapSet: "hot", hazardSoon: "hot", hazard: "hot", heed: "good" }[e.type] || "";
     const li = document.createElement("li");
     li.className = cls;
-    li.innerHTML = `<span class="when">${t("J{d}", { d: e.day })} · ${hh(e.hour)}</span>${esc(e.text)}${voice(e.kind === "betray" ? "betray" : e.type)}`;
+    li.innerHTML = `<span class="when">${t("J{d}", { d: e.day })} · ${hh(e.hour)}</span>${esc(e.text)}${voice(e.kind === "betray" ? "betray" : e.kind === "trap" ? "trap" : e.kind === "hazard" ? "hazard" : e.type)}`;
     $("#feed").appendChild(li);
     while ($("#feed").children.length > 120) $("#feed").firstChild.remove();
     if (me && (e.a === me || e.v === me) && e.type !== "night") banner(e.text);
@@ -271,6 +312,8 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
   const stateLabel = (c) => c.id === game.state.winner ? `<span class="state win">${t("Vainqueur")}</span>` : c.state === "cage" ? `<span class="state cage">${t("Dans la Cage")}</span>` : c.state === "out" ? `<span class="state out">${t("Évacué·e · {n}e", { n: c.rank })}</span>` : "";
   const starStr = (n) => "★".repeat(n) + "☆".repeat(Math.max(0, 3 - n));
   function renderSide() {
+    if (!game) return;
+    renderZone(); renderAlert();
     const snap = game.snapshot();
     $("#alive").textContent = snap.cast.filter((c) => c.state !== "out").length;
     $("#clock").textContent = `${t("J{d}", { d: snap.day })} · ${hh(snap.hour)}`;
@@ -290,22 +333,59 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
     $("#dropBtn").onclick = openDrop;
     $("#seeBtn").onclick = () => { setCam("follow"); world.focusOn(me); };
   }
+  const KIND_ICON = { loot: "🎁", hide: "🫥", danger: "⚠️", open: "🌿" };
+  function renderZone() {
+    const snap = game.snapshot();
+    const mine = me && snap.cast.find((c) => c.id === me);
+    const placeName = (id) => A.places.find((p) => p.id === id)?.name || id;
+    const traps = snap.traps.map((tp) => {
+      const visitors = snap.cast.filter((c) => c.state === "in" && c.intent === tp.place && c.place !== tp.place && c.id !== tp.owner).map((c) => c.name);
+      const isMine = mine && mine.state === "in" && mine.intent === tp.place && mine.place !== tp.place && tp.owner !== me;
+      return `<li class="${isMine ? "mine" : ""}">⚠ ${esc(tp.name)} · <b>${esc(placeName(tp.place))}</b><span class="k">${t("Posé par {a}", { a: esc(nameOf(tp.owner)) })}${visitors.length ? " · " + t("En route : {n}", { n: esc(visitors.slice(0, 4).join(", ")) }) : ""}</span></li>`;
+    }).join("");
+    const hz = snap.hazards.sort((a, b) => a.hour - b.hour).map((h) => `<li>⏱ ${hh(h.hour)} · ${esc(h.name)}<span class="k">${esc(placeName(h.place))}</span></li>`).join("");
+    const places = A.places.map((p) => {
+      const n = snap.cast.filter((c) => c.state === "in" && c.place === p.id).length;
+      const closed = snap.closed.includes(p.id);
+      const fav = mine && mine.state === "in" && mine.place === p.id ? " ⭐" : "";
+      return `<li>${KIND_ICON[p.kind]} <b>${esc(p.name)}</b>${fav}<span class="k">${closed ? t("Fermé par la brume") : t("{n} candidat(s) ici", { n })}</span></li>`;
+    }).join("");
+    $("#paneZone").innerHTML = `<h4>${t("PIÈGES POSÉS")}</h4>${traps ? `<ul>${traps}</ul>` : `<p class="empty">${t("Aucun piège pour l'instant. Ça ne va pas durer.")}</p>`}
+      <h4>${t("DANGERS ANNONCÉS AUJOURD'HUI")}</h4>${hz ? `<ul>${hz}</ul>` : `<p class="empty">${t("Plus aucun danger prévu aujourd'hui.")}</p>`}
+      <h4>${esc(A.name.toUpperCase())}</h4><ul>${places}</ul>
+      <p class="empty">${t("🎁 caisses · 🫥 cachettes · ⚠️ terrain piégeux · 🌿 terrain dégagé. Les candidats ne voient pas les pièges des autres : toi, si.")}</p>`;
+  }
+  function renderAlert() {
+    const el = $("#alert");
+    const tp = me && !game.state.over ? game.trapAhead(me) : null;
+    if (!tp) { el.hidden = true; return; }
+    const can = warnDay !== day();
+    el.innerHTML = `<div><b>${t("ATTENTION")}</b>${t("{v} part vers {l}, où {a} a caché {p} !", { v: esc(nameOf(me)), l: esc(tp.placeName), a: esc(tp.ownerName), p: esc(tp.name) })}</div>
+      <button class="btn" id="warnBtn" ${can ? "" : "disabled"}>${can ? t("📣 Prévenir") : t("Déjà prévenu·e")}</button>`;
+    el.hidden = false;
+    $("#warnBtn").onclick = () => {
+      game.warn(me); warnDay = day();
+      Snd?.sfx("alert");
+      banner(t("Le public crie pour prévenir {a}… Va-t-il·elle écouter ?", { a: nameOf(me) }));
+      renderAlert();
+    };
+  }
   $("#grid").addEventListener("click", (e) => { const b = e.target.closest("[data-id]"); if (b) openCand(b.dataset.id); });
   document.querySelectorAll("[data-tab]").forEach((b) => b.onclick = () => {
     document.querySelectorAll("[data-tab]").forEach((x) => x.setAttribute("aria-selected", x === b));
-    $("#paneFeed").hidden = b.dataset.tab !== "feed"; $("#paneCast").hidden = b.dataset.tab !== "cast";
+    $("#paneFeed").hidden = b.dataset.tab !== "feed"; $("#paneCast").hidden = b.dataset.tab !== "cast"; $("#paneZone").hidden = b.dataset.tab !== "zone";
   });
 
   // ---------- fenêtres ----------
   let resume = null;
   function showCard(html, keepRunning = false) {
     $("#card").innerHTML = html; $("#over").hidden = false;
-    if (!keepRunning) world.setPaused(true);
+    if (!keepRunning) world?.setPaused(true);
   }
-  function closeCard() { $("#over").hidden = true; world.setPaused(paused); }
+  function closeCard() { $("#over").hidden = true; world?.setPaused(paused); }
 
   function openCand(id) {
-    const ci = info[id], c = game.snapshot().cast.find((x) => x.id === id);
+    const ci = info[id], c = game ? game.snapshot().cast.find((x) => x.id === id) : { state: "in", stars: 3 };
     const rivals = (ci.career?.rivals || []).slice(0, 3).map((r) => `${esc(nameOf(r.id) === r.id ? (pool.find((p) => p.id === r.id)?.name || r.id) : nameOf(r.id))} (${esc(r.where)})`).join(", ");
     showCard(`<div class="kicker">${ci.pick === "public" ? t("CHOISI·E PAR LE PUBLIC") : t("REPÊCHÉ·E PAR LA PRODUCTION")}</div>
       <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;margin-top:8px">
@@ -321,7 +401,7 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
     $("#mkFav").onclick = () => { setFav(id); closeCard(); };
     $("#closeC").onclick = closeCard;
   }
-  function setFav(id) { me = id; world.setFavorite(id); renderSide(); }
+  function setFav(id) { me = id; world?.setFavorite(id); renderSide(); }
 
   function openDrop() {
     showCard(`<div class="kicker">${t("CAISSE DU PUBLIC")}</div><h2>${t("Que veux-tu envoyer à {a} ?", { a: esc(nameOf(me)) })}</h2>
@@ -329,29 +409,56 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
       <div class="duels">
         <button class="btn" data-item="star">⭐ ${t("Une étoile de Garde (+1, maximum 3)")}</button>
         <button class="btn" data-item="shield">🛡️ ${t("Un bouclier en mousse (bloque une attaque)")}</button>
-        <button class="btn" data-item="map">🗺️ ${t("La carte des pièges (évite filets et peaux de banane aujourd'hui)")}</button>
+        <button class="btn" data-item="map">🗺️ ${t("La carte des pièges (évite tous les pièges posés aujourd'hui)")}</button>
       </div><div class="row"><button class="btn" id="closeC">${t("Annuler")}</button></div>`);
     $("#card").querySelectorAll("[data-item]").forEach((b) => b.onclick = () => { game.drop(me, b.dataset.item); dropDay = day(); closeCard(); renderSide(); banner(t("Caisse en route pour {a} !", { a: nameOf(me) })); });
     $("#closeC").onclick = closeCard;
   }
 
-  // casting d'ouverture
+  // casting d'ouverture : d'abord l'arène, puis le favori
+  const sw = (n) => "#" + n.toString(16).padStart(6, "0");
+  function arenaCard(id) {
+    const a = ARENAS[id], pal = a.palette;
+    return `<button class="arena" data-arena="${id}" aria-pressed="${id === arenaId}">
+      <span class="sw" style="background:linear-gradient(180deg, ${sw(pal.sky)}, ${sw(pal.ground)})">${[pal.ground2, pal.accent, pal.fog, pal.ground2].map((c, i) => `<i style="left:${8 + i * 22}%;background:${sw(c)};height:${40 + ((i * 37) % 45)}%"></i>`).join("")}</span>
+      <h3>${esc(a.name)}</h3><span class="pitch">${esc(a.pitch)}</span>
+      <span class="places">${a.places.map((p) => `<span>${KIND_ICON[p.kind]} ${esc(p.name)}</span>`).join("")}</span>
+      <span class="tr">${t("Pièges : {p}", { p: esc(a.traps.map((x) => x.name).join(", ")) })}</span>
+      <span class="tr">${t("Dangers : {p}", { p: esc(a.hazards.map((x) => x.name).join(", ")) })}</span></button>`;
+  }
   function openCasting() {
     return new Promise((res) => {
       let pick = null;
-      showCard(`<div class="kicker">${t("SAISON 1 · LE COLISÉE D'ACIER")}</div>
+      showCard(`<div class="kicker">${t("SAISON 1 · ARENA BATTLE")}</div>
         <h2>${t("30 candidats. Une arène. Un seul restera debout.")}</h2>
-        <p>${t("Chaque candidat a une Garde de 3 étoiles. Chaque coup en coûte une. À zéro, un drone l'emporte dans la Cage du sursis, et ton vote de 19h peut le sauver. Personne n'est blessé : tout se joue en mousse, en peinture et en fou rire.")}</p>
+        <p>${t("Chaque candidat a une Garde de 3 étoiles. Chaque coup, piège ou danger en coûte une. À zéro, un drone l'emporte dans la Cage du sursis, et ton vote de 19h peut le sauver. Personne n'est blessé : tout se joue en mousse, en peinture et en fou rire.")}</p>
+        <div class="step">${t("1 · CHOISIS L'ARÈNE DE LA SAISON")}</div>
+        <div class="arenas">${ARENA_LIST.map(arenaCard).join("")}</div>
+        <div class="step">${t("2 · CHOISIS TON FAVORI")}</div>
         <div class="legend"><span><span class="badge pub">${t("PUBLIC")}</span> ${t("24 choisis par les spectateurs")}</span><span><span class="badge prod">${t("PROD")}</span> ${t("6 repêchés par la production")}</span></div>
         <div class="grid pick">${cast.map((c) => `<button class="cand" data-id="${c.id}" aria-pressed="false"><img src="${pic(c.id)}" alt=""><span class="badge ${c.pick === "public" ? "pub" : "prod"}">${c.pick === "public" ? t("PUBLIC") : t("PROD")}</span><span class="n">${esc(c.name)}</span></button>`).join("")}</div>
-        <div class="row"><button class="btn primary" id="go">${t("Entrer dans l'arène sans favori")}</button><span class="timer">${t("Touche un visage pour choisir ton favori.")}</span></div>`);
+        <div class="row"><button class="btn primary" id="go"></button><span class="timer">${t("Touche un visage pour choisir ton favori.")}</span></div>`);
+      const label = () => { $("#go").textContent = pick ? t("Entrer dans {l} avec {a}", { l: ARENAS[arenaId].name, a: nameOf(pick) }) : t("Entrer dans {l} sans favori", { l: ARENAS[arenaId].name }); };
+      label();
+      $("#card").querySelector(".arenas").onclick = (e) => {
+        const b = e.target.closest("[data-arena]"); if (!b) return;
+        arenaId = b.dataset.arena;
+        $("#card").querySelectorAll("[data-arena]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+        label();
+      };
       $("#card").querySelector(".pick").onclick = (e) => {
         const b = e.target.closest("[data-id]"); if (!b) return;
         pick = b.dataset.id;
         $("#card").querySelectorAll(".pick [data-id]").forEach((x) => x.setAttribute("aria-pressed", x === b));
-        $("#go").textContent = t("Entrer dans l'arène avec {a}", { a: nameOf(pick) });
+        label();
       };
-      $("#go").onclick = () => { Snd?.start(); Snd?.music("challenge"); if (pick) setFav(pick); closeCard(); res(); };
+      $("#go").onclick = () => {
+        Snd?.start(); Snd?.music("challenge");
+        start(arenaId);
+        const u = new URL(location.href); u.searchParams.set("arene", arenaId); history.replaceState(null, "", u);
+        if (pick) setFav(pick);
+        closeCard(); res();
+      };
     });
   }
 
@@ -397,7 +504,7 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
   function showNight(d, out) {
     return new Promise((res) => {
       const gone = out.map((id) => `<div class="cand"><img src="${pic(id)}" alt=""><span class="n">${esc(nameOf(id))}</span></div>`).join("");
-      showCard(`<div class="kicker">${t("LA QUOTIDIENNE · JOUR {d}", { d })}</div><h2>${t("La nuit tombe sur le Colisée")}</h2>
+      showCard(`<div class="kicker">${t("LA QUOTIDIENNE · JOUR {d}", { d })}</div><h2>${t("La nuit tombe sur l'arène")}</h2>
         <p>${out.length ? t("Évacués ce soir :") : t("Personne n'a quitté l'arène ce soir.")}</p><div class="grid">${gone}</div>
         <p>${t("{n} candidats encore en lice. Demain, l'arène se resserre.", { n: game.snapshot().cast.filter((c) => c.state !== "out").length })}</p>
         <div class="row"><button class="btn primary" id="ok">${t("Jour suivant")}</button></div>`);
@@ -417,7 +524,7 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
       <p>${t("Le plus redoutable : {a}, avec {n} coups portés.", { a: esc(best.name), n: best.stats.hits })}</p>
       ${mine ? `<p>${mine.rank === 1 ? t("Ton favori a gagné ! Tu reçois le badge « Je l'avais dit ».") : t("Ton favori, {a}, finit {n}e.", { a: esc(mine.name), n: mine.rank })}</p>` : ""}
       <div class="row"><button class="btn primary" id="again">${t("Nouvelle saison")}</button><button class="btn" id="closeC">${t("Revoir l'arène")}</button></div>`, true);
-    $("#again").onclick = () => { const u = new URL(location.href); u.searchParams.set("graine", seed + 1); location.href = u.toString(); };
+    $("#again").onclick = () => { const u = new URL(location.href); u.searchParams.set("graine", seed + 1); u.searchParams.set("arene", ARENA_LIST[(ARENA_LIST.indexOf(arenaId) + 1) % ARENA_LIST.length]); location.href = u.toString(); };
     $("#closeC").onclick = closeCard;
   }
 
@@ -449,6 +556,7 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
       }
       if (e.type === "vote") { log(e); await showVoteResult(e); await world.play(e); renderSide(); continue; }
       if (e.type === "out") evacuatedToday.push(e.v);
+      if (e.type === "danger" && e.v === me) e.quiet = false;
       log(e);
       if (e.type === "win") { renderSide(); await world.play(e); showWinner(); continue; }
       await world.play(e);
@@ -460,13 +568,14 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: .04em; }
     world.setHour(step.day, step.hour);
     world.setScreen(t("JOUR {d} · {h}", { d: step.day, h: hh(step.hour) }), t("{n} EN LICE", { n: game.snapshot().cast.filter((c) => c.state !== "out").length }));
     const snap = game.snapshot();
-    for (const c of snap.cast) if (c.state === "in") world.goSector(c.id, c.sector);
+    world.sync(snap); world.syncTraps(snap.traps); world.setClosed(snap.closed);
     renderSide();
     await playAll(step.events);
     if (step.ask) {
       const value = step.ask.kind === "duel" ? await askDuel(step.ask) : await askVote(step.ask);
       await playAll(game.answer(value));
     }
+    renderSide();
     await world.wait(step.events.length ? 0.8 : 1.4);
   }
 })();

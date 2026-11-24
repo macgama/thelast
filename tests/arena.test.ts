@@ -1,13 +1,16 @@
 // The Last - Arena Battle : le moteur de la maquette (demo/arena-engine.js) et sa version anglaise.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import "../demo/arenas.js";
 import "../demo/arena-engine.js";
 
 const E = (globalThis as any).ArenaEngine;
 const pool = JSON.parse(readFileSync("demo/personnages.json", "utf8"));
 
-function season(seed: number, pickVote = (ids: string[]) => ids[0]) {
-  const game = E.create(E.cast(pool, seed), seed);
+const ARENAS: string[] = (globalThis as any).ARENA_LIST;
+
+function season(seed: number, pickVote = (ids: string[]) => ids[0], arena?: string) {
+  const game = E.create(E.cast(pool, seed), seed, arena);
   const events: any[] = [];
   let step, guard = 0;
   while ((step = game.next()) && guard++ < 500) {
@@ -39,6 +42,48 @@ describe("Arena Battle : le moteur", () => {
       expect(events.find((e) => e.type === "finale")?.day).toBe(7);
     });
   }
+
+  it("il y a 5 arènes, chacune avec ses lieux reliés, 3 pièges et 3 dangers", () => {
+    expect(ARENAS).toHaveLength(5);
+    for (const id of ARENAS) {
+      const A = (globalThis as any).ARENAS[id];
+      const ids = new Set(A.places.map((p: any) => p.id));
+      expect(A.places.length).toBeGreaterThanOrEqual(7);
+      for (const p of A.places) for (const l of p.links) expect(ids.has(l)).toBe(true);
+      expect(A.places.some((p: any) => p.kind === "hide")).toBe(true);
+      expect(A.traps).toHaveLength(3);
+      expect(A.hazards).toHaveLength(3);
+    }
+  });
+
+  for (const arena of ARENAS) {
+    it(`${arena} : la saison va jusqu'à la finale du 7e jour, avec pièges, cachettes et dangers`, () => {
+      const { game, events } = season(11, undefined, arena);
+      expect(game.arena.places[0].id).toBe((globalThis as any).ARENAS[arena].places[0].id);
+      expect(events.filter((e) => e.type === "win")).toHaveLength(1);
+      expect(events.find((e) => e.type === "finale")?.day).toBe(7);
+      expect(events.some((e) => e.type === "trapSet")).toBe(true);
+      expect(events.some((e) => e.type === "hit" && e.kind === "trap")).toBe(true);
+      expect(events.some((e) => e.type === "hide")).toBe(true);
+      expect(events.some((e) => e.type === "hazard")).toBe(true);
+      expect(events.some((e) => e.type === "danger")).toBe(true);
+    });
+  }
+
+  it("prévenir son favori : il fait demi-tour ou fonce quand même", () => {
+    const game = E.create(E.cast(pool, 4), 4, "colisee");
+    let step, warned = false, guard = 0;
+    while ((step = game.next()) && guard++ < 400) {
+      if (step.ask) game.answer(step.ask.kind === "duel" ? step.ask.options[0] : null);
+      if (warned) {
+        expect(step.events.some((e: any) => e.type === "heed" || e.type === "ignore")).toBe(true);
+        return;
+      }
+      const at = game.snapshot().cast.find((c: any) => c.state === "in" && game.trapAhead(c.id));
+      if (at) { game.warn(at.id); warned = true; }
+    }
+    throw new Error("aucun piège sur le chemin");
+  });
 
   it("la même graine rejoue la même saison", () => {
     const a = season(5).events.map((e) => e.text).join("|");
@@ -81,7 +126,7 @@ function keysOf(src: string): string[] {
 describe("Arena Battle : version anglaise", () => {
   const EN: Record<string, string> = {};
   new Function("window", readFileSync("demo/i18n-en-arena.js", "utf8"))({ I18N: { add: (d: Record<string, string>) => Object.assign(EN, d) } });
-  for (const page of ["arena.html", "arena3d.js", "arena-engine.js"]) {
+  for (const page of ["arena.html", "arena3d.js", "arena-engine.js", "arenas.js"]) {
     it(`${page} : tous les textes sont traduits`, () => {
       expect(keysOf(readFileSync(`demo/${page}`, "utf8")).filter((k) => EN[k] === undefined)).toEqual([]);
     });
